@@ -17,7 +17,7 @@
   <meta name="description" content="Stay hungry stay foolish">
   <meta name="author" content="MIKEY">
   <meta name="keywords" content="">
-  <title>关于 - 麦奇</title>
+  <title>Hyperledger Caliper - 麦奇</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -43,7 +43,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -121,6 +121,33 @@
             </span>
 
             
+              
+                <p class="mt-3 post-meta">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                  星期一, 三月 16日 2020, 10:58 晚上
+                </p>
+              
+
+              <p class="mt-1">
+                
+                  
+                  <span class="post-meta">
+                    <i class="far fa-chart-bar"></i>
+                    415 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta">
+                      <i class="far fa-clock"></i>
+                      2 分钟
+                  </span>
+                
+
+                
+              </p>
+            
           </div>
 
           
@@ -131,100 +158,89 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5 z-depth-3" id="board"
-          >
-          
-            <div class="about-avatar">
-              <img src="/img/avatar.png" srcset="/img/loading.gif"
-                   class="img-fluid z-depth-1 rounded-circle"
-                   alt="avatar">
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5 z-depth-3" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <div class="markdown-body">
+              <h2 id="Caliper-简介"><a href="#Caliper-简介" class="headerlink" title="Caliper 简介"></a>Caliper 简介</h2><p>Caliper是一个区块链性能基准框架，允许用户使用自定义用例测试不同的区块链解决方案，并获得一组性能测试结果。</p>
+<blockquote>
+<p>Caliper is a blockchain benchmark framework which allows users to measure the performance of a specific blockchain implementation with a set of predefined use cases. Caliper will produce reports containing a number of performance indicators, such as TPS (Transactions Per Second), transaction latency, resource utilisation etc. The intent is for Caliper results to be used as a reference in supporting the choice of a blockchain implementation suitable for the user-specific use-cases. Given the variety of blockchain configurations, network setup, as well as the specific use-cases in mind, it is not intended to be an authoritative performance assessment, nor to be used for simple comparative purposes (e.g. blockchain A does 5 TPS and blockchain B does 10 TPS, therefore B is better). The Caliper project references the definitions, metrics, and terminology as defined by the Performance &amp; Scalability Working Group (PSWG).</p>
+</blockquote>
+<h2 id="适用平台"><a href="#适用平台" class="headerlink" title="适用平台"></a>适用平台</h2><ul>
+<li>Hyperledger Besu  </li>
+<li>Hyperledger Burrow</li>
+<li>Ethereum  </li>
+<li>Hyperledger Fabric</li>
+<li>FISCO BCOS</li>
+<li>Hyperledger Iroha</li>
+<li>Hyperledger Sawtooth</li>
+<li>Transaction/read throughput</li>
+<li>Transaction/read latency (minimum, maximum, average, percentile)</li>
+<li>Resource consumption (CPU, Memory, Network IO, …)</li>
+</ul>
+<h2 id="安装Caliper"><a href="#安装Caliper" class="headerlink" title="安装Caliper"></a>安装Caliper</h2><p>Caliper is published as the <code>hyperledger/caliper-cli</code> NPM package and the <code>hyperledger/caliper</code><br> Docker image, both containing the CLI binary. Refer to the<br>Installing from NPM<br> and<br>Using the Docker image<br> sections for the available versions and their intricacies.</p>
+<p>Installing and running Caliper usually consists of the following steps, thoroughly detailed by the remaining sections:</p>
+<p>Acquire the Caliper CLI either from NPM or from DockerHub.<br>Execute a bind command through the CLI. This step pulls the specified version of SDK packages for the selected platform.<br>Start the benchmark through the CLI or by starting the Docker container.<br>The examples in the rest of the documentation use the<br>caliper-benchmarks<br> repository as the Caliper workspace since it contains many sample artifacts for benchmarking. Make sure you check out the appropriate tag/commit of the repository, matching the version of Caliper you use.</p>
+<p>To clone the caliper-benchmarks repository, run:</p>
+<pre><code>git clone https://github.com/hyperledger/caliper-benchmarks.git
+cd caliper-benchmarks
+git checkout &lt;your Caliper version&gt;</code></pre><p><em>Note</em>: If you are running your custom benchmark, then change this directory path (and other related configurations) accordingly in the examples.</p>
+
             </div>
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
+            <hr>
+            <div>
+              <p>
                 
-
-<div class="text-center">
-  <p class="h3">麦奇</p>
-  <p>J2EE / 区块链 / Linux</p>
-  
-    
-    
-    
-    <a href="https://github.com/mikeygithub" target="_blank" rel="noopener" class="h4 px-1 false">
-      <i class="fab fa-github" aria-hidden="true"></i>
-      
-    </a>
-  
-    
-    
-    
-    <a href="https://twitter.com/" target="_blank" rel="noopener" class="h4 px-1 false">
-      <i class="fab fa-twitter" aria-hidden="true"></i>
-      
-    </a>
-  
-    
-    
-    
-    <a href="https://www.instagram.com/mikeyhahaha/" target="_blank" rel="noopener" class="h4 px-1 false">
-      <i class="fab fa-instagram" aria-hidden="true"></i>
-      
-    </a>
-  
-    
-    
-    
-    <a href="https://www.google.com/biaogejiushibiao@gmail.com" target="_blank" rel="noopener" class="h4 px-1 false">
-      <i class="fab fa-google" aria-hidden="true"></i>
-      
-    </a>
-  
-    
-    
-    
-    <a href="https://www.facebook.com/mikey.andy.39" target="_blank" rel="noopener" class="h4 px-1 false">
-      <i class="fab fa-facebook" aria-hidden="true"></i>
-      
-    </a>
-  
-    
-    
-    
-    <a href="javascript:;" class="h4 px-1 qr-trigger">
-      <i class="fab fa-weixin qrcode" aria-hidden="true"></i>
-      
-        <img class="qr-img" src="/img/wechat.jpg" srcset="/img/loading.gif" alt="qrcode" />
-      
-    </a>
-  
-</div>
-<div class="mt-5 markdown-body">
-  <h3 id="个人简历"><a href="#个人简历" class="headerlink" title="个人简历"></a>个人简历</h3><details>
-  <summary><a href="/resource/pdf/2020-杨彪-个人简历.pdf">查看简历</a></summary>
-</details>
-
-
-<h3 id="目前现状"><a href="#目前现状" class="headerlink" title="目前现状"></a>目前现状</h3><blockquote>
-<p>目前还是个菜鸟、正在不断努力、不断进步！</p>
-</blockquote>
-<h3 id="学习方向"><a href="#学习方向" class="headerlink" title="学习方向"></a>学习方向</h3><blockquote>
-<p>JavaEE、区块链、Linux、前端、Golang</p>
-</blockquote>
-<h3 id="人生目标"><a href="#人生目标" class="headerlink" title="人生目标"></a>人生目标</h3><blockquote>
-<p>企业级应用开发架构师 可以独挡一面</p>
-</blockquote>
-<h3 id="名言金句"><a href="#名言金句" class="headerlink" title="名言金句"></a>名言金句</h3><pre><code class="text">你为什么要努力？因为想去的地方很远，想要的东西很贵，喜欢的人很优秀，父母的白发，朋友的约定，周围人的嘲笑，以及，天生傲骨。</code></pre>
-
-</div>
-
-              </div>
+                  <span>
+                <i class="iconfont icon-inbox"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Hyperledger/">Hyperledger</a>
+                      &nbsp;
+                    
+                  </span>&nbsp;&nbsp;
+                
+                
+                  <span>
+                <i class="iconfont icon-tag"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/">区块链</a>
+                    
+                  </span>
+                
+              </p>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
             </div>
+
+            
           </div>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc-start"></div>
+<div id="toc">
+  <p class="h5"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
   </main>
 
@@ -348,6 +364,57 @@
 
 
 
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.10.0/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var navHeight = $('#navbar').height();
+      var post = $('#post');
+      var toc = $('#toc');
+      var tocLimMax = post.offset().top + post.height() - navHeight;
+
+      $(window).scroll(function () {
+        var tocLimMin = $('#toc-start').offset().top - navHeight;
+        var scroH = document.body.scrollTop + document.documentElement.scrollTop;
+
+        if (tocLimMin <= scroH && scroH <= tocLimMax) {
+          toc.css({
+            'display': 'block',
+            'position': 'fixed',
+            'top': navHeight,
+          });
+        } else if (scroH <= tocLimMin) {
+          toc.css({
+            'position': '',
+            'top': '',
+          });
+        } else if (scroH > tocLimMax) {
+          toc.css('display', 'none');
+        }
+      });
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        scrollSmooth: true,
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc > p').css('visibility', 'visible');
+      }
+      var offset = $('#board-ctn').css('margin-right')
+      $('#toc-ctn').css({
+        'right': offset
+      })
+    });
+  </script>
+
+
+
 
 
   <script defer src="https://cdn.staticfile.org/smoothscroll/1.4.10/SmoothScroll.min.js" ></script>
@@ -378,7 +445,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "麦奇&nbsp;",
+        "Hyperledger Caliper&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 100,
