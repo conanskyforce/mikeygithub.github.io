@@ -17,7 +17,7 @@
   <meta name="description" content="Stay hungry stay foolish">
   <meta name="author" content="MIKEY">
   <meta name="keywords" content="">
-  <title>标签 - 区块链 - 麦奇</title>
+  <title>Hyperledger Caliper 性能测试工具配置 - 麦奇</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -43,7 +43,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -121,6 +121,33 @@
             </span>
 
             
+              
+                <p class="mt-3 post-meta">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                  星期五, 三月 20日 2020, 11:41 晚上
+                </p>
+              
+
+              <p class="mt-1">
+                
+                  
+                  <span class="post-meta">
+                    <i class="far fa-chart-bar"></i>
+                    727 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta">
+                      <i class="far fa-clock"></i>
+                      3 分钟
+                  </span>
+                
+
+                
+              </p>
+            
           </div>
 
           
@@ -131,49 +158,120 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5 z-depth-3" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-<!--  <p class="h4">共计 3 篇文章</p>-->
-  <hr>
-  
-    
       
-      <p class="h5">2020</p>
-    
-    <a href="/2020/03/20/Hyperledger-Caliper-%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E9%85%8D%E7%BD%AE/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Hyperledger Caliper 性能测试工具配置</span>
-      <span style="float: right;">03-20</span>
-    </a>
-  
-    
-    <a href="/2020/03/18/Hyperledger-Iroha/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Hyperledger Iroha</span>
-      <span style="float: right;">03-18</span>
-    </a>
-  
-    
-    <a href="/2020/03/16/Hyperledger-Caliper/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Hyperledger Caliper</span>
-      <span style="float: right;">03-16</span>
-    </a>
-  
-</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5 z-depth-3" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <div class="markdown-body">
+              <h1 id="Caliper性能测试工具配置"><a href="#Caliper性能测试工具配置" class="headerlink" title="Caliper性能测试工具配置"></a>Caliper性能测试工具配置</h1><p>基本上都是根据官方doc进行操作，个别部分有坑。</p>
+<p><a href="https://hyperledger.github.io/caliper/docs/1_Getting_Started.html" target="_blank" rel="noopener">官方doc</a></p>
+<p>提前安装</p>
+<blockquote>
+<p>nodejs、node-gyp、docker、docker-compose</p>
+</blockquote>
+<h2 id="代码下载"><a href="#代码下载" class="headerlink" title="代码下载"></a>代码下载</h2><p><code>git clone https://github.com/hyperledger/caliper.git</code></p>
+<h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><p>进入caliper代码根目录，执行以下命令：<br><code>npm install</code><br><code>npm run repoclean</code><br><code>npm run bootstrap</code></p>
+<h2 id="安装caliper"><a href="#安装caliper" class="headerlink" title="安装caliper"></a>安装caliper</h2><p>根据官网步骤进行安装。</p>
+<p><a href="https://github.com/hyperledger/caliper/blob/master/packages/caliper-tests-integration/README.md" target="_blank" rel="noopener">安装步骤</a><br><code>cd ./packages/caliper-tests-integration</code></p>
+<h4 id="开启Verdaccio"><a href="#开启Verdaccio" class="headerlink" title="开启Verdaccio"></a>开启Verdaccio</h4><p><code>npm run start_verdaccio</code></p>
+<p>成功界面：</p>
+<div align=center>![success](/resource/img/Picture1.png)
+
+<h4 id="发布包"><a href="#发布包" class="headerlink" title="发布包"></a>发布包</h4><p><code>npm run publish_packages</code></p>
+<h4 id="安装caliper-1"><a href="#安装caliper-1" class="headerlink" title="安装caliper"></a>安装caliper</h4><p><code>npm run install_cli</code><br>成功界面：</p>
+<div align=center>![这里写图片描述](/resource/img/Picture2.png)
+
+<h5 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h5><p>1.3.3.1.1.无权限<br>报错：gyp stack Error: EACCES: permission denied, mkdir ‘/usr/local/lib/node_modules/caliper…<br>原因：用户没有/usr/local/lib/node_modules/文件夹的写权限<br>解决方法：<br>（1）官方文档方法：修改npm的安装目录为一个本地用户有权限的目录，命令：<code>npm config set prefix ~/youdir</code>，修改后caliper会安装到此目录。<br>（2）我的方法：不想修改npm安装目录，并且我在root用户下进行的操作，怀疑安装过程中切换了用户。所以我修改了caliper安装命令，添加<code>--unsafe-perm</code>参数，避免用户切换。<br>修改文件：<code>packages/caliper-tests-integration/scripts/npm_install.js</code>第<code>65</code>行  </p>
+<p>修改结果：  </p>
+<div align=center>![这里写图片描述](/resource/img/Picture3.png)  
+
+<p>修改完后重新执行 <code>npm run install_cli</code>  </p>
+<p>1.3.3.1.2.卡在<code>node-pre-gyp</code>命令</p>
+<p>若一直卡在如下界面，重新执行<code>npm run install_cli</code>。百度说要vpn，我没有vpn，重新执行命令一样ok。  </p>
+<div align=center>![这里写图片描述](/resource/img/Picture4.png)
+
+<p>1.3.4.验证安装结果执行<code>caliper -v</code>，出现如下结果即安装成功</p>
+<div align=center>![这里写图片描述](/resource/img/Picture5.png)
 
 
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>运行caliper提供的fabric1.4的sample。<br><code>cd packages/caliper-samples</code><br><code>caliper benchmark run -w ./ -c benchmark/simple/config.yaml -n network/fabric-v1.4/2org1peergoleveldb/fabric-ccp-go.yaml --caliper-core-skipendscript</code>  </p>
+<p>成功界面：</p>
+<div align=center>![这里写图片描述](/resource/img/Picture6.png)
 
-              </div>
+<p><code>caliper-core-skipendscript</code>加上此参数，caliper执行完会跳过下图配置文件fabric-ccp-go.yaml的end的命令，不关闭fabric环境，这样有助于查看日志。不想保留fabric环境可不加此参数。</p>
+<div align=center>![这里写图片描述](/resource/img/Picture7.png)
+
+
+<p>Caliper运行日志记录在-w命令指定目录下的log目录中。</p>
+<h2 id="官网的坑"><a href="#官网的坑" class="headerlink" title="官网的坑"></a>官网的坑</h2><p>1.5.1.千万不要执行<code>npm run cleanup</code></p>
+<div align=center>![这里写图片描述](/resource/img/Picture8.png)
+
+
+<p><code>npm run cleanup</code>执行过程中会删除安装的caliper，执行完此命令，在执行caliper -v会提示找不到命令。</p>
+<p>1.5.2.不能执行One-step install</p>
+<div align=center>![这里写图片描述](/resource/img/Picture9.png)
+
+<p>官网One-step install如下：</p>
+<p>One-step install也包含了npm run cleanup命令。所以安装完你依旧会看到如下界面：</p>
+<div align=center>![这里写图片描述](/resource/img/Picture10.png)
+
+<p>还是不要偷懒使用一步安装了。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://github.com/hyperledger/caliper" target="_blank" rel="noopener">https://github.com/hyperledger/caliper</a><br><a href="https://hyperledger.github.io/caliper/docs/1_Getting_Started.html" target="_blank" rel="noopener">https://hyperledger.github.io/caliper/docs/1_Getting_Started.html</a><br><a href="https://github.com/hyperledger/caliper/blob/master/packages/caliper-tests-integration/README.md" target="_blank" rel="noopener">https://github.com/hyperledger/caliper/blob/master/packages/caliper-tests-integration/README.md</a>  </p>
+
             </div>
+            <hr>
+            <div>
+              <p>
+                
+                  <span>
+                <i class="iconfont icon-inbox"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Hyperledger/">Hyperledger</a>
+                      &nbsp;
+                    
+                  </span>&nbsp;&nbsp;
+                
+                
+                  <span>
+                <i class="iconfont icon-tag"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/">区块链</a>
+                    
+                  </span>
+                
+              </p>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+            </div>
+
+            
           </div>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc-start"></div>
+<div id="toc">
+  <p class="h5"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
   </main>
 
@@ -297,6 +395,57 @@
 
 
 
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.10.0/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var navHeight = $('#navbar').height();
+      var post = $('#post');
+      var toc = $('#toc');
+      var tocLimMax = post.offset().top + post.height() - navHeight;
+
+      $(window).scroll(function () {
+        var tocLimMin = $('#toc-start').offset().top - navHeight;
+        var scroH = document.body.scrollTop + document.documentElement.scrollTop;
+
+        if (tocLimMin <= scroH && scroH <= tocLimMax) {
+          toc.css({
+            'display': 'block',
+            'position': 'fixed',
+            'top': navHeight,
+          });
+        } else if (scroH <= tocLimMin) {
+          toc.css({
+            'position': '',
+            'top': '',
+          });
+        } else if (scroH > tocLimMax) {
+          toc.css('display', 'none');
+        }
+      });
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        scrollSmooth: true,
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc > p').css('visibility', 'visible');
+      }
+      var offset = $('#board-ctn').css('margin-right')
+      $('#toc-ctn').css({
+        'right': offset
+      })
+    });
+  </script>
+
+
+
 
 
   <script defer src="https://cdn.staticfile.org/smoothscroll/1.4.10/SmoothScroll.min.js" ></script>
@@ -327,7 +476,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "标签 - 区块链&nbsp;",
+        "Hyperledger Caliper 性能测试工具配置&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 100,
