@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Knife4j Tutorials</title>
+    <link href="/2020/03/21/Knife4j-Tutorials/"/>
+    <url>/2020/03/21/Knife4j-Tutorials/</url>
+    
+    <content type="html"><![CDATA[<h2 id="knife4j简介"><a href="#knife4j简介" class="headerlink" title="knife4j简介"></a>knife4j简介</h2><p>前身:swagger-bootstrap-ui</p><h3 id="swagger简介"><a href="#swagger简介" class="headerlink" title="swagger简介"></a>swagger简介</h3><blockquote><p>Swagger是一个API接口管理工具，支持在线测试接口数据，根据配置自动生成API文档，结合spring mvc而提供界面化方法文档的一个开源框架。</p></blockquote><p>Swagger主要的项目<br>Swagger是一组开源项目，主要项目如下：</p><ul><li>Swagger-tools:提供各种与Swagger进行集成和交互的工具。例如模式检验、Swagger 1.2文档转换成Swagger 2.0文档等功能。</li><li>Swagger-core: 用于Java/Scala的的Swagger实现。与JAX-RS(Jersey、Resteasy、CXF…)、Servlets和Play框架进行集成。</li><li>Swagger-js: 用于JavaScript的Swagger实现。</li><li>Swagger-node-express: Swagger模块，用于node.js的Express web应用框架。</li><li>Swagger-ui：一个无依赖的HTML、JS和CSS集合，可以为Swagger兼容API动态生成优雅文档。</li><li>Swagger-codegen：一个模板驱动引擎，通过分析用户Swagger资源声明以各种语言生成客户端代码。</li><li>Swagger-editor：可让使用者在浏览器里以YAML格式编辑Swagger API规范并实时预览文档。可以生成有效的Swagger JSON描述，并用于所有Swagger工具（代码生成、文档等等）中。</li></ul><h3 id="Swagger-Bootstrap-UI简介"><a href="#Swagger-Bootstrap-UI简介" class="headerlink" title="Swagger-Bootstrap-UI简介"></a>Swagger-Bootstrap-UI简介</h3><blockquote><p>Swagger-Bootstrap-UI是springfox-swagger的增强UI实现，为Java开发者在使用Swagger的时候，能拥有一份简洁、强大的接口文档体验。</p></blockquote><h2 id="knife4j特点"><a href="#knife4j特点" class="headerlink" title="knife4j特点"></a>knife4j特点</h2><p>文档说明：根据Swagger的规范说明，详细列出接口文档的说明，包括接口地址、类型、请求示例、请求参数、响应示例、响应参数、响应码等信息，使用swagger-bootstrap-ui能根据该文档说明，对该接口的使用情况一目了然。</p><p>在线调试：提供在线接口联调的强大功能，自动解析当前接口参数,同时包含表单验证，调用参数可返回接口响应内容、headers、Curl请求命令实例、响应时间、响应状态码等信息，帮助开发者在线调试，而不必通过其他测试工具测试接口是否正确,简介、强大。</p><h2 id="knife4j使用"><a href="#knife4j使用" class="headerlink" title="knife4j使用"></a>knife4j使用</h2><p>1.创建springboot项目</p><p>2.添加依赖</p><pre><code class="text">&lt;dependencies&gt;    &lt;dependency&gt;        &lt;groupId&gt;com.github.xiaoymin&lt;/groupId&gt;        &lt;artifactId&gt;knife4j-spring-boot-starter&lt;/artifactId&gt;        &lt;!--在引用时请在maven中央仓库搜索最新版本号--&gt;        &lt;version&gt;2.0.2&lt;/version&gt;    &lt;/dependency&gt;&lt;/dependencies&gt;</code></pre><p>3.配置类</p><pre><code class="java">@Configuration@EnableSwagger2@EnableKnife4j@Import(BeanValidatorPluginsConfiguration.class)public class SwaggerConfiguration {    @Bean(value = &quot;defaultApi2&quot;)    public Docket defaultApi2() {        Docket docket=new Docket(DocumentationType.SWAGGER_2)                .apiInfo(apiInfo())                //分组名称                .groupName(&quot;2.X版本&quot;)                .select()                //这里指定Controller扫描包路径                .apis(RequestHandlerSelectors.basePackage(&quot;com.swagger.bootstrap.ui.demo.new2&quot;))                .paths(PathSelectors.any())                .build();        return docket;    }　　private ApiInfo apiInfo() {   　　 return new ApiInfoBuilder()      　　  .title(&quot;大学生专业学科竞赛项目过程管理系统&quot;)        　　.description(&quot;大学生专业学科竞赛项目过程管理系统t文档&quot;)        　　.termsOfServiceUrl(&quot;&quot;)        　　.version(&quot;3.0.0&quot;)        　　.build();　　}}</code></pre><p>注解说明</p><p><code>@EnableSwagger2</code></p><p>该注解是Springfox-swagger框架提供的使用Swagger注解，该注解必须加</p><p><code>@EnableKnife4j</code></p><p>该注解是knife4j提供的增强注解,Ui提供了例如动态参数、参数过滤、接口排序等增强功能,如果你想使用这些增强功能就必须加该注解，否则可以不用加</p><p>4.访问</p><p>在浏览器输入地址：<code>http://[you_host]:[you_port]/doc.html</code></p><p> <img src="/resource/img/knife4j-1.jpg" srcset="/img/loading.gif" alt="avatar"></p><h2 id="knife4j资料"><a href="#knife4j资料" class="headerlink" title="knife4j资料"></a>knife4j资料</h2><p><a href="https://doc.xiaominfo.com/guide/useful.html" target="_blank" rel="noopener">文档</a></p><p><a href="https://gitee.com/xiaoym/swagger-bootstrap-ui-demo" target="_blank" rel="noopener">示例</a></p><p><a href="https://www.cnblogs.com/fby698/p/11581845.html" target="_blank" rel="noopener">博文</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>开发组件</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>接口文档</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Hyperledger Caliper 性能测试工具配置</title>
     <link href="/2020/03/20/Hyperledger-Caliper-%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E9%85%8D%E7%BD%AE/"/>
     <url>/2020/03/20/Hyperledger-Caliper-%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E9%85%8D%E7%BD%AE/</url>
