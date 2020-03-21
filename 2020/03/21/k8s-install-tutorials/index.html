@@ -17,7 +17,7 @@
   <meta name="description" content="Stay hungry stay foolish">
   <meta name="author" content="MIKEY">
   <meta name="keywords" content="">
-  <title>标签 - 麦奇</title>
+  <title>k8s install tutorials - 麦奇</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -43,7 +43,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -121,6 +121,33 @@
             </span>
 
             
+              
+                <p class="mt-3 post-meta">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                  星期六, 三月 21日 2020, 9:39 晚上
+                </p>
+              
+
+              <p class="mt-1">
+                
+                  
+                  <span class="post-meta">
+                    <i class="far fa-chart-bar"></i>
+                    576 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta">
+                      <i class="far fa-clock"></i>
+                      2 分钟
+                  </span>
+                
+
+                
+              </p>
+            
           </div>
 
           
@@ -131,24 +158,134 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5 z-depth-3" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
+      
 
-<div class="text-center tagcloud">
-  <a href="/tags/k8s/" style="font-size: 15px; color: #bbe">k8s</a> <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" style="font-size: 30px; color: #337ab7">区块链</a> <a href="/tags/%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/" style="font-size: 15px; color: #bbe">接口文档</a>
-</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5 z-depth-3" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <div class="markdown-body">
+              <h1 id="Kubernetes-安装-kubeadm"><a href="#Kubernetes-安装-kubeadm" class="headerlink" title="Kubernetes 安装 kubeadm"></a>Kubernetes 安装 kubeadm</h1><ul>
+<li>1 事先准备</li>
+<li>2 检查所需端口</li>
+<li>2.1 Master节点</li>
+<li>2.2 工作节点</li>
+<li>3 Docker 安装</li>
+<li>4 kubectl 安装</li>
+<li>5 kubelet和kubeadm 安装</li>
+</ul>
+<h1 id="事先准备"><a href="#事先准备" class="headerlink" title="事先准备"></a>事先准备</h1><ul>
+<li>多台Ubuntu 16.04+、CentOS 7或HypriotOS v1.0.1 + 系统  </li>
+<li>每台机器最少1GB+内存  </li>
+<li>集群中所有机器之间网络连接正常  </li>
+<li>每个节点有唯一MAC地址和product_uuid  </li>
+<li>打开某些端口。请参阅以下部分  </li>
+</ul>
+<h1 id="检查所需端口"><a href="#检查所需端口" class="headerlink" title="检查所需端口"></a>检查所需端口</h1><h2 id="Master节点"><a href="#Master节点" class="headerlink" title="Master节点"></a>Master节点</h2><table>
+<tr><th>端口范围</th><th>用途</th></tr>
+<tr><td>6443 *</td><td>    Kubernetes API server</td></tr>
+<tr><td>2379-2380</td><td>    etcd server client API</td></tr>
+<tr><td>10250</td><td>    Kubelet API</td></tr>
+<tr><td>10251</td><td>    kube-scheduler</td></tr>
+<tr><td>10252</td><td>    kube-controller-manager</td></tr>
+<tr><td>10255</td><td>Read-only Kubelet API (Heapster)</td></tr>
+</table>
 
-              </div>
+<h2 id="工作节点"><a href="#工作节点" class="headerlink" title="工作节点"></a>工作节点</h2><table>
+<tr><th>端口范围</th><th>用途</th></tr>
+<tr><td>10250</td><td>Kubelet API</td></tr>
+<tr><td>2379-2380</td><td>Read-only Kubelet API (Heapster)</td></tr>
+<tr><td>30000-32767</td><td>NodePort Services默认端口范围。</td></tr>
+</table>
+
+<h1 id="Docker-安装"><a href="#Docker-安装" class="headerlink" title="Docker 安装"></a>Docker 安装</h1><p>在机器安装Docker，推荐使用1.12 版本（v1.10和v1.11也可以正常使用），1.13和17.03+版本未经过Kubernetes团队的测试和验证。有关安装说明，请参阅Docker官方文档 Docker安装。</p>
+<h1 id="kubectl-安装"><a href="#kubectl-安装" class="headerlink" title="kubectl 安装"></a>kubectl 安装</h1><p>在所有机器上安装kubectl，可参考： kubectl安装。</p>
+<h1 id="kubelet和kubeadm-安装"><a href="#kubelet和kubeadm-安装" class="headerlink" title="kubelet和kubeadm 安装"></a>kubelet和kubeadm 安装</h1><p>在所有机器上安装以下软件包：</p>
+<ul>
+<li>kubelet</li>
+<li>kubeadm</li>
+</ul>
+<p>注意：如果机器上已经安装了kubeadm，则应需要apt-get update &amp;&amp; apt-get upgrade或者yum update获得最新版本的kubeadm。如果想了解不同版本的kubeadm，请参考</p>
+<p>配置机器：</p>
+<p>SSH登录主机。<br>如果使用的是Ubuntu或HypriotOS，请运行：</p>
+<pre><code class="text">apt-get update &amp;&amp; apt-get install -y apt-transport-https
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+cat &lt;&lt;EOF &gt;/etc/apt/sources.list.d/kubernetes.list
+deb http://apt.kubernetes.io/ kubernetes-xenial main
+EOF
+apt-get update
+apt-get install -y kubelet kubeadm</code></pre>
+<p>如果使用的是CentOS，请运行：</p>
+<p><code>cat &lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo</code></p>
+<pre><code class="text">[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg
+        https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+EOF
+setenforce 0
+yum install -y kubelet kubeadm
+systemctl enable kubelet &amp;&amp; systemctl start kubelet
+</code></pre>
+<p>执行完后，kubelet会进入每隔几秒重新启动一次的循环模式，因为kubelet在等待kubeadm发出的命令。</p>
+<p>注意：必须使用运行setenforce 0命令来禁用SELinux，因为需要允许容器访问主机文件系统，这是配置pod网络所要求的。（直到kubelet中对SELinux支持得到改进）</p>
+<p>接下来使用kubeadm创建一个集群</p>
+
             </div>
+            <hr>
+            <div>
+              <p>
+                
+                  <span>
+                <i class="iconfont icon-inbox"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/DevOps/">DevOps</a>
+                      &nbsp;
+                    
+                  </span>&nbsp;&nbsp;
+                
+                
+                  <span>
+                <i class="iconfont icon-tag"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/k8s/">k8s</a>
+                    
+                  </span>
+                
+              </p>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+            </div>
+
+            
           </div>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc-start"></div>
+<div id="toc">
+  <p class="h5"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
   </main>
 
@@ -272,6 +409,57 @@
 
 
 
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.10.0/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var navHeight = $('#navbar').height();
+      var post = $('#post');
+      var toc = $('#toc');
+      var tocLimMax = post.offset().top + post.height() - navHeight;
+
+      $(window).scroll(function () {
+        var tocLimMin = $('#toc-start').offset().top - navHeight;
+        var scroH = document.body.scrollTop + document.documentElement.scrollTop;
+
+        if (tocLimMin <= scroH && scroH <= tocLimMax) {
+          toc.css({
+            'display': 'block',
+            'position': 'fixed',
+            'top': navHeight,
+          });
+        } else if (scroH <= tocLimMin) {
+          toc.css({
+            'position': '',
+            'top': '',
+          });
+        } else if (scroH > tocLimMax) {
+          toc.css('display', 'none');
+        }
+      });
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        scrollSmooth: true,
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc > p').css('visibility', 'visible');
+      }
+      var offset = $('#board-ctn').css('margin-right')
+      $('#toc-ctn').css({
+        'right': offset
+      })
+    });
+  </script>
+
+
+
 
 
   <script defer src="https://cdn.staticfile.org/smoothscroll/1.4.10/SmoothScroll.min.js" ></script>
@@ -302,7 +490,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "标签&nbsp;",
+        "k8s install tutorials&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 100,
