@@ -1,6 +1,6 @@
 ---
-title: Minikube Use Tutorials
-date: 2020-03-29 12:27:39
+title: Minikube 使用教程
+date: 2020-04-02 00:35:52
 index_img: /resource/img/minikube.png
 category: DevOps
 tags: k8s

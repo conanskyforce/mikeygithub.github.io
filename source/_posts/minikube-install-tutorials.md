@@ -1,5 +1,5 @@
 ---
-title: minikube install tutorials
+title: Minikube 安装教程
 date: 2020-03-25 12:39:54
 index_img: /resource/img/minikube.jpeg
 category: DevOps

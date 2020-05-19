@@ -1,5 +1,5 @@
 ---
-title: k8s install tutorials
+title: K8s 安装教程
 date: 2020-03-21 21:39:49
 index_img: /resource/img/k8s.png
 category: DevOps
