@@ -1,7 +1,7 @@
 ---
 title: Knife4j 快速使用
 date: 2020-03-21 01:42:54
-index_img: /resource/img/knife4j.jpg
+index_img: /resource/img/knife4j.jpeg
 category: 开发组件
 tags: 接口文档
 ---
