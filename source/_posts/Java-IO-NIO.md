@@ -81,3 +81,28 @@ NIO的非阻塞
 
 
 ## Channel 
+
+>首先说一下Channel，国内大多数翻译成“通道”。Channel和IO中的Stream(流)是差不多一个等级的。只不过Stream是单向的，譬如：InputStream,OutPutStream,而Channel是双向的，既可以用来进行读操作也可以用来进行写操作。
+
+NIO中的Channel的主要实现有
+
+- FileChannel
+- DatagramChannel
+- SocketChannel
+- ServerSocketChannel
+
+>分别对应IO，UDP，TCP(Server和Client)
+
+### Buffer
+
+>Buffer顾名思义缓冲区实际上是一个容器，是一个连续数组。Channel提供文件，网络读取数据的渠道，但是读取或者写入的数据都必须经由Buffer
+
+
+![avatar](/resource/img/TIM图片20200528214729.png)
+
+>上图描述一个客户端向服务端发送数据，然后服务端接收数据的过程。客户端发送数据时，必须将数据存入Buffer中，然后将Buffer中的内容写入通道。服务端这边接收数据必须通过Channel将数据读入到Buffer中，然后再从Buffer中取出数据来处理。
+
+在NIO中Buffer是一个顶层父类，他是一个抽象类，常用的Buffer的子类有`ByteBuffer、IntBuffer、CharBuffer、LongBuffer、DoubleBuffer、FloatBuffer、ShortBuff`
+
+### Selector
+>Selector类是NIO的核心类，Selector能够检测多个注册的通道上是否有事件发生，如果有事件发生，便获取事件然后针对每个事件进行相应的响应处理。这样一来只是用一个单线程就可管理多个通道，也就是管理多个连接。这样使得只有在连接真正有读写事件发生时，才会调用函数来进行读写，就大大减少了系统开销，并且不必为每个连接都创建一个线程，不用去维护多个线程，并且避免了多线程之间的上下文切换导致的开销。

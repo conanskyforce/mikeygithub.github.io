@@ -2,12 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9cda0264-b489-417c-8765-215716b12740" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/source/_posts/阅读书单.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/resource/img/book.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/resource/img/java_nio_network_model.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/resource/img/java_nio_package.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/resource/pdf/艾德勒，范多伦《如何阅读一本书》（美）.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/JAVA-多线程并发.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/Java-集合.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/List.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/TIM图片20200528214729.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/TIM图片20200528223950.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/TIM图片20200529101019.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/TIM图片20200529102225.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/TIM图片20200529102233.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/TIM图片20200529175509.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/TIM图片20200530100929.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/TIM图片20200530115930.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/TIM图片20200530121604.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/TIM图片20200530121933.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/TIM图片20200530122248.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/TIM图片20200530122718.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/application_classloader.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/java.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/many_thread.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/thread.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/JVM-知识汇总.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/JVM-知识汇总.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/source/_posts/Java-IO-NIO.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/Java-IO-NIO.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
@@ -21,17 +36,83 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/source/_posts/Java-IO-NIO.md">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/source/_posts/JVM-知识汇总.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="456">
-                <caret line="83" selection-start-line="83" selection-end-line="83" />
+              <first_editor relative-caret-position="102">
+                <caret line="6" column="9" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
               </first_editor>
               <second_editor />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/source/_posts/阅读书单.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="2057">
+                <caret line="121" column="13" selection-start-line="121" selection-start-column="13" selection-end-line="121" selection-end-column="13" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/source/_posts/Java-集合.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="34">
+                <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/source/_posts/JAVA-多线程并发.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="170">
+                <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/source/resource/img/many_thread.jpeg">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/source/resource/img/thread.png">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/source/resource/img/TIM图片20200530121933.png">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/source/resource/img/List.png">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/source/resource/img/TIM图片20200530115930.png">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/source/resource/img/TIM图片20200529102225.png">
+          <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
     </leaf>
@@ -68,18 +149,20 @@
         <option value="$PROJECT_DIR$/source/_posts/Flutter-Quick-Start.md" />
         <option value="$PROJECT_DIR$/source/_posts/Knife4j-Tutorials.md" />
         <option value="$PROJECT_DIR$/source/_data/fluid_config.yml" />
-        <option value="$PROJECT_DIR$/source/_posts/JVM-知识汇总.md" />
         <option value="$PROJECT_DIR$/_config.yml" />
         <option value="$PROJECT_DIR$/source/_posts/阅读书单.md" />
         <option value="$PROJECT_DIR$/source/_posts/Java-IO-NIO.md" />
+        <option value="$PROJECT_DIR$/source/_posts/JVM-知识汇总.md" />
+        <option value="$PROJECT_DIR$/source/_posts/Java-集合.md" />
+        <option value="$PROJECT_DIR$/source/_posts/JAVA-多线程并发.md" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="1920" />
-    <option name="y" value="25" />
-    <option name="width" value="1920" />
-    <option name="height" value="1055" />
+    <option name="y" value="207" />
+    <option name="width" value="1910" />
+    <option name="height" value="789" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -89,6 +172,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -107,11 +191,23 @@
               <item name="source" type="462c0819:PsiDirectoryNode" />
               <item name="_posts" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="mikeyblogs.github.io" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mikeygithub.github.io" type="462c0819:PsiDirectoryNode" />
+              <item name="source" type="462c0819:PsiDirectoryNode" />
+              <item name="resource" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mikeyblogs.github.io" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mikeygithub.github.io" type="462c0819:PsiDirectoryNode" />
+              <item name="source" type="462c0819:PsiDirectoryNode" />
+              <item name="resource" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -212,7 +308,11 @@
       <workItem from="1590536621505" duration="364000" />
       <workItem from="1590537142217" duration="9995000" />
       <workItem from="1590565314788" duration="4541000" />
-      <workItem from="1590624029374" duration="6708000" />
+      <workItem from="1590624029374" duration="7007000" />
+      <workItem from="1590670601919" duration="5895000" />
+      <workItem from="1590714634812" duration="8258000" />
+      <workItem from="1590802553132" duration="1858000" />
+      <workItem from="1590809951452" duration="3076000" />
     </task>
     <task id="LOCAL-00001" summary="fix page">
       <created>1584338150238</created>
@@ -326,11 +426,18 @@
       <option name="project" value="LOCAL" />
       <updated>1590549679321</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="java io/nio">
+      <created>1590634574300</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1590634574301</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="164197000" />
+    <option name="totallyTimeSpent" value="183583000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="25" width="1920" height="1055" extended-state="6" />
@@ -356,7 +463,7 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19030048" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19030048" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -371,7 +478,7 @@
       <window_info anchor="bottom" id="Docker" order="7" weight="0.32937366" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32937366" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32721382" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.3261339" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -435,16 +542,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="java io/nio" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/source/resource/img/wechat.jpg" />
-    <entry file="file://$PROJECT_DIR$/source/_posts/hello-world.md" />
-    <entry file="file://$PROJECT_DIR$/source/resource/html/mikey.html" />
-    <entry file="file://$PROJECT_DIR$/themes/fluid/layout/about.ejs" />
-    <entry file="file://$PROJECT_DIR$/themes/fluid/layout/index.ejs" />
-    <entry file="file://$PROJECT_DIR$/themes/fluid/layout/_partial/paginator.ejs" />
-    <entry file="file://$PROJECT_DIR$/themes/fluid/layout/_partial/footer.ejs" />
-    <entry file="file://$PROJECT_DIR$/.idea/encodings.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/.idea/mikeygithub.github.io.iml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -628,16 +725,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/_posts/JVM-知识汇总.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="4454">
-            <caret line="262" column="47" selection-start-line="262" selection-start-column="47" selection-end-line="262" selection-end-column="47" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/source/_data/fluid_config.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1955">
@@ -666,16 +753,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/_posts/阅读书单.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="221">
-            <caret line="121" column="13" selection-start-line="121" selection-start-column="13" selection-end-line="121" selection-end-column="13" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -701,12 +778,70 @@
     <entry file="file://$PROJECT_DIR$/source/_posts/Java-IO-NIO.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="456">
-            <caret line="83" selection-start-line="83" selection-end-line="83" />
+          <first_editor relative-caret-position="34">
+            <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
           </first_editor>
           <second_editor />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/JVM-知识汇总.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="102">
+            <caret line="6" column="9" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/阅读书单.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="2057">
+            <caret line="121" column="13" selection-start-line="121" selection-start-column="13" selection-end-line="121" selection-end-column="13" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/resource/img/TIM图片20200529102225.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/resource/img/TIM图片20200530115930.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/resource/img/List.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/resource/img/TIM图片20200530121933.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/Java-集合.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="34">
+            <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/JAVA-多线程并发.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="170">
+            <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/resource/img/many_thread.jpeg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/resource/img/thread.png">
+      <provider selected="true" editor-type-id="images" />
     </entry>
   </component>
 </project>
