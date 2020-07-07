@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9cda0264-b489-417c-8765-215716b12740" name="Default Changelist" comment="多线程">
-      <change afterPath="$PROJECT_DIR$/source/_posts/Ubuntu开发环境配置.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/resource/img/ubuntu.jpg" afterDir="false" />
+    <list default="true" id="9cda0264-b489-417c-8765-215716b12740" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/source/_posts/Java-基础.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/ABA.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/CAS.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/ConcurrentHashMap.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/ThreadLocal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/blocking_queue.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/desktop.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/hightresponse.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/javaer-job-press-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/javaer-job-press.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/threadway.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/volatile.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/source/_posts/JAVA-多线程并发.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/JAVA-多线程并发.md" afterDir="false" />
     </list>
@@ -23,11 +33,11 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/source/_posts/JAVA-多线程并发.md">
+        <entry file="file://$PROJECT_DIR$/source/_posts/Java-基础.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="FIRST">
-              <first_editor relative-caret-position="500">
-                <caret line="1262" lean-forward="true" selection-start-line="1262" selection-end-line="1262" />
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="51">
+                <caret line="3" column="42" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
               </first_editor>
               <second_editor />
             </state>
@@ -77,14 +87,15 @@
         <option value="$PROJECT_DIR$/source/_posts/Java面试问题汇总.md" />
         <option value="$PROJECT_DIR$/source/_posts/Ubuntu开发环境配置.md" />
         <option value="$PROJECT_DIR$/source/_posts/JAVA-多线程并发.md" />
+        <option value="$PROJECT_DIR$/source/_posts/Java-基础.md" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1791" />
-    <option name="y" value="234" />
-    <option name="width" value="1717" />
-    <option name="height" value="965" />
+    <option name="x" value="1920" />
+    <option name="y" value="25" />
+    <option name="width" value="1920" />
+    <option name="height" value="1055" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -112,6 +123,19 @@
               <item name="mikeygithub.github.io" type="462c0819:PsiDirectoryNode" />
               <item name="source" type="462c0819:PsiDirectoryNode" />
               <item name="_posts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mikeyblogs.github.io" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mikeygithub.github.io" type="462c0819:PsiDirectoryNode" />
+              <item name="source" type="462c0819:PsiDirectoryNode" />
+              <item name="resource" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mikeyblogs.github.io" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mikeygithub.github.io" type="462c0819:PsiDirectoryNode" />
+              <item name="source" type="462c0819:PsiDirectoryNode" />
+              <item name="resource" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -242,7 +266,7 @@
       <workItem from="1593831723853" duration="2869000" />
       <workItem from="1593912221016" duration="599000" />
       <workItem from="1593955830226" duration="939000" />
-      <workItem from="1593996245339" duration="9627000" />
+      <workItem from="1593996245339" duration="19056000" />
     </task>
     <task id="LOCAL-00001" summary="fix page">
       <created>1584338150238</created>
@@ -391,16 +415,24 @@
       <option name="project" value="LOCAL" />
       <updated>1592141683668</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="JUC">
+      <created>1594010679291</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1594010679291</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="240975000" />
+    <option name="totallyTimeSpent" value="250404000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="25" width="1920" height="1055" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49892008" weight="0.17395945" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49892008" visible="true" weight="0.17395945" />
       <window_info id="Structure" order="1" sideWeight="0.5010799" side_tool="true" weight="0.18996799" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -417,7 +449,7 @@
       <window_info anchor="bottom" id="Docker" order="7" weight="0.32937366" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32937366" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" weight="0.32937366" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.23218143" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.23218143" />
       <window_info anchor="bottom" id="Database Changes" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -448,7 +480,7 @@
       <window_info anchor="bottom" id="Docker" order="7" weight="0.32937366" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32937366" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" weight="0.32937366" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.23218143" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.23218143" />
       <window_info anchor="bottom" id="Database Changes" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -518,16 +550,10 @@
     <MESSAGE value="jvm知识" />
     <MESSAGE value="java io/nio" />
     <MESSAGE value="多线程" />
-    <option name="LAST_COMMIT_MESSAGE" value="多线程" />
+    <MESSAGE value="JUC" />
+    <option name="LAST_COMMIT_MESSAGE" value="JUC" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.deploy_git/.travis.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/2020/05/19/JVM-知识汇总/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2805" />
@@ -818,8 +844,46 @@
     <entry file="file://$PROJECT_DIR$/source/_posts/JAVA-多线程并发.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="500">
-            <caret line="1262" lean-forward="true" selection-start-line="1262" selection-end-line="1262" />
+          <first_editor relative-caret-position="51">
+            <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
+            <folding>
+              <element signature="e#61#62#0" expanded="true" />
+              <element signature="e#113#114#0" expanded="true" />
+              <element signature="e#86#87#0" expanded="true" />
+              <element signature="e#138#139#0" expanded="true" />
+              <element signature="e#267#268#0" expanded="true" />
+              <element signature="e#325#326#0" expanded="true" />
+              <element signature="e#476#477#0" expanded="true" />
+              <element signature="e#544#545#0" expanded="true" />
+              <element signature="e#330#331#0" expanded="true" />
+              <element signature="e#388#389#0" expanded="true" />
+              <element signature="e#393#394#0" expanded="true" />
+              <element signature="e#425#426#0" expanded="true" />
+              <element signature="e#543#544#0" expanded="true" />
+              <element signature="e#582#583#0" expanded="true" />
+              <element signature="e#610#611#0" expanded="true" />
+              <element signature="e#644#645#0" expanded="true" />
+              <element signature="e#763#764#0" expanded="true" />
+              <element signature="e#803#804#0" expanded="true" />
+              <element signature="e#831#832#0" expanded="true" />
+              <element signature="e#865#866#0" expanded="true" />
+              <element signature="e#568#569#0" expanded="true" />
+              <element signature="e#618#619#0" expanded="true" />
+              <element signature="e#717#718#0" expanded="true" />
+              <element signature="e#767#768#0" expanded="true" />
+              <element signature="e#135#136#0" expanded="true" />
+              <element signature="e#163#164#0" expanded="true" />
+            </folding>
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/Java-基础.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="51">
+            <caret line="3" column="42" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
           </first_editor>
           <second_editor />
         </state>
