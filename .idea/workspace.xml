@@ -2,16 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9cda0264-b489-417c-8765-215716b12740" name="Default Changelist" comment="k8s实践">
-      <change afterPath="$PROJECT_DIR$/source/_posts/Centos安装图形化界面.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/Linux-命令汇总.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/Spring-原理.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/k8s-入门实践.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/网络安全入门.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/resource/img/k8s.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/微服务.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/beanfactory.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/client-discovery.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/micro-service.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/server-discovery.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/service-discovery.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/simple-register.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/spring-annotation.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/spring-another.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/spring-aop.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/spring-cache.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/spring-core.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/spring-ioc-beanfactory.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/spring-ioc.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/spring-jps.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/spring-live.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/spring-model.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/spring-mvc-anno.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/spring-mvc.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/spring-package.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/spring-proxy.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/spring-web.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/pdf/2020Java面试复习.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/Java-基础.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/Java-基础.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/Ubuntu开发环境配置.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/Ubuntu开发环境配置.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/resource/pdf/2020-杨彪-个人简历-Java后端.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/source/resource/pdf/2020-杨彪-个人简历-Java后端.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/Spring-原理.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/Spring-原理.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -29,23 +44,37 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/_posts/Java-基础.md">
+        <entry file="file://$PROJECT_DIR$/source/_posts/Spring-原理.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="7185">
-                <caret line="479" column="1" selection-start-line="479" selection-start-column="1" selection-end-line="479" selection-end-column="1" />
+              <first_editor relative-caret-position="45">
+                <caret line="3" column="27" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
+                <folding>
+                  <element signature="e#82#83#0" expanded="true" />
+                  <element signature="e#140#141#0" expanded="true" />
+                  <element signature="e#90#91#0" expanded="true" />
+                  <element signature="e#130#131#0" expanded="true" />
+                  <element signature="e#285#286#0" expanded="true" />
+                  <element signature="e#332#333#0" expanded="true" />
+                  <element signature="e#247#248#0" expanded="true" />
+                  <element signature="e#291#292#0" expanded="true" />
+                  <element signature="e#179#180#0" expanded="true" />
+                  <element signature="e#225#226#0" expanded="true" />
+                  <element signature="e#283#284#0" expanded="true" />
+                  <element signature="e#330#331#0" expanded="true" />
+                </folding>
               </first_editor>
               <second_editor />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/_posts/Spring-原理.md">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/source/_posts/微服务.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="270">
-                <caret line="18" column="6" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
+              <first_editor relative-caret-position="267">
+                <caret line="72" selection-start-line="72" selection-end-line="72" />
               </first_editor>
               <second_editor />
             </state>
@@ -56,7 +85,7 @@
         <entry file="file://$PROJECT_DIR$/source/_posts/Linux-命令汇总.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="375">
+              <first_editor relative-caret-position="844">
                 <caret line="61" column="28" selection-start-line="61" selection-start-column="28" selection-end-line="61" selection-end-column="28" />
               </first_editor>
               <second_editor />
@@ -65,20 +94,11 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/_data/fluid_config.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1725">
-              <caret line="115" selection-start-line="115" selection-end-line="115" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/_posts/Java-IO-NIO.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="45">
-                <caret line="3" column="7" selection-start-line="3" selection-end-line="5" selection-end-column="12" />
+              <first_editor relative-caret-position="679">
+                <caret line="61" column="12" selection-start-line="61" selection-start-column="12" selection-end-line="61" selection-end-column="12" />
               </first_editor>
               <second_editor />
             </state>
@@ -97,12 +117,12 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/_posts/k8s-入门实践.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="300">
-                <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
+              <first_editor relative-caret-position="375">
+                <caret line="25" column="23" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
               </first_editor>
               <second_editor />
             </state>
@@ -195,19 +215,20 @@
         <option value="$PROJECT_DIR$/source/_posts/k8s-install-tutorials.md" />
         <option value="$PROJECT_DIR$/source/_posts/Ubuntu开发环境配置.md" />
         <option value="$PROJECT_DIR$/source/_posts/Java-基础.md" />
-        <option value="$PROJECT_DIR$/source/_posts/Spring-原理.md" />
         <option value="$PROJECT_DIR$/source/_posts/网络安全入门.md" />
         <option value="$PROJECT_DIR$/source/_posts/Centos安装图形化界面.md" />
         <option value="$PROJECT_DIR$/source/_posts/Linux-命令汇总.md" />
         <option value="$PROJECT_DIR$/source/_posts/k8s-入门实践.md" />
+        <option value="$PROJECT_DIR$/source/_posts/Spring-原理.md" />
+        <option value="$PROJECT_DIR$/source/_posts/微服务.md" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="4">
     <option name="x" value="960" />
-    <option name="y" value="27" />
+    <option name="y" value="25" />
     <option name="width" value="960" />
-    <option name="height" value="1053" />
+    <option name="height" value="1055" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -217,8 +238,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -235,24 +254,14 @@
               <item name="mikeyblogs.github.io" type="b2602c69:ProjectViewProjectNode" />
               <item name="mikeygithub.github.io" type="462c0819:PsiDirectoryNode" />
               <item name="source" type="462c0819:PsiDirectoryNode" />
-              <item name="_data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mikeyblogs.github.io" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mikeygithub.github.io" type="462c0819:PsiDirectoryNode" />
-              <item name="source" type="462c0819:PsiDirectoryNode" />
-              <item name="_posts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mikeyblogs.github.io" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mikeygithub.github.io" type="462c0819:PsiDirectoryNode" />
-              <item name="source" type="462c0819:PsiDirectoryNode" />
               <item name="resource" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -270,15 +279,15 @@
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/source/_resource" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/source/resource/pdf" />
       <recent name="$PROJECT_DIR$/source/resource/img" />
       <recent name="$PROJECT_DIR$/source/_resource/html" />
       <recent name="$PROJECT_DIR$/source/_resource/pdf" />
       <recent name="$PROJECT_DIR$/themes/fluid/source/img" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/source/_resource" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -391,7 +400,12 @@
       <workItem from="1595852078301" duration="3610000" />
       <workItem from="1595893985087" duration="1907000" />
       <workItem from="1595907090977" duration="5203000" />
-      <workItem from="1595924797341" duration="6049000" />
+      <workItem from="1595924797341" duration="6729000" />
+      <workItem from="1595932367717" duration="2714000" />
+      <workItem from="1595984311223" duration="281000" />
+      <workItem from="1595985851907" duration="51000" />
+      <workItem from="1596072229556" duration="6000" />
+      <workItem from="1596072989758" duration="8391000" />
     </task>
     <task id="LOCAL-00001" summary="fix page">
       <created>1584338150238</created>
@@ -554,16 +568,23 @@
       <option name="project" value="LOCAL" />
       <updated>1594089585918</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="k8s实践">
+      <created>1595930933902</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1595930933902</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="287627000" />
+    <option name="totallyTimeSpent" value="299750000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="25" width="1920" height="1055" extended-state="6" />
+    <frame x="960" y="25" width="960" height="1055" extended-state="4" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49892008" weight="0.48025614" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49892008" visible="true" weight="0.24179432" />
       <window_info id="Structure" order="1" sideWeight="0.5010799" side_tool="true" weight="0.18996799" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -581,8 +602,8 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" weight="0.32937366" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32937366" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" weight="0.32937366" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.55831534" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5010941" side_tool="true" weight="0.7861771" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.4989059" visible="true" weight="0.4449244" />
       <window_info anchor="bottom" id="Database Changes" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -598,7 +619,7 @@
       <window_info anchor="right" id="Theme Preview" order="11" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49892008" visible="true" weight="0.48025614" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49892008" visible="true" weight="0.24179432" />
       <window_info id="Structure" order="1" sideWeight="0.5010799" side_tool="true" weight="0.18996799" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -616,8 +637,8 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" weight="0.32937366" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32937366" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" weight="0.32937366" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32073435" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5010941" side_tool="true" weight="0.7861771" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.4989059" weight="0.4449244" />
       <window_info anchor="bottom" id="Database Changes" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -695,7 +716,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="k8s实践" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/source/resource/img/u=3404916594,820716066&amp;fm=26&amp;gp=0 (1).jpg" />
     <entry file="file://$PROJECT_DIR$/source/resource/img/jvm-1.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -974,38 +994,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/_posts/Spring-原理.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="270">
-            <caret line="18" column="6" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/_data/fluid_config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1725">
-          <caret line="115" selection-start-line="115" selection-end-line="115" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/_posts/Java-IO-NIO.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="45">
-            <caret line="3" column="7" selection-start-line="3" selection-end-line="5" selection-end-column="12" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/source/_posts/Lua-脚本学习.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="30">
             <caret line="2" column="25" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/k8s-入门实践.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="375">
+            <caret line="25" column="23" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
           </first_editor>
           <second_editor />
         </state>
@@ -1041,21 +1044,62 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/Spring-原理.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="45">
+            <caret line="3" column="27" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
+            <folding>
+              <element signature="e#82#83#0" expanded="true" />
+              <element signature="e#140#141#0" expanded="true" />
+              <element signature="e#90#91#0" expanded="true" />
+              <element signature="e#130#131#0" expanded="true" />
+              <element signature="e#285#286#0" expanded="true" />
+              <element signature="e#332#333#0" expanded="true" />
+              <element signature="e#247#248#0" expanded="true" />
+              <element signature="e#291#292#0" expanded="true" />
+              <element signature="e#179#180#0" expanded="true" />
+              <element signature="e#225#226#0" expanded="true" />
+              <element signature="e#283#284#0" expanded="true" />
+              <element signature="e#330#331#0" expanded="true" />
+            </folding>
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_data/fluid_config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="844">
+          <caret line="115" selection-start-line="115" selection-end-line="115" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/source/_posts/Linux-命令汇总.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="375">
+          <first_editor relative-caret-position="844">
             <caret line="61" column="28" selection-start-line="61" selection-start-column="28" selection-end-line="61" selection-end-column="28" />
           </first_editor>
           <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/_posts/k8s-入门实践.md">
+    <entry file="file://$PROJECT_DIR$/source/_posts/Java-IO-NIO.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="300">
-            <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="679">
+            <caret line="61" column="12" selection-start-line="61" selection-start-column="12" selection-end-line="61" selection-end-column="12" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/微服务.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="267">
+            <caret line="72" selection-start-line="72" selection-end-line="72" />
           </first_editor>
           <second_editor />
         </state>
