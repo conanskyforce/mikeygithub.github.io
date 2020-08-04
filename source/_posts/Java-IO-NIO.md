@@ -1,7 +1,7 @@
 ---
 title: Java IO/NIO
 date: 2020-05-27 10:02:33
-index_img: /resource/img/nio.png
+index_img: /resource/img/nio.jpg
 category: Java
 tags: IO/NIO
 ---
