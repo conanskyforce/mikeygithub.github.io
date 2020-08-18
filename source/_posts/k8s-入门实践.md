@@ -138,6 +138,128 @@ export REGISTRY_MIRROR=https://registry.cn-hangzhou.aliyuncs.com
 curl -sSL https://kuboard.cn/install-script/v1.18.x/install_kubelet.sh | sh -s 1.18.6
 ````
 
+
+<details>
+<summary>
+脚本内容
+</summary>
+
+```
+#!/bin/bash
+
+# 在 master 节点和 worker 节点都要执行
+
+# 安装 docker
+# 参考文档如下
+# https://docs.docker.com/install/linux/docker-ce/centos/ 
+# https://docs.docker.com/install/linux/linux-postinstall/
+
+# 卸载旧版本
+yum remove -y docker \
+docker-client \
+docker-client-latest \
+docker-ce-cli \
+docker-common \
+docker-latest \
+docker-latest-logrotate \
+docker-logrotate \
+docker-selinux \
+docker-engine-selinux \
+docker-engine
+
+# 设置 yum repository
+yum install -y yum-utils \
+device-mapper-persistent-data \
+lvm2
+yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+
+# 安装并启动 docker
+yum install -y docker-ce-19.03.8 docker-ce-cli-19.03.8 containerd.io
+systemctl enable docker
+systemctl start docker
+
+# 安装 nfs-utils
+# 必须先安装 nfs-utils 才能挂载 nfs 网络存储
+yum install -y nfs-utils
+yum install -y wget
+
+# 关闭 防火墙
+systemctl stop firewalld
+systemctl disable firewalld
+
+# 关闭 SeLinux
+setenforce 0
+sed -i "s/SELINUX=enforcing/SELINUX=disabled/g" /etc/selinux/config
+
+# 关闭 swap
+swapoff -a
+yes | cp /etc/fstab /etc/fstab_bak
+cat /etc/fstab_bak |grep -v swap > /etc/fstab
+
+# 修改 /etc/sysctl.conf
+# 如果有配置，则修改
+sed -i "s#^net.ipv4.ip_forward.*#net.ipv4.ip_forward=1#g"  /etc/sysctl.conf
+sed -i "s#^net.bridge.bridge-nf-call-ip6tables.*#net.bridge.bridge-nf-call-ip6tables=1#g"  /etc/sysctl.conf
+sed -i "s#^net.bridge.bridge-nf-call-iptables.*#net.bridge.bridge-nf-call-iptables=1#g"  /etc/sysctl.conf
+sed -i "s#^net.ipv6.conf.all.disable_ipv6.*#net.ipv6.conf.all.disable_ipv6=1#g"  /etc/sysctl.conf
+sed -i "s#^net.ipv6.conf.default.disable_ipv6.*#net.ipv6.conf.default.disable_ipv6=1#g"  /etc/sysctl.conf
+sed -i "s#^net.ipv6.conf.lo.disable_ipv6.*#net.ipv6.conf.lo.disable_ipv6=1#g"  /etc/sysctl.conf
+sed -i "s#^net.ipv6.conf.all.forwarding.*#net.ipv6.conf.all.forwarding=1#g"  /etc/sysctl.conf
+# 可能没有，追加
+echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf
+echo "net.bridge.bridge-nf-call-ip6tables = 1" >> /etc/sysctl.conf
+echo "net.bridge.bridge-nf-call-iptables = 1" >> /etc/sysctl.conf
+echo "net.ipv6.conf.all.disable_ipv6 = 1" >> /etc/sysctl.conf
+echo "net.ipv6.conf.default.disable_ipv6 = 1" >> /etc/sysctl.conf
+echo "net.ipv6.conf.lo.disable_ipv6 = 1" >> /etc/sysctl.conf
+echo "net.ipv6.conf.all.forwarding = 1"  >> /etc/sysctl.conf
+# 执行命令以应用
+sysctl -p
+
+# 配置K8S的yum源
+cat <<EOF > /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=http://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=0
+repo_gpgcheck=0
+gpgkey=http://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg
+       http://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg
+EOF
+
+# 卸载旧版本
+yum remove -y kubelet kubeadm kubectl
+
+# 安装kubelet、kubeadm、kubectl
+# 将 ${1} 替换为 kubernetes 版本号，例如 1.17.2
+yum install -y kubelet-${1} kubeadm-${1} kubectl-${1}
+
+# 修改docker Cgroup Driver为systemd
+# # 将/usr/lib/systemd/system/docker.service文件中的这一行 ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+# # 修改为 ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock --exec-opt native.cgroupdriver=systemd
+# 如果不修改，在添加 worker 节点时可能会碰到如下错误
+# [WARNING IsDockerSystemdCheck]: detected "cgroupfs" as the Docker cgroup driver. The recommended driver is "systemd". 
+# Please follow the guide at https://kubernetes.io/docs/setup/cri/
+sed -i "s#^ExecStart=/usr/bin/dockerd.*#ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock --exec-opt native.cgroupdriver=systemd#g" /usr/lib/systemd/system/docker.service
+
+# 设置 docker 镜像，提高 docker 镜像下载速度和稳定性
+# 如果您访问 https://hub.docker.io 速度非常稳定，亦可以跳过这个步骤
+curl -sSL https://kuboard.cn/install-script/set_mirror.sh | sh -s ${REGISTRY_MIRROR}
+
+# 重启 docker，并启动 kubelet
+systemctl daemon-reload
+systemctl restart docker
+systemctl enable kubelet && systemctl start kubelet
+
+docker version
+```
+</details>
+
+
+<br>
+
+
 - 初始化 master 节点
 
 
@@ -153,6 +275,64 @@ export POD_SUBNET=10.100.0.1/16
 echo "${MASTER_IP}    ${APISERVER_NAME}" >> /etc/hosts
 curl -sSL https://kuboard.cn/install-script/v1.18.x/init_master.sh | sh -s 1.18.6
 ````
+
+<details>
+    <summary>脚本代码</summary>
+    
+    
+    ````
+    #!/bin/bash
+    
+    # 只在 master 节点执行
+    
+    # 脚本出错时终止执行
+    set -e
+    
+    if [ ${#POD_SUBNET} -eq 0 ] || [ ${#APISERVER_NAME} -eq 0 ]; then
+      echo -e "\033[31;1m请确保您已经设置了环境变量 POD_SUBNET 和 APISERVER_NAME \033[0m"
+      echo 当前POD_SUBNET=$POD_SUBNET
+      echo 当前APISERVER_NAME=$APISERVER_NAME
+      exit 1
+    fi
+    
+    
+    # 查看完整配置选项 https://godoc.org/k8s.io/kubernetes/cmd/kubeadm/app/apis/kubeadm/v1beta2
+    rm -f ./kubeadm-config.yaml
+    cat <<EOF > ./kubeadm-config.yaml
+    apiVersion: kubeadm.k8s.io/v1beta2
+    kind: ClusterConfiguration
+    kubernetesVersion: v${1}
+    imageRepository: registry.aliyuncs.com/k8sxio
+    controlPlaneEndpoint: "${APISERVER_NAME}:6443"
+    networking:
+      serviceSubnet: "10.96.0.0/16"
+      podSubnet: "${POD_SUBNET}"
+      dnsDomain: "cluster.local"
+    EOF
+    
+    # kubeadm init
+    # 根据您服务器网速的情况，您需要等候 3 - 10 分钟
+    kubeadm init --config=kubeadm-config.yaml --upload-certs
+    
+    # 配置 kubectl
+    rm -rf /root/.kube/
+    mkdir /root/.kube/
+    cp -i /etc/kubernetes/admin.conf /root/.kube/config
+    
+    # 安装 calico 网络插件
+    # 参考文档 https://docs.projectcalico.org/v3.13/getting-started/kubernetes/self-managed-onprem/onpremises
+    echo "安装calico-3.13.1"
+    rm -f calico-3.13.1.yaml
+    wget https://kuboard.cn/install-script/calico/calico-3.13.1.yaml
+    kubectl apply -f calico-3.13.1.yaml
+
+    ````
+    
+</details>
+
+
+<br>
+
 
 - 检查 master 初始化结果
 
