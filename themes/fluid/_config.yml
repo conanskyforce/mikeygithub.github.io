@@ -82,7 +82,7 @@ aplayer:  # 音乐播放器，注意不能与 hexo-tag-aplayer 插件共用
     - { name: '等你下课', artist: '周杰伦', url: '/music/周杰伦 - 等你下课.flac', cover: '/img/jay.jpg' }
     - { name: '开不了口', artist: '周杰伦', url: '/music/周杰伦 - 开不了口.mp3', cover: '/img/jay.jpg' }
     - { name: '简单爱', artist: '周杰伦', url: '/music/周杰伦 - 简单爱.mp3', cover: '/img/jay.jpg' }
-    - { name: '龙卷风', artist: '周杰伦', url: '/music/周杰伦 - 龙卷风.mp3', cover: '/img/jay.jpg' }
+    - { name: '龙卷风', artist: '周杰伦', url: '/music/周杰伦 ', cover: '/img/jay.jpg' }
     - { name: '给我一首歌的时间', artist: '周杰伦', url: '/music/周杰伦 - 给我一首歌的时间.mp3', cover: '/img/jay.jpg' }
 
 #---------------------------
