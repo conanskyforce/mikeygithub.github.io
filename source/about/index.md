@@ -8,7 +8,7 @@ layout: about
 
 <!--<details>-->
   <!--<summary><span>查看简历</span></summary>-->
-  <a href="/resource/pdf/杨彪-个人简历-Java后端.pdf">点击查看简历</a>
+  <a href="/resource/pdf/2021-杨彪-个人简历-Java后端-应届生.pdf">点击查看简历</a>
   <!--</br>感谢您花时间阅读我的简历，期待能有机会和你共事。-->
 <!--</details>-->
 
