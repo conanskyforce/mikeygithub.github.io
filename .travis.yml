@@ -35,7 +35,6 @@ after_script:
   # Travis_Token是在Travis官网中配置环境变量的名称（more options 选择 setting添加的值）
   - git push --force --quiet "https://${Github_Token}@${GH_REF}" master:master
 
-# 只监测resource分支，resource是我存放源码的分支的名称，可根据自己情况设置
 branches:
   only:
     - src
