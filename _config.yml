@@ -99,7 +99,7 @@ theme: fluid
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   - type: git
-    repo: git@github.com:mikeygithub/mikeygithub.github.io
+    repo: https://github.com/mikeygithub/mikeygithub.github.io
     branch: master
   - type: git
     repo: https://gitee.com/biaogejiushibiao/biaogejiushibiao
