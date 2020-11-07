@@ -17,7 +17,7 @@ layout: about
 >目前还是个菜鸟、正在不断努力、不断进步！
 
 ### 学习方向
->JavaEE、区块链、Linux、前端、Golang
+>Java后端开发、区块链、Linux、前端、Golang
 
 
 ### 人生目标
