@@ -101,6 +101,3 @@ deploy:
   - type: git
     repo: https://github.com/mikeygithub/mikeygithub.github.io
     branch: master
-  - type: git
-    repo: https://gitee.com/biaogejiushibiao/biaogejiushibiao
-    branch: master
