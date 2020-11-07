@@ -23,17 +23,18 @@ script:
   - hexo g # 生成
 
 after_script:
-  - cd ./public
-  - git init
-  # 修改github的用户名
-  - git config user.name "mikeygithub"
-  # 修改email
-  - git config user.email "biaogejiushibiao@outlook.com"
-  - git add .
-  # 提交记录包含时间 跟上面更改时区配合
-  - git commit -m "Travis CI Auto Builder at `date +"%Y-%m-%d %H:%M"`"
-  # Travis_Token是在Travis官网中配置环境变量的名称（more options 选择 setting添加的值）
-  - git push --force --quiet "https://${Github_Token}@${GH_REF}" master:master
+  - y|hexo d
+#  - cd ./public
+#  - git init
+#  # 修改github的用户名
+#  - git config user.name "mikeygithub"
+#  # 修改email
+#  - git config user.email "biaogejiushibiao@outlook.com"
+#  - git add .
+#  # 提交记录包含时间 跟上面更改时区配合
+#  - git commit -m "Travis CI Auto Builder at `date +"%Y-%m-%d %H:%M"`"
+#  # Travis_Token是在Travis官网中配置环境变量的名称（more options 选择 setting添加的值）
+#  - git push --force --quiet "https://${Github_Token}@${GH_REF}" master:master
 
 branches:
   only:
