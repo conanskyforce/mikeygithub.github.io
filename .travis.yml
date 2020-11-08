@@ -69,6 +69,7 @@ deploy:
   skip-cleanup: true
   github-token: $Github_Token
   keep-history: true
+  target-brach: master
   on:
-    branch: master
+    branch: src
   local-dir: public
