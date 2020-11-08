@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Stay hungry stay foolish">
+  <meta name="author" content="MIKEY">
+  <meta name="keywords" content="">
+  <title>分类 - JVM - 麦奇</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/mdbootstrap/4.13.0/css/mdb.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/3.0.1/github-markdown.min.css" />
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link  rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css" />
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link defer rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+<!-- 自定义样式保持在最底部 -->
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 80vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>麦奇</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">首页</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">归档</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">分类</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">标签</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-md">
+        <div class="py-5 z-depth-3" id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<div class="list-group">
+<!--  <p class="h4">共计 1 篇文章</p>-->
+  <hr>
+  
+    
+      
+      <p class="h5">2020</p>
+    
+    <a href="/2020/05/19/JVM-%E7%9F%A5%E8%AF%86%E6%B1%87%E6%80%BB/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">JVM 知识汇总</span>
+      <span style="float: right;">05-19</span>
+    </a>
+  
+</div>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoad = window.onload;
+  window.onload = function () {
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'false' === 'true',
+      loop: 'all',
+      order: 'random',
+      theme: '#b7daff',
+      preload: 'none',
+      audio: [{"name":"告白气球","artist":"周杰伦","url":"/music/周杰伦 - 告白气球.mp3","cover":"/img/jay.jpg"},{"name":"等你下课","artist":"周杰伦","url":"/music/周杰伦 - 等你下课.flac","cover":"/img/jay.jpg"},{"name":"开不了口","artist":"周杰伦","url":"/music/周杰伦 - 开不了口.mp3","cover":"/img/jay.jpg"},{"name":"简单爱","artist":"周杰伦","url":"/music/周杰伦 - 简单爱.mp3","cover":"/img/jay.jpg"},{"name":"龙卷风","artist":"周杰伦","url":"/music/周杰伦 - 龙卷风.mp3 ","cover":"/img/jay.jpg"},{"name":"给我一首歌的时间","artist":"周杰伦","url":"/music/周杰伦 - 给我一首歌的时间.mp3","cover":"/img/jay.jpg"},{"name":"冬天的秘密","artist":"周传雄","url":"/music/冬天的秘密 周传雄.mp3","cover":"/img/jay.jpg"},{"name":"C边G事","artist":"周杰伦","url":"/music/周杰伦 - C边G事.mp3","cover":"/img/jay.jpg"},{"name":"Mine Mine","artist":"周杰伦","url":"/music/周杰伦 - Mine Mine.mp3","cover":"/img/jay.jpg"},{"name":"一口气全念对","artist":"周杰伦","url":"/music/周杰伦 - 一口气全念对.mp3","cover":"/img/jay.jpg"},{"name":"一路向北","artist":"周杰伦","url":"/music/周杰伦 - 一路向北 (《头文字D》电影插曲).mp3","cover":"/img/jay.jpg"},{"name":"七里香","artist":"周杰伦","url":"/music/周杰伦 - 七里香.mp3","cover":"/img/jay.jpg"},{"name":"三年二班","artist":"周杰伦","url":"/music/周杰伦 - 三年二班.mp3","cover":"/img/jay.jpg"},{"name":"上海一九四三","artist":"周杰伦","url":"/music/周杰伦 - 上海一九四三.mp3","cover":"/img/jay.jpg"},{"name":"世界未末日","artist":"周杰伦","url":"/music/周杰伦 - 世界未末日.mp3","cover":"/img/jay.jpg"},{"name":"东风破","artist":"周杰伦","url":"/music/周杰伦 - 东风破.mp3","cover":"/img/jay.jpg"},{"name":"乌克丽丽","artist":"周杰伦","url":"/music/周杰伦 - 乌克丽丽.mp3","cover":"/img/jay.jpg"},{"name":"乔克叔叔","artist":"周杰伦","url":"/music/周杰伦 - 乔克叔叔.mp3","cover":"/img/jay.jpg"},{"name":"乱舞春秋","artist":"周杰伦","url":"/music/周杰伦 - 乱舞春秋.mp3","cover":"/img/jay.jpg"},{"name":"以父之名","artist":"周杰伦","url":"/music/周杰伦 - 以父之名.mp3","cover":"/img/jay.jpg"},{"name":"伊斯坦堡","artist":"周杰伦","url":"/music/周杰伦 - 伊斯坦堡.mp3","cover":"/img/jay.jpg"},{"name":"你听得到","artist":"周杰伦","url":"/music/周杰伦 - 你听得到.mp3","cover":"/img/jay.jpg"},{"name":"你好吗","artist":"周杰伦","url":"/music/周杰伦 - 你好吗.mp3","cover":"/img/jay.jpg"},{"name":"借口","artist":"周杰伦","url":"/music/周杰伦 - 借口.mp3","cover":"/img/jay.jpg"},{"name":"傻笑","artist":"周杰伦","url":"/music/周杰伦 - 傻笑.mp3","cover":"/img/jay.jpg"},{"name":"免费教学录影带","artist":"周杰伦","url":"/music/周杰伦 - 免费教学录影带.mp3","cover":"/img/jay.jpg"},{"name":"公主病","artist":"周杰伦","url":"/music/周杰伦 - 公主病.mp3","cover":"/img/jay.jpg"},{"name":"公公偏Tou痛","artist":"周杰伦","url":"/music/周杰伦 - 公公偏Tou痛.mp3","cover":"/img/jay.jpg"},{"name":"兰亭序","artist":"周杰伦","url":"/music/周杰伦 - 兰亭序.mp3","cover":"/img/jay.jpg"},{"name":"分裂","artist":"周杰伦","url":"/music/周杰伦 - 分裂.mp3","cover":"/img/jay.jpg"},{"name":"前S情R","artist":"周杰伦","url":"/music/周杰伦 - 前S情R.mp3","cover":"/img/jay.jpg"},{"name":"千里之外","artist":"周杰伦","url":"/music/周杰伦 - 千里之外.mp3","cover":"/img/jay.jpg"},{"name":"半兽人","artist":"周杰伦","url":"/music/周杰伦 - 半兽人.mp3","cover":"/img/jay.jpg"},{"name":"半岛铁盒","artist":"周杰伦","url":"/music/周杰伦 - 半岛铁盒.mp3","cover":"/img/jay.jpg"},{"name":"印第安老斑鸠","artist":"周杰伦","url":"/music/周杰伦 - 印第安老斑鸠.mp3","cover":"/img/jay.jpg"},{"name":"双刀","artist":"周杰伦","url":"/music/周杰伦 - 双刀.mp3","cover":"/img/jay.jpg"},{"name":"双截棍","artist":"周杰伦","url":"/music/周杰伦 - 双截棍.mp3","cover":"/img/jay.jpg"},{"name":"反方向的钟","artist":"周杰伦","url":"/music/周杰伦 - 反方向的钟.mp3","cover":"/img/jay.jpg"},{"name":"发如雪","artist":"周杰伦","url":"/music/周杰伦 - 发如雪.mp3","cover":"/img/jay.jpg"},{"name":"可ai女人","artist":"周杰伦","url":"/music/周杰伦 - 可ai女人.mp3","cover":"/img/jay.jpg"},{"name":"同一种调调","artist":"周杰伦","url":"/music/周杰伦 - 同一种调调.mp3","cover":"/img/jay.jpg"},{"name":"听妈妈的话","artist":"周杰伦","url":"/music/周杰伦 - 听妈妈的话.mp3","cover":"/img/jay.jpg"},{"name":"听爸爸的话","artist":"周杰伦","url":"/music/周杰伦 - 听爸爸的话.mp3","cover":"/img/jay.jpg"},{"name":"听见下雨的声音","artist":"周杰伦","url":"/music/周杰伦 - 听见下雨的声音.mp3","cover":"/img/jay.jpg"},{"name":"告白气球","artist":"周杰伦","url":"/music/周杰伦 - 告白气球.mp3","cover":"/img/jay.jpg"},{"name":"哪里都是你","artist":"周杰伦","url":"/music/周杰伦 - 哪里都是你.mp3","cover":"/img/jay.jpg"},{"name":"嘻哈空姐","artist":"周杰伦","url":"/music/周杰伦 - 嘻哈空姐.mp3","cover":"/img/jay.jpg"},{"name":"四季列车","artist":"周杰伦","url":"/music/周杰伦 - 四季列车.mp3","cover":"/img/jay.jpg"},{"name":"四面楚歌","artist":"周杰伦","url":"/music/周杰伦 - 四面楚歌.mp3","cover":"/img/jay.jpg"},{"name":"回到过去","artist":"周杰伦","url":"/music/周杰伦 - 回到过去.mp3","cover":"/img/jay.jpg"},{"name":"园游会","artist":"周杰伦","url":"/music/周杰伦 - 园游会.mp3","cover":"/img/jay.jpg"},{"name":"困兽之斗","artist":"周杰伦","url":"/music/周杰伦 - 困兽之斗.mp3","cover":"/img/jay.jpg"},{"name":"外婆","artist":"周杰伦","url":"/music/周杰伦 - 外婆.mp3","cover":"/img/jay.jpg"},{"name":"夜曲","artist":"周杰伦","url":"/music/周杰伦 - 夜曲.mp3","cover":"/img/jay.jpg"},{"name":"夜的第七章","artist":"周杰伦","url":"/music/周杰伦 - 夜的第七章.mp3","cover":"/img/jay.jpg"},{"name":"大笨钟","artist":"周杰伦","url":"/music/周杰伦 - 大笨钟.mp3","cover":"/img/jay.jpg"},{"name":"天地一斗","artist":"周杰伦","url":"/music/周杰伦 - 天地一斗.mp3","cover":"/img/jay.jpg"},{"name":"天涯过客","artist":"周杰伦","url":"/music/周杰伦 - 天涯过客.mp3","cover":"/img/jay.jpg"},{"name":"她的睫毛","artist":"周杰伦","url":"/music/周杰伦 - 她的睫毛.mp3","cover":"/img/jay.jpg"},{"name":"好久不见","artist":"周杰伦","url":"/music/周杰伦 - 好久不见.mp3","cover":"/img/jay.jpg"},{"name":"威廉古堡","artist":"周杰伦","url":"/music/周杰伦 - 威廉古堡.mp3","cover":"/img/jay.jpg"},{"name":"娘子","artist":"周杰伦","url":"/music/周杰伦 - 娘子.mp3","cover":"/img/jay.jpg"},{"name":"安静","artist":"周杰伦","url":"/music/周杰伦 - 安静.mp3","cover":"/img/jay.jpg"},{"name":"完美主义","artist":"周杰伦","url":"/music/周杰伦 - 完美主义.mp3","cover":"/img/jay.jpg"},{"name":"对不起 (统一茶饮料 广告曲)","artist":"周杰伦","url":"/music/周杰伦 - 对不起 (统一茶饮料 广告曲).mp3","cover":"/img/jay.jpg"},{"name":"将军","artist":"周杰伦","url":"/music/周杰伦 - 将军.mp3","cover":"/img/jay.jpg"},{"name":"开不了口","artist":"周杰伦","url":"/music/周杰伦 - 开不了口.mp3","cover":"/img/jay.jpg"},{"name":"彩虹 (《命运呼叫转移》电影插曲)","artist":"周杰伦","url":"/music/周杰伦 - 彩虹 (《命运呼叫转移》电影插曲).mp3","cover":"/img/jay.jpg"},{"name":"心雨","artist":"周杰伦","url":"/music/周杰伦 - 心雨.mp3","cover":"/img/jay.jpg"},{"name":"忍者","artist":"周杰伦","url":"/music/周杰伦 - 忍者.mp3","cover":"/img/jay.jpg"},{"name":"怎么了","artist":"周杰伦","url":"/music/周杰伦 - 怎么了.mp3","cover":"/img/jay.jpg"},{"name":"惊叹号","artist":"周杰伦","url":"/music/周杰伦 - 惊叹号.mp3","cover":"/img/jay.jpg"},{"name":"懦夫","artist":"周杰伦","url":"/music/周杰伦 - 懦夫.mp3","cover":"/img/jay.jpg"},{"name":"我不配","artist":"周杰伦","url":"/music/周杰伦 - 我不配.mp3","cover":"/img/jay.jpg"},{"name":"我的地盘","artist":"周杰伦","url":"/music/周杰伦 - 我的地盘.mp3","cover":"/img/jay.jpg"},{"name":"我落泪情绪零碎","artist":"周杰伦","url":"/music/周杰伦 - 我落泪情绪零碎.mp3","cover":"/img/jay.jpg"},{"name":"我要夏天","artist":"周杰伦","url":"/music/周杰伦 - 我要夏天.mp3","cover":"/img/jay.jpg"},{"name":"手写的从前 (优酸乳为爱告白 广告曲)","artist":"周杰伦","url":"/music/周杰伦 - 手写的从前 (优酸乳为爱告白 广告曲).mp3","cover":"/img/jay.jpg"},{"name":"手语","artist":"周杰伦","url":"/music/周杰伦 - 手语.mp3","cover":"/img/jay.jpg"},{"name":"扯","artist":"周杰伦","url":"/music/周杰伦 - 扯.mp3","cover":"/img/jay.jpg"},{"name":"搁浅","artist":"周杰伦","url":"/music/周杰伦 - 搁浅.mp3","cover":"/img/jay.jpg"},{"name":"斗牛","artist":"周杰伦","url":"/music/周杰伦 - 斗牛.mp3","cover":"/img/jay.jpg"},{"name":"断了的弦 (《寻找周杰伦》电影插曲)","artist":"周杰伦","url":"/music/周杰伦 - 断了的弦 (《寻找周杰伦》电影插曲).mp3","cover":"/img/jay.jpg"},{"name":"断了的弦 (伴奏)","artist":"周杰伦","url":"/music/周杰伦 - 断了的弦 (伴奏).mp3","cover":"/img/jay.jpg"},{"name":"无双","artist":"周杰伦","url":"/music/周杰伦 - 无双.mp3","cover":"/img/jay.jpg"},{"name":"时光机","artist":"周杰伦","url":"/music/周杰伦 - 时光机.mp3","cover":"/img/jay.jpg"},{"name":"明明就","artist":"周杰伦","url":"/music/周杰伦 - 明明就.mp3","cover":"/img/jay.jpg"},{"name":"星晴","artist":"周杰伦","url":"/music/周杰伦 - 星晴.mp3","cover":"/img/jay.jpg"},{"name":"晴天","artist":"周杰伦","url":"/music/周杰伦 - 晴天.mp3","cover":"/img/jay.jpg"},{"name":"暗号","artist":"周杰伦","url":"/music/周杰伦 - 暗号.mp3","cover":"/img/jay.jpg"},{"name":"最后的战役","artist":"周杰伦","url":"/music/周杰伦 - 最后的战役.mp3","cover":"/img/jay.jpg"},{"name":"最长的电影","artist":"周杰伦","url":"/music/周杰伦 - 最长的电影.mp3","cover":"/img/jay.jpg"},{"name":"本草纲目","artist":"周杰伦","url":"/music/周杰伦 - 本草纲目.mp3","cover":"/img/jay.jpg"},{"name":"枫","artist":"周杰伦","url":"/music/周杰伦 - 枫.mp3","cover":"/img/jay.jpg"},{"name":"梦想启动","artist":"周杰伦","url":"/music/周杰伦 - 梦想启动.mp3","cover":"/img/jay.jpg"},{"name":"梯田","artist":"周杰伦","url":"/music/周杰伦 - 梯田.mp3","cover":"/img/jay.jpg"},{"name":"止战之殇","artist":"周杰伦","url":"/music/周杰伦 - 止战之殇.mp3","cover":"/img/jay.jpg"},{"name":"比较大的大提琴","artist":"周杰伦","url":"/music/周杰伦 - 比较大的大提琴.mp3","cover":"/img/jay.jpg"},{"name":"水手怕水","artist":"周杰伦","url":"/music/周杰伦 - 水手怕水.mp3","cover":"/img/jay.jpg"},{"name":"流浪诗人","artist":"周杰伦","url":"/music/周杰伦 - 流浪诗人.mp3","cover":"/img/jay.jpg"},{"name":"浪漫手机","artist":"周杰伦","url":"/music/周杰伦 - 浪漫手机.mp3","cover":"/img/jay.jpg"},{"name":"火车叨位去","artist":"周杰伦","url":"/music/周杰伦 - 火车叨位去.mp3","cover":"/img/jay.jpg"},{"name":"烟花易冷","artist":"周杰伦","url":"/music/周杰伦 - 烟花易冷.mp3","cover":"/img/jay.jpg"},{"name":"爱你没差","artist":"周杰伦","url":"/music/周杰伦 - 爱你没差.mp3","cover":"/img/jay.jpg"},{"name":"爱在西元前","artist":"周杰伦","url":"/music/周杰伦 - 爱在西元前.mp3","cover":"/img/jay.jpg"},{"name":"爱情悬崖","artist":"周杰伦","url":"/music/周杰伦 - 爱情悬崖.mp3","cover":"/img/jay.jpg"},{"name":"爱的飞行日记","artist":"周杰伦","url":"/music/周杰伦 - 爱的飞行日记.mp3","cover":"/img/jay.jpg"},{"name":"爷爷泡的茶","artist":"周杰伦","url":"/music/周杰伦 - 爷爷泡的茶.mp3","cover":"/img/jay.jpg"},{"name":"爸，我回来了","artist":"周杰伦","url":"/music/周杰伦 - 爸，我回来了.mp3","cover":"/img/jay.jpg"},{"name":"牛仔很忙","artist":"周杰伦","url":"/music/周杰伦 - 牛仔很忙.mp3","cover":"/img/jay.jpg"},{"name":"献世 (Live)","artist":"周杰伦","url":"/music/周杰伦 - 献世 (Live).mp3","cover":"/img/jay.jpg"},{"name":"珊瑚海","artist":"周杰伦","url":"/music/周杰伦 - 珊瑚海.mp3","cover":"/img/jay.jpg"},{"name":"琴伤","artist":"周杰伦","url":"/music/周杰伦 - 琴伤.mp3","cover":"/img/jay.jpg"},{"name":"甜甜的","artist":"周杰伦","url":"/music/周杰伦 - 甜甜的.mp3","cover":"/img/jay.jpg"},{"name":"疗伤烧肉粽","artist":"周杰伦","url":"/music/周杰伦 - 疗伤烧肉粽.mp3","cover":"/img/jay.jpg"},{"name":"白色风车","artist":"周杰伦","url":"/music/周杰伦 - 白色风车.mp3","cover":"/img/jay.jpg"},{"name":"皮影戏","artist":"周杰伦","url":"/music/周杰伦 - 皮影戏.mp3","cover":"/img/jay.jpg"},{"name":"稻香","artist":"周杰伦","url":"/music/周杰伦 - 稻香.mp3","cover":"/img/jay.jpg"},{"name":"窃爱","artist":"周杰伦","url":"/music/周杰伦 - 窃爱.mp3","cover":"/img/jay.jpg"},{"name":"等你下课","artist":"周杰伦","url":"/music/周杰伦 - 等你下课.flac","cover":"/img/jay.jpg"},{"name":"简单爱","artist":"周杰伦","url":"/music/周杰伦 - 简单爱.mp3","cover":"/img/jay.jpg"},{"name":"算什么男人","artist":"周杰伦","url":"/music/周杰伦 - 算什么男人.mp3","cover":"/img/jay.jpg"},{"name":"米兰的小铁匠","artist":"周杰伦","url":"/music/周杰伦 - 米兰的小铁匠.mp3","cover":"/img/jay.jpg"},{"name":"红尘客栈","artist":"周杰伦","url":"/music/周杰伦 - 红尘客栈.mp3","cover":"/img/jay.jpg"},{"name":"红模仿","artist":"周杰伦","url":"/music/周杰伦 - 红模仿.mp3","cover":"/img/jay.jpg"},{"name":"给我一首歌的时间","artist":"周杰伦","url":"/music/周杰伦 - 给我一首歌的时间.mp3","cover":"/img/jay.jpg"},{"name":"美人鱼","artist":"周杰伦","url":"/music/周杰伦 - 美人鱼.mp3","cover":"/img/jay.jpg"},{"name":"自导自演","artist":"周杰伦","url":"/music/周杰伦 - 自导自演.mp3","cover":"/img/jay.jpg"},{"name":"花海","artist":"周杰伦","url":"/music/周杰伦 - 花海.mp3","cover":"/img/jay.jpg"},{"name":"英雄(1)","artist":"周杰伦","url":"/music/周杰伦 - 英雄(1).mp3","cover":"/img/jay.jpg"},{"name":"菊花台 (《满城尽带黄金甲》电影片尾曲)","artist":"周杰伦","url":"/music/周杰伦 - 菊花台 (《满城尽带黄金甲》电影片尾曲).mp3","cover":"/img/jay.jpg"},{"name":"菊花台 (杰伦钢琴演奏版)","artist":"周杰伦","url":"/music/周杰伦 - 菊花台 (杰伦钢琴演奏版).mp3","cover":"/img/jay.jpg"},{"name":"蒲公英的约定","artist":"周杰伦","url":"/music/周杰伦 - 蒲公英的约定.mp3","cover":"/img/jay.jpg"},{"name":"蓝色风暴","artist":"周杰伦","url":"/music/周杰伦 - 蓝色风暴.mp3","cover":"/img/jay.jpg"},{"name":"蛇舞","artist":"周杰伦","url":"/music/周杰伦 - 蛇舞.mp3","cover":"/img/jay.jpg"},{"name":"说了再见","artist":"周杰伦","url":"/music/周杰伦 - 说了再见.mp3","cover":"/img/jay.jpg"},{"name":"说好的幸福呢","artist":"周杰伦","url":"/music/周杰伦 - 说好的幸福呢.mp3","cover":"/img/jay.jpg"},{"name":"超人不会飞","artist":"周杰伦","url":"/music/周杰伦 - 超人不会飞.mp3","cover":"/img/jay.jpg"},{"name":"超跑女神","artist":"周杰伦","url":"/music/周杰伦 - 超跑女神.mp3","cover":"/img/jay.jpg"},{"name":"跨时代","artist":"周杰伦","url":"/music/周杰伦 - 跨时代.mp3","cover":"/img/jay.jpg"},{"name":"轨迹 (《寻找周杰伦》电影主题曲)","artist":"周杰伦","url":"/music/周杰伦 - 轨迹 (《寻找周杰伦》电影主题曲).mp3","cover":"/img/jay.jpg"},{"name":"迷迭香","artist":"周杰伦","url":"/music/周杰伦 - 迷迭香.mp3","cover":"/img/jay.jpg"},{"name":"迷魂曲","artist":"周杰伦","url":"/music/周杰伦 - 迷魂曲.mp3","cover":"/img/jay.jpg"},{"name":"退后","artist":"周杰伦","url":"/music/周杰伦 - 退后.mp3","cover":"/img/jay.jpg"},{"name":"逆鳞","artist":"周杰伦","url":"/music/周杰伦 - 逆鳞.mp3","cover":"/img/jay.jpg"},{"name":"阳光宅男","artist":"周杰伦","url":"/music/周杰伦 - 阳光宅男.mp3","cover":"/img/jay.jpg"},{"name":"阳明山","artist":"周杰伦","url":"/music/周杰伦 - 阳明山.mp3","cover":"/img/jay.jpg"},{"name":"雨下一整晚","artist":"周杰伦","url":"/music/周杰伦 - 雨下一整晚.mp3","cover":"/img/jay.jpg"},{"name":"霍元甲 (《霍元甲》电影主题曲)","artist":"周杰伦","url":"/music/周杰伦 - 霍元甲 (《霍元甲》电影主题曲).mp3","cover":"/img/jay.jpg"},{"name":"青花瓷","artist":"周杰伦","url":"/music/周杰伦 - 青花瓷.mp3","cover":"/img/jay.jpg"},{"name":"鞋子特大号","artist":"周杰伦","url":"/music/周杰伦 - 鞋子特大号.mp3","cover":"/img/jay.jpg"},{"name":"飘移","artist":"周杰伦","url":"/music/周杰伦 - 飘移.mp3","cover":"/img/jay.jpg"},{"name":"魔术先生","artist":"周杰伦","url":"/music/周杰伦 - 魔术先生.mp3","cover":"/img/jay.jpg"},{"name":"麦烝玮","artist":"周杰伦","url":"/music/周杰伦 - 麦烝玮.mp3","cover":"/img/jay.jpg"},{"name":"麦芽糖","artist":"周杰伦","url":"/music/周杰伦 - 麦芽糖.mp3","cover":"/img/jay.jpg"},{"name":"黄金甲","artist":"周杰伦","url":"/music/周杰伦 - 黄金甲.mp3","cover":"/img/jay.jpg"},{"name":"黑色幽默","artist":"周杰伦","url":"/music/周杰伦 - 黑色幽默.mp3","cover":"/img/jay.jpg"},{"name":"黑色毛衣","artist":"周杰伦","url":"/music/周杰伦 - 黑色毛衣.mp3","cover":"/img/jay.jpg"},{"name":"龙卷风","artist":"周杰伦","url":"/music/周杰伦 - 龙卷风.mp3","cover":"/img/jay.jpg"},{"name":"龙战骑士","artist":"周杰伦","url":"/music/周杰伦 - 龙战骑士.mp3","cover":"/img/jay.jpg"},{"name":"龙拳","artist":"周杰伦","url":"/music/周杰伦 - 龙拳.mp3","cover":"/img/jay.jpg"},{"name":"寒流来袭","artist":"HotDog","url":"/music/寒流来袭.mp3","cover":"/img/jay.jpg"},{"name":"Try (《功夫熊猫3》电影全球主题曲)","artist":"周杰伦","url":"/music/派伟俊 - Try (《功夫熊猫3》电影全球主题曲).mp3","cover":"/img/jay.jpg"},{"name":"你是我的OK绷","artist":"周杰伦","url":"/music/浪花兄弟 - 你是我的OK绷.mp3","cover":"/img/jay.jpg"},{"name":"布拉格广场","artist":"周杰伦","url":"/music/蔡依林 - 布拉格广场.mp3","cover":"/img/jay.jpg"},{"name":"画沙","artist":"周杰伦","url":"/music/袁咏琳 - 画沙.mp3","cover":"/img/jay.jpg"}]
+    });
+    oldLoad && oldLoad();
+  }
+</script>
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://mikeygithub.github.io/" target="_blank" rel="nofollow noopener"><b>Copyright © 2020 麦奇 Powered by Hexo Fluid Core on Kubernetes</b></a>
+      <!--<i class="iconfont icon-love"></i>-->
+      <!--<a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>-->
+    </div>
+    
+  <div>
+    
+      <!-- 不蒜子统计PV -->
+      
+      <span id="busuanzi_container_site_pv" style="display: none">
+      总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    </span>
+    
+    
+      <!-- 不蒜子统计UV -->
+      
+      <span id="busuanzi_container_site_uv" style="display: none">
+      总访客数 <span id="busuanzi_value_site_uv"></span> 人
+    </span>
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/popper.js/1.16.1/umd/popper.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="https://cdn.staticfile.org/mdbootstrap/4.13.0/js/mdb.min.js" ></script>
+<script  src="/js/main.js" ></script>
+
+
+  <script  src="/js/lazyload.js" ></script>
+
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/smoothscroll/1.4.10/SmoothScroll.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+<!-- Plugins -->
+
+
+
+  <script  src="https://cdn.staticfile.org/prettify/188.0.0/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "分类 - JVM&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 100,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

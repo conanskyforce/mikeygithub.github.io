@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Stay hungry stay foolish">
+  <meta name="author" content="MIKEY">
+  <meta name="keywords" content="">
+  <title>麦奇</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/mdbootstrap/4.13.0/css/mdb.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/3.0.1/github-markdown.min.css" />
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link  rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css" />
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link defer rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+<!-- 自定义样式保持在最底部 -->
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>麦奇</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">首页</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">归档</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">分类</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">标签</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="fas fa-angle-down scroll-down-arrow"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-md">
+        <div class="py-5 z-depth-3" id="board"
+          style=margin-top:0>
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2020/07/07/k8s-%E5%85%A5%E9%97%A8%E5%AE%9E%E8%B7%B5/" target="_self">
+          <img src="/resource/img/k8s.jpeg" srcset="/img/loading.gif" alt="k8s 入门实践"
+               class="index-img img-fluid rounded index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a href="/2020/07/07/k8s-%E5%85%A5%E9%97%A8%E5%AE%9E%E8%B7%B5/">
+        <p class="h4 index-header">k8s 入门实践</p>
+      </a>
+
+      <a href="/2020/07/07/k8s-%E5%85%A5%E9%97%A8%E5%AE%9E%E8%B7%B5/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">环境准备
+至少2台 2核4G 的服务器 Cent OS 7.6 / 7.7 / 7.8
+
+服务器信息 CentOS Linux release 7.8.2003 (Core)Architecture:          x86_64
+CPU op-mode(s):        32-bit, 64-bit
+Byte Order:            Little Endian
+CPU(s):                4
+On-line CPU(s) list:   0-3
+Thread(s) per core:    2
+Core(s) per socket:    2
+Socket</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-07-07&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/DevOps/">DevOps</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/Kubernates/">Kubernates</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2020/07/07/Java-%E5%9F%BA%E7%A1%80/" target="_self">
+          <img src="/resource/img/javaer-job-press.jpeg" srcset="/img/loading.gif" alt="Java 基础"
+               class="index-img img-fluid rounded index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a href="/2020/07/07/Java-%E5%9F%BA%E7%A1%80/">
+        <p class="h4 index-header">Java 基础</p>
+      </a>
+
+      <a href="/2020/07/07/Java-%E5%9F%BA%E7%A1%80/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">JAVA 异常分类及处理概念
+如果某个方法不能按照正常的途径完成任务,就可以通过另一种路径退出方法。在这种情况下 会抛出一个封装了错误信息的对象。此时,这个方法会立刻退出同时不返回任何值。另外,调用 这个方法的其他代码也无法继续执行,异常处理机制会将代码执行交给异常处理器。
+
+
+异常分类
+Throwable 是 Java 语言中所有错误或异常的超类。下一层分为 Error 和 Exception
+
+Error
+Error 类是指 java 运行时系统的内部错误和资源耗尽错误。应用程序不会抛出该类对象。如果出现了这样的错误,除了告知用户,剩下的就是尽力使程序安全的终止。
+
+Exception(R</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-07-07&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/Java/">Java</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E5%9F%BA%E7%A1%80/">基础</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2020/06/25/Ubuntu%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" target="_self">
+          <img src="/resource/img/ubuntu.jpg" srcset="/img/loading.gif" alt="Ubuntu开发环境配置"
+               class="index-img img-fluid rounded index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a href="/2020/06/25/Ubuntu%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
+        <p class="h4 index-header">Ubuntu开发环境配置</p>
+      </a>
+
+      <a href="/2020/06/25/Ubuntu%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">安装前准备镜像下载地址
+
+下载后制作成启动盘就可以安装系统了
+
+挂载磁盘
+
+常用软件安装JetBrains 系列
+Android Studio
+CLion
+DataGrip
+Intelli IDEA
+GoLand
+Pycharm
+WebStorm
+
+浏览器
+Chrome
+Chromium
+Firefox
+
+开发工具
+Redis Desktop Manager
+Sublime Text
+Sunlogin Client
+Teamview
+Xmind ZEN
+WPS
+DingTalk
+
+其他软件
+electron-ssr
+FileZilla
+lantern
+Remmina
+VirtualBox
+网易</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-06-25&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/Linux/">Linux</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/Ubuntu/">Ubuntu</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2020/06/08/MySQL%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0%E6%9C%BA%E5%88%B6/" target="_self">
+          <img src="/resource/img/mysql.jpeg" srcset="/img/loading.gif" alt="MySQL底层实现机制"
+               class="index-img img-fluid rounded index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a href="/2020/06/08/MySQL%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0%E6%9C%BA%E5%88%B6/">
+        <p class="h4 index-header">MySQL底层实现机制</p>
+      </a>
+
+      <a href="/2020/06/08/MySQL%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0%E6%9C%BA%E5%88%B6/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">问题
+数据库中最常见的慢查询优化方式是什么？
+为什么加索引能优化查询？
+你知道哪些数据结构可以提高查询速度？
+那这些数据结构既然都能优化查询速度，MySQL为什么选择B+TREE
+
+
+存储引擎概念数据库存储引擎是数据库底层软件组织,数据库管理系统(DBMS)使用数据引擎进行创建、查询、更新和删除数据。不同的存储引擎提供不同的存储机制、索引技巧、锁定水平等功能,使用不同的存储引擎,还可以 获得特定的功能。现在许多不同的数据库管理系统都支持多种不同的数据引擎。存储引擎主要有: 1. MyIsam , 2. InnoDB, 3. Memory, 4. Archive, 5. Federated 。
+</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-06-08&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/RDB/">RDB</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/MySQL/">MySQL</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2020/05/31/Java%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/" target="_self">
+          <img src="/resource/img/total.jpeg" srcset="/img/loading.gif" alt="Java面试问题汇总"
+               class="index-img img-fluid rounded index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a href="/2020/05/31/Java%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/">
+        <p class="h4 index-header">Java面试问题汇总</p>
+      </a>
+
+      <a href="/2020/05/31/Java%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">美团面试题
+请解释一下对象的创建过程？（半初始化）
+
+申请一块内存，给它赋值默认值（8大类型都有自己的默认值，此时为半初始化状态），然后调用构造方法，赋初始值，然后建立关联线程上锁需要两遍检查，DCL= double check lock，开始的时候判断是否为空，加锁，进去后再判断实例是否为空，然后再进行执行，检查两遍。
+
+Volatile ：保持线程可见性，禁止指令重排序(谁先请求的，就先返回谁，然后再进行下一个指令。)
+
+加问DCL与volatile问题？（指令重排序）
+
+Double Check Lock如果没有禁止指令重排，第一个线程来了会进行版初始化状态，让t不为空，第二个线程来了判</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-05-31&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/Java/">Java</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E5%9F%BA%E7%A1%80/">基础</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2020/05/30/JAVA-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%B9%B6%E5%8F%91/" target="_self">
+          <img src="/resource/img/many_thread.jpeg" srcset="/img/loading.gif" alt="JAVA 多线程并发"
+               class="index-img img-fluid rounded index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a href="/2020/05/30/JAVA-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%B9%B6%E5%8F%91/">
+        <p class="h4 index-header">JAVA 多线程并发</p>
+      </a>
+
+      <a href="/2020/05/30/JAVA-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%B9%B6%E5%8F%91/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">Java 并发知识库
+Java线程实现/创建方式继承Thread
+Thread类本质上是实现了Runnable接口的一个实例，代表一个线程的实例。启动线程的唯一方法就是通过Thread类的start实例方法。start方法是一个native方法，它将启动一个新的线程，并执行run()方法。
+
+public class MyThread extends Thread {
+    public void run() {
+        System.out.println(&quot;MyThread.run()&quot;);
+    }
+}
+
+MyThread myThread = new M</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-05-30&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/Java/">Java</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/Thread/">Thread</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2020/05/29/Java-%E9%9B%86%E5%90%88/" target="_self">
+          <img src="/resource/img/java.jpeg" srcset="/img/loading.gif" alt="Java 集合"
+               class="index-img img-fluid rounded index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a href="/2020/05/29/Java-%E9%9B%86%E5%90%88/">
+        <p class="h4 index-header">Java 集合</p>
+      </a>
+
+      <a href="/2020/05/29/Java-%E9%9B%86%E5%90%88/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">接口继承关系和实现
+集合类存放于Java.util包中，主要有三种：set(集)，list(列表包含Queue)，map(映射)
+
+
+Collection:Collection是集合List、Set、Queue的最基本的接口。
+Iterator:迭代器，可以通过迭代器遍历集合中的数据。
+Map:是映射表的基础接口
+
+
+集合框架
+
+List
+Java的List是非常常用的的数据类型。List是有序的Collection。Java List一共三个实现：ArrayList，Vector，LinkedList
+
+
+
+ArrayList(数组)
+
+ArrayList是最常用的List实现类，内部是通过</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-05-29&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/Java/">Java</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/Collection/">Collection</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2020/05/27/%E9%98%85%E8%AF%BB%E4%B9%A6%E5%8D%95/" target="_self">
+          <img src="/resource/img/book.jpeg" srcset="/img/loading.gif" alt="阅读书单"
+               class="index-img img-fluid rounded index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a href="/2020/05/27/%E9%98%85%E8%AF%BB%E4%B9%A6%E5%8D%95/">
+        <p class="h4 index-header">阅读书单</p>
+      </a>
+
+      <a href="/2020/05/27/%E9%98%85%E8%AF%BB%E4%B9%A6%E5%8D%95/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">电子书网站cn.epubee.com
+www.jiumodiary.com
+www.owllook.net
+mebook.cc
+www.xilinjie.com
+bookfere.com
+www.pansoso.com
+dianzishu.renrensousuo.com
+www.pdfzj.cn
+www.book118.com
+sobooks.cc
+kgbook.com
+www.en8848.com.cn
+cn.epubee.com
+bestcbooks.com
+智商
+如何阅读一本书
+精进
+学习之道
+刻意练习
+学会提问
+撤掉思维里面的墙
+故事思维
+创新：皮克斯的启示
+高效的秘密
+沃顿商学院最</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-05-27&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E4%B9%A6%E5%8D%95/">书单</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E4%B9%A6%E7%B1%8D/">书籍</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2020/05/27/Java-IO-NIO/" target="_self">
+          <img src="/resource/img/nio.jpg" srcset="/img/loading.gif" alt="Java IO/NIO"
+               class="index-img img-fluid rounded index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a href="/2020/05/27/Java-IO-NIO/">
+        <p class="h4 index-header">Java IO/NIO</p>
+      </a>
+
+      <a href="/2020/05/27/Java-IO-NIO/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">阻塞IO模型
+最传统的一种IO模型，即在读写数据过程中会发生阻塞现象。当用户线程发出IO请求之后，内核会去查看数据是否就绪，如果没有就绪就会等待数据就绪，而用户线程就会处于阻塞状态，用户线程交出CPU。当数据就绪之后，内核会将数据拷贝到用户线程，并返回结果给用户线程用户线程才解除block状态。典型的阻塞IO模型的例子为：data = socket.read();如果数据没有就绪就会一种阻塞在read方法。
+
+非阻塞IO模型
+当用户线程发起一个read操作后，并不需要等待，而是马上就得到了一个结果。如果结果是一个error时，他就知道数据还没有准备好，于是他可以再次发送read操作。一旦内核中</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-05-27&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/Java/">Java</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/IO-NIO/">IO/NIO</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2020/05/19/JVM-%E7%9F%A5%E8%AF%86%E6%B1%87%E6%80%BB/" target="_self">
+          <img src="/resource/img/jvm-1.jpg" srcset="/img/loading.gif" alt="JVM 知识汇总"
+               class="index-img img-fluid rounded index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a href="/2020/05/19/JVM-%E7%9F%A5%E8%AF%86%E6%B1%87%E6%80%BB/">
+        <p class="h4 index-header">JVM 知识汇总</p>
+      </a>
+
+      <a href="/2020/05/19/JVM-%E7%9F%A5%E8%AF%86%E6%B1%87%E6%80%BB/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">JVM 知识汇总基本概念JVM是可运行Java代码的假想计算机，包括一套字节指令集，一组寄存器，一个栈，一个垃圾回收，堆和一个存储方法域．
+Jvm是运行在操作系统上的他与硬件没有直接的交互．
+
+运行过程
+我们都知道Java源文件，通过编译器能够生产相应的.Class文件，也就是字节码文件，而字节码文件又通过Java虚拟机中的解释器，编译成特定机器上的机器码
+
+
+Java源文件–&gt;编译器–&gt;字节码文件–&gt;JVM–&gt;机器码
+
+
+每一种平台的解释器是不同的，但是实现的虚拟机是相同的，这也就是Java为什么能够跨平台的原因，当一个程序从开始运行，这时虚拟机就开始实例化了，多个程</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-05-19&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/JVM/">JVM</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/JVM/">JVM</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+
+
+  <nav aria-label="index posts navigation">
+    <span class="pagination pg-blue justify-content-center mt-5" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/2/"><i class="fas fa-angle-double-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fas fa-angle-double-right"></i></a>
+    </span>
+  </nav>
+  
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByClassName("page-number")) {
+      ele.href += '#board';
+    }
+  </script>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoad = window.onload;
+  window.onload = function () {
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'false' === 'true',
+      loop: 'all',
+      order: 'random',
+      theme: '#b7daff',
+      preload: 'none',
+      audio: [{"name":"告白气球","artist":"周杰伦","url":"/music/周杰伦 - 告白气球.mp3","cover":"/img/jay.jpg"},{"name":"等你下课","artist":"周杰伦","url":"/music/周杰伦 - 等你下课.flac","cover":"/img/jay.jpg"},{"name":"开不了口","artist":"周杰伦","url":"/music/周杰伦 - 开不了口.mp3","cover":"/img/jay.jpg"},{"name":"简单爱","artist":"周杰伦","url":"/music/周杰伦 - 简单爱.mp3","cover":"/img/jay.jpg"},{"name":"龙卷风","artist":"周杰伦","url":"/music/周杰伦 - 龙卷风.mp3 ","cover":"/img/jay.jpg"},{"name":"给我一首歌的时间","artist":"周杰伦","url":"/music/周杰伦 - 给我一首歌的时间.mp3","cover":"/img/jay.jpg"},{"name":"冬天的秘密","artist":"周传雄","url":"/music/冬天的秘密 周传雄.mp3","cover":"/img/jay.jpg"},{"name":"C边G事","artist":"周杰伦","url":"/music/周杰伦 - C边G事.mp3","cover":"/img/jay.jpg"},{"name":"Mine Mine","artist":"周杰伦","url":"/music/周杰伦 - Mine Mine.mp3","cover":"/img/jay.jpg"},{"name":"一口气全念对","artist":"周杰伦","url":"/music/周杰伦 - 一口气全念对.mp3","cover":"/img/jay.jpg"},{"name":"一路向北","artist":"周杰伦","url":"/music/周杰伦 - 一路向北 (《头文字D》电影插曲).mp3","cover":"/img/jay.jpg"},{"name":"七里香","artist":"周杰伦","url":"/music/周杰伦 - 七里香.mp3","cover":"/img/jay.jpg"},{"name":"三年二班","artist":"周杰伦","url":"/music/周杰伦 - 三年二班.mp3","cover":"/img/jay.jpg"},{"name":"上海一九四三","artist":"周杰伦","url":"/music/周杰伦 - 上海一九四三.mp3","cover":"/img/jay.jpg"},{"name":"世界未末日","artist":"周杰伦","url":"/music/周杰伦 - 世界未末日.mp3","cover":"/img/jay.jpg"},{"name":"东风破","artist":"周杰伦","url":"/music/周杰伦 - 东风破.mp3","cover":"/img/jay.jpg"},{"name":"乌克丽丽","artist":"周杰伦","url":"/music/周杰伦 - 乌克丽丽.mp3","cover":"/img/jay.jpg"},{"name":"乔克叔叔","artist":"周杰伦","url":"/music/周杰伦 - 乔克叔叔.mp3","cover":"/img/jay.jpg"},{"name":"乱舞春秋","artist":"周杰伦","url":"/music/周杰伦 - 乱舞春秋.mp3","cover":"/img/jay.jpg"},{"name":"以父之名","artist":"周杰伦","url":"/music/周杰伦 - 以父之名.mp3","cover":"/img/jay.jpg"},{"name":"伊斯坦堡","artist":"周杰伦","url":"/music/周杰伦 - 伊斯坦堡.mp3","cover":"/img/jay.jpg"},{"name":"你听得到","artist":"周杰伦","url":"/music/周杰伦 - 你听得到.mp3","cover":"/img/jay.jpg"},{"name":"你好吗","artist":"周杰伦","url":"/music/周杰伦 - 你好吗.mp3","cover":"/img/jay.jpg"},{"name":"借口","artist":"周杰伦","url":"/music/周杰伦 - 借口.mp3","cover":"/img/jay.jpg"},{"name":"傻笑","artist":"周杰伦","url":"/music/周杰伦 - 傻笑.mp3","cover":"/img/jay.jpg"},{"name":"免费教学录影带","artist":"周杰伦","url":"/music/周杰伦 - 免费教学录影带.mp3","cover":"/img/jay.jpg"},{"name":"公主病","artist":"周杰伦","url":"/music/周杰伦 - 公主病.mp3","cover":"/img/jay.jpg"},{"name":"公公偏Tou痛","artist":"周杰伦","url":"/music/周杰伦 - 公公偏Tou痛.mp3","cover":"/img/jay.jpg"},{"name":"兰亭序","artist":"周杰伦","url":"/music/周杰伦 - 兰亭序.mp3","cover":"/img/jay.jpg"},{"name":"分裂","artist":"周杰伦","url":"/music/周杰伦 - 分裂.mp3","cover":"/img/jay.jpg"},{"name":"前S情R","artist":"周杰伦","url":"/music/周杰伦 - 前S情R.mp3","cover":"/img/jay.jpg"},{"name":"千里之外","artist":"周杰伦","url":"/music/周杰伦 - 千里之外.mp3","cover":"/img/jay.jpg"},{"name":"半兽人","artist":"周杰伦","url":"/music/周杰伦 - 半兽人.mp3","cover":"/img/jay.jpg"},{"name":"半岛铁盒","artist":"周杰伦","url":"/music/周杰伦 - 半岛铁盒.mp3","cover":"/img/jay.jpg"},{"name":"印第安老斑鸠","artist":"周杰伦","url":"/music/周杰伦 - 印第安老斑鸠.mp3","cover":"/img/jay.jpg"},{"name":"双刀","artist":"周杰伦","url":"/music/周杰伦 - 双刀.mp3","cover":"/img/jay.jpg"},{"name":"双截棍","artist":"周杰伦","url":"/music/周杰伦 - 双截棍.mp3","cover":"/img/jay.jpg"},{"name":"反方向的钟","artist":"周杰伦","url":"/music/周杰伦 - 反方向的钟.mp3","cover":"/img/jay.jpg"},{"name":"发如雪","artist":"周杰伦","url":"/music/周杰伦 - 发如雪.mp3","cover":"/img/jay.jpg"},{"name":"可ai女人","artist":"周杰伦","url":"/music/周杰伦 - 可ai女人.mp3","cover":"/img/jay.jpg"},{"name":"同一种调调","artist":"周杰伦","url":"/music/周杰伦 - 同一种调调.mp3","cover":"/img/jay.jpg"},{"name":"听妈妈的话","artist":"周杰伦","url":"/music/周杰伦 - 听妈妈的话.mp3","cover":"/img/jay.jpg"},{"name":"听爸爸的话","artist":"周杰伦","url":"/music/周杰伦 - 听爸爸的话.mp3","cover":"/img/jay.jpg"},{"name":"听见下雨的声音","artist":"周杰伦","url":"/music/周杰伦 - 听见下雨的声音.mp3","cover":"/img/jay.jpg"},{"name":"告白气球","artist":"周杰伦","url":"/music/周杰伦 - 告白气球.mp3","cover":"/img/jay.jpg"},{"name":"哪里都是你","artist":"周杰伦","url":"/music/周杰伦 - 哪里都是你.mp3","cover":"/img/jay.jpg"},{"name":"嘻哈空姐","artist":"周杰伦","url":"/music/周杰伦 - 嘻哈空姐.mp3","cover":"/img/jay.jpg"},{"name":"四季列车","artist":"周杰伦","url":"/music/周杰伦 - 四季列车.mp3","cover":"/img/jay.jpg"},{"name":"四面楚歌","artist":"周杰伦","url":"/music/周杰伦 - 四面楚歌.mp3","cover":"/img/jay.jpg"},{"name":"回到过去","artist":"周杰伦","url":"/music/周杰伦 - 回到过去.mp3","cover":"/img/jay.jpg"},{"name":"园游会","artist":"周杰伦","url":"/music/周杰伦 - 园游会.mp3","cover":"/img/jay.jpg"},{"name":"困兽之斗","artist":"周杰伦","url":"/music/周杰伦 - 困兽之斗.mp3","cover":"/img/jay.jpg"},{"name":"外婆","artist":"周杰伦","url":"/music/周杰伦 - 外婆.mp3","cover":"/img/jay.jpg"},{"name":"夜曲","artist":"周杰伦","url":"/music/周杰伦 - 夜曲.mp3","cover":"/img/jay.jpg"},{"name":"夜的第七章","artist":"周杰伦","url":"/music/周杰伦 - 夜的第七章.mp3","cover":"/img/jay.jpg"},{"name":"大笨钟","artist":"周杰伦","url":"/music/周杰伦 - 大笨钟.mp3","cover":"/img/jay.jpg"},{"name":"天地一斗","artist":"周杰伦","url":"/music/周杰伦 - 天地一斗.mp3","cover":"/img/jay.jpg"},{"name":"天涯过客","artist":"周杰伦","url":"/music/周杰伦 - 天涯过客.mp3","cover":"/img/jay.jpg"},{"name":"她的睫毛","artist":"周杰伦","url":"/music/周杰伦 - 她的睫毛.mp3","cover":"/img/jay.jpg"},{"name":"好久不见","artist":"周杰伦","url":"/music/周杰伦 - 好久不见.mp3","cover":"/img/jay.jpg"},{"name":"威廉古堡","artist":"周杰伦","url":"/music/周杰伦 - 威廉古堡.mp3","cover":"/img/jay.jpg"},{"name":"娘子","artist":"周杰伦","url":"/music/周杰伦 - 娘子.mp3","cover":"/img/jay.jpg"},{"name":"安静","artist":"周杰伦","url":"/music/周杰伦 - 安静.mp3","cover":"/img/jay.jpg"},{"name":"完美主义","artist":"周杰伦","url":"/music/周杰伦 - 完美主义.mp3","cover":"/img/jay.jpg"},{"name":"对不起 (统一茶饮料 广告曲)","artist":"周杰伦","url":"/music/周杰伦 - 对不起 (统一茶饮料 广告曲).mp3","cover":"/img/jay.jpg"},{"name":"将军","artist":"周杰伦","url":"/music/周杰伦 - 将军.mp3","cover":"/img/jay.jpg"},{"name":"开不了口","artist":"周杰伦","url":"/music/周杰伦 - 开不了口.mp3","cover":"/img/jay.jpg"},{"name":"彩虹 (《命运呼叫转移》电影插曲)","artist":"周杰伦","url":"/music/周杰伦 - 彩虹 (《命运呼叫转移》电影插曲).mp3","cover":"/img/jay.jpg"},{"name":"心雨","artist":"周杰伦","url":"/music/周杰伦 - 心雨.mp3","cover":"/img/jay.jpg"},{"name":"忍者","artist":"周杰伦","url":"/music/周杰伦 - 忍者.mp3","cover":"/img/jay.jpg"},{"name":"怎么了","artist":"周杰伦","url":"/music/周杰伦 - 怎么了.mp3","cover":"/img/jay.jpg"},{"name":"惊叹号","artist":"周杰伦","url":"/music/周杰伦 - 惊叹号.mp3","cover":"/img/jay.jpg"},{"name":"懦夫","artist":"周杰伦","url":"/music/周杰伦 - 懦夫.mp3","cover":"/img/jay.jpg"},{"name":"我不配","artist":"周杰伦","url":"/music/周杰伦 - 我不配.mp3","cover":"/img/jay.jpg"},{"name":"我的地盘","artist":"周杰伦","url":"/music/周杰伦 - 我的地盘.mp3","cover":"/img/jay.jpg"},{"name":"我落泪情绪零碎","artist":"周杰伦","url":"/music/周杰伦 - 我落泪情绪零碎.mp3","cover":"/img/jay.jpg"},{"name":"我要夏天","artist":"周杰伦","url":"/music/周杰伦 - 我要夏天.mp3","cover":"/img/jay.jpg"},{"name":"手写的从前 (优酸乳为爱告白 广告曲)","artist":"周杰伦","url":"/music/周杰伦 - 手写的从前 (优酸乳为爱告白 广告曲).mp3","cover":"/img/jay.jpg"},{"name":"手语","artist":"周杰伦","url":"/music/周杰伦 - 手语.mp3","cover":"/img/jay.jpg"},{"name":"扯","artist":"周杰伦","url":"/music/周杰伦 - 扯.mp3","cover":"/img/jay.jpg"},{"name":"搁浅","artist":"周杰伦","url":"/music/周杰伦 - 搁浅.mp3","cover":"/img/jay.jpg"},{"name":"斗牛","artist":"周杰伦","url":"/music/周杰伦 - 斗牛.mp3","cover":"/img/jay.jpg"},{"name":"断了的弦 (《寻找周杰伦》电影插曲)","artist":"周杰伦","url":"/music/周杰伦 - 断了的弦 (《寻找周杰伦》电影插曲).mp3","cover":"/img/jay.jpg"},{"name":"断了的弦 (伴奏)","artist":"周杰伦","url":"/music/周杰伦 - 断了的弦 (伴奏).mp3","cover":"/img/jay.jpg"},{"name":"无双","artist":"周杰伦","url":"/music/周杰伦 - 无双.mp3","cover":"/img/jay.jpg"},{"name":"时光机","artist":"周杰伦","url":"/music/周杰伦 - 时光机.mp3","cover":"/img/jay.jpg"},{"name":"明明就","artist":"周杰伦","url":"/music/周杰伦 - 明明就.mp3","cover":"/img/jay.jpg"},{"name":"星晴","artist":"周杰伦","url":"/music/周杰伦 - 星晴.mp3","cover":"/img/jay.jpg"},{"name":"晴天","artist":"周杰伦","url":"/music/周杰伦 - 晴天.mp3","cover":"/img/jay.jpg"},{"name":"暗号","artist":"周杰伦","url":"/music/周杰伦 - 暗号.mp3","cover":"/img/jay.jpg"},{"name":"最后的战役","artist":"周杰伦","url":"/music/周杰伦 - 最后的战役.mp3","cover":"/img/jay.jpg"},{"name":"最长的电影","artist":"周杰伦","url":"/music/周杰伦 - 最长的电影.mp3","cover":"/img/jay.jpg"},{"name":"本草纲目","artist":"周杰伦","url":"/music/周杰伦 - 本草纲目.mp3","cover":"/img/jay.jpg"},{"name":"枫","artist":"周杰伦","url":"/music/周杰伦 - 枫.mp3","cover":"/img/jay.jpg"},{"name":"梦想启动","artist":"周杰伦","url":"/music/周杰伦 - 梦想启动.mp3","cover":"/img/jay.jpg"},{"name":"梯田","artist":"周杰伦","url":"/music/周杰伦 - 梯田.mp3","cover":"/img/jay.jpg"},{"name":"止战之殇","artist":"周杰伦","url":"/music/周杰伦 - 止战之殇.mp3","cover":"/img/jay.jpg"},{"name":"比较大的大提琴","artist":"周杰伦","url":"/music/周杰伦 - 比较大的大提琴.mp3","cover":"/img/jay.jpg"},{"name":"水手怕水","artist":"周杰伦","url":"/music/周杰伦 - 水手怕水.mp3","cover":"/img/jay.jpg"},{"name":"流浪诗人","artist":"周杰伦","url":"/music/周杰伦 - 流浪诗人.mp3","cover":"/img/jay.jpg"},{"name":"浪漫手机","artist":"周杰伦","url":"/music/周杰伦 - 浪漫手机.mp3","cover":"/img/jay.jpg"},{"name":"火车叨位去","artist":"周杰伦","url":"/music/周杰伦 - 火车叨位去.mp3","cover":"/img/jay.jpg"},{"name":"烟花易冷","artist":"周杰伦","url":"/music/周杰伦 - 烟花易冷.mp3","cover":"/img/jay.jpg"},{"name":"爱你没差","artist":"周杰伦","url":"/music/周杰伦 - 爱你没差.mp3","cover":"/img/jay.jpg"},{"name":"爱在西元前","artist":"周杰伦","url":"/music/周杰伦 - 爱在西元前.mp3","cover":"/img/jay.jpg"},{"name":"爱情悬崖","artist":"周杰伦","url":"/music/周杰伦 - 爱情悬崖.mp3","cover":"/img/jay.jpg"},{"name":"爱的飞行日记","artist":"周杰伦","url":"/music/周杰伦 - 爱的飞行日记.mp3","cover":"/img/jay.jpg"},{"name":"爷爷泡的茶","artist":"周杰伦","url":"/music/周杰伦 - 爷爷泡的茶.mp3","cover":"/img/jay.jpg"},{"name":"爸，我回来了","artist":"周杰伦","url":"/music/周杰伦 - 爸，我回来了.mp3","cover":"/img/jay.jpg"},{"name":"牛仔很忙","artist":"周杰伦","url":"/music/周杰伦 - 牛仔很忙.mp3","cover":"/img/jay.jpg"},{"name":"献世 (Live)","artist":"周杰伦","url":"/music/周杰伦 - 献世 (Live).mp3","cover":"/img/jay.jpg"},{"name":"珊瑚海","artist":"周杰伦","url":"/music/周杰伦 - 珊瑚海.mp3","cover":"/img/jay.jpg"},{"name":"琴伤","artist":"周杰伦","url":"/music/周杰伦 - 琴伤.mp3","cover":"/img/jay.jpg"},{"name":"甜甜的","artist":"周杰伦","url":"/music/周杰伦 - 甜甜的.mp3","cover":"/img/jay.jpg"},{"name":"疗伤烧肉粽","artist":"周杰伦","url":"/music/周杰伦 - 疗伤烧肉粽.mp3","cover":"/img/jay.jpg"},{"name":"白色风车","artist":"周杰伦","url":"/music/周杰伦 - 白色风车.mp3","cover":"/img/jay.jpg"},{"name":"皮影戏","artist":"周杰伦","url":"/music/周杰伦 - 皮影戏.mp3","cover":"/img/jay.jpg"},{"name":"稻香","artist":"周杰伦","url":"/music/周杰伦 - 稻香.mp3","cover":"/img/jay.jpg"},{"name":"窃爱","artist":"周杰伦","url":"/music/周杰伦 - 窃爱.mp3","cover":"/img/jay.jpg"},{"name":"等你下课","artist":"周杰伦","url":"/music/周杰伦 - 等你下课.flac","cover":"/img/jay.jpg"},{"name":"简单爱","artist":"周杰伦","url":"/music/周杰伦 - 简单爱.mp3","cover":"/img/jay.jpg"},{"name":"算什么男人","artist":"周杰伦","url":"/music/周杰伦 - 算什么男人.mp3","cover":"/img/jay.jpg"},{"name":"米兰的小铁匠","artist":"周杰伦","url":"/music/周杰伦 - 米兰的小铁匠.mp3","cover":"/img/jay.jpg"},{"name":"红尘客栈","artist":"周杰伦","url":"/music/周杰伦 - 红尘客栈.mp3","cover":"/img/jay.jpg"},{"name":"红模仿","artist":"周杰伦","url":"/music/周杰伦 - 红模仿.mp3","cover":"/img/jay.jpg"},{"name":"给我一首歌的时间","artist":"周杰伦","url":"/music/周杰伦 - 给我一首歌的时间.mp3","cover":"/img/jay.jpg"},{"name":"美人鱼","artist":"周杰伦","url":"/music/周杰伦 - 美人鱼.mp3","cover":"/img/jay.jpg"},{"name":"自导自演","artist":"周杰伦","url":"/music/周杰伦 - 自导自演.mp3","cover":"/img/jay.jpg"},{"name":"花海","artist":"周杰伦","url":"/music/周杰伦 - 花海.mp3","cover":"/img/jay.jpg"},{"name":"英雄(1)","artist":"周杰伦","url":"/music/周杰伦 - 英雄(1).mp3","cover":"/img/jay.jpg"},{"name":"菊花台 (《满城尽带黄金甲》电影片尾曲)","artist":"周杰伦","url":"/music/周杰伦 - 菊花台 (《满城尽带黄金甲》电影片尾曲).mp3","cover":"/img/jay.jpg"},{"name":"菊花台 (杰伦钢琴演奏版)","artist":"周杰伦","url":"/music/周杰伦 - 菊花台 (杰伦钢琴演奏版).mp3","cover":"/img/jay.jpg"},{"name":"蒲公英的约定","artist":"周杰伦","url":"/music/周杰伦 - 蒲公英的约定.mp3","cover":"/img/jay.jpg"},{"name":"蓝色风暴","artist":"周杰伦","url":"/music/周杰伦 - 蓝色风暴.mp3","cover":"/img/jay.jpg"},{"name":"蛇舞","artist":"周杰伦","url":"/music/周杰伦 - 蛇舞.mp3","cover":"/img/jay.jpg"},{"name":"说了再见","artist":"周杰伦","url":"/music/周杰伦 - 说了再见.mp3","cover":"/img/jay.jpg"},{"name":"说好的幸福呢","artist":"周杰伦","url":"/music/周杰伦 - 说好的幸福呢.mp3","cover":"/img/jay.jpg"},{"name":"超人不会飞","artist":"周杰伦","url":"/music/周杰伦 - 超人不会飞.mp3","cover":"/img/jay.jpg"},{"name":"超跑女神","artist":"周杰伦","url":"/music/周杰伦 - 超跑女神.mp3","cover":"/img/jay.jpg"},{"name":"跨时代","artist":"周杰伦","url":"/music/周杰伦 - 跨时代.mp3","cover":"/img/jay.jpg"},{"name":"轨迹 (《寻找周杰伦》电影主题曲)","artist":"周杰伦","url":"/music/周杰伦 - 轨迹 (《寻找周杰伦》电影主题曲).mp3","cover":"/img/jay.jpg"},{"name":"迷迭香","artist":"周杰伦","url":"/music/周杰伦 - 迷迭香.mp3","cover":"/img/jay.jpg"},{"name":"迷魂曲","artist":"周杰伦","url":"/music/周杰伦 - 迷魂曲.mp3","cover":"/img/jay.jpg"},{"name":"退后","artist":"周杰伦","url":"/music/周杰伦 - 退后.mp3","cover":"/img/jay.jpg"},{"name":"逆鳞","artist":"周杰伦","url":"/music/周杰伦 - 逆鳞.mp3","cover":"/img/jay.jpg"},{"name":"阳光宅男","artist":"周杰伦","url":"/music/周杰伦 - 阳光宅男.mp3","cover":"/img/jay.jpg"},{"name":"阳明山","artist":"周杰伦","url":"/music/周杰伦 - 阳明山.mp3","cover":"/img/jay.jpg"},{"name":"雨下一整晚","artist":"周杰伦","url":"/music/周杰伦 - 雨下一整晚.mp3","cover":"/img/jay.jpg"},{"name":"霍元甲 (《霍元甲》电影主题曲)","artist":"周杰伦","url":"/music/周杰伦 - 霍元甲 (《霍元甲》电影主题曲).mp3","cover":"/img/jay.jpg"},{"name":"青花瓷","artist":"周杰伦","url":"/music/周杰伦 - 青花瓷.mp3","cover":"/img/jay.jpg"},{"name":"鞋子特大号","artist":"周杰伦","url":"/music/周杰伦 - 鞋子特大号.mp3","cover":"/img/jay.jpg"},{"name":"飘移","artist":"周杰伦","url":"/music/周杰伦 - 飘移.mp3","cover":"/img/jay.jpg"},{"name":"魔术先生","artist":"周杰伦","url":"/music/周杰伦 - 魔术先生.mp3","cover":"/img/jay.jpg"},{"name":"麦烝玮","artist":"周杰伦","url":"/music/周杰伦 - 麦烝玮.mp3","cover":"/img/jay.jpg"},{"name":"麦芽糖","artist":"周杰伦","url":"/music/周杰伦 - 麦芽糖.mp3","cover":"/img/jay.jpg"},{"name":"黄金甲","artist":"周杰伦","url":"/music/周杰伦 - 黄金甲.mp3","cover":"/img/jay.jpg"},{"name":"黑色幽默","artist":"周杰伦","url":"/music/周杰伦 - 黑色幽默.mp3","cover":"/img/jay.jpg"},{"name":"黑色毛衣","artist":"周杰伦","url":"/music/周杰伦 - 黑色毛衣.mp3","cover":"/img/jay.jpg"},{"name":"龙卷风","artist":"周杰伦","url":"/music/周杰伦 - 龙卷风.mp3","cover":"/img/jay.jpg"},{"name":"龙战骑士","artist":"周杰伦","url":"/music/周杰伦 - 龙战骑士.mp3","cover":"/img/jay.jpg"},{"name":"龙拳","artist":"周杰伦","url":"/music/周杰伦 - 龙拳.mp3","cover":"/img/jay.jpg"},{"name":"寒流来袭","artist":"HotDog","url":"/music/寒流来袭.mp3","cover":"/img/jay.jpg"},{"name":"Try (《功夫熊猫3》电影全球主题曲)","artist":"周杰伦","url":"/music/派伟俊 - Try (《功夫熊猫3》电影全球主题曲).mp3","cover":"/img/jay.jpg"},{"name":"你是我的OK绷","artist":"周杰伦","url":"/music/浪花兄弟 - 你是我的OK绷.mp3","cover":"/img/jay.jpg"},{"name":"布拉格广场","artist":"周杰伦","url":"/music/蔡依林 - 布拉格广场.mp3","cover":"/img/jay.jpg"},{"name":"画沙","artist":"周杰伦","url":"/music/袁咏琳 - 画沙.mp3","cover":"/img/jay.jpg"}]
+    });
+    oldLoad && oldLoad();
+  }
+</script>
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://mikeygithub.github.io/" target="_blank" rel="nofollow noopener"><b>Copyright © 2020 麦奇 Powered by Hexo Fluid Core on Kubernetes</b></a>
+      <!--<i class="iconfont icon-love"></i>-->
+      <!--<a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>-->
+    </div>
+    
+  <div>
+    
+      <!-- 不蒜子统计PV -->
+      
+      <span id="busuanzi_container_site_pv" style="display: none">
+      总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    </span>
+    
+    
+      <!-- 不蒜子统计UV -->
+      
+      <span id="busuanzi_container_site_uv" style="display: none">
+      总访客数 <span id="busuanzi_value_site_uv"></span> 人
+    </span>
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/popper.js/1.16.1/umd/popper.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="https://cdn.staticfile.org/mdbootstrap/4.13.0/js/mdb.min.js" ></script>
+<script  src="/js/main.js" ></script>
+
+
+  <script  src="/js/lazyload.js" ></script>
+
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/smoothscroll/1.4.10/SmoothScroll.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+<!-- Plugins -->
+
+
+
+  <script  src="https://cdn.staticfile.org/prettify/188.0.0/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "“你的想法会大幅度影响你的行为。当你的大脑告诉你“做不了”，你却仍然选择行动，结果就会开始改变。”&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 100,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

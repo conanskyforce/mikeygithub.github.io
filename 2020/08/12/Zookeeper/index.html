@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Stay hungry stay foolish">
+  <meta name="author" content="MIKEY">
+  <meta name="keywords" content="">
+  <title>Zookeeper - 麦奇</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/mdbootstrap/4.13.0/css/mdb.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/3.0.1/github-markdown.min.css" />
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link  rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css" />
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link defer rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+<!-- 自定义样式保持在最底部 -->
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>麦奇</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">首页</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">归档</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">分类</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">标签</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+                <p class="mt-3 post-meta">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                  星期三, 八月 12日 2020, 10:42 晚上
+                </p>
+              
+
+              <p class="mt-1">
+                
+                  
+                  <span class="post-meta">
+                    <i class="far fa-chart-bar"></i>
+                    2.6k 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta">
+                      <i class="far fa-clock"></i>
+                      9 分钟
+                  </span>
+                
+
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5 z-depth-3" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <div class="markdown-body">
+              <h1 id="Zookeeper-概念"><a href="#Zookeeper-概念" class="headerlink" title="Zookeeper 概念"></a>Zookeeper 概念</h1><p>Zookeeper 是一个分布式协调服务,可用于服务发现,分布式锁,分布式领导选举,配置管理等。<br>Zookeeper 提供了一个类似于 Linux 文件系统的树形结构(可认为是轻量级的内存文件系统,但只适合存少量信息,完全不适合存储大量文件或者大文件),同时提供了对于每个节点的监控与通知机制。</p>
+<h1 id="Zookeeper-角色"><a href="#Zookeeper-角色" class="headerlink" title="Zookeeper 角色"></a>Zookeeper 角色</h1><p>Zookeeper 集群是一个基于主从复制的高可用集群,每个服务器承担如下三种角色中的一种</p>
+<p>Leader</p>
+<p>1.一个 Zookeeper 集群同一时间只会有一个实际工作的 Leader,它会发起并维护与各 Follwer及 Observer 间的心跳。<br>2.所有的写操作必须要通过 Leader 完成再由 Leader 将写操作广播给其它服务器。只要有超过半数节点(不包括 observeer 节点)写入成功,该写请求就会被提交(类 2PC 协议)。</p>
+<p>Follower</p>
+<ol>
+<li>一个 Zookeeper 集群可能同时存在多个 Follower,它会响应 Leader 的心跳,</li>
+<li>Follower 可直接处理并返回客户端的读请求,同时会将写请求转发给 Leader 处理,</li>
+<li>并且负责在 Leader 处理写请求时对请求进行投票。</li>
+</ol>
+<p>Observer</p>
+<p>角色与 Follower 类似,但是无投票权。Zookeeper 需保证高可用和强一致性,为了支持更多的客户端,需要增加更多 Server;Server 增多,投票阶段延迟增大,影响性能;引入 Observer,Observer 不参与投票; Observers 接受客户端的连接,并将写请求转发给 leader 节点; 加入更多 Observer 节点,提高伸缩性,同时不影响吞吐率。</p>
+<p><img src="/resource/img/elk.png" srcset="/img/loading.gif" alt="avatar"></p>
+<h1 id="ZAB-协议"><a href="#ZAB-协议" class="headerlink" title="ZAB 协议"></a>ZAB 协议</h1><h2 id="事务编号-Zxid-事务请求计数器-epoch"><a href="#事务编号-Zxid-事务请求计数器-epoch" class="headerlink" title="事务编号 Zxid (事务请求计数器 + epoch )"></a>事务编号 Zxid (事务请求计数器 + epoch )</h2><p>在 ZAB ( ZooKeeper Atomic Broadcast , ZooKeeper 原子消息广播协议) 协议的事务编号 Zxid设计中,Zxid 是一个 64 位的数字,其中低 32 位是一个简单的单调递增的计数器,针对客户端每一个事务请求,计数器加 1;而高 32 位则代表 Leader 周期 epoch 的编号,每个当选产生一个新<br>的 Leader 服务器,就会从这个 Leader 服务器上取出其本地日志中最大事务的 ZXID,并从中读取epoch 值,然后加 1,以此作为新的 epoch,并将低 32 位从 0 开始计数。<br>Zxid(Transaction id)类似于 RDBMS 中的事务 ID,用于标识一次更新操作的 Proposal(提议)ID。为了保证顺序性,该 zkid 必须单调递增。</p>
+<h2 id="epoch"><a href="#epoch" class="headerlink" title="epoch"></a>epoch</h2><p>epoch:可以理解为当前集群所处的年代或者周期,每个 leader 就像皇帝,都有自己的年号,所以每次改朝换代,leader 变更之后,都会在前一个年代的基础上加 1。这样就算旧的 leader 崩溃恢复之后,也没有人听他的了,因为 follower 只听从当前年代的 leader 的命令。<br>Zab 协议有两种模式 - 恢复模式(选主)、广播模式(同步)<br>Zab 协议有两种模式,它们分别是恢复模式(选主)和广播模式(同步)。当服务启动或者在领导者崩溃后,Zab 就进入了恢复模式,当领导者被选举出来,且大多数 Server 完成了和 leader 的状态同步以后,恢复模式就结束了。状态同步保证了 leader 和 Server 具有相同的系统状态。</p>
+<h2 id="ZAB-协议-4-阶段"><a href="#ZAB-协议-4-阶段" class="headerlink" title="ZAB 协议 4 阶段"></a>ZAB 协议 4 阶段</h2><h3 id="Leader-election-选举阶段-选出准-Leader"><a href="#Leader-election-选举阶段-选出准-Leader" class="headerlink" title="Leader election (选举阶段 - 选出准 Leader )"></a>Leader election (选举阶段 - 选出准 Leader )</h3><p>1.Leader election(选举阶段):节点在一开始都处于选举阶段,只要有一个节点得到超半数节点的票数,它就可以当选准 leader。只有到达 广播阶段(broadcast) 准 leader 才会成为真正的 leader。这一阶段的目的是就是为了选出一个准 leader,然后进入下一个阶段。</p>
+<h2 id="Discovery-发现阶段-接受提议、生成-epoch-、接受-epoch"><a href="#Discovery-发现阶段-接受提议、生成-epoch-、接受-epoch" class="headerlink" title="Discovery (发现阶段 - 接受提议、生成 epoch 、接受 epoch )"></a>Discovery (发现阶段 - 接受提议、生成 epoch 、接受 epoch )</h2><p>2.Discovery(发现阶段):在这个阶段,followers 跟准 leader 进行通信,同步 followers最近接收的事务提议。这个一阶段的主要目的是发现当前大多数节点接收的最新提议,并且准 leader 生成新的 epoch,让 followers 接受,更新它们的 accepted Epoch一个 follower 只会连接一个 leader,如果有一个节点 f 认为另一个 follower p 是 leader,f在尝试连接 p 时会被拒绝,f 被拒绝之后,就会进入重新选举阶段。</p>
+<h2 id="Synchronization-同步阶段-同步-follower-副本"><a href="#Synchronization-同步阶段-同步-follower-副本" class="headerlink" title="Synchronization (同步阶段 - 同步 follower 副本)"></a>Synchronization (同步阶段 - 同步 follower 副本)</h2><p>3.Synchronization(同步阶段):同步阶段主要是利用 leader 前一阶段获得的最新提议历史,同步集群中所有的副本。只有当 大多数节点都同步完成,准 leader 才会成为真正的 leader。follower 只会接收 zxid 比自己的 lastZxid 大的提议。</p>
+<h2 id="Broadcast-广播阶段-leader-消息广播"><a href="#Broadcast-广播阶段-leader-消息广播" class="headerlink" title="Broadcast (广播阶段 -leader 消息广播)"></a>Broadcast (广播阶段 -leader 消息广播)</h2><p>4.Broadcast(广播阶段):到了这个阶段,Zookeeper 集群才能正式对外提供事务服务,并且 leader 可以进行消息广播。同时如果有新的节点加入,还需要对新节点进行同步。<br>ZAB 提交事务并不像 2PC 一样需要全部 follower 都 ACK,只需要得到超过半数的节点的 ACK 就可以了。</p>
+<h2 id="ZAB-协议-JAVA-实现-FLE-发现阶段和同步合并为-Recovery-Phase-恢复阶段"><a href="#ZAB-协议-JAVA-实现-FLE-发现阶段和同步合并为-Recovery-Phase-恢复阶段" class="headerlink" title="ZAB 协议 JAVA 实现( FLE-发现阶段和同步合并为 Recovery Phase(恢复阶段) )"></a>ZAB 协议 JAVA 实现( FLE-发现阶段和同步合并为 Recovery Phase(恢复阶段) )</h2><p>协议的 Java 版本实现跟上面的定义有些不同,选举阶段使用的是 Fast Leader Election(FLE),<br>它包含了 选举的发现职责。因为 FLE 会选举拥有最新提议历史的节点作为 leader,这样就省去了<br>发现最新提议的步骤。实际的实现将 发现阶段 和 同步合并为 Recovery Phase(恢复阶段)。所<br>以,ZAB 的实现只有三个阶段:Fast Leader Election;Recovery Phase;Broadcast Phase。</p>
+<h1 id="投票机制"><a href="#投票机制" class="headerlink" title="投票机制"></a>投票机制</h1><p>每个 sever 首先给自己投票,然后用自己的选票和其他 sever 选票对比,权重大的胜出,使用权重较大的更新自身选票箱。具体选举过程如下:</p>
+<ol>
+<li><p>每个 Server 启动以后都询问其它的 Server 它要投票给谁。对于其他 server 的询问,server 每次根据自己的状态都回复自己推荐的 leader 的 id 和上一次处理事务的 zxid(系统启动时每个 server 都会推荐自己)</p>
+</li>
+<li><p>收到所有 Server 回复以后,就计算出 zxid 最大的哪个 Server,并将这个 Server 相关信息设置成下一次要投票的 Server。</p>
+</li>
+<li><p>计算这过程中获得票数最多的的 sever 为获胜者,如果获胜者的票数超过半数,则改server 被选为 leader。否则,继续这个过程,直到 leader 被选举出来</p>
+</li>
+<li><p>leader 就会开始等待 server 连接</p>
+</li>
+<li><p>Follower 连接 leader,将最大的 zxid 发送给 leader</p>
+</li>
+<li><p>Leader 根据 follower 的 zxid 确定同步点,至此选举阶段完成。</p>
+</li>
+<li><p>选举阶段完成 Leader 同步后通知 follower 已经成为 uptodate 状态</p>
+</li>
+<li><p>Follower 收到 uptodate 消息后,又可以重新接受 client 的请求进行服务了</p>
+</li>
+</ol>
+<p>目前有 5 台服务器,每台服务器均没有数据,它们的编号分别是 1,2,3,4,5,按编号依次启动,它们的选择举过程如下:</p>
+<ol>
+<li><p>服务器 1 启动,给自己投票,然后发投票信息,由于其它机器还没有启动所以它收不到反馈信息,服务器 1 的状态一直属于 Looking。</p>
+</li>
+<li><p>服务器 2 启动,给自己投票,同时与之前启动的服务器 1 交换结果,由于服务器 2 的编号大所以服务器 2 胜出,但此时投票数没有大于半数,所以两个服务器的状态依然是LOOKING。</p>
+</li>
+<li><p>服务器 3 启动,给自己投票,同时与之前启动的服务器 1,2 交换信息,由于服务器 3 的编号最大所以服务器 3 胜出,此时投票数正好大于半数,所以服务器 3 成为领导者,服务器1,2 成为小弟。</p>
+</li>
+<li><p>服务器 4 启动,给自己投票,同时与之前启动的服务器 1,2,3 交换信息,尽管服务器 4 的编号大,但之前服务器 3 已经胜出,所以服务器 4 只能成为小弟。</p>
+</li>
+<li><p>服务器 5 启动,后面的逻辑同服务器 4 成为小弟。</p>
+</li>
+</ol>
+<h1 id="Zookeeper-工作原理-原子广播"><a href="#Zookeeper-工作原理-原子广播" class="headerlink" title="Zookeeper 工作原理(原子广播)"></a>Zookeeper 工作原理(原子广播)</h1><ol>
+<li><p>Zookeeper 的核心是原子广播,这个机制保证了各个 server 之间的同步。实现这个机制的协议叫做 Zab 协议。Zab 协议有两种模式,它们分别是恢复模式和广播模式。</p>
+</li>
+<li><p>当服务启动或者在领导者崩溃后,Zab 就进入了恢复模式,当领导者被选举出来,且大多数 server 的完成了和 leader 的状态同步以后,恢复模式就结束了。</p>
+</li>
+<li><p>状态同步保证了 leader 和 server 具有相同的系统状态</p>
+</li>
+<li><p>一旦 leader 已经和多数的 follower 进行了状态同步后,他就可以开始广播消息了,即进入广播状态。这时候当一个 server 加入 zookeeper 服务中,它会在恢复模式下启动,发现 leader,并和 leader 进行状态同步。待到同步结束,它也参与消息广播。Zookeeper服务一直维持在 Broadcast 状态,直到 leader 崩溃了或者 leader 失去了大部分的followers 支持。</p>
+</li>
+</ol>
+<p>5.广播模式需要保证 proposal 被按顺序处理,因此 zk 采用了递增的事务 id 号(zxid)来保证。所有的提议(proposal)都在被提出的时候加上了 zxid。</p>
+<ol start="6">
+<li><p>实现中 zxid 是一个 64 为的数字,它高 32 位是 epoch 用来标识 leader 关系是否改变,每次一个 leader 被选出来,它都会有一个新的 epoch。低 32 位是个递增计数。</p>
+</li>
+<li><p>当 leader 崩溃或者 leader 失去大多数的 follower,这时候 zk 进入恢复模式,恢复模式需要重新选举出一个新的 leader,让所有的 server 都恢复到一个正确的状态。</p>
+</li>
+</ol>
+<h1 id="Znode-有四种形式的目录节点"><a href="#Znode-有四种形式的目录节点" class="headerlink" title="Znode 有四种形式的目录节点"></a>Znode 有四种形式的目录节点</h1><ol>
+<li><p>PERSISTENT:持久的节点。</p>
+</li>
+<li><p>EPHEMERAL:暂时的节点。</p>
+</li>
+<li><p>PERSISTENT_SEQUENTIAL:持久化顺序编号目录节点。</p>
+</li>
+<li><p>EPHEMERAL_SEQUENTIAL:暂时化顺序编号目录节点。</p>
+</li>
+</ol>
+
+            </div>
+            <hr>
+            <div>
+              <p>
+                
+                  <span>
+                <i class="iconfont icon-inbox"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a>
+                      &nbsp;
+                    
+                  </span>&nbsp;&nbsp;
+                
+                
+                  <span>
+                <i class="iconfont icon-tag"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/zookeeper/">zookeeper</a>
+                    
+                  </span>
+                
+              </p>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc-start"></div>
+<div id="toc">
+  <p class="h5"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoad = window.onload;
+  window.onload = function () {
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'false' === 'true',
+      loop: 'all',
+      order: 'random',
+      theme: '#b7daff',
+      preload: 'none',
+      audio: [{"name":"告白气球","artist":"周杰伦","url":"/music/周杰伦 - 告白气球.mp3","cover":"/img/jay.jpg"},{"name":"等你下课","artist":"周杰伦","url":"/music/周杰伦 - 等你下课.flac","cover":"/img/jay.jpg"},{"name":"开不了口","artist":"周杰伦","url":"/music/周杰伦 - 开不了口.mp3","cover":"/img/jay.jpg"},{"name":"简单爱","artist":"周杰伦","url":"/music/周杰伦 - 简单爱.mp3","cover":"/img/jay.jpg"},{"name":"龙卷风","artist":"周杰伦","url":"/music/周杰伦 - 龙卷风.mp3 ","cover":"/img/jay.jpg"},{"name":"给我一首歌的时间","artist":"周杰伦","url":"/music/周杰伦 - 给我一首歌的时间.mp3","cover":"/img/jay.jpg"},{"name":"冬天的秘密","artist":"周传雄","url":"/music/冬天的秘密 周传雄.mp3","cover":"/img/jay.jpg"},{"name":"C边G事","artist":"周杰伦","url":"/music/周杰伦 - C边G事.mp3","cover":"/img/jay.jpg"},{"name":"Mine Mine","artist":"周杰伦","url":"/music/周杰伦 - Mine Mine.mp3","cover":"/img/jay.jpg"},{"name":"一口气全念对","artist":"周杰伦","url":"/music/周杰伦 - 一口气全念对.mp3","cover":"/img/jay.jpg"},{"name":"一路向北","artist":"周杰伦","url":"/music/周杰伦 - 一路向北 (《头文字D》电影插曲).mp3","cover":"/img/jay.jpg"},{"name":"七里香","artist":"周杰伦","url":"/music/周杰伦 - 七里香.mp3","cover":"/img/jay.jpg"},{"name":"三年二班","artist":"周杰伦","url":"/music/周杰伦 - 三年二班.mp3","cover":"/img/jay.jpg"},{"name":"上海一九四三","artist":"周杰伦","url":"/music/周杰伦 - 上海一九四三.mp3","cover":"/img/jay.jpg"},{"name":"世界未末日","artist":"周杰伦","url":"/music/周杰伦 - 世界未末日.mp3","cover":"/img/jay.jpg"},{"name":"东风破","artist":"周杰伦","url":"/music/周杰伦 - 东风破.mp3","cover":"/img/jay.jpg"},{"name":"乌克丽丽","artist":"周杰伦","url":"/music/周杰伦 - 乌克丽丽.mp3","cover":"/img/jay.jpg"},{"name":"乔克叔叔","artist":"周杰伦","url":"/music/周杰伦 - 乔克叔叔.mp3","cover":"/img/jay.jpg"},{"name":"乱舞春秋","artist":"周杰伦","url":"/music/周杰伦 - 乱舞春秋.mp3","cover":"/img/jay.jpg"},{"name":"以父之名","artist":"周杰伦","url":"/music/周杰伦 - 以父之名.mp3","cover":"/img/jay.jpg"},{"name":"伊斯坦堡","artist":"周杰伦","url":"/music/周杰伦 - 伊斯坦堡.mp3","cover":"/img/jay.jpg"},{"name":"你听得到","artist":"周杰伦","url":"/music/周杰伦 - 你听得到.mp3","cover":"/img/jay.jpg"},{"name":"你好吗","artist":"周杰伦","url":"/music/周杰伦 - 你好吗.mp3","cover":"/img/jay.jpg"},{"name":"借口","artist":"周杰伦","url":"/music/周杰伦 - 借口.mp3","cover":"/img/jay.jpg"},{"name":"傻笑","artist":"周杰伦","url":"/music/周杰伦 - 傻笑.mp3","cover":"/img/jay.jpg"},{"name":"免费教学录影带","artist":"周杰伦","url":"/music/周杰伦 - 免费教学录影带.mp3","cover":"/img/jay.jpg"},{"name":"公主病","artist":"周杰伦","url":"/music/周杰伦 - 公主病.mp3","cover":"/img/jay.jpg"},{"name":"公公偏Tou痛","artist":"周杰伦","url":"/music/周杰伦 - 公公偏Tou痛.mp3","cover":"/img/jay.jpg"},{"name":"兰亭序","artist":"周杰伦","url":"/music/周杰伦 - 兰亭序.mp3","cover":"/img/jay.jpg"},{"name":"分裂","artist":"周杰伦","url":"/music/周杰伦 - 分裂.mp3","cover":"/img/jay.jpg"},{"name":"前S情R","artist":"周杰伦","url":"/music/周杰伦 - 前S情R.mp3","cover":"/img/jay.jpg"},{"name":"千里之外","artist":"周杰伦","url":"/music/周杰伦 - 千里之外.mp3","cover":"/img/jay.jpg"},{"name":"半兽人","artist":"周杰伦","url":"/music/周杰伦 - 半兽人.mp3","cover":"/img/jay.jpg"},{"name":"半岛铁盒","artist":"周杰伦","url":"/music/周杰伦 - 半岛铁盒.mp3","cover":"/img/jay.jpg"},{"name":"印第安老斑鸠","artist":"周杰伦","url":"/music/周杰伦 - 印第安老斑鸠.mp3","cover":"/img/jay.jpg"},{"name":"双刀","artist":"周杰伦","url":"/music/周杰伦 - 双刀.mp3","cover":"/img/jay.jpg"},{"name":"双截棍","artist":"周杰伦","url":"/music/周杰伦 - 双截棍.mp3","cover":"/img/jay.jpg"},{"name":"反方向的钟","artist":"周杰伦","url":"/music/周杰伦 - 反方向的钟.mp3","cover":"/img/jay.jpg"},{"name":"发如雪","artist":"周杰伦","url":"/music/周杰伦 - 发如雪.mp3","cover":"/img/jay.jpg"},{"name":"可ai女人","artist":"周杰伦","url":"/music/周杰伦 - 可ai女人.mp3","cover":"/img/jay.jpg"},{"name":"同一种调调","artist":"周杰伦","url":"/music/周杰伦 - 同一种调调.mp3","cover":"/img/jay.jpg"},{"name":"听妈妈的话","artist":"周杰伦","url":"/music/周杰伦 - 听妈妈的话.mp3","cover":"/img/jay.jpg"},{"name":"听爸爸的话","artist":"周杰伦","url":"/music/周杰伦 - 听爸爸的话.mp3","cover":"/img/jay.jpg"},{"name":"听见下雨的声音","artist":"周杰伦","url":"/music/周杰伦 - 听见下雨的声音.mp3","cover":"/img/jay.jpg"},{"name":"告白气球","artist":"周杰伦","url":"/music/周杰伦 - 告白气球.mp3","cover":"/img/jay.jpg"},{"name":"哪里都是你","artist":"周杰伦","url":"/music/周杰伦 - 哪里都是你.mp3","cover":"/img/jay.jpg"},{"name":"嘻哈空姐","artist":"周杰伦","url":"/music/周杰伦 - 嘻哈空姐.mp3","cover":"/img/jay.jpg"},{"name":"四季列车","artist":"周杰伦","url":"/music/周杰伦 - 四季列车.mp3","cover":"/img/jay.jpg"},{"name":"四面楚歌","artist":"周杰伦","url":"/music/周杰伦 - 四面楚歌.mp3","cover":"/img/jay.jpg"},{"name":"回到过去","artist":"周杰伦","url":"/music/周杰伦 - 回到过去.mp3","cover":"/img/jay.jpg"},{"name":"园游会","artist":"周杰伦","url":"/music/周杰伦 - 园游会.mp3","cover":"/img/jay.jpg"},{"name":"困兽之斗","artist":"周杰伦","url":"/music/周杰伦 - 困兽之斗.mp3","cover":"/img/jay.jpg"},{"name":"外婆","artist":"周杰伦","url":"/music/周杰伦 - 外婆.mp3","cover":"/img/jay.jpg"},{"name":"夜曲","artist":"周杰伦","url":"/music/周杰伦 - 夜曲.mp3","cover":"/img/jay.jpg"},{"name":"夜的第七章","artist":"周杰伦","url":"/music/周杰伦 - 夜的第七章.mp3","cover":"/img/jay.jpg"},{"name":"大笨钟","artist":"周杰伦","url":"/music/周杰伦 - 大笨钟.mp3","cover":"/img/jay.jpg"},{"name":"天地一斗","artist":"周杰伦","url":"/music/周杰伦 - 天地一斗.mp3","cover":"/img/jay.jpg"},{"name":"天涯过客","artist":"周杰伦","url":"/music/周杰伦 - 天涯过客.mp3","cover":"/img/jay.jpg"},{"name":"她的睫毛","artist":"周杰伦","url":"/music/周杰伦 - 她的睫毛.mp3","cover":"/img/jay.jpg"},{"name":"好久不见","artist":"周杰伦","url":"/music/周杰伦 - 好久不见.mp3","cover":"/img/jay.jpg"},{"name":"威廉古堡","artist":"周杰伦","url":"/music/周杰伦 - 威廉古堡.mp3","cover":"/img/jay.jpg"},{"name":"娘子","artist":"周杰伦","url":"/music/周杰伦 - 娘子.mp3","cover":"/img/jay.jpg"},{"name":"安静","artist":"周杰伦","url":"/music/周杰伦 - 安静.mp3","cover":"/img/jay.jpg"},{"name":"完美主义","artist":"周杰伦","url":"/music/周杰伦 - 完美主义.mp3","cover":"/img/jay.jpg"},{"name":"对不起 (统一茶饮料 广告曲)","artist":"周杰伦","url":"/music/周杰伦 - 对不起 (统一茶饮料 广告曲).mp3","cover":"/img/jay.jpg"},{"name":"将军","artist":"周杰伦","url":"/music/周杰伦 - 将军.mp3","cover":"/img/jay.jpg"},{"name":"开不了口","artist":"周杰伦","url":"/music/周杰伦 - 开不了口.mp3","cover":"/img/jay.jpg"},{"name":"彩虹 (《命运呼叫转移》电影插曲)","artist":"周杰伦","url":"/music/周杰伦 - 彩虹 (《命运呼叫转移》电影插曲).mp3","cover":"/img/jay.jpg"},{"name":"心雨","artist":"周杰伦","url":"/music/周杰伦 - 心雨.mp3","cover":"/img/jay.jpg"},{"name":"忍者","artist":"周杰伦","url":"/music/周杰伦 - 忍者.mp3","cover":"/img/jay.jpg"},{"name":"怎么了","artist":"周杰伦","url":"/music/周杰伦 - 怎么了.mp3","cover":"/img/jay.jpg"},{"name":"惊叹号","artist":"周杰伦","url":"/music/周杰伦 - 惊叹号.mp3","cover":"/img/jay.jpg"},{"name":"懦夫","artist":"周杰伦","url":"/music/周杰伦 - 懦夫.mp3","cover":"/img/jay.jpg"},{"name":"我不配","artist":"周杰伦","url":"/music/周杰伦 - 我不配.mp3","cover":"/img/jay.jpg"},{"name":"我的地盘","artist":"周杰伦","url":"/music/周杰伦 - 我的地盘.mp3","cover":"/img/jay.jpg"},{"name":"我落泪情绪零碎","artist":"周杰伦","url":"/music/周杰伦 - 我落泪情绪零碎.mp3","cover":"/img/jay.jpg"},{"name":"我要夏天","artist":"周杰伦","url":"/music/周杰伦 - 我要夏天.mp3","cover":"/img/jay.jpg"},{"name":"手写的从前 (优酸乳为爱告白 广告曲)","artist":"周杰伦","url":"/music/周杰伦 - 手写的从前 (优酸乳为爱告白 广告曲).mp3","cover":"/img/jay.jpg"},{"name":"手语","artist":"周杰伦","url":"/music/周杰伦 - 手语.mp3","cover":"/img/jay.jpg"},{"name":"扯","artist":"周杰伦","url":"/music/周杰伦 - 扯.mp3","cover":"/img/jay.jpg"},{"name":"搁浅","artist":"周杰伦","url":"/music/周杰伦 - 搁浅.mp3","cover":"/img/jay.jpg"},{"name":"斗牛","artist":"周杰伦","url":"/music/周杰伦 - 斗牛.mp3","cover":"/img/jay.jpg"},{"name":"断了的弦 (《寻找周杰伦》电影插曲)","artist":"周杰伦","url":"/music/周杰伦 - 断了的弦 (《寻找周杰伦》电影插曲).mp3","cover":"/img/jay.jpg"},{"name":"断了的弦 (伴奏)","artist":"周杰伦","url":"/music/周杰伦 - 断了的弦 (伴奏).mp3","cover":"/img/jay.jpg"},{"name":"无双","artist":"周杰伦","url":"/music/周杰伦 - 无双.mp3","cover":"/img/jay.jpg"},{"name":"时光机","artist":"周杰伦","url":"/music/周杰伦 - 时光机.mp3","cover":"/img/jay.jpg"},{"name":"明明就","artist":"周杰伦","url":"/music/周杰伦 - 明明就.mp3","cover":"/img/jay.jpg"},{"name":"星晴","artist":"周杰伦","url":"/music/周杰伦 - 星晴.mp3","cover":"/img/jay.jpg"},{"name":"晴天","artist":"周杰伦","url":"/music/周杰伦 - 晴天.mp3","cover":"/img/jay.jpg"},{"name":"暗号","artist":"周杰伦","url":"/music/周杰伦 - 暗号.mp3","cover":"/img/jay.jpg"},{"name":"最后的战役","artist":"周杰伦","url":"/music/周杰伦 - 最后的战役.mp3","cover":"/img/jay.jpg"},{"name":"最长的电影","artist":"周杰伦","url":"/music/周杰伦 - 最长的电影.mp3","cover":"/img/jay.jpg"},{"name":"本草纲目","artist":"周杰伦","url":"/music/周杰伦 - 本草纲目.mp3","cover":"/img/jay.jpg"},{"name":"枫","artist":"周杰伦","url":"/music/周杰伦 - 枫.mp3","cover":"/img/jay.jpg"},{"name":"梦想启动","artist":"周杰伦","url":"/music/周杰伦 - 梦想启动.mp3","cover":"/img/jay.jpg"},{"name":"梯田","artist":"周杰伦","url":"/music/周杰伦 - 梯田.mp3","cover":"/img/jay.jpg"},{"name":"止战之殇","artist":"周杰伦","url":"/music/周杰伦 - 止战之殇.mp3","cover":"/img/jay.jpg"},{"name":"比较大的大提琴","artist":"周杰伦","url":"/music/周杰伦 - 比较大的大提琴.mp3","cover":"/img/jay.jpg"},{"name":"水手怕水","artist":"周杰伦","url":"/music/周杰伦 - 水手怕水.mp3","cover":"/img/jay.jpg"},{"name":"流浪诗人","artist":"周杰伦","url":"/music/周杰伦 - 流浪诗人.mp3","cover":"/img/jay.jpg"},{"name":"浪漫手机","artist":"周杰伦","url":"/music/周杰伦 - 浪漫手机.mp3","cover":"/img/jay.jpg"},{"name":"火车叨位去","artist":"周杰伦","url":"/music/周杰伦 - 火车叨位去.mp3","cover":"/img/jay.jpg"},{"name":"烟花易冷","artist":"周杰伦","url":"/music/周杰伦 - 烟花易冷.mp3","cover":"/img/jay.jpg"},{"name":"爱你没差","artist":"周杰伦","url":"/music/周杰伦 - 爱你没差.mp3","cover":"/img/jay.jpg"},{"name":"爱在西元前","artist":"周杰伦","url":"/music/周杰伦 - 爱在西元前.mp3","cover":"/img/jay.jpg"},{"name":"爱情悬崖","artist":"周杰伦","url":"/music/周杰伦 - 爱情悬崖.mp3","cover":"/img/jay.jpg"},{"name":"爱的飞行日记","artist":"周杰伦","url":"/music/周杰伦 - 爱的飞行日记.mp3","cover":"/img/jay.jpg"},{"name":"爷爷泡的茶","artist":"周杰伦","url":"/music/周杰伦 - 爷爷泡的茶.mp3","cover":"/img/jay.jpg"},{"name":"爸，我回来了","artist":"周杰伦","url":"/music/周杰伦 - 爸，我回来了.mp3","cover":"/img/jay.jpg"},{"name":"牛仔很忙","artist":"周杰伦","url":"/music/周杰伦 - 牛仔很忙.mp3","cover":"/img/jay.jpg"},{"name":"献世 (Live)","artist":"周杰伦","url":"/music/周杰伦 - 献世 (Live).mp3","cover":"/img/jay.jpg"},{"name":"珊瑚海","artist":"周杰伦","url":"/music/周杰伦 - 珊瑚海.mp3","cover":"/img/jay.jpg"},{"name":"琴伤","artist":"周杰伦","url":"/music/周杰伦 - 琴伤.mp3","cover":"/img/jay.jpg"},{"name":"甜甜的","artist":"周杰伦","url":"/music/周杰伦 - 甜甜的.mp3","cover":"/img/jay.jpg"},{"name":"疗伤烧肉粽","artist":"周杰伦","url":"/music/周杰伦 - 疗伤烧肉粽.mp3","cover":"/img/jay.jpg"},{"name":"白色风车","artist":"周杰伦","url":"/music/周杰伦 - 白色风车.mp3","cover":"/img/jay.jpg"},{"name":"皮影戏","artist":"周杰伦","url":"/music/周杰伦 - 皮影戏.mp3","cover":"/img/jay.jpg"},{"name":"稻香","artist":"周杰伦","url":"/music/周杰伦 - 稻香.mp3","cover":"/img/jay.jpg"},{"name":"窃爱","artist":"周杰伦","url":"/music/周杰伦 - 窃爱.mp3","cover":"/img/jay.jpg"},{"name":"等你下课","artist":"周杰伦","url":"/music/周杰伦 - 等你下课.flac","cover":"/img/jay.jpg"},{"name":"简单爱","artist":"周杰伦","url":"/music/周杰伦 - 简单爱.mp3","cover":"/img/jay.jpg"},{"name":"算什么男人","artist":"周杰伦","url":"/music/周杰伦 - 算什么男人.mp3","cover":"/img/jay.jpg"},{"name":"米兰的小铁匠","artist":"周杰伦","url":"/music/周杰伦 - 米兰的小铁匠.mp3","cover":"/img/jay.jpg"},{"name":"红尘客栈","artist":"周杰伦","url":"/music/周杰伦 - 红尘客栈.mp3","cover":"/img/jay.jpg"},{"name":"红模仿","artist":"周杰伦","url":"/music/周杰伦 - 红模仿.mp3","cover":"/img/jay.jpg"},{"name":"给我一首歌的时间","artist":"周杰伦","url":"/music/周杰伦 - 给我一首歌的时间.mp3","cover":"/img/jay.jpg"},{"name":"美人鱼","artist":"周杰伦","url":"/music/周杰伦 - 美人鱼.mp3","cover":"/img/jay.jpg"},{"name":"自导自演","artist":"周杰伦","url":"/music/周杰伦 - 自导自演.mp3","cover":"/img/jay.jpg"},{"name":"花海","artist":"周杰伦","url":"/music/周杰伦 - 花海.mp3","cover":"/img/jay.jpg"},{"name":"英雄(1)","artist":"周杰伦","url":"/music/周杰伦 - 英雄(1).mp3","cover":"/img/jay.jpg"},{"name":"菊花台 (《满城尽带黄金甲》电影片尾曲)","artist":"周杰伦","url":"/music/周杰伦 - 菊花台 (《满城尽带黄金甲》电影片尾曲).mp3","cover":"/img/jay.jpg"},{"name":"菊花台 (杰伦钢琴演奏版)","artist":"周杰伦","url":"/music/周杰伦 - 菊花台 (杰伦钢琴演奏版).mp3","cover":"/img/jay.jpg"},{"name":"蒲公英的约定","artist":"周杰伦","url":"/music/周杰伦 - 蒲公英的约定.mp3","cover":"/img/jay.jpg"},{"name":"蓝色风暴","artist":"周杰伦","url":"/music/周杰伦 - 蓝色风暴.mp3","cover":"/img/jay.jpg"},{"name":"蛇舞","artist":"周杰伦","url":"/music/周杰伦 - 蛇舞.mp3","cover":"/img/jay.jpg"},{"name":"说了再见","artist":"周杰伦","url":"/music/周杰伦 - 说了再见.mp3","cover":"/img/jay.jpg"},{"name":"说好的幸福呢","artist":"周杰伦","url":"/music/周杰伦 - 说好的幸福呢.mp3","cover":"/img/jay.jpg"},{"name":"超人不会飞","artist":"周杰伦","url":"/music/周杰伦 - 超人不会飞.mp3","cover":"/img/jay.jpg"},{"name":"超跑女神","artist":"周杰伦","url":"/music/周杰伦 - 超跑女神.mp3","cover":"/img/jay.jpg"},{"name":"跨时代","artist":"周杰伦","url":"/music/周杰伦 - 跨时代.mp3","cover":"/img/jay.jpg"},{"name":"轨迹 (《寻找周杰伦》电影主题曲)","artist":"周杰伦","url":"/music/周杰伦 - 轨迹 (《寻找周杰伦》电影主题曲).mp3","cover":"/img/jay.jpg"},{"name":"迷迭香","artist":"周杰伦","url":"/music/周杰伦 - 迷迭香.mp3","cover":"/img/jay.jpg"},{"name":"迷魂曲","artist":"周杰伦","url":"/music/周杰伦 - 迷魂曲.mp3","cover":"/img/jay.jpg"},{"name":"退后","artist":"周杰伦","url":"/music/周杰伦 - 退后.mp3","cover":"/img/jay.jpg"},{"name":"逆鳞","artist":"周杰伦","url":"/music/周杰伦 - 逆鳞.mp3","cover":"/img/jay.jpg"},{"name":"阳光宅男","artist":"周杰伦","url":"/music/周杰伦 - 阳光宅男.mp3","cover":"/img/jay.jpg"},{"name":"阳明山","artist":"周杰伦","url":"/music/周杰伦 - 阳明山.mp3","cover":"/img/jay.jpg"},{"name":"雨下一整晚","artist":"周杰伦","url":"/music/周杰伦 - 雨下一整晚.mp3","cover":"/img/jay.jpg"},{"name":"霍元甲 (《霍元甲》电影主题曲)","artist":"周杰伦","url":"/music/周杰伦 - 霍元甲 (《霍元甲》电影主题曲).mp3","cover":"/img/jay.jpg"},{"name":"青花瓷","artist":"周杰伦","url":"/music/周杰伦 - 青花瓷.mp3","cover":"/img/jay.jpg"},{"name":"鞋子特大号","artist":"周杰伦","url":"/music/周杰伦 - 鞋子特大号.mp3","cover":"/img/jay.jpg"},{"name":"飘移","artist":"周杰伦","url":"/music/周杰伦 - 飘移.mp3","cover":"/img/jay.jpg"},{"name":"魔术先生","artist":"周杰伦","url":"/music/周杰伦 - 魔术先生.mp3","cover":"/img/jay.jpg"},{"name":"麦烝玮","artist":"周杰伦","url":"/music/周杰伦 - 麦烝玮.mp3","cover":"/img/jay.jpg"},{"name":"麦芽糖","artist":"周杰伦","url":"/music/周杰伦 - 麦芽糖.mp3","cover":"/img/jay.jpg"},{"name":"黄金甲","artist":"周杰伦","url":"/music/周杰伦 - 黄金甲.mp3","cover":"/img/jay.jpg"},{"name":"黑色幽默","artist":"周杰伦","url":"/music/周杰伦 - 黑色幽默.mp3","cover":"/img/jay.jpg"},{"name":"黑色毛衣","artist":"周杰伦","url":"/music/周杰伦 - 黑色毛衣.mp3","cover":"/img/jay.jpg"},{"name":"龙卷风","artist":"周杰伦","url":"/music/周杰伦 - 龙卷风.mp3","cover":"/img/jay.jpg"},{"name":"龙战骑士","artist":"周杰伦","url":"/music/周杰伦 - 龙战骑士.mp3","cover":"/img/jay.jpg"},{"name":"龙拳","artist":"周杰伦","url":"/music/周杰伦 - 龙拳.mp3","cover":"/img/jay.jpg"},{"name":"寒流来袭","artist":"HotDog","url":"/music/寒流来袭.mp3","cover":"/img/jay.jpg"},{"name":"Try (《功夫熊猫3》电影全球主题曲)","artist":"周杰伦","url":"/music/派伟俊 - Try (《功夫熊猫3》电影全球主题曲).mp3","cover":"/img/jay.jpg"},{"name":"你是我的OK绷","artist":"周杰伦","url":"/music/浪花兄弟 - 你是我的OK绷.mp3","cover":"/img/jay.jpg"},{"name":"布拉格广场","artist":"周杰伦","url":"/music/蔡依林 - 布拉格广场.mp3","cover":"/img/jay.jpg"},{"name":"画沙","artist":"周杰伦","url":"/music/袁咏琳 - 画沙.mp3","cover":"/img/jay.jpg"}]
+    });
+    oldLoad && oldLoad();
+  }
+</script>
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://mikeygithub.github.io/" target="_blank" rel="nofollow noopener"><b>Copyright © 2020 麦奇 Powered by Hexo Fluid Core on Kubernetes</b></a>
+      <!--<i class="iconfont icon-love"></i>-->
+      <!--<a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>-->
+    </div>
+    
+  <div>
+    
+      <!-- 不蒜子统计PV -->
+      
+      <span id="busuanzi_container_site_pv" style="display: none">
+      总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    </span>
+    
+    
+      <!-- 不蒜子统计UV -->
+      
+      <span id="busuanzi_container_site_uv" style="display: none">
+      总访客数 <span id="busuanzi_value_site_uv"></span> 人
+    </span>
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/popper.js/1.16.1/umd/popper.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="https://cdn.staticfile.org/mdbootstrap/4.13.0/js/mdb.min.js" ></script>
+<script  src="/js/main.js" ></script>
+
+
+  <script  src="/js/lazyload.js" ></script>
+
+
+
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.10.0/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var navHeight = $('#navbar').height();
+      var post = $('#post');
+      var toc = $('#toc');
+      var tocLimMax = post.offset().top + post.height() - navHeight;
+
+      $(window).scroll(function () {
+        var tocLimMin = $('#toc-start').offset().top - navHeight;
+        var scroH = document.body.scrollTop + document.documentElement.scrollTop;
+
+        if (tocLimMin <= scroH && scroH <= tocLimMax) {
+          toc.css({
+            'display': 'block',
+            'position': 'fixed',
+            'top': navHeight,
+          });
+        } else if (scroH <= tocLimMin) {
+          toc.css({
+            'position': '',
+            'top': '',
+          });
+        } else if (scroH > tocLimMax) {
+          toc.css('display', 'none');
+        }
+      });
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        scrollSmooth: true,
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc > p').css('visibility', 'visible');
+      }
+      var offset = $('#board-ctn').css('margin-right')
+      $('#toc-ctn').css({
+        'right': offset
+      })
+    });
+  </script>
+
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/smoothscroll/1.4.10/SmoothScroll.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+<!-- Plugins -->
+
+
+
+  <script  src="https://cdn.staticfile.org/prettify/188.0.0/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Zookeeper&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 100,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

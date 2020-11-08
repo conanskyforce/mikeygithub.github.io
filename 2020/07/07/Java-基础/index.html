@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Stay hungry stay foolish">
+  <meta name="author" content="MIKEY">
+  <meta name="keywords" content="">
+  <title>Java 基础 - 麦奇</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/mdbootstrap/4.13.0/css/mdb.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/3.0.1/github-markdown.min.css" />
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link  rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css" />
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link defer rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+<!-- 自定义样式保持在最底部 -->
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>麦奇</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">首页</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">归档</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">分类</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">标签</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+                <p class="mt-3 post-meta">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                  星期二, 七月 7日 2020, 9:46 上午
+                </p>
+              
+
+              <p class="mt-1">
+                
+                  
+                  <span class="post-meta">
+                    <i class="far fa-chart-bar"></i>
+                    5.2k 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta">
+                      <i class="far fa-clock"></i>
+                      19 分钟
+                  </span>
+                
+
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5 z-depth-3" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <div class="markdown-body">
+              <h1 id="JAVA-异常分类及处理"><a href="#JAVA-异常分类及处理" class="headerlink" title="JAVA 异常分类及处理"></a>JAVA 异常分类及处理</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><blockquote>
+<p>如果某个方法不能按照正常的途径完成任务,就可以通过另一种路径退出方法。在这种情况下<br> 会抛出一个封装了错误信息的对象。此时,这个方法会立刻退出同时不返回任何值。另外,调用<br> 这个方法的其他代码也无法继续执行,异常处理机制会将代码执行交给异常处理器。</p>
+</blockquote>
+<p><img src="/resource/img/exception.png" srcset="/img/loading.gif" alt="avatar"></p>
+<h2 id="异常分类"><a href="#异常分类" class="headerlink" title="异常分类"></a>异常分类</h2><blockquote>
+<p>Throwable 是 Java 语言中所有错误或异常的超类。下一层分为 Error 和 Exception</p>
+</blockquote>
+<h3 id="Error"><a href="#Error" class="headerlink" title="Error"></a>Error</h3><blockquote>
+<p>Error 类是指 java 运行时系统的内部错误和资源耗尽错误。应用程序不会抛出该类对象。如果出现了这样的错误,除了告知用户,剩下的就是尽力使程序安全的终止。</p>
+</blockquote>
+<h3 id="Exception-RuntimeException、CheckedException"><a href="#Exception-RuntimeException、CheckedException" class="headerlink" title="Exception(RuntimeException、CheckedException)"></a>Exception(RuntimeException、CheckedException)</h3><blockquote>
+<p>Exception 又 有 两 个 分 支 , 一 个 是 运 行 时 异 常 RuntimeException , 一 个 是CheckedException。</p>
+</blockquote>
+<h3 id="RuntimeException"><a href="#RuntimeException" class="headerlink" title="RuntimeException"></a>RuntimeException</h3><blockquote>
+<p>如 : <code>NullPointerException</code> 、 <code>ClassCastException</code> ; 一 个 是 检 查 异 常<br>CheckedException,如 I/O 错误导致的 <code>IOException</code>、<code>SQLException</code>。 RuntimeException 是<br>那些可能在 Java 虚拟机正常运行期间抛出的异常的超类。 如果出现 RuntimeException,那么一定是程序员的错误.</p>
+</blockquote>
+<h3 id="检查异常-CheckedException"><a href="#检查异常-CheckedException" class="headerlink" title="检查异常 CheckedException:"></a>检查异常 CheckedException:</h3><blockquote>
+<p>一般是外部错误,这种异常都发生在编译阶段,Java 编译器会强<br>制程序去捕获此类异常,即会出现要求你把这段可能出现异常的程序进行 try catch,该类异常一<br>般包括几个方面:</p>
+</blockquote>
+<ol>
+<li>试图在文件尾部读取数据</li>
+<li>试图打开一个错误格式的 URL</li>
+<li>试图根据给定的字符串查找 class 对象,而这个字符串表示的类并不存在</li>
+</ol>
+<h3 id="异常的处理方式"><a href="#异常的处理方式" class="headerlink" title="异常的处理方式"></a>异常的处理方式</h3><p>遇到问题不进行具体处理,而是继续抛给调用者 (throw,throws)  </p>
+<pre><code class="java">public static void main(String[] args) {
+    String s = &quot;abc&quot;;
+        if(s.equals(&quot;abc&quot;)) {
+            throw new NumberFormatException();
+        } else {
+            System.out.println(s);
+    }
+}
+int div(int a,int b) throws Exception{
+    return a/b;
+}</code></pre>
+<p>try catch 捕获异常针对性处理方式<br>Throw 和 throws 的区别:<br>位置不同:</p>
+<blockquote>
+<p>throws 用在函数上,后面跟的是异常类,可以跟多个;而 throw 用在函数内,后面跟的是异常对象。</p>
+</blockquote>
+<p>功能不同:  </p>
+<blockquote>
+<p>throws 用来声明异常,让调用者只知道该功能可能出现的问题,可以给出预先的处理方式;throw 抛出具体的问题对象,执行到 throw,功能就已经结束了,跳转到调用者,并将具体的问题对象抛给调用者。也就是说 throw 语句独立存在时,下面不要定义其他语句,因为执行不到。</p>
+</blockquote>
+<blockquote>
+<p>throws 表示出现异常的一种可能性,并不一定会发生这些异常;throw 则是抛出了异常,<br> 执行 throw 则一定抛出了某种异常对象。</p>
+</blockquote>
+<blockquote>
+<p>两者都是消极处理异常的方式,只是抛出或者可能抛出异常,但是不会由函数去处理异<br> 常,真正的处理异常由函数的上层调用处理。</p>
+</blockquote>
+<h1 id="JAVA-反射"><a href="#JAVA-反射" class="headerlink" title="JAVA 反射"></a>JAVA 反射</h1><h2 id="动态语言"><a href="#动态语言" class="headerlink" title="动态语言"></a>动态语言</h2><blockquote>
+<p>动态语言,是指程序在运行时可以改变其结构:新的函数可以引进,已有的函数可以被删除等结<br> 构上的变化。比如常见的 JavaScript 就是动态语言,除此之外 Ruby,Python 等也属于动态语言,<br> 而 C、C++则不属于动态语言。从反射角度说 JAVA 属于半动态语言。</p>
+</blockquote>
+<p><img src="/resource/img/reflex.png" srcset="/img/loading.gif" alt="avatar"></p>
+<h2 id="反射机制概念-运行状态中知道类所有的属性和方法"><a href="#反射机制概念-运行状态中知道类所有的属性和方法" class="headerlink" title="反射机制概念 (运行状态中知道类所有的属性和方法)"></a>反射机制概念 (运行状态中知道类所有的属性和方法)</h2><blockquote>
+<p>在 Java 中的反射机制是指在运行状态中,对于任意一个类都能够知道这个类所有的属性和方法;<br>并且对于任意一个对象,都能够调用它的任意一个方法;这种动态获取信息以及动态调用对象方<br>法的功能成为 Java 语言的反射机制。</p>
+</blockquote>
+<h3 id="反射的应用场合"><a href="#反射的应用场合" class="headerlink" title="反射的应用场合"></a>反射的应用场合</h3><p>编译时类型和运行时类型  </p>
+<p>在 Java 程序中许多对象在运行是都会出现两种类型:编译时类型和运行时类型。 编译时的类型由<br>声明对象时实用的类型来决定,运行时的类型由实际赋值给对象的类型决定 。如:<br><code>Person p=new Student();</code><br>其中编译时类型为 Person,运行时类型为 Student。</p>
+<p>的编译时类型无法获取具体方法  </p>
+<blockquote>
+<p>程序在运行时还可能接收到外部传入的对象,该对象的编译时类型为 Object,但是程序有需要调用<br> 该对象的运行时类型的方法。为了解决这些问题,程序需要在运行时发现对象和类的真实信息。<br> 然而,如果编译时根本无法预知该对象和类属于哪些类,程序只能依靠运行时信息来发现该对象<br> 和类的真实信息,此时就必须使用到反射了。</p>
+</blockquote>
+<p>Java 反射 API<br>反射 API 用来生成 JVM 中的类、接口或则对象的信息。  </p>
+<blockquote>
+<ol>
+<li>Class 类:反射的核心类,可以获取类的属性,方法等信息。</li>
+<li>Field 类:Java.lang.reflec 包中的类,表示类的成员变量,可以用来获取和设置类之中的属性值。</li>
+<li>Method 类: Java.lang.reflec 包中的类,表示类的方法,它可以用来获取类中的方法信息或者执行方法。</li>
+<li>Constructor 类: Java.lang.reflec 包中的类,表示类的构造方法。</li>
+</ol>
+</blockquote>
+<h4 id="反射使用步骤-获取-Class-对象、调用对象方法"><a href="#反射使用步骤-获取-Class-对象、调用对象方法" class="headerlink" title="反射使用步骤(获取 Class 对象、调用对象方法)"></a>反射使用步骤(获取 Class 对象、调用对象方法)</h4><blockquote>
+<ol>
+<li>反射使用步骤(获取 Class 对象、调用对象方法)获取想要操作的类的 Class 对象,他是反射的核心,通过 Class 对象我们可以任意调用类的方法</li>
+<li>调用 Class 类中的方法,既就是反射的使用阶段</li>
+<li>使用反射 API 来操作这些信息</li>
+</ol>
+</blockquote>
+<p>获取 Class 对象的 3 种方法<br>调用某个对象的 getClass()方法  </p>
+<pre><code class="java">Person p=new Person();
+Class clazz=p.getClass();</code></pre>
+<p>调用某个类的 class 属性来获取该类对应的 Class 对象  </p>
+<pre><code class="java">Class clazz=Person.class;</code></pre>
+<p>使用 Class 类中的 forName()静态方法(最安全/性能最好)  </p>
+<pre><code class="java">Class clazz=Class.forName(&quot;类的全路径&quot;); (最常用)</code></pre>
+<p>当我们获得了想要操作的类的 Class 对象后,可以通过 Class 类中的方法获取并查看该类中的方法和属性。</p>
+<pre><code class="java">//获取 Person 类的 Class 对象
+Class clazz=Class.forName(&quot;reflection.Person&quot;);
+//获取 Person 类的所有方法信息
+Method[] method=clazz.getDeclaredMethods();
+for(Method m:method){
+    System.out.println(m.toString());
+}
+//获取 Person 类的所有成员属性信息
+Field[] field=clazz.getDeclaredFields();
+for(Field f:field){
+    System.out.println(f.toString());
+}
+//获取 Person 类的所有构造方法信息
+Constructor[] constructor=clazz.getDeclaredConstructors();
+for(Constructor c:constructor){
+    System.out.println(c.toString());
+}</code></pre>
+<h4 id="创建对象的两种方法"><a href="#创建对象的两种方法" class="headerlink" title="创建对象的两种方法"></a>创建对象的两种方法</h4><p>Class 对象的 newInstance()  </p>
+<pre><code class="java">使用 Class 对象的 newInstance()方法来创建该 Class 对象对应类的实例,但是这种方法要求
+该 Class 对象对应的类有默认的空构造器。</code></pre>
+<p>调用 Constructor 对象的 newInstance()  </p>
+<pre><code class="java">先使用 Class 对象获取指定的 Constructor 对象,再调用 Constructor 对象的 newInstance()
+方法来创建 Class 对象对应类的实例,通过这种方法可以选定构造方法创建实例。</code></pre>
+<pre><code class="java">//获取 Person 类的 Class 对象
+Class clazz=Class.forName(&quot;reflection.Person&quot;);
+//使用.newInstane 方法创建对象
+Person p=(Person) clazz.newInstance();
+//获取构造方法并创建对象
+Constructor c=clazz.getDeclaredConstructor(String.class,String.class,int.class);
+//创建对象并设置属性
+Person p1=(Person) c.newInstance(&quot;李四&quot;,&quot;男&quot;,20);</code></pre>
+<h1 id="JAVA-注解"><a href="#JAVA-注解" class="headerlink" title="JAVA 注解"></a>JAVA 注解</h1><h2 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h2><blockquote>
+<p>A nnotation(注解)是 Java 提供的一种对元程序中元素关联信息和元数据(metadata)的途径<br> 和方法。Annatation(注解)是一个接口,程序可以通过反射来获取指定程序中元素的 Annotation<br> 对象,然后通过该 Annotation 对象来获取注解中的元数据信息。</p>
+</blockquote>
+<h2 id="四种标准元注解"><a href="#四种标准元注解" class="headerlink" title="四种标准元注解"></a>四种标准元注解</h2><blockquote>
+<p>元注解的作用是负责注解其他注解。 Java5.0 定义了 4 个标准的 meta-annotation 类型,它们被<br> 用来提供对其它 annotation 类型作说明。</p>
+</blockquote>
+<p>@Target 修饰的对象范围  </p>
+<blockquote>
+<p>@Target 说明了 Annotation 所修饰的对象范围: Annotation 可被用于 packages、types(类、<br> 接口、枚举、Annotation 类型)、类型成员(方法、构造方法、成员变量、枚举值)、方法参数<br> 和本地变量(如循环变量、catch 参数)。在 Annotation 类型的声明中使用了 target 可更加明晰<br> 其修饰的目标</p>
+</blockquote>
+<p>@Retention 定义 被保留的时间长短  </p>
+<blockquote>
+<p>Retention 定义了该 Annotation 被保留的时间长短:表示需要在什么级别保存注解信息,用于描<br> 述注解的生命周期(即:被描述的注解在什么范围内有效),取值(RetentionPoicy)由:</p>
+</blockquote>
+<ul>
+<li>SOURCE:在源文件中有效(即源文件保留)</li>
+<li>CLASS:在 class 文件中有效(即 class 保留)</li>
+<li>RUNTIME:在运行时有效(即运行时保留)</li>
+</ul>
+<p>@Documented 描述-javadoc  </p>
+<blockquote>
+<p>@ Documented 用于描述其它类型的 annotation 应该被作为被标注的程序成员的公共 API,因此可以被例如 javadoc 此类的工具文档化。</p>
+</blockquote>
+<p>@Inherited 阐述了某个被标注的类型是被继承的  </p>
+<blockquote>
+<p>@Inherited 元注解是一个标记注解,@Inherited 阐述了某个被标注的类型是被继承的。如果一个使用了@Inherited 修饰的 annotation 类型被用于一个 class,则这个 annotation 将被用于该class 的子类。</p>
+</blockquote>
+<p><img src="/resource/img/annotation.png" srcset="/img/loading.gif" alt="avatar"></p>
+<p>注解处理器  </p>
+<blockquote>
+<p>如果没有用来读取注解的方法和工作,那么注解也就不会比注释更有用处了。使用注解的过程中,很重要的一部分就是创建于使用注解处理器。Java SE5 扩展了反射机制的 API,以帮助程序员快速的构造自定义注解处理器。下面实现一个注解处理器。</p>
+</blockquote>
+<pre><code class="java">/1:*** 定义注解*/
+@Target(ElementType.FIELD)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+public @interface FruitProvider {
+    /**供应商编号*/
+    public int id() default -1;
+    /*** 供应商名称*/
+    public String name() default &quot;&quot;;
+    /** * 供应商地址*/
+    public String address() default &quot;&quot;;
+}
+//2:注解使用
+public class Apple {
+    @FruitProvider(id = 1, name = &quot;陕西红富士集团&quot;, address = &quot;陕西省西安市延安路&quot;)
+    private String appleProvider;
+    public void setAppleProvider(String appleProvider) {
+        this.appleProvider = appleProvider;
+    }
+    public String getAppleProvider() {
+        return appleProvider;
+    }
+}
+/3:*********** 注解处理器 ***************/
+public class FruitInfoUtil {
+    public static void getFruitInfo(Class&lt;?&gt; clazz) {
+        String strFruitProvicer = &quot;供应商信息:&quot;;
+        Field[] fields = clazz.getDeclaredFields();//通过反射获取处理注解
+        for (Field field : fields) {
+            if (field.isAnnotationPresent(FruitProvider.class)) {
+                FruitProvider fruitProvider = (FruitProvider) field.getAnnotation(FruitProvider.class);
+//注解信息的处理地方
+                strFruitProvicer = &quot; 供应商编号:&quot; + fruitProvider.id() + &quot; 供应商名称:&quot;
+                        + fruitProvider.name() + &quot; 供应商地址:&quot;+ fruitProvider.address();
+                System.out.println(strFruitProvicer);
+            }
+        }
+    }
+}
+
+public class FruitRun {
+    public static void main(String[] args) {
+        FruitInfoUtil.getFruitInfo(Apple.class);
+/***********输出结果***************/
+// 供应商编号:1 供应商名称:陕西红富士集团 供应商地址:陕西省西安市延
+    }
+}</code></pre>
+<h1 id="JAVA-内部类"><a href="#JAVA-内部类" class="headerlink" title="JAVA 内部类"></a>JAVA 内部类</h1><blockquote>
+<p>Java 类中不仅可以定义变量和方法,还可以定义类,这样定义在类内部的类就被称为内部类。根据定义的方式不同,内部类分为静态内部类,成员内部类,局部内部类,匿名内部类四种。</p>
+</blockquote>
+<p>静态内部类  </p>
+<blockquote>
+<p>定义在类内部的静态类,就是静态内部类。</p>
+</blockquote>
+<pre><code class="java">public class Out {
+    private static int a;
+    private int b;
+    public static class Inner {
+        public void print() {
+            System.out.println(a);
+            }
+    }
+}</code></pre>
+<ol>
+<li>静态内部类可以访问外部类所有的静态变量和方法,即使是 private 的也一样。</li>
+<li>静态内部类和一般类一致,可以定义静态变量、方法,构造方法等。</li>
+<li>其它类使用静态内部类需要使用“外部类.静态内部类”方式,如下所示:Out.Inner inner = new Out.Inner();inner.print();</li>
+<li>Java 集合类 HashMap 内部就有一个静态内部类 Entry。Entry 是 HashMap 存放元素的抽象,HashMap 内部维护 Entry 数组用了存放元素,但是 Entry 对使用者是透明的。像这种和外部类关系密切的,且不依赖外部类实例的,都可以使用静态内部类。</li>
+</ol>
+<p>成员内部类  </p>
+<blockquote>
+<p>定义在类内部的非静态类,就是成员内部类。成员内部类不能定义静态方法和变量(final 修饰的除外)。这是因为成员内部类是非静态的,类初始化的时候先初始化静态成员,如果允许成员内部类定义静态变量,那么成员内部类的静态变量初始化顺序是有歧义的。</p>
+</blockquote>
+<pre><code class="java">public class Out {
+  private static int a;
+  private int b;
+  public class Inner {
+    public void print() {
+      System.out.println(a);
+      System.out.println(b);
+    }
+  }
+}</code></pre>
+<p>局部内部类(定义在方法中的类)  </p>
+<blockquote>
+<p>定义在方法中的类,就是局部类。如果一个类只在某个方法中使用,则可以考虑使用局部类。</p>
+</blockquote>
+<pre><code class="java">public class Out {
+    private static int a;
+    private int b;
+    public void test(final int c) {
+        final int d = 1;
+        class Inner {
+            public void print() {
+                System.out.println(c);
+            }
+        }
+    }
+}</code></pre>
+<p>匿名内部类(要继承一个父类或者实现一个接口、直接使用 new 来生成一个对象的引用) </p>
+<blockquote>
+<p>匿名内部类我们必须要继承一个父类或者实现一个接口,当然也仅能只继承一个父类或者实现一<br> 个接口。同时它也是没有 class 关键字,这是因为匿名内部类是直接使用 new 来生成一个对象的引<br> 用。</p>
+</blockquote>
+<pre><code class="java">public abstract class Bird {
+    private String name;
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public abstract int fly();
+}
+public class Test {
+    public void test(Bird bird){
+        System.out.println(bird.getName() + &quot;能够飞 &quot; + bird.fly() + &quot;米&quot;);
+    }
+    public static void main(String[] args) {
+        Test test = new Test();
+        test.test(new Bird() {
+            public int fly() {
+                return 10000;
+            }
+            public String getName() {
+                return &quot;大雁&quot;;
+            }
+        });
+    }
+}</code></pre>
+<h1 id="JAVA-泛型"><a href="#JAVA-泛型" class="headerlink" title="JAVA 泛型"></a>JAVA 泛型</h1><blockquote>
+<p>泛型提供了编译时类型安全检测机制,该机制允许程序员在编译时检测到非法的类型。泛型的本<br> 质是参数化类型,也就是说所操作的数据类型被指定为一个参数。比如我们要写一个排序方法,<br> 能够对整型数组、字符串数组甚至其他任何类型的数组进行排序,我们就可以使用 Java 泛型。</p>
+</blockquote>
+<h2 id="泛型方法"><a href="#泛型方法" class="headerlink" title="泛型方法()"></a>泛型方法(<E>)</h2><blockquote>
+<p>你可以写一个泛型方法,该方法在调用时可以接收不同类型的参数。根据传递给泛型方法的参数<br> 类型,编译器适当地处理每一个方法调用。</p>
+</blockquote>
+<pre><code class="java">// 泛型方法 printArray
+public static &lt; E &gt; void printArray( E[] inputArray )
+{
+    for ( E element : inputArray ){
+        System.out.printf( &quot;%s &quot;, element );
+    }
+}</code></pre>
+<ol>
+<li>&lt;? extends T&gt;表示该通配符所代表的类型是 T 类型的子类。</li>
+<li>&lt;? super T&gt;表示该通配符所代表的类型是 T 类型的父类。</li>
+</ol>
+<h2 id="泛型类"><a href="#泛型类" class="headerlink" title="泛型类"></a>泛型类<T></h2><blockquote>
+<p>泛型类的声明和非泛型类的声明类似,除了在类名后面添加了类型参数声明部分。和泛型方法一<br> 样,泛型类的类型参数声明部分也包含一个或多个类型参数,参数间用逗号隔开。一个泛型参数,<br> 也被称为一个类型变量,是用于指定一个泛型类型名称的标识符。因为他们接受一个或多个参数,<br> 这些类被称为参数化的类或参数化的类型。</p>
+</blockquote>
+<pre><code class="java">public class Box&lt;T&gt; {
+    private T t;
+    public void add(T t) {
+        this.t = t;
+        }
+    public T get() {
+        return t;
+    }</code></pre>
+<h2 id="类型通配符"><a href="#类型通配符" class="headerlink" title="类型通配符?"></a>类型通配符?</h2><blockquote>
+<p>类型通配符一般是使用 ? 代替具体的类型参数。例如<br> List&lt;?&gt; 在 逻 辑 上 是<br> List<String>,List<Integer> 等所有 List&lt;具体类型实参&gt;的父类。</p>
+</blockquote>
+<p>类型擦除  </p>
+<blockquote>
+<p>Java 中的泛型基本上都是在编译器这个层次来实现的。在生成的 Java 字节代码中是不包含泛<br> 型中的类型信息的。使用泛型的时候加上的类型参数,会被编译器在编译的时候去掉。这个<br> 过程就称为类型擦除。如在代码中定义的 List<Object>和 List<String>等类型,在编译之后<br> 都会变成 List。JVM 看到的只是 List,而由泛型附加的类型信息对 JVM 来说是不可见的。<br> 类型擦除的基本过程也比较简单,首先是找到用来替换类型参数的具体类。这个具体类一般<br> 是 Object。如果指定了类型参数的上界的话,则使用这个上界。把代码中的类型参数都替换<br> 成具体的类。</p>
+</blockquote>
+<h1 id="JAVA-序列化-创建可复用的-Java-对象"><a href="#JAVA-序列化-创建可复用的-Java-对象" class="headerlink" title="JAVA 序列化 ( 创建可复用的 Java 对象 )"></a>JAVA 序列化 ( 创建可复用的 Java 对象 )</h1><p>保存(持久化)对象及其状态到内存或者磁盘 </p>
+<blockquote>
+<p>Java 平台允许我们在内存中创建可复用的 Java 对象,但一般情况下,只有当 JVM 处于运行时,<br> 这些对象才可能存在,即,这些对象的生命周期不会比 JVM 的生命周期更长。但在现实应用中,<br> 就可能要求在 JVM 停止运行之后能够保存(持久化)指定的对象,并在将来重新读取被保存的对象。<br> Java 对象序列化就能够帮助我们实现该功能。</p>
+</blockquote>
+<p>序列化对象以字节数组保持-静态成员不保存  </p>
+<blockquote>
+<p>使用 Java 对象序列化,在保存对象时,会把其状态保存为一组字节,在未来,再将这些字节组装<br> 成对象。必须注意地是,对象序列化保存的是对象的”状态”,即它的成员变量。由此可知,对<br> 象序列化不会关注类中的静态变量。</p>
+</blockquote>
+<p>序列化用户远程对象传输  </p>
+<blockquote>
+<p>除了在持久化对象时会用到对象序列化之外,当使用 RMI(远程方法调用),或在网络中传递对象时,<br> 都会用到对象序列化。Java 序列化 API 为处理对象序列化提供了一个标准机制,该 API 简单易用。</p>
+</blockquote>
+<p>Serializable 实现序列化  </p>
+<blockquote>
+<p>在 Java 中,只要一个类实现了 java.io.Serializable 接口,那么它就可以被序列化。</p>
+</blockquote>
+<p>ObjectOutputStream 和 ObjectInputStream 对对象进行序列化及反序列化  </p>
+<blockquote>
+<p>通过 ObjectOutputStream 和 ObjectInputStream 对对象进行序列化及反序列化。</p>
+</blockquote>
+<p>writeObject 和 readObject 自定义序列化策略  </p>
+<blockquote>
+<p>在类中增加 writeObject 和 readObject 方法可以实现自定义序列化策略。</p>
+</blockquote>
+<p>序列化 ID  </p>
+<blockquote>
+<p>虚拟机是否允许反序列化,不仅取决于类路径和功能代码是否一致,一个非常重要的一点是两个<br> 类的序列化 ID 是否一致(就是 private static final long serialVersionUID)</p>
+</blockquote>
+<h3 id="序列化并不保存静态变量"><a href="#序列化并不保存静态变量" class="headerlink" title="序列化并不保存静态变量"></a>序列化并不保存静态变量</h3><p>序列化子父类说明  </p>
+<blockquote>
+</blockquote>
+<p>Transient 关键字阻止该变量被序列化到文件中  </p>
+<blockquote>
+<p>1.在变量声明前加上 Transient 关键字,可以阻止该变量被序列化到文件中,在被反序列<br> 化后,transient 变量的值被设为初始值,如 int 型的是 0,对象型的是 null。</p>
+</blockquote>
+<blockquote>
+<p>2.服务器端给客户端发送序列化对象数据,对象中有一些数据是敏感的,比如密码字符串<br> 等,希望对该密码字段在序列化时,进行加密,而客户端如果拥有解密的密钥,只有在<br> 客户端进行反序列化时,才可以对密码进行读取,这样可以一定程度保证序列化对象的<br> 数据安全。</p>
+</blockquote>
+<h1 id="JAVA-复制"><a href="#JAVA-复制" class="headerlink" title="JAVA 复制"></a>JAVA 复制</h1><blockquote>
+<p>将一个对象的引用复制给另外一个对象,一共有三种方式。第一种方式是直接赋值,第二种方式<br> 是浅拷贝,第三种是深拷贝。所以大家知道了哈,这三种概念实际上都是为了拷贝对象。</p>
+</blockquote>
+<p>直接赋值复制  </p>
+<blockquote>
+<p>直接赋值。在 Java 中,A a1 = a2,我们需要理解的是这实际上复制的是引用,也就是<br> 说 a1 和 a2 指向的是同一个对象。因此,当 a1 变化的时候,a2 里面的成员变量也会跟<br> 着变化。</p>
+</blockquote>
+<p>浅复制(复制引用但不复制引用的对象)  </p>
+<blockquote>
+<p>创建一个新对象,然后将当前对象的非静态字段复制到该新对象,如果字段是值类型的,<br> 那么对该字段执行复制;如果该字段是引用类型的话,则复制引用但不复制引用的对象。<br> 因此,原始对象及其副本引用同一个对象。</p>
+</blockquote>
+<pre><code class="java">class Resume implements Cloneable{
+    public Object clone() {
+        try {
+            return (Resume)super.clone();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+}</code></pre>
+<p>深复制(复制对象和其应用对象)  </p>
+<blockquote>
+<p>深拷贝不仅复制对象本身，而且复制对象包含的引用指向的所有对象</p>
+</blockquote>
+<pre><code class="java">class Student implements Cloneable {
+    String name;
+    int age;
+    Professor p;
+    Student(String name, int age, Professor p) {
+        this.name = name;
+        this.age = age;
+        this.p = p;
+    }
+    public Object clone() {
+        Student o = null;
+        try {
+            o = (Student) super.clone();
+        } catch (CloneNotSupportedException e) {
+            System.out.println(e.toString());
+        }
+        o.p = (Professor) p.clone();
+        return o;
+    }
+}</code></pre>
+<p>序列化(深 clone 一中实现) </p>
+<blockquote>
+<p>在 Java 语言里深复制一个对象,常常可以先使对象实现 Serializable 接口,然后把对象(实际上只是对象的一个拷贝)写到一个流里,再从流里读出来,便可以重建对象。</p>
+</blockquote>
+
+            </div>
+            <hr>
+            <div>
+              <p>
+                
+                  <span>
+                <i class="iconfont icon-inbox"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Java/">Java</a>
+                      &nbsp;
+                    
+                  </span>&nbsp;&nbsp;
+                
+                
+                  <span>
+                <i class="iconfont icon-tag"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%9F%BA%E7%A1%80/">基础</a>
+                    
+                  </span>
+                
+              </p>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc-start"></div>
+<div id="toc">
+  <p class="h5"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoad = window.onload;
+  window.onload = function () {
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'false' === 'true',
+      loop: 'all',
+      order: 'random',
+      theme: '#b7daff',
+      preload: 'none',
+      audio: [{"name":"告白气球","artist":"周杰伦","url":"/music/周杰伦 - 告白气球.mp3","cover":"/img/jay.jpg"},{"name":"等你下课","artist":"周杰伦","url":"/music/周杰伦 - 等你下课.flac","cover":"/img/jay.jpg"},{"name":"开不了口","artist":"周杰伦","url":"/music/周杰伦 - 开不了口.mp3","cover":"/img/jay.jpg"},{"name":"简单爱","artist":"周杰伦","url":"/music/周杰伦 - 简单爱.mp3","cover":"/img/jay.jpg"},{"name":"龙卷风","artist":"周杰伦","url":"/music/周杰伦 - 龙卷风.mp3 ","cover":"/img/jay.jpg"},{"name":"给我一首歌的时间","artist":"周杰伦","url":"/music/周杰伦 - 给我一首歌的时间.mp3","cover":"/img/jay.jpg"},{"name":"冬天的秘密","artist":"周传雄","url":"/music/冬天的秘密 周传雄.mp3","cover":"/img/jay.jpg"},{"name":"C边G事","artist":"周杰伦","url":"/music/周杰伦 - C边G事.mp3","cover":"/img/jay.jpg"},{"name":"Mine Mine","artist":"周杰伦","url":"/music/周杰伦 - Mine Mine.mp3","cover":"/img/jay.jpg"},{"name":"一口气全念对","artist":"周杰伦","url":"/music/周杰伦 - 一口气全念对.mp3","cover":"/img/jay.jpg"},{"name":"一路向北","artist":"周杰伦","url":"/music/周杰伦 - 一路向北 (《头文字D》电影插曲).mp3","cover":"/img/jay.jpg"},{"name":"七里香","artist":"周杰伦","url":"/music/周杰伦 - 七里香.mp3","cover":"/img/jay.jpg"},{"name":"三年二班","artist":"周杰伦","url":"/music/周杰伦 - 三年二班.mp3","cover":"/img/jay.jpg"},{"name":"上海一九四三","artist":"周杰伦","url":"/music/周杰伦 - 上海一九四三.mp3","cover":"/img/jay.jpg"},{"name":"世界未末日","artist":"周杰伦","url":"/music/周杰伦 - 世界未末日.mp3","cover":"/img/jay.jpg"},{"name":"东风破","artist":"周杰伦","url":"/music/周杰伦 - 东风破.mp3","cover":"/img/jay.jpg"},{"name":"乌克丽丽","artist":"周杰伦","url":"/music/周杰伦 - 乌克丽丽.mp3","cover":"/img/jay.jpg"},{"name":"乔克叔叔","artist":"周杰伦","url":"/music/周杰伦 - 乔克叔叔.mp3","cover":"/img/jay.jpg"},{"name":"乱舞春秋","artist":"周杰伦","url":"/music/周杰伦 - 乱舞春秋.mp3","cover":"/img/jay.jpg"},{"name":"以父之名","artist":"周杰伦","url":"/music/周杰伦 - 以父之名.mp3","cover":"/img/jay.jpg"},{"name":"伊斯坦堡","artist":"周杰伦","url":"/music/周杰伦 - 伊斯坦堡.mp3","cover":"/img/jay.jpg"},{"name":"你听得到","artist":"周杰伦","url":"/music/周杰伦 - 你听得到.mp3","cover":"/img/jay.jpg"},{"name":"你好吗","artist":"周杰伦","url":"/music/周杰伦 - 你好吗.mp3","cover":"/img/jay.jpg"},{"name":"借口","artist":"周杰伦","url":"/music/周杰伦 - 借口.mp3","cover":"/img/jay.jpg"},{"name":"傻笑","artist":"周杰伦","url":"/music/周杰伦 - 傻笑.mp3","cover":"/img/jay.jpg"},{"name":"免费教学录影带","artist":"周杰伦","url":"/music/周杰伦 - 免费教学录影带.mp3","cover":"/img/jay.jpg"},{"name":"公主病","artist":"周杰伦","url":"/music/周杰伦 - 公主病.mp3","cover":"/img/jay.jpg"},{"name":"公公偏Tou痛","artist":"周杰伦","url":"/music/周杰伦 - 公公偏Tou痛.mp3","cover":"/img/jay.jpg"},{"name":"兰亭序","artist":"周杰伦","url":"/music/周杰伦 - 兰亭序.mp3","cover":"/img/jay.jpg"},{"name":"分裂","artist":"周杰伦","url":"/music/周杰伦 - 分裂.mp3","cover":"/img/jay.jpg"},{"name":"前S情R","artist":"周杰伦","url":"/music/周杰伦 - 前S情R.mp3","cover":"/img/jay.jpg"},{"name":"千里之外","artist":"周杰伦","url":"/music/周杰伦 - 千里之外.mp3","cover":"/img/jay.jpg"},{"name":"半兽人","artist":"周杰伦","url":"/music/周杰伦 - 半兽人.mp3","cover":"/img/jay.jpg"},{"name":"半岛铁盒","artist":"周杰伦","url":"/music/周杰伦 - 半岛铁盒.mp3","cover":"/img/jay.jpg"},{"name":"印第安老斑鸠","artist":"周杰伦","url":"/music/周杰伦 - 印第安老斑鸠.mp3","cover":"/img/jay.jpg"},{"name":"双刀","artist":"周杰伦","url":"/music/周杰伦 - 双刀.mp3","cover":"/img/jay.jpg"},{"name":"双截棍","artist":"周杰伦","url":"/music/周杰伦 - 双截棍.mp3","cover":"/img/jay.jpg"},{"name":"反方向的钟","artist":"周杰伦","url":"/music/周杰伦 - 反方向的钟.mp3","cover":"/img/jay.jpg"},{"name":"发如雪","artist":"周杰伦","url":"/music/周杰伦 - 发如雪.mp3","cover":"/img/jay.jpg"},{"name":"可ai女人","artist":"周杰伦","url":"/music/周杰伦 - 可ai女人.mp3","cover":"/img/jay.jpg"},{"name":"同一种调调","artist":"周杰伦","url":"/music/周杰伦 - 同一种调调.mp3","cover":"/img/jay.jpg"},{"name":"听妈妈的话","artist":"周杰伦","url":"/music/周杰伦 - 听妈妈的话.mp3","cover":"/img/jay.jpg"},{"name":"听爸爸的话","artist":"周杰伦","url":"/music/周杰伦 - 听爸爸的话.mp3","cover":"/img/jay.jpg"},{"name":"听见下雨的声音","artist":"周杰伦","url":"/music/周杰伦 - 听见下雨的声音.mp3","cover":"/img/jay.jpg"},{"name":"告白气球","artist":"周杰伦","url":"/music/周杰伦 - 告白气球.mp3","cover":"/img/jay.jpg"},{"name":"哪里都是你","artist":"周杰伦","url":"/music/周杰伦 - 哪里都是你.mp3","cover":"/img/jay.jpg"},{"name":"嘻哈空姐","artist":"周杰伦","url":"/music/周杰伦 - 嘻哈空姐.mp3","cover":"/img/jay.jpg"},{"name":"四季列车","artist":"周杰伦","url":"/music/周杰伦 - 四季列车.mp3","cover":"/img/jay.jpg"},{"name":"四面楚歌","artist":"周杰伦","url":"/music/周杰伦 - 四面楚歌.mp3","cover":"/img/jay.jpg"},{"name":"回到过去","artist":"周杰伦","url":"/music/周杰伦 - 回到过去.mp3","cover":"/img/jay.jpg"},{"name":"园游会","artist":"周杰伦","url":"/music/周杰伦 - 园游会.mp3","cover":"/img/jay.jpg"},{"name":"困兽之斗","artist":"周杰伦","url":"/music/周杰伦 - 困兽之斗.mp3","cover":"/img/jay.jpg"},{"name":"外婆","artist":"周杰伦","url":"/music/周杰伦 - 外婆.mp3","cover":"/img/jay.jpg"},{"name":"夜曲","artist":"周杰伦","url":"/music/周杰伦 - 夜曲.mp3","cover":"/img/jay.jpg"},{"name":"夜的第七章","artist":"周杰伦","url":"/music/周杰伦 - 夜的第七章.mp3","cover":"/img/jay.jpg"},{"name":"大笨钟","artist":"周杰伦","url":"/music/周杰伦 - 大笨钟.mp3","cover":"/img/jay.jpg"},{"name":"天地一斗","artist":"周杰伦","url":"/music/周杰伦 - 天地一斗.mp3","cover":"/img/jay.jpg"},{"name":"天涯过客","artist":"周杰伦","url":"/music/周杰伦 - 天涯过客.mp3","cover":"/img/jay.jpg"},{"name":"她的睫毛","artist":"周杰伦","url":"/music/周杰伦 - 她的睫毛.mp3","cover":"/img/jay.jpg"},{"name":"好久不见","artist":"周杰伦","url":"/music/周杰伦 - 好久不见.mp3","cover":"/img/jay.jpg"},{"name":"威廉古堡","artist":"周杰伦","url":"/music/周杰伦 - 威廉古堡.mp3","cover":"/img/jay.jpg"},{"name":"娘子","artist":"周杰伦","url":"/music/周杰伦 - 娘子.mp3","cover":"/img/jay.jpg"},{"name":"安静","artist":"周杰伦","url":"/music/周杰伦 - 安静.mp3","cover":"/img/jay.jpg"},{"name":"完美主义","artist":"周杰伦","url":"/music/周杰伦 - 完美主义.mp3","cover":"/img/jay.jpg"},{"name":"对不起 (统一茶饮料 广告曲)","artist":"周杰伦","url":"/music/周杰伦 - 对不起 (统一茶饮料 广告曲).mp3","cover":"/img/jay.jpg"},{"name":"将军","artist":"周杰伦","url":"/music/周杰伦 - 将军.mp3","cover":"/img/jay.jpg"},{"name":"开不了口","artist":"周杰伦","url":"/music/周杰伦 - 开不了口.mp3","cover":"/img/jay.jpg"},{"name":"彩虹 (《命运呼叫转移》电影插曲)","artist":"周杰伦","url":"/music/周杰伦 - 彩虹 (《命运呼叫转移》电影插曲).mp3","cover":"/img/jay.jpg"},{"name":"心雨","artist":"周杰伦","url":"/music/周杰伦 - 心雨.mp3","cover":"/img/jay.jpg"},{"name":"忍者","artist":"周杰伦","url":"/music/周杰伦 - 忍者.mp3","cover":"/img/jay.jpg"},{"name":"怎么了","artist":"周杰伦","url":"/music/周杰伦 - 怎么了.mp3","cover":"/img/jay.jpg"},{"name":"惊叹号","artist":"周杰伦","url":"/music/周杰伦 - 惊叹号.mp3","cover":"/img/jay.jpg"},{"name":"懦夫","artist":"周杰伦","url":"/music/周杰伦 - 懦夫.mp3","cover":"/img/jay.jpg"},{"name":"我不配","artist":"周杰伦","url":"/music/周杰伦 - 我不配.mp3","cover":"/img/jay.jpg"},{"name":"我的地盘","artist":"周杰伦","url":"/music/周杰伦 - 我的地盘.mp3","cover":"/img/jay.jpg"},{"name":"我落泪情绪零碎","artist":"周杰伦","url":"/music/周杰伦 - 我落泪情绪零碎.mp3","cover":"/img/jay.jpg"},{"name":"我要夏天","artist":"周杰伦","url":"/music/周杰伦 - 我要夏天.mp3","cover":"/img/jay.jpg"},{"name":"手写的从前 (优酸乳为爱告白 广告曲)","artist":"周杰伦","url":"/music/周杰伦 - 手写的从前 (优酸乳为爱告白 广告曲).mp3","cover":"/img/jay.jpg"},{"name":"手语","artist":"周杰伦","url":"/music/周杰伦 - 手语.mp3","cover":"/img/jay.jpg"},{"name":"扯","artist":"周杰伦","url":"/music/周杰伦 - 扯.mp3","cover":"/img/jay.jpg"},{"name":"搁浅","artist":"周杰伦","url":"/music/周杰伦 - 搁浅.mp3","cover":"/img/jay.jpg"},{"name":"斗牛","artist":"周杰伦","url":"/music/周杰伦 - 斗牛.mp3","cover":"/img/jay.jpg"},{"name":"断了的弦 (《寻找周杰伦》电影插曲)","artist":"周杰伦","url":"/music/周杰伦 - 断了的弦 (《寻找周杰伦》电影插曲).mp3","cover":"/img/jay.jpg"},{"name":"断了的弦 (伴奏)","artist":"周杰伦","url":"/music/周杰伦 - 断了的弦 (伴奏).mp3","cover":"/img/jay.jpg"},{"name":"无双","artist":"周杰伦","url":"/music/周杰伦 - 无双.mp3","cover":"/img/jay.jpg"},{"name":"时光机","artist":"周杰伦","url":"/music/周杰伦 - 时光机.mp3","cover":"/img/jay.jpg"},{"name":"明明就","artist":"周杰伦","url":"/music/周杰伦 - 明明就.mp3","cover":"/img/jay.jpg"},{"name":"星晴","artist":"周杰伦","url":"/music/周杰伦 - 星晴.mp3","cover":"/img/jay.jpg"},{"name":"晴天","artist":"周杰伦","url":"/music/周杰伦 - 晴天.mp3","cover":"/img/jay.jpg"},{"name":"暗号","artist":"周杰伦","url":"/music/周杰伦 - 暗号.mp3","cover":"/img/jay.jpg"},{"name":"最后的战役","artist":"周杰伦","url":"/music/周杰伦 - 最后的战役.mp3","cover":"/img/jay.jpg"},{"name":"最长的电影","artist":"周杰伦","url":"/music/周杰伦 - 最长的电影.mp3","cover":"/img/jay.jpg"},{"name":"本草纲目","artist":"周杰伦","url":"/music/周杰伦 - 本草纲目.mp3","cover":"/img/jay.jpg"},{"name":"枫","artist":"周杰伦","url":"/music/周杰伦 - 枫.mp3","cover":"/img/jay.jpg"},{"name":"梦想启动","artist":"周杰伦","url":"/music/周杰伦 - 梦想启动.mp3","cover":"/img/jay.jpg"},{"name":"梯田","artist":"周杰伦","url":"/music/周杰伦 - 梯田.mp3","cover":"/img/jay.jpg"},{"name":"止战之殇","artist":"周杰伦","url":"/music/周杰伦 - 止战之殇.mp3","cover":"/img/jay.jpg"},{"name":"比较大的大提琴","artist":"周杰伦","url":"/music/周杰伦 - 比较大的大提琴.mp3","cover":"/img/jay.jpg"},{"name":"水手怕水","artist":"周杰伦","url":"/music/周杰伦 - 水手怕水.mp3","cover":"/img/jay.jpg"},{"name":"流浪诗人","artist":"周杰伦","url":"/music/周杰伦 - 流浪诗人.mp3","cover":"/img/jay.jpg"},{"name":"浪漫手机","artist":"周杰伦","url":"/music/周杰伦 - 浪漫手机.mp3","cover":"/img/jay.jpg"},{"name":"火车叨位去","artist":"周杰伦","url":"/music/周杰伦 - 火车叨位去.mp3","cover":"/img/jay.jpg"},{"name":"烟花易冷","artist":"周杰伦","url":"/music/周杰伦 - 烟花易冷.mp3","cover":"/img/jay.jpg"},{"name":"爱你没差","artist":"周杰伦","url":"/music/周杰伦 - 爱你没差.mp3","cover":"/img/jay.jpg"},{"name":"爱在西元前","artist":"周杰伦","url":"/music/周杰伦 - 爱在西元前.mp3","cover":"/img/jay.jpg"},{"name":"爱情悬崖","artist":"周杰伦","url":"/music/周杰伦 - 爱情悬崖.mp3","cover":"/img/jay.jpg"},{"name":"爱的飞行日记","artist":"周杰伦","url":"/music/周杰伦 - 爱的飞行日记.mp3","cover":"/img/jay.jpg"},{"name":"爷爷泡的茶","artist":"周杰伦","url":"/music/周杰伦 - 爷爷泡的茶.mp3","cover":"/img/jay.jpg"},{"name":"爸，我回来了","artist":"周杰伦","url":"/music/周杰伦 - 爸，我回来了.mp3","cover":"/img/jay.jpg"},{"name":"牛仔很忙","artist":"周杰伦","url":"/music/周杰伦 - 牛仔很忙.mp3","cover":"/img/jay.jpg"},{"name":"献世 (Live)","artist":"周杰伦","url":"/music/周杰伦 - 献世 (Live).mp3","cover":"/img/jay.jpg"},{"name":"珊瑚海","artist":"周杰伦","url":"/music/周杰伦 - 珊瑚海.mp3","cover":"/img/jay.jpg"},{"name":"琴伤","artist":"周杰伦","url":"/music/周杰伦 - 琴伤.mp3","cover":"/img/jay.jpg"},{"name":"甜甜的","artist":"周杰伦","url":"/music/周杰伦 - 甜甜的.mp3","cover":"/img/jay.jpg"},{"name":"疗伤烧肉粽","artist":"周杰伦","url":"/music/周杰伦 - 疗伤烧肉粽.mp3","cover":"/img/jay.jpg"},{"name":"白色风车","artist":"周杰伦","url":"/music/周杰伦 - 白色风车.mp3","cover":"/img/jay.jpg"},{"name":"皮影戏","artist":"周杰伦","url":"/music/周杰伦 - 皮影戏.mp3","cover":"/img/jay.jpg"},{"name":"稻香","artist":"周杰伦","url":"/music/周杰伦 - 稻香.mp3","cover":"/img/jay.jpg"},{"name":"窃爱","artist":"周杰伦","url":"/music/周杰伦 - 窃爱.mp3","cover":"/img/jay.jpg"},{"name":"等你下课","artist":"周杰伦","url":"/music/周杰伦 - 等你下课.flac","cover":"/img/jay.jpg"},{"name":"简单爱","artist":"周杰伦","url":"/music/周杰伦 - 简单爱.mp3","cover":"/img/jay.jpg"},{"name":"算什么男人","artist":"周杰伦","url":"/music/周杰伦 - 算什么男人.mp3","cover":"/img/jay.jpg"},{"name":"米兰的小铁匠","artist":"周杰伦","url":"/music/周杰伦 - 米兰的小铁匠.mp3","cover":"/img/jay.jpg"},{"name":"红尘客栈","artist":"周杰伦","url":"/music/周杰伦 - 红尘客栈.mp3","cover":"/img/jay.jpg"},{"name":"红模仿","artist":"周杰伦","url":"/music/周杰伦 - 红模仿.mp3","cover":"/img/jay.jpg"},{"name":"给我一首歌的时间","artist":"周杰伦","url":"/music/周杰伦 - 给我一首歌的时间.mp3","cover":"/img/jay.jpg"},{"name":"美人鱼","artist":"周杰伦","url":"/music/周杰伦 - 美人鱼.mp3","cover":"/img/jay.jpg"},{"name":"自导自演","artist":"周杰伦","url":"/music/周杰伦 - 自导自演.mp3","cover":"/img/jay.jpg"},{"name":"花海","artist":"周杰伦","url":"/music/周杰伦 - 花海.mp3","cover":"/img/jay.jpg"},{"name":"英雄(1)","artist":"周杰伦","url":"/music/周杰伦 - 英雄(1).mp3","cover":"/img/jay.jpg"},{"name":"菊花台 (《满城尽带黄金甲》电影片尾曲)","artist":"周杰伦","url":"/music/周杰伦 - 菊花台 (《满城尽带黄金甲》电影片尾曲).mp3","cover":"/img/jay.jpg"},{"name":"菊花台 (杰伦钢琴演奏版)","artist":"周杰伦","url":"/music/周杰伦 - 菊花台 (杰伦钢琴演奏版).mp3","cover":"/img/jay.jpg"},{"name":"蒲公英的约定","artist":"周杰伦","url":"/music/周杰伦 - 蒲公英的约定.mp3","cover":"/img/jay.jpg"},{"name":"蓝色风暴","artist":"周杰伦","url":"/music/周杰伦 - 蓝色风暴.mp3","cover":"/img/jay.jpg"},{"name":"蛇舞","artist":"周杰伦","url":"/music/周杰伦 - 蛇舞.mp3","cover":"/img/jay.jpg"},{"name":"说了再见","artist":"周杰伦","url":"/music/周杰伦 - 说了再见.mp3","cover":"/img/jay.jpg"},{"name":"说好的幸福呢","artist":"周杰伦","url":"/music/周杰伦 - 说好的幸福呢.mp3","cover":"/img/jay.jpg"},{"name":"超人不会飞","artist":"周杰伦","url":"/music/周杰伦 - 超人不会飞.mp3","cover":"/img/jay.jpg"},{"name":"超跑女神","artist":"周杰伦","url":"/music/周杰伦 - 超跑女神.mp3","cover":"/img/jay.jpg"},{"name":"跨时代","artist":"周杰伦","url":"/music/周杰伦 - 跨时代.mp3","cover":"/img/jay.jpg"},{"name":"轨迹 (《寻找周杰伦》电影主题曲)","artist":"周杰伦","url":"/music/周杰伦 - 轨迹 (《寻找周杰伦》电影主题曲).mp3","cover":"/img/jay.jpg"},{"name":"迷迭香","artist":"周杰伦","url":"/music/周杰伦 - 迷迭香.mp3","cover":"/img/jay.jpg"},{"name":"迷魂曲","artist":"周杰伦","url":"/music/周杰伦 - 迷魂曲.mp3","cover":"/img/jay.jpg"},{"name":"退后","artist":"周杰伦","url":"/music/周杰伦 - 退后.mp3","cover":"/img/jay.jpg"},{"name":"逆鳞","artist":"周杰伦","url":"/music/周杰伦 - 逆鳞.mp3","cover":"/img/jay.jpg"},{"name":"阳光宅男","artist":"周杰伦","url":"/music/周杰伦 - 阳光宅男.mp3","cover":"/img/jay.jpg"},{"name":"阳明山","artist":"周杰伦","url":"/music/周杰伦 - 阳明山.mp3","cover":"/img/jay.jpg"},{"name":"雨下一整晚","artist":"周杰伦","url":"/music/周杰伦 - 雨下一整晚.mp3","cover":"/img/jay.jpg"},{"name":"霍元甲 (《霍元甲》电影主题曲)","artist":"周杰伦","url":"/music/周杰伦 - 霍元甲 (《霍元甲》电影主题曲).mp3","cover":"/img/jay.jpg"},{"name":"青花瓷","artist":"周杰伦","url":"/music/周杰伦 - 青花瓷.mp3","cover":"/img/jay.jpg"},{"name":"鞋子特大号","artist":"周杰伦","url":"/music/周杰伦 - 鞋子特大号.mp3","cover":"/img/jay.jpg"},{"name":"飘移","artist":"周杰伦","url":"/music/周杰伦 - 飘移.mp3","cover":"/img/jay.jpg"},{"name":"魔术先生","artist":"周杰伦","url":"/music/周杰伦 - 魔术先生.mp3","cover":"/img/jay.jpg"},{"name":"麦烝玮","artist":"周杰伦","url":"/music/周杰伦 - 麦烝玮.mp3","cover":"/img/jay.jpg"},{"name":"麦芽糖","artist":"周杰伦","url":"/music/周杰伦 - 麦芽糖.mp3","cover":"/img/jay.jpg"},{"name":"黄金甲","artist":"周杰伦","url":"/music/周杰伦 - 黄金甲.mp3","cover":"/img/jay.jpg"},{"name":"黑色幽默","artist":"周杰伦","url":"/music/周杰伦 - 黑色幽默.mp3","cover":"/img/jay.jpg"},{"name":"黑色毛衣","artist":"周杰伦","url":"/music/周杰伦 - 黑色毛衣.mp3","cover":"/img/jay.jpg"},{"name":"龙卷风","artist":"周杰伦","url":"/music/周杰伦 - 龙卷风.mp3","cover":"/img/jay.jpg"},{"name":"龙战骑士","artist":"周杰伦","url":"/music/周杰伦 - 龙战骑士.mp3","cover":"/img/jay.jpg"},{"name":"龙拳","artist":"周杰伦","url":"/music/周杰伦 - 龙拳.mp3","cover":"/img/jay.jpg"},{"name":"寒流来袭","artist":"HotDog","url":"/music/寒流来袭.mp3","cover":"/img/jay.jpg"},{"name":"Try (《功夫熊猫3》电影全球主题曲)","artist":"周杰伦","url":"/music/派伟俊 - Try (《功夫熊猫3》电影全球主题曲).mp3","cover":"/img/jay.jpg"},{"name":"你是我的OK绷","artist":"周杰伦","url":"/music/浪花兄弟 - 你是我的OK绷.mp3","cover":"/img/jay.jpg"},{"name":"布拉格广场","artist":"周杰伦","url":"/music/蔡依林 - 布拉格广场.mp3","cover":"/img/jay.jpg"},{"name":"画沙","artist":"周杰伦","url":"/music/袁咏琳 - 画沙.mp3","cover":"/img/jay.jpg"}]
+    });
+    oldLoad && oldLoad();
+  }
+</script>
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://mikeygithub.github.io/" target="_blank" rel="nofollow noopener"><b>Copyright © 2020 麦奇 Powered by Hexo Fluid Core on Kubernetes</b></a>
+      <!--<i class="iconfont icon-love"></i>-->
+      <!--<a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>-->
+    </div>
+    
+  <div>
+    
+      <!-- 不蒜子统计PV -->
+      
+      <span id="busuanzi_container_site_pv" style="display: none">
+      总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    </span>
+    
+    
+      <!-- 不蒜子统计UV -->
+      
+      <span id="busuanzi_container_site_uv" style="display: none">
+      总访客数 <span id="busuanzi_value_site_uv"></span> 人
+    </span>
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/popper.js/1.16.1/umd/popper.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="https://cdn.staticfile.org/mdbootstrap/4.13.0/js/mdb.min.js" ></script>
+<script  src="/js/main.js" ></script>
+
+
+  <script  src="/js/lazyload.js" ></script>
+
+
+
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.10.0/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var navHeight = $('#navbar').height();
+      var post = $('#post');
+      var toc = $('#toc');
+      var tocLimMax = post.offset().top + post.height() - navHeight;
+
+      $(window).scroll(function () {
+        var tocLimMin = $('#toc-start').offset().top - navHeight;
+        var scroH = document.body.scrollTop + document.documentElement.scrollTop;
+
+        if (tocLimMin <= scroH && scroH <= tocLimMax) {
+          toc.css({
+            'display': 'block',
+            'position': 'fixed',
+            'top': navHeight,
+          });
+        } else if (scroH <= tocLimMin) {
+          toc.css({
+            'position': '',
+            'top': '',
+          });
+        } else if (scroH > tocLimMax) {
+          toc.css('display', 'none');
+        }
+      });
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        scrollSmooth: true,
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc > p').css('visibility', 'visible');
+      }
+      var offset = $('#board-ctn').css('margin-right')
+      $('#toc-ctn').css({
+        'right': offset
+      })
+    });
+  </script>
+
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/smoothscroll/1.4.10/SmoothScroll.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+<!-- Plugins -->
+
+
+
+  <script  src="https://cdn.staticfile.org/prettify/188.0.0/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Java 基础&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 100,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
