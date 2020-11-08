@@ -486,7 +486,7 @@ about:  # 以下仅为页面顶部的基本信息，更多内容请在 ./pages/a
   subtitle: 麦奇 # 打字机内容
   avatar: /img/avatar.png # 头像
   name: 麦奇
-  introduce: J2EE / 区块链 / Linux / Golang # 支持 HTML
+  introduce: Java后端开发 / 区块链 / Linux / Golang # 支持 HTML
   icons: # 更多图标可从 https://fontawesome.com/v5.10.0/icons?d=gallery 查找，并以 "图标名: url" 的格式添加在下方
     "fab fa-github": https://github.com/mikeygithub
     "fab fa-twitter": https://twitter.com/
