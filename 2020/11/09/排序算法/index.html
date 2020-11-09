@@ -141,7 +141,7 @@
                   
                   <span class="post-meta">
                     <i class="far fa-chart-bar"></i>
-                    1k 字
+                    1.6k 字
                   </span>
                 
 
@@ -149,7 +149,7 @@
                   
                   <span class="post-meta">
                       <i class="far fa-clock"></i>
-                      4 分钟
+                      7 分钟
                   </span>
                 
 
@@ -259,17 +259,23 @@
                     for (int k = j; k &gt;i ; k-=incre) {
                         if (arr[k]&lt;arr[k-incre]){
                             int tmp = arr[k];
-
-                        }
+                            arr[k-incre]=arr[k];
+                            arr[k]=tmp;
+                        }else break;
                     }
                 }
             }
-            break;
+            if (incre==1)break;
         }
 
     }
 }</code></pre>
-<h1 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h1><p>T(n)=O(n^2)</p>
+<h1 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h1><p>基本思想：两个数比较大小，较大的数下沉，较小的数冒起来。</p>
+<p>过程：</p>
+<blockquote>
+<p>比较相邻的两个数据，如果第二个数小，就交换位置。<br>从后向前两两比较，一直到比较最前两个数据。最终最小数被交换到起始的位置，这样第一个最小数的位置就排好了。<br>继续重复上述过程，依次将第2.3…n-1个最小数排好位置。</p>
+</blockquote>
+<p>时间复杂度: <code>T(n)=O(n^2)</code></p>
 <pre><code class="java">class Sort{
     public static void bubbleSort(int[] arr){
         for (int i = 0; i &lt; arr.length ; i++) {
@@ -283,7 +289,64 @@
         }
     }
 }</code></pre>
-
+<h1 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h1><p>基本思路:</p>
+<blockquote>
+<p>归并排序是建立在归并操作上的一种有效的排序算法。该算法是采用分治法（Divide and Conquer）的一个非常典型的应用。</p>
+</blockquote>
+<blockquote>
+<p>首先考虑下如何将将二个有序数列合并。这个非常简单，只要从比较二个数列的第一个数，谁小就先取谁，取了后就在对应数列中删除这个数。然后再进行比较，如果有数列为空，那直接将另一个数列的数据依次取出即可。</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>归并排序的效率是比较高的，设数列长为 N，将数列分开成小数列一共要 logN 步，每步都是一个合并有序数列的过程，时间复杂度可以记为 O(N)，故一共为 O(N<em>logN)。因为归并排序每次都是在相邻的数据中进行操作，所以归并排序在 O(N</em>logN) 的几种排序方法（快速排序，归并排序，希尔排序，堆排序）也是效率比较高的。</p>
+</blockquote>
+</blockquote>
+<pre><code class="java">public class Sort{
+    /**
+    *程序入口
+    * @param arr
+    */
+    void MergeSort(int[] arr){
+        int[] temp = new int[arr.length];
+        mergeSort(arr,0,arr.length-1,temp);
+    }
+    /**
+    * 递归
+    * @param a
+    * @param first
+    * @param last
+    * @param temp
+    */
+    public static void mergeSort(int[] a, int first, int last, int[] temp) {
+        if (first &lt; last) {
+            int mid = (first + last) / 2;
+            mergeSort(a, first, mid, temp);
+            mergeSort(a, mid + 1, last, temp);
+            mergeArray(a, first, mid, last, temp);
+        }
+    }
+    /**
+    * 合并数组
+    * @param a
+    * @param first
+    * @param mid
+    * @param last
+    * @param temp
+    */
+    private static void mergeArray(int[] a, int first, int mid, int last, int[] temp) {
+        int i = first, j = mid + 1;
+        int m = mid, n = last;
+        int k = 0;
+        while (i &lt;= m &amp;&amp; j &lt;= n) {
+            if (a[i] &lt;= a[j]) temp[k++] = a[i++];
+            else temp[k++] = a[j++];
+        }
+        while (i &lt;= m) temp[k++] = a[i++];
+        while (j &lt;= n) temp[k++] = a[j++];
+        for (int l = 0; l &lt; k; l++) a[first + i] = temp[i];
+    }
+}</code></pre>
+<h1 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h1>
             </div>
             <hr>
             <div>
