@@ -17,7 +17,7 @@
   <meta name="description" content="Stay hungry stay foolish">
   <meta name="author" content="MIKEY">
   <meta name="keywords" content="">
-  <title>日志管理 - 麦奇</title>
+  <title>分类 - 算法 - 麦奇</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -43,7 +43,7 @@
 
 
 <body>
-  <header style="height: 70vh;">
+  <header style="height: 80vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -129,33 +129,6 @@
             </span>
 
             
-              
-                <p class="mt-3 post-meta">
-                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-                  星期三, 八月 12日 2020, 10:33 晚上
-                </p>
-              
-
-              <p class="mt-1">
-                
-                  
-                  <span class="post-meta">
-                    <i class="far fa-chart-bar"></i>
-                    889 字
-                  </span>
-                
-
-                
-                  
-                  <span class="post-meta">
-                      <i class="far fa-clock"></i>
-                      3 分钟
-                  </span>
-                
-
-                
-              </p>
-            
           </div>
 
           
@@ -166,91 +139,37 @@
 
   <main>
     
-      
+      <div class="container nopadding-md">
+        <div class="py-5 z-depth-3" id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5 z-depth-3" id="board">
-          <div class="post-content mx-auto" id="post">
-            
-            <div class="markdown-body">
-              <h1 id="Slf4j"><a href="#Slf4j" class="headerlink" title="Slf4j"></a>Slf4j</h1><p>slf4j 的全称是 Simple Loging Facade For Java,即它仅仅是一个为 Java 程序提供日志输出的统一接<br>口,并不是一个具体的日志实现方案,就比如 JDBC 一样,只是一种规则而已。所以单独的 slf4j 是不<br>能工作的,必须搭配其他具体的日志实现方案,比如 apache 的 org.apache.log4j.Logger,jdk 自带<br>的 java.util.logging.Logger 等。</p>
-<h1 id="Log4j"><a href="#Log4j" class="headerlink" title="Log4j"></a>Log4j</h1><p>Log4j 是 Apache 的一个开源项目,通过使用 Log4j,我们可以控制日志信息输送的目的地是控制台、<br>文件、GUI 组件,甚至是套接口服务器、NT 的事件记录器、UNIX Syslog 守护进程等;我们也可以控<br>制每一条日志的输出格式;通过定义每一条日志信息的级别,我们能够更加细致地控制日志的生成过程。<br>Log4j 由三个重要的组成构成:日志记录器(Loggers),输出端(Appenders)和日志格式化器(Layout)。<br>1.Logger:控制要启用或禁用哪些日志记录语句,并对日志信息进行级别限制<br>2.Appenders : 指定了日志将打印到控制台还是文件中<br>3.Layout : 控制日志信息的显示格式<br>Log4j 中将要输出的 Log 信息定义了 5 种级别,依次为 DEBUG、INFO、WARN、ERROR 和 FATAL,<br>当输出时,只有级别高过配置中规定的 级别的信息才能真正的输出,这样就很方便的来配置不同情况<br>下要输出的内容,而不需要更改代码。</p>
-<h1 id="LogBack"><a href="#LogBack" class="headerlink" title="LogBack"></a>LogBack</h1><p>简单地说,Logback 是一个 Java 领域的日志框架。它被认为是 Log4J 的继承人。<br>Logback 主要由三个模块组成:logback-core,logback-classic。logback-access<br>logback-core 是其它模块的基础设施,其它模块基于它构建,显然,logback-core 提供了一些关键的<br>通用机制。<br>logback-classic 的地位和作用等同于 Log4J,它也被认为是 Log4J 的一个改进版,并且它实现了简单<br>日志门面 SLF4J;<br>logback-access 主要作为一个与 Servlet 容器交互的模块,比如说 tomcat 或者 jetty,提供一些与<br>HTTP 访问相关的功能。</p>
-<h2 id="Logback-优点"><a href="#Logback-优点" class="headerlink" title="Logback 优点"></a>Logback 优点</h2><p>同样的代码路径,Logback 执行更快更充分的测试原生实现了 SLF4J API(Log4J 还需要有一个中间转换层)内容更丰富的文档支持 XML 或者 Groovy 方式配置配置文件自动热加载</p>
-<p>从 IO 错误中优雅恢复自动删除日志归档自动压缩日志成为归档文件支持 Prudent 模式,使多个 JVM 进程能记录同一个日志文件支持配置文件中加入条件判断来适应不同的环境更强大的过滤器支持 SiftingAppender(可筛选 Appender)异常栈信息带有包信息</p>
-<h1 id="ELK"><a href="#ELK" class="headerlink" title="ELK"></a>ELK</h1><p>ELK 是软件集合 Elasticsearch、Logstash、Kibana 的简称,由这三个软件及其相关的组件可以打造大规模日志实时处理系统。<br>Elasticsearch 是一个基于 Lucene 的、支持全文索引的分布式存储和索引引擎,主要负责将日志索引并存储起来,方便业务方检索查询。<br>Logstash 是一个日志收集、过滤、转发的中间件,主要负责将各条业务线的各类日志统一收集、过滤后,转发给 Elasticsearch 进行下一步处理。<br>Kibana 是一个可视化工具,主要负责查询 Elasticsearch 的数据并以可视化的方式展现给业务方,比如各类饼图、直方图、区域图等。</p>
-<p><img src="/resource/img/elk.png" srcset="/img/loading.gif" alt="avatar"></p>
-
-            </div>
-            <hr>
-            <div>
-              <p>
-                
-                  <span>
-                <i class="iconfont icon-inbox"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/%E6%97%A5%E5%BF%97/">日志</a>
-                      &nbsp;
-                    
-                  </span>&nbsp;&nbsp;
-                
-                
-                  <span>
-                <i class="iconfont icon-tag"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/Log4j/">Log4j</a>
-                    
-                  </span>
-                
-              </p>
-              
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
-              
-            </div>
-
-            
-              <!-- Comments -->
-              <div class="comments" id="comments">
-                
-                
-  <script defer src="https://utteranc.es/client.js"
-          repo="mikeygithub/commit-utterance"
-          issue-term="pathname"
+<div class="list-group">
+<!--  <p class="h4">共计 1 篇文章</p>-->
+  <hr>
   
-          label="utterances"
     
-          theme="github-light"
-          crossorigin="anonymous"
-  >
-  </script>
+      
+      <p class="h5">2020</p>
+    
+    <a href="/2020/11/09/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">排序算法</span>
+      <span style="float: right;">11-09</span>
+    </a>
+  
+</div>
+
 
 
               </div>
-            
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc-start"></div>
-<div id="toc">
-  <p class="h5"><i class="far fa-list-alt"></i>&nbsp;目录</p>
-  <div id="tocbot"></div>
-</div>
-
-      </div>
-    
-  </div>
-</div>
-
-<!-- Custom -->
-
-
     
   </main>
 
@@ -354,57 +273,6 @@
 
 
 
-  
-  <script  src="https://cdn.staticfile.org/tocbot/4.10.0/tocbot.min.js" ></script>
-  <script>
-    $(document).ready(function () {
-      var navHeight = $('#navbar').height();
-      var post = $('#post');
-      var toc = $('#toc');
-      var tocLimMax = post.offset().top + post.height() - navHeight;
-
-      $(window).scroll(function () {
-        var tocLimMin = $('#toc-start').offset().top - navHeight;
-        var scroH = document.body.scrollTop + document.documentElement.scrollTop;
-
-        if (tocLimMin <= scroH && scroH <= tocLimMax) {
-          toc.css({
-            'display': 'block',
-            'position': 'fixed',
-            'top': navHeight,
-          });
-        } else if (scroH <= tocLimMin) {
-          toc.css({
-            'position': '',
-            'top': '',
-          });
-        } else if (scroH > tocLimMax) {
-          toc.css('display', 'none');
-        }
-      });
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: '.post-content',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        scrollSmooth: true,
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc > p').css('visibility', 'visible');
-      }
-      var offset = $('#board-ctn').css('margin-right')
-      $('#toc-ctn').css({
-        'right': offset
-      })
-    });
-  </script>
-
-
-
 
 
   <script defer src="https://cdn.staticfile.org/smoothscroll/1.4.10/SmoothScroll.min.js" ></script>
@@ -435,7 +303,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "日志管理&nbsp;",
+        "分类 - 算法&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 100,

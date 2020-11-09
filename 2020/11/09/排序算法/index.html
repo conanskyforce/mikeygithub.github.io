@@ -17,7 +17,7 @@
   <meta name="description" content="Stay hungry stay foolish">
   <meta name="author" content="MIKEY">
   <meta name="keywords" content="">
-  <title>日志管理 - 麦奇</title>
+  <title>排序算法 - 麦奇</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -132,7 +132,7 @@
               
                 <p class="mt-3 post-meta">
                   <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-                  星期三, 八月 12日 2020, 10:33 晚上
+                  星期一, 十一月 9日 2020, 10:32 上午
                 </p>
               
 
@@ -141,7 +141,7 @@
                   
                   <span class="post-meta">
                     <i class="far fa-chart-bar"></i>
-                    889 字
+                    1k 字
                   </span>
                 
 
@@ -149,7 +149,7 @@
                   
                   <span class="post-meta">
                       <i class="far fa-clock"></i>
-                      3 分钟
+                      4 分钟
                   </span>
                 
 
@@ -177,13 +177,112 @@
           <div class="post-content mx-auto" id="post">
             
             <div class="markdown-body">
-              <h1 id="Slf4j"><a href="#Slf4j" class="headerlink" title="Slf4j"></a>Slf4j</h1><p>slf4j 的全称是 Simple Loging Facade For Java,即它仅仅是一个为 Java 程序提供日志输出的统一接<br>口,并不是一个具体的日志实现方案,就比如 JDBC 一样,只是一种规则而已。所以单独的 slf4j 是不<br>能工作的,必须搭配其他具体的日志实现方案,比如 apache 的 org.apache.log4j.Logger,jdk 自带<br>的 java.util.logging.Logger 等。</p>
-<h1 id="Log4j"><a href="#Log4j" class="headerlink" title="Log4j"></a>Log4j</h1><p>Log4j 是 Apache 的一个开源项目,通过使用 Log4j,我们可以控制日志信息输送的目的地是控制台、<br>文件、GUI 组件,甚至是套接口服务器、NT 的事件记录器、UNIX Syslog 守护进程等;我们也可以控<br>制每一条日志的输出格式;通过定义每一条日志信息的级别,我们能够更加细致地控制日志的生成过程。<br>Log4j 由三个重要的组成构成:日志记录器(Loggers),输出端(Appenders)和日志格式化器(Layout)。<br>1.Logger:控制要启用或禁用哪些日志记录语句,并对日志信息进行级别限制<br>2.Appenders : 指定了日志将打印到控制台还是文件中<br>3.Layout : 控制日志信息的显示格式<br>Log4j 中将要输出的 Log 信息定义了 5 种级别,依次为 DEBUG、INFO、WARN、ERROR 和 FATAL,<br>当输出时,只有级别高过配置中规定的 级别的信息才能真正的输出,这样就很方便的来配置不同情况<br>下要输出的内容,而不需要更改代码。</p>
-<h1 id="LogBack"><a href="#LogBack" class="headerlink" title="LogBack"></a>LogBack</h1><p>简单地说,Logback 是一个 Java 领域的日志框架。它被认为是 Log4J 的继承人。<br>Logback 主要由三个模块组成:logback-core,logback-classic。logback-access<br>logback-core 是其它模块的基础设施,其它模块基于它构建,显然,logback-core 提供了一些关键的<br>通用机制。<br>logback-classic 的地位和作用等同于 Log4J,它也被认为是 Log4J 的一个改进版,并且它实现了简单<br>日志门面 SLF4J;<br>logback-access 主要作为一个与 Servlet 容器交互的模块,比如说 tomcat 或者 jetty,提供一些与<br>HTTP 访问相关的功能。</p>
-<h2 id="Logback-优点"><a href="#Logback-优点" class="headerlink" title="Logback 优点"></a>Logback 优点</h2><p>同样的代码路径,Logback 执行更快更充分的测试原生实现了 SLF4J API(Log4J 还需要有一个中间转换层)内容更丰富的文档支持 XML 或者 Groovy 方式配置配置文件自动热加载</p>
-<p>从 IO 错误中优雅恢复自动删除日志归档自动压缩日志成为归档文件支持 Prudent 模式,使多个 JVM 进程能记录同一个日志文件支持配置文件中加入条件判断来适应不同的环境更强大的过滤器支持 SiftingAppender(可筛选 Appender)异常栈信息带有包信息</p>
-<h1 id="ELK"><a href="#ELK" class="headerlink" title="ELK"></a>ELK</h1><p>ELK 是软件集合 Elasticsearch、Logstash、Kibana 的简称,由这三个软件及其相关的组件可以打造大规模日志实时处理系统。<br>Elasticsearch 是一个基于 Lucene 的、支持全文索引的分布式存储和索引引擎,主要负责将日志索引并存储起来,方便业务方检索查询。<br>Logstash 是一个日志收集、过滤、转发的中间件,主要负责将各条业务线的各类日志统一收集、过滤后,转发给 Elasticsearch 进行下一步处理。<br>Kibana 是一个可视化工具,主要负责查询 Elasticsearch 的数据并以可视化的方式展现给业务方,比如各类饼图、直方图、区域图等。</p>
-<p><img src="/resource/img/elk.png" srcset="/img/loading.gif" alt="avatar"></p>
+              <h1 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h1><p>时间复杂度：<code>T(n)=O(f(n))</code></p>
+<p>渐进时间复杂度（asymptotic time complexity）的概念，官方的定义如下：<br>若存在函数 f（n），使得当n趋近于无穷大时，T（n）/ f（n）的极限值为不等于零的常数，则称 f（n）是T（n）的同数量级函数。<br>记作 T（n）= O（f（n）），称O（f（n）） 为算法的渐进时间复杂度，简称时间复杂度。</p>
+<p>如何推导出时间复杂度呢？有如下几个原则：<br> 1.如果运行时间是常数量级，用常数1表示；<br> 2.只保留时间函数中的最高阶项；<br> 3.如果最高阶项存在，则省去最高阶项前面的系数。  </p>
+<blockquote>
+<p>常数阶O(1) &lt; 对数阶O(logN) &lt; 线性阶O(n) &lt; 线性对数阶O(nlogN) &lt; 平方阶O(n²) &lt; 立方阶O(n³) &lt; K次方阶O(n^k) &lt; 指数阶(2^n)</p>
+</blockquote>
+<h1 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h1><p> 1．先从数列中取出一个数作为基准数。<br> 2．分区过程，将比这个数大的数全放到它的右边，小于或等于它的数全放到它的左边。<br> 3．再对左右区间重复第二步，直到各区间只有一个数。  </p>
+<pre><code class="java">public class Sort {
+
+    public static void quicksort(int[] arr,int left,int right){
+        if (left &lt; right) {
+            int low = left, height = right, x = arr[left];
+            while (low &lt; height)
+            {
+                while(low &lt; height &amp;&amp; arr[height] &gt;= x) // 从右向左找第一个小于x的数
+                    height--;
+                if(low &lt; height)
+                    arr[low++] = arr[height];
+
+                while(low &lt; height &amp;&amp; arr[low] &lt; x) // 从左向右找第一个大于等于x的数
+                    low++;
+                if(low &lt; height)
+                    arr[height--] = arr[low];
+            }
+            arr[low] = x;
+            quicksort(arr, left, low - 1); // 递归调用
+            quicksort(arr, low + 1, right);
+        }
+    }
+}</code></pre>
+<h1 id="直接插入排序"><a href="#直接插入排序" class="headerlink" title="直接插入排序"></a>直接插入排序</h1><blockquote>
+<p>将待排序的数组划分为局部有序子数组subSorted和无序子数组subUnSorted，每次排序时从subUnSorted中挑出第一个元素，从后向前将其与subSorted各元素比较大小，<br>按照大小插入合适的位置，插入完成后将此元素从subUnSorted中移除，重复这个过程直至subUnSorted中没有元素，总之就时从后向前，一边比较一边移动。</p>
+</blockquote>
+<p><code>T(n)=O(n^2)</code></p>
+<pre><code class="java">class Sort{
+    public static void straightInsertSort(int[] arr){
+        int j = 0;
+        int tmp = 0;
+        for (int i = 1; i &lt; arr.length; i++) {
+            if (arr[i]&lt;arr[i-1]){//插入i-1前面
+                tmp = arr[i];
+                for (j = i - 1; j &gt;= 0 &amp;&amp; tmp &lt; arr[j]; j--) {
+                    arr[j+1] = arr[j];
+                }
+                arr[j+1] = tmp;
+            }
+        }
+    }
+}</code></pre>
+<h1 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h1><p>在长度为N的无序数组中，第一次遍历n-1个数，找到最小的数值与第一个元素交换；</p>
+<p>第二次遍历n-2个数，找到最小的数值与第二个元素交换；</p>
+<p>第n-1次遍历，找到最小的数值与第n-1个元素交换，排序完成。</p>
+<pre><code class="java">public class Sort{
+        public static void selectSort(int[] arr){
+            int min;
+            for (int i = 0; i &lt; arr.length; i++) {
+                min=arr[i];
+                for (int j = i+1; j &lt;arr.length; j++) {
+                    if (arr[j]&lt;min){
+                        int tmp = arr[i];
+                        min=arr[j];
+                        arr[i]=arr[j];
+                        arr[j]=tmp;
+                    }
+            }
+       }
+   }
+}</code></pre>
+<h1 id="希尔排序-Shell-Sort"><a href="#希尔排序-Shell-Sort" class="headerlink" title="希尔排序(Shell Sort)"></a>希尔排序(Shell Sort)</h1><p>数据序列1： 13-17-20-42-28 利用插入排序，13-17-20-28-42. Number of swap:1;<br>数据序列2： 13-17-20-42-14 利用插入排序，13-14-17-20-42. Number of swap:3;<br>如果数据序列基本有序，使用插入排序会更加高效。</p>
+<p>基本思想：<br>    在要排序的一组数中，根据某一增量分为若干子序列，并对子序列分别进行插入排序。<br>    然后逐渐将增量减小,并重复上述过程。直至增量为1,此时数据序列基本有序,最后进行插入排序。</p>
+<pre><code class="java">public class Sort{
+    public static void shellSort(int[] arr){
+
+        int incre = arr.length;
+
+        while (true){
+            incre = incre&gt;&gt;1;
+            for (int i = 0; i &lt; incre; i++) {
+                for (int j = i; j &lt;arr.length ; j+=incre) {
+                    for (int k = j; k &gt;i ; k-=incre) {
+                        if (arr[k]&lt;arr[k-incre]){
+                            int tmp = arr[k];
+
+                        }
+                    }
+                }
+            }
+            break;
+        }
+
+    }
+}</code></pre>
+<h1 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h1><p>T(n)=O(n^2)</p>
+<pre><code class="java">class Sort{
+    public static void bubbleSort(int[] arr){
+        for (int i = 0; i &lt; arr.length ; i++) {
+            for (int j = 0; j &lt;  arr.length ; j++) {
+                if (arr[i]&lt;arr[j]){
+                    int tmp  = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = tmp;
+                }
+            }
+        }
+    }
+}</code></pre>
 
             </div>
             <hr>
@@ -193,7 +292,7 @@
                   <span>
                 <i class="iconfont icon-inbox"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E6%97%A5%E5%BF%97/">日志</a>
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
                       &nbsp;
                     
                   </span>&nbsp;&nbsp;
@@ -202,7 +301,7 @@
                   <span>
                 <i class="iconfont icon-tag"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Log4j/">Log4j</a>
+                      <a class="hover-with-bg" href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">排序算法</a>
                     
                   </span>
                 
@@ -435,7 +534,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "日志管理&nbsp;",
+        "排序算法&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 100,
