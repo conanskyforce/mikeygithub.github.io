@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9cda0264-b489-417c-8765-215716b12740" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/source/_posts/排序算法.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/resource/img/sort.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_data/fluid_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/source/_data/fluid_config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/排序算法.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/排序算法.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -31,8 +29,8 @@
         <entry file="file://$PROJECT_DIR$/source/_posts/排序算法.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="394">
-                <caret line="117" column="2" selection-start-line="117" selection-start-column="2" selection-end-line="117" selection-end-column="2" />
+              <first_editor relative-caret-position="172">
+                <caret line="244" column="14" selection-start-line="244" selection-start-column="14" selection-end-line="244" selection-end-column="14" />
               </first_editor>
               <second_editor />
             </state>
@@ -347,7 +345,7 @@
       <workItem from="1604733514677" duration="8649000" />
       <workItem from="1604798315438" duration="626000" />
       <workItem from="1604802100182" duration="4349000" />
-      <workItem from="1604806685618" duration="4473000" />
+      <workItem from="1604806685618" duration="11058000" />
     </task>
     <task id="LOCAL-00001" summary="fix page">
       <created>1584338150238</created>
@@ -664,14 +662,29 @@
       <option name="project" value="LOCAL" />
       <updated>1604806754424</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="关于">
+      <created>1604893388479</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1604893388479</updated>
+    </task>
+    <task id="LOCAL-00047" summary="排序">
+      <created>1604914169365</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1604914169365</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="423459000" />
+    <option name="totallyTimeSpent" value="430044000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="25" width="1920" height="1055" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49892008" weight="0.17502668" />
       <window_info id="Structure" order="1" sideWeight="0.5010799" side_tool="true" weight="0.18996799" />
@@ -826,7 +839,8 @@
     <MESSAGE value="删除脚本" />
     <MESSAGE value="CI/CD" />
     <MESSAGE value="关于" />
-    <option name="LAST_COMMIT_MESSAGE" value="关于" />
+    <MESSAGE value="排序" />
+    <option name="LAST_COMMIT_MESSAGE" value="排序" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/themes/fluid/source/img/background/timgT5GK3CG3.jpg" />
@@ -1083,8 +1097,8 @@
     <entry file="file://$PROJECT_DIR$/source/_posts/排序算法.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="394">
-            <caret line="117" column="2" selection-start-line="117" selection-start-column="2" selection-end-line="117" selection-end-column="2" />
+          <first_editor relative-caret-position="172">
+            <caret line="244" column="14" selection-start-line="244" selection-start-column="14" selection-end-line="244" selection-end-column="14" />
           </first_editor>
           <second_editor />
         </state>
