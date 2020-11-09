@@ -141,7 +141,7 @@
                   
                   <span class="post-meta">
                     <i class="far fa-chart-bar"></i>
-                    1.6k 字
+                    1.8k 字
                   </span>
                 
 
@@ -267,7 +267,6 @@
             }
             if (incre==1)break;
         }
-
     }
 }</code></pre>
 <h1 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h1><p>基本思想：两个数比较大小，较大的数下沉，较小的数冒起来。</p>
@@ -346,7 +345,11 @@
         for (int l = 0; l &lt; k; l++) a[first + i] = temp[i];
     }
 }</code></pre>
-<h1 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h1>
+<h1 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h1><blockquote>
+<p>堆排序的基本思想是：将待排序序列构造成一个大顶堆，此时，整个序列的最大值就是堆顶的根节点。将其与末尾元素进行交换，此时末尾就为最大值。然后将剩余n-1个元素重新构造成一个堆，这样会得到n个元素的次小值。如此反复执行，便能得到一个有序序列了</p>
+</blockquote>
+<h1 id="基数排序-RadixSort"><a href="#基数排序-RadixSort" class="headerlink" title="基数排序(RadixSort)"></a>基数排序(RadixSort)</h1><p>基本思想：<br>BinSort想法非常简单，首先创建数组A[MaxValue]；然后将每个数放到相应的位置上（例如17放在下标17的数组位置）；最后遍历数组，即为排序后的结果。</p>
+
             </div>
             <hr>
             <div>
