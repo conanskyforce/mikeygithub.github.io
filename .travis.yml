@@ -19,6 +19,6 @@ deploy:
   local-dir: public
 notifications:
   email:
-    - biaogejiushibiao@outlook.com
+    - biaogejiushibiao@qq.com
   on_success: change
   on_failure: always
