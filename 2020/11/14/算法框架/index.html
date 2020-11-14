@@ -17,7 +17,7 @@
   <meta name="description" content="Stay hungry stay foolish">
   <meta name="author" content="MIKEY">
   <meta name="keywords" content="">
-  <title>麦奇</title>
+  <title>算法框架 - 麦奇</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -43,7 +43,7 @@
 
 
 <body>
-  <header style="height: 100vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -129,12 +129,35 @@
             </span>
 
             
+              
+                <p class="mt-3 post-meta">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                  星期六, 十一月 14日 2020, 9:16 上午
+                </p>
+              
+
+              <p class="mt-1">
+                
+                  
+                  <span class="post-meta">
+                    <i class="far fa-chart-bar"></i>
+                    1.1k 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta">
+                      <i class="far fa-clock"></i>
+                      4 分钟
+                  </span>
+                
+
+                
+              </p>
+            
           </div>
 
-          
-            <div class="scroll-down-bar">
-              <i class="fas fa-angle-down scroll-down-arrow"></i>
-            </div>
           
         </div>
       </div>
@@ -143,644 +166,182 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5 z-depth-3" id="board"
-          style=margin-top:0>
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5 z-depth-3" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <div class="markdown-body">
+              <h1 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h1><blockquote>
+<p>动态规划问题的一般形式就是求最值。动态规划其实是运筹学的一种最优化方法，只不过在计算机问题上应用比较多，比如说让你求最长递增子序列呀，最小编辑距离呀等等。<br> 既然是要求最值，核心问题是什么呢？求解动态规划的核心问题是穷举。因为要求最值，肯定要把所有可行的答案穷举出来，然后在其中找最值呗。<br> 动态规划就这么简单，就是穷举就完事了？我看到的动态规划问题都很难啊！<br> 首先，动态规划的穷举有点特别，因为这类问题存在「重叠子问题」，如果暴力穷举的话效率会极其低下，所以需要「备忘录」或者「DP table」来优化穷举过程，避免不必要的计算。<br> 而且，动态规划问题一定会具备「最优子结构」，才能通过子问题的最值得到原问题的最值。<br> 另外，虽然动态规划的核心思想就是穷举求最值，但是问题可以千变万化，穷举所有可行解其实并不是一件容易的事，只有列出正确的「状态转移方程」才能正确地穷举。<br> 以上提到的重叠子问题、最优子结构、状态转移方程就是动态规划三要素。具体什么意思等会会举例详解，但是在实际的算法问题中，写出状态转移方程是最困难的，这也就是为什么很多朋友觉得动态规划问题困难的原因，我来提供我研究出来的一个思维框架，辅助你思考状态转移方程：<br> <code>明确「状态」 -&gt; 定义 dp 数组/函数的含义 -&gt; 明确「选择」-&gt; 明确 base case。</code></p>
+</blockquote>
+<h2 id="算法框架"><a href="#算法框架" class="headerlink" title="算法框架"></a>算法框架</h2><blockquote>
+<p>列出动态转移方程，就是在解决“如何穷举”的问题。之所以说它难，一是因为很多穷举需要递归实现，二是因为有的问题本身的解空间复杂，不那么容易穷举完整。</p>
+</blockquote>
+<blockquote>
+<p>备忘录、DP table 就是在追求“如何聪明地穷举”。用空间换时间的思路，是降低时间复杂度的不二法门，除此之外，试问，还能玩出啥花活？</p>
+</blockquote>
+<h1 id="回溯算法"><a href="#回溯算法" class="headerlink" title="回溯算法"></a>回溯算法</h1><blockquote>
+<p>解决一个回溯问题，实际上就是一个决策树的遍历过程</p>
+</blockquote>
+<pre><code class="text">路径：也就是已经做出的选择。
+选择列表：也就是你当前可以做的选择。
+结束条件：也就是到达决策树底层，无法再做选择的条件。</code></pre>
+<h2 id="算法框架-1"><a href="#算法框架-1" class="headerlink" title="算法框架"></a>算法框架</h2><details>
+  <summary><span>点击展开</span></summary>
+
+<pre><code class="cgo">result = []
+def backtrack(路径, 选择列表):
+    if 满足结束条件:
+        result.add(路径)
+        return
+
+    for 选择 in 选择列表:
+        做选择
+        backtrack(路径, 选择列表)
+        撤销选择</code></pre>
+</details>
+
+<h1 id="广度遍历"><a href="#广度遍历" class="headerlink" title="广度遍历"></a>广度遍历</h1><blockquote>
+<p>BFS 的核心思想应该不难理解的，就是把一些问题抽象成图，从一个点开始，向四周开始扩散。一般来说，我们写 BFS 算法都是用「队列」这种数据结构，每次将一个节点周围的所有节点加入队列。</p>
+</blockquote>
+<h2 id="算法框架-2"><a href="#算法框架-2" class="headerlink" title="算法框架"></a>算法框架</h2><details>
+  <summary><span>点击展开</span></summary>
+
+<pre><code class="cgo">// 计算从起点 start 到终点 target 的最近距离
+int BFS(Node start, Node target) {
+    Queue&lt;Node&gt; q; // 核心数据结构
+    Set&lt;Node&gt; visited; // 避免走回头路
+
+    q.offer(start); // 将起点加入队列
+    visited.add(start);
+    int step = 0; // 记录扩散的步数
+
+    while (q not empty) {
+        int sz = q.size();
+        /* 将当前队列中的所有节点向四周扩散 */
+        for (int i = 0; i &lt; sz; i++) {
+            Node cur = q.poll();
+            /* 划重点：这里判断是否到达终点 */
+            if (cur is target)
+                return step;
+            /* 将 cur 的相邻节点加入队列 */
+            for (Node x : cur.adj())
+                if (x not in visited) {
+                    q.offer(x);
+                    visited.add(x);
+                }
+        }
+        /* 划重点：更新步数在这里 */
+        step++;
+    }
+}</code></pre>
+</details>
+
+<h1 id="深度遍历"><a href="#深度遍历" class="headerlink" title="深度遍历"></a>深度遍历</h1><h1 id="窗口滑动"><a href="#窗口滑动" class="headerlink" title="窗口滑动"></a>窗口滑动</h1><p>时间复杂度:  <code>T(n)=O(n)</code></p>
+<h2 id="算法框架-3"><a href="#算法框架-3" class="headerlink" title="算法框架"></a>算法框架</h2><details>
+  <summary><span>点击展开</span></summary>
+
+<pre><code class="cgo">  /* 滑动窗口算法框架 */
+  void slidingWindow(string s, string t) {
+      unordered_map&lt;char, int&gt; need, window;
+      for (char c : t) need[c]++;//初始化
+      int left = 0, right = 0;//左右指针
+      int valid = 0;//
+      while (right &lt; s.size()) {
+          // c 是将移入窗口的字符
+          char c = s[right];
+          // 右移窗口
+          right++;
+          // 进行窗口内数据的一系列更新
+          ...
+          /*** debug 输出的位置 ***/
+          printf(&quot;window: [%d, %d)\n&quot;, left, right);
+          // 判断左侧窗口是否要收缩
+          while (window needs shrink) {
+              // d 是将移出窗口的字符
+              char d = s[left];
+              // 左移窗口
+              left++;
+              // 进行窗口内数据的一系列更新
+              ...
+          }
+      }
+  }</code></pre>
+</details>
+
+<h2 id="参考例子"><a href="#参考例子" class="headerlink" title="参考例子"></a>参考例子</h2>
+            </div>
+            <hr>
+            <div>
+              <p>
                 
-
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2020/07/27/Spring-%E5%8E%9F%E7%90%86/" target="_self">
-          <img src="/resource/img/spring.jpg" srcset="/img/loading.gif" alt="Spring 原理"
-               class="index-img img-fluid rounded index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a href="/2020/07/27/Spring-%E5%8E%9F%E7%90%86/">
-        <p class="h4 index-header">Spring 原理</p>
-      </a>
-
-      <a href="/2020/07/27/Spring-%E5%8E%9F%E7%90%86/">
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">Spring 原理
-它是一个全面的、企业应用开发一站式的解决方案,贯穿表现层、业务层、持久层。但是 Spring仍然可以和其他的框架无缝整合。
-
-Spring 特点
-轻量级
-从大小与开销两方面而言Spring都是轻量的，完整的Spring框架可以在一个大小只有1M多的JAR文件里发布，并且Spring所需的处理开销也是微不足道的。此外Spring是非入侵式的：典型的Spring应用的对象不依赖Spring的特定类
-
-
-控制反转
-Spring通过一种称为控制反转IOC的技术促进了低耦合。当应用了IOC一个对象依赖的其他对象会通过被动的方式传递进来，而不是这个对象自己创建或者查找依赖对象。
-
-
-面</div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-07-27&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E6%A1%86%E6%9E%B6/">框架</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/Spring/">Spring</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2020/07/23/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%85%A5%E9%97%A8/" target="_self">
-          <img src="/resource/img/safe.jpeg" srcset="/img/loading.gif" alt="网络安全入门"
-               class="index-img img-fluid rounded index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a href="/2020/07/23/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%85%A5%E9%97%A8/">
-        <p class="h4 index-header">网络安全入门</p>
-      </a>
-
-      <a href="/2020/07/23/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%85%A5%E9%97%A8/">
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">相关资料
-《黑客初级入门》
-《白帽子讲web安全》
-《从零开始学习黑客技术入门教程(基础)》
-《白帽子讲web安全》
-《web前端黑客技术揭秘》
-《黑客攻防宝典：web实战篇》
-《暗战亮剑:黑客渗透于防御全程实录》
-《backtrack从入门到精通》
-《黑客攻防技术与案例剖析》
-《黑客攻防技术与案例剖析》
-《黑客大曝光第6版》
-《黑客攻防技术宝典-WEB实战篇》
-《黑客攻防技术宝典系统实战篇》
-《黑客WEB脚本攻击与防御技术核心剖析》
-《黑客渗透笔记完整版》
-《Q版缓冲区溢出教程》
-《php漏洞挖掘书籍》
-《Shellcoder编程揭秘》
-《黑客防线2009缓冲区溢出攻击与防范专辑》
-《黑客大</div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-07-23&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2020/07/07/k8s-%E5%85%A5%E9%97%A8%E5%AE%9E%E8%B7%B5/" target="_self">
-          <img src="/resource/img/k8s.jpeg" srcset="/img/loading.gif" alt="k8s 入门实践"
-               class="index-img img-fluid rounded index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a href="/2020/07/07/k8s-%E5%85%A5%E9%97%A8%E5%AE%9E%E8%B7%B5/">
-        <p class="h4 index-header">k8s 入门实践</p>
-      </a>
-
-      <a href="/2020/07/07/k8s-%E5%85%A5%E9%97%A8%E5%AE%9E%E8%B7%B5/">
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">环境准备
-至少2台 2核4G 的服务器 Cent OS 7.6 / 7.7 / 7.8
-
-服务器信息 CentOS Linux release 7.8.2003 (Core)Architecture:          x86_64
-CPU op-mode(s):        32-bit, 64-bit
-Byte Order:            Little Endian
-CPU(s):                4
-On-line CPU(s) list:   0-3
-Thread(s) per core:    2
-Core(s) per socket:    2
-Socket</div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-07-07&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/DevOps/">DevOps</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/Kubernates/">Kubernates</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2020/07/07/Java-%E5%9F%BA%E7%A1%80/" target="_self">
-          <img src="/resource/img/javaer-job-press.jpeg" srcset="/img/loading.gif" alt="Java 基础"
-               class="index-img img-fluid rounded index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a href="/2020/07/07/Java-%E5%9F%BA%E7%A1%80/">
-        <p class="h4 index-header">Java 基础</p>
-      </a>
-
-      <a href="/2020/07/07/Java-%E5%9F%BA%E7%A1%80/">
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">JAVA 异常分类及处理概念
-如果某个方法不能按照正常的途径完成任务,就可以通过另一种路径退出方法。在这种情况下 会抛出一个封装了错误信息的对象。此时,这个方法会立刻退出同时不返回任何值。另外,调用 这个方法的其他代码也无法继续执行,异常处理机制会将代码执行交给异常处理器。
-
-
-异常分类
-Throwable 是 Java 语言中所有错误或异常的超类。下一层分为 Error 和 Exception
-
-Error
-Error 类是指 java 运行时系统的内部错误和资源耗尽错误。应用程序不会抛出该类对象。如果出现了这样的错误,除了告知用户,剩下的就是尽力使程序安全的终止。
-
-Exception(R</div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-07-07&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/Java/">Java</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/%E5%9F%BA%E7%A1%80/">基础</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2020/06/25/Ubuntu%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" target="_self">
-          <img src="/resource/img/ubuntu.jpg" srcset="/img/loading.gif" alt="Ubuntu开发环境配置"
-               class="index-img img-fluid rounded index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a href="/2020/06/25/Ubuntu%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
-        <p class="h4 index-header">Ubuntu开发环境配置</p>
-      </a>
-
-      <a href="/2020/06/25/Ubuntu%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">安装前准备镜像下载地址
-
-下载后制作成启动盘就可以安装系统了
-
-挂载磁盘
-
-常用软件安装JetBrains 系列
-Android Studio
-CLion
-DataGrip
-Intelli IDEA
-GoLand
-Pycharm
-WebStorm
-
-浏览器
-Chrome
-Chromium
-Firefox
-
-开发工具
-Redis Desktop Manager
-Sublime Text
-Sunlogin Client
-Teamview
-Xmind ZEN
-WPS
-DingTalk
-
-其他软件
-electron-ssr
-FileZilla
-lantern
-Remmina
-VirtualBox
-网易</div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-06-25&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/Linux/">Linux</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/Ubuntu/">Ubuntu</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2020/06/08/MySQL%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0%E6%9C%BA%E5%88%B6/" target="_self">
-          <img src="/resource/img/mysql.jpeg" srcset="/img/loading.gif" alt="MySQL底层实现机制"
-               class="index-img img-fluid rounded index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a href="/2020/06/08/MySQL%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0%E6%9C%BA%E5%88%B6/">
-        <p class="h4 index-header">MySQL底层实现机制</p>
-      </a>
-
-      <a href="/2020/06/08/MySQL%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0%E6%9C%BA%E5%88%B6/">
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">问题
-数据库中最常见的慢查询优化方式是什么？
-为什么加索引能优化查询？
-你知道哪些数据结构可以提高查询速度？
-那这些数据结构既然都能优化查询速度，MySQL为什么选择B+TREE
-
-
-存储引擎概念数据库存储引擎是数据库底层软件组织,数据库管理系统(DBMS)使用数据引擎进行创建、查询、更新和删除数据。不同的存储引擎提供不同的存储机制、索引技巧、锁定水平等功能,使用不同的存储引擎,还可以 获得特定的功能。现在许多不同的数据库管理系统都支持多种不同的数据引擎。存储引擎主要有: 1. MyIsam , 2. InnoDB, 3. Memory, 4. Archive, 5. Federated 。
-</div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-06-08&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/RDB/">RDB</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/MySQL/">MySQL</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2020/05/31/Java%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/" target="_self">
-          <img src="/resource/img/total.jpeg" srcset="/img/loading.gif" alt="Java面试问题汇总"
-               class="index-img img-fluid rounded index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a href="/2020/05/31/Java%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/">
-        <p class="h4 index-header">Java面试问题汇总</p>
-      </a>
-
-      <a href="/2020/05/31/Java%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/">
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">美团面试题
-请解释一下对象的创建过程？（半初始化）
-
-申请一块内存，给它赋值默认值（8大类型都有自己的默认值，此时为半初始化状态），然后调用构造方法，赋初始值，然后建立关联线程上锁需要两遍检查，DCL= double check lock，开始的时候判断是否为空，加锁，进去后再判断实例是否为空，然后再进行执行，检查两遍。
-
-Volatile ：保持线程可见性，禁止指令重排序(谁先请求的，就先返回谁，然后再进行下一个指令。)
-
-加问DCL与volatile问题？（指令重排序）
-
-Double Check Lock如果没有禁止指令重排，第一个线程来了会进行版初始化状态，让t不为空，第二个线程来了判</div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-05-31&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/Java/">Java</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/%E5%9F%BA%E7%A1%80/">基础</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2020/05/30/JAVA-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%B9%B6%E5%8F%91/" target="_self">
-          <img src="/resource/img/many_thread.jpeg" srcset="/img/loading.gif" alt="JAVA 多线程并发"
-               class="index-img img-fluid rounded index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a href="/2020/05/30/JAVA-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%B9%B6%E5%8F%91/">
-        <p class="h4 index-header">JAVA 多线程并发</p>
-      </a>
-
-      <a href="/2020/05/30/JAVA-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%B9%B6%E5%8F%91/">
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">Java 并发知识库
-Java线程实现/创建方式继承Thread
-Thread类本质上是实现了Runnable接口的一个实例，代表一个线程的实例。启动线程的唯一方法就是通过Thread类的start实例方法。start方法是一个native方法，它将启动一个新的线程，并执行run()方法。
-
-public class MyThread extends Thread {
-    public void run() {
-        System.out.println(&quot;MyThread.run()&quot;);
-    }
-}
-
-MyThread myThread = new M</div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-05-30&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/Java/">Java</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/Thread/">Thread</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2020/05/29/Java-%E9%9B%86%E5%90%88/" target="_self">
-          <img src="/resource/img/java.jpeg" srcset="/img/loading.gif" alt="Java 集合"
-               class="index-img img-fluid rounded index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a href="/2020/05/29/Java-%E9%9B%86%E5%90%88/">
-        <p class="h4 index-header">Java 集合</p>
-      </a>
-
-      <a href="/2020/05/29/Java-%E9%9B%86%E5%90%88/">
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">接口继承关系和实现
-集合类存放于Java.util包中，主要有三种：set(集)，list(列表包含Queue)，map(映射)
-
-
-Collection:Collection是集合List、Set、Queue的最基本的接口。
-Iterator:迭代器，可以通过迭代器遍历集合中的数据。
-Map:是映射表的基础接口
-
-
-集合框架
-
-List
-Java的List是非常常用的的数据类型。List是有序的Collection。Java List一共三个实现：ArrayList，Vector，LinkedList
-
-
-
-ArrayList(数组)
-
-ArrayList是最常用的List实现类，内部是通过</div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-05-29&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/Java/">Java</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/Collection/">Collection</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2020/05/27/%E9%98%85%E8%AF%BB%E4%B9%A6%E5%8D%95/" target="_self">
-          <img src="/resource/img/book.jpeg" srcset="/img/loading.gif" alt="阅读书单"
-               class="index-img img-fluid rounded index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a href="/2020/05/27/%E9%98%85%E8%AF%BB%E4%B9%A6%E5%8D%95/">
-        <p class="h4 index-header">阅读书单</p>
-      </a>
-
-      <a href="/2020/05/27/%E9%98%85%E8%AF%BB%E4%B9%A6%E5%8D%95/">
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">电子书网站cn.epubee.com
-www.jiumodiary.com
-www.owllook.net
-mebook.cc
-www.xilinjie.com
-bookfere.com
-www.pansoso.com
-dianzishu.renrensousuo.com
-www.pdfzj.cn
-www.book118.com
-sobooks.cc
-kgbook.com
-www.en8848.com.cn
-cn.epubee.com
-bestcbooks.com
-智商
-如何阅读一本书
-精进
-学习之道
-刻意练习
-学会提问
-撤掉思维里面的墙
-故事思维
-创新：皮克斯的启示
-高效的秘密
-沃顿商学院最</div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-05-27&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E4%B9%A6%E5%8D%95/">书单</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/%E4%B9%A6%E7%B1%8D/">书籍</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-
-
-  <nav aria-label="index posts navigation">
-    <span class="pagination pg-blue justify-content-center mt-5" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/2/"><i class="fas fa-angle-double-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/"><i class="fas fa-angle-double-right"></i></a>
-    </span>
-  </nav>
+                  <span>
+                <i class="iconfont icon-inbox"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+                      &nbsp;
+                    
+                  </span>&nbsp;&nbsp;
+                
+                
+                  <span>
+                <i class="iconfont icon-tag"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6/">算法框架</a>
+                    
+                  </span>
+                
+              </p>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+  <script defer src="https://utteranc.es/client.js"
+          repo="mikeygithub/commit-utterance"
+          issue-term="pathname"
   
-  <script>
-    for (ele of document.getElementById("pagination").getElementsByClassName("page-number")) {
-      ele.href += '#board';
-    }
+          label="utterances"
+    
+          theme="github-light"
+          crossorigin="anonymous"
+  >
   </script>
 
 
-
               </div>
-            </div>
+            
           </div>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc-start"></div>
+<div id="toc">
+  <p class="h5"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
   </main>
 
@@ -884,6 +445,57 @@ bestcbooks.com
 
 
 
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.10.0/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var navHeight = $('#navbar').height();
+      var post = $('#post');
+      var toc = $('#toc');
+      var tocLimMax = post.offset().top + post.height() - navHeight;
+
+      $(window).scroll(function () {
+        var tocLimMin = $('#toc-start').offset().top - navHeight;
+        var scroH = document.body.scrollTop + document.documentElement.scrollTop;
+
+        if (tocLimMin <= scroH && scroH <= tocLimMax) {
+          toc.css({
+            'display': 'block',
+            'position': 'fixed',
+            'top': navHeight,
+          });
+        } else if (scroH <= tocLimMin) {
+          toc.css({
+            'position': '',
+            'top': '',
+          });
+        } else if (scroH > tocLimMax) {
+          toc.css('display', 'none');
+        }
+      });
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        scrollSmooth: true,
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc > p').css('visibility', 'visible');
+      }
+      var offset = $('#board-ctn').css('margin-right')
+      $('#toc-ctn').css({
+        'right': offset
+      })
+    });
+  </script>
+
+
+
 
 
   <script defer src="https://cdn.staticfile.org/smoothscroll/1.4.10/SmoothScroll.min.js" ></script>
@@ -914,7 +526,7 @@ bestcbooks.com
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "“你的想法会大幅度影响你的行为。当你的大脑告诉你“做不了”，你却仍然选择行动，结果就会开始改变。”&nbsp;",
+        "算法框架&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 100,
