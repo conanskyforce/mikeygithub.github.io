@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>讯龙创威面经</title>
+    <link href="/2020/11/17/%E8%AE%AF%E9%BE%99%E5%88%9B%E5%A8%81%E9%9D%A2%E7%BB%8F/"/>
+    <url>/2020/11/17/%E8%AE%AF%E9%BE%99%E5%88%9B%E5%A8%81%E9%9D%A2%E7%BB%8F/</url>
+    
+    <content type="html"><![CDATA[<h1 id="一面-一个多小时"><a href="#一面-一个多小时" class="headerlink" title="一面(一个多小时)"></a>一面(一个多小时)</h1><p>DNS寻址</p><p>Http/Https区别</p><p>TCP/IP</p><p>Nginx：ssl端口</p><p>跨域:原因+解决方案</p><p>Mysql引擎</p><p>Int(1)和Int(10)</p><p>MySQL然后提升性能</p><p>SQL基本操作</p><p>数据库事务是什么</p><p>事务隔离级别:</p><p>事务的特性:ACID</p><p>面向对象编程思想:封装,继承,多态</p><h1 id="二面"><a href="#二面" class="headerlink" title="二面()"></a>二面()</h1>]]></content>
+    
+    
+    <categories>
+      
+      <category>hide</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>hide</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>算法框架</title>
     <link href="/2020/11/14/%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6/"/>
     <url>/2020/11/14/%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6/</url>
