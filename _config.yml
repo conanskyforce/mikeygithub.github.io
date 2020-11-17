@@ -87,7 +87,7 @@ pagination_dir: page
 # Include / Exclude file(s)
 ## include:/exclude: options only apply to the 'source/' folder
 include:
-exclude:
+#exclude:
 ignore:
 
 # Extensions
@@ -101,3 +101,9 @@ deploy:
   - type: git
     repo: https://github.com/mikeygithub/mikeygithub.github.io
     branch: master
+# index2 generator是否包含官方的hexo-generator-index，默认true（包含）
+index2_include_index: true
+index2_generator:
+  exclude:
+    - tag hide # 不包含标签为hide的文章
+    - category hide # 不包含分类为hide的文章
