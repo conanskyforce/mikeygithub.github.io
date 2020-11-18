@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9cda0264-b489-417c-8765-215716b12740" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/themes/fluid/source/img/default-11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/MySQL-经典一百道面试题.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/jcsf.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/mysql-interview.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/fluid/source/img/default.png" beforeDir="false" afterPath="$PROJECT_DIR$/themes/fluid/source/img/default.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/Java基础算法.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/基础算法.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/讯龙创威面经.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/讯龙创威面经.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/fluid/languages/zh-CN.yml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/fluid/languages/zh-CN.yml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -25,7 +29,41 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/source/_posts/基础算法.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="60">
+                <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
+                <folding>
+                  <element signature="e#0#506#0" expanded="true" />
+                  <element signature="e#0#431#0" expanded="true" />
+                  <element signature="e#0#557#0" expanded="true" />
+                  <element signature="e#0#1202#0" expanded="true" />
+                  <element signature="e#0#695#0" expanded="true" />
+                  <element signature="e#0#1817#0" expanded="true" />
+                  <element signature="e#0#859#0" expanded="true" />
+                </folding>
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/source/_posts/MySQL-经典一百道面试题.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="-1440">
+                <caret line="69" column="2" selection-start-line="69" selection-start-column="2" selection-end-line="69" selection-end-column="2" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -40,6 +78,7 @@
       <find>首页</find>
       <find>links</find>
       <find>友链</find>
+      <find>更多</find>
     </findStrings>
     <replaceStrings>
       <replace>\[</replace>
@@ -53,8 +92,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/source/_posts/Flutter-Quick-Start.md" />
-        <option value="$PROJECT_DIR$/source/_posts/Knife4j-Tutorials.md" />
         <option value="$PROJECT_DIR$/source/_posts/阅读书单.md" />
         <option value="$PROJECT_DIR$/source/_posts/JVM-知识汇总.md" />
         <option value="$PROJECT_DIR$/source/_posts/Java-集合.md" />
@@ -93,7 +130,6 @@
         <option value="$PROJECT_DIR$/source/_posts/分布式缓存.md" />
         <option value="$PROJECT_DIR$/source/about/index.md" />
         <option value="$PROJECT_DIR$/themes/fluid/_config.yml" />
-        <option value="$PROJECT_DIR$/themes/fluid/languages/zh-CN.yml" />
         <option value="$PROJECT_DIR$/source/_posts/排序算法.md" />
         <option value="$PROJECT_DIR$/source/_posts/数据结构.md" />
         <option value="$PROJECT_DIR$/.travis.yml" />
@@ -101,16 +137,20 @@
         <option value="$PROJECT_DIR$/source/_posts/一致性算法.md" />
         <option value="$PROJECT_DIR$/source/_posts/算法框架.md" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/source/_posts/讯龙创威面经.md" />
         <option value="$PROJECT_DIR$/source/_data/fluid_config.yml" />
         <option value="$PROJECT_DIR$/_config.yml" />
+        <option value="$PROJECT_DIR$/source/_posts/讯龙创威面经.md" />
+        <option value="$PROJECT_DIR$/themes/fluid/languages/zh-CN.yml" />
+        <option value="$PROJECT_DIR$/source/_posts/基础算法.md" />
+        <option value="$PROJECT_DIR$/source/_posts/MySQL-经典一百道面试题.md" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="25" />
+    <option name="x" value="1920" />
+    <option name="y" value="-2" />
     <option name="width" value="1920" />
-    <option name="height" value="1055" />
+    <option name="height" value="1082" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -120,6 +160,18 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="mikeyblogs.github.io" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="mikeygithub" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -135,45 +187,25 @@
             <path>
               <item name="mikeyblogs.github.io" type="b2602c69:ProjectViewProjectNode" />
               <item name="mikeygithub.github.io" type="462c0819:PsiDirectoryNode" />
-              <item name="themes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mikeyblogs.github.io" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mikeygithub.github.io" type="462c0819:PsiDirectoryNode" />
-              <item name="themes" type="462c0819:PsiDirectoryNode" />
-              <item name="fluid" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mikeyblogs.github.io" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mikeygithub.github.io" type="462c0819:PsiDirectoryNode" />
-              <item name="themes" type="462c0819:PsiDirectoryNode" />
-              <item name="fluid" type="462c0819:PsiDirectoryNode" />
               <item name="source" type="462c0819:PsiDirectoryNode" />
+              <item name="resource" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="mikeyblogs.github.io" type="b2602c69:ProjectViewProjectNode" />
               <item name="mikeygithub.github.io" type="462c0819:PsiDirectoryNode" />
-              <item name="themes" type="462c0819:PsiDirectoryNode" />
-              <item name="fluid" type="462c0819:PsiDirectoryNode" />
               <item name="source" type="462c0819:PsiDirectoryNode" />
+              <item name="resource" type="462c0819:PsiDirectoryNode" />
               <item name="img" type="462c0819:PsiDirectoryNode" />
             </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
             <path>
-              <item name="mikeyblogs.github.io" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="mikeygithub" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="mikeyblogs.github.io" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mikeygithub.github.io" type="462c0819:PsiDirectoryNode" />
+              <item name="themes" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -184,24 +216,24 @@
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="js.buildTools.gulp.gulp_package_dir" value="/opt/node-v10.16.0-linux-x64/lib/node_modules/gulp" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/themes/fluid/source/img" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/source/resource/img" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/themes/fluid/source/img" />
-      <recent name="$PROJECT_DIR$/source/resource/pdf" />
-      <recent name="$PROJECT_DIR$/source/resource/img" />
-      <recent name="$PROJECT_DIR$/themes/fluid/source/img/background" />
-      <recent name="$PROJECT_DIR$/source/_resource/html" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/themes/fluid/source/img" />
       <recent name="$PROJECT_DIR$/themes/fluid/source/img/background" />
       <recent name="$PROJECT_DIR$/source/_resource" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/source/resource/img" />
+      <recent name="$PROJECT_DIR$/themes/fluid/source/img" />
+      <recent name="$PROJECT_DIR$/source/resource/pdf" />
+      <recent name="$PROJECT_DIR$/themes/fluid/source/img/background" />
+      <recent name="$PROJECT_DIR$/source/_resource/html" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -359,14 +391,10 @@
       <workItem from="1605170935589" duration="205000" />
       <workItem from="1605316525391" duration="5795000" />
       <workItem from="1605582574562" duration="2132000" />
-      <workItem from="1605599463946" duration="3488000" />
-    </task>
-    <task id="LOCAL-00003" summary="change branch">
-      <created>1584339894769</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1584339894769</updated>
+      <workItem from="1605599463946" duration="3533000" />
+      <workItem from="1605604451304" duration="1268000" />
+      <workItem from="1605675361797" duration="1191000" />
+      <workItem from="1605689124521" duration="1716000" />
     </task>
     <task id="LOCAL-00004" summary="change branch">
       <created>1584340095878</created>
@@ -704,16 +732,24 @@
       <option name="project" value="LOCAL" />
       <updated>1605601832952</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="添加增强插件">
+      <created>1605602994240</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1605602994240</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="447967000" />
+    <option name="totallyTimeSpent" value="452187000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="25" width="1920" height="1055" extended-state="6" />
+    <frame x="1920" y="25" width="1920" height="1055" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49892008" visible="true" weight="0.30522946" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49892008" visible="true" weight="0.20170757" />
       <window_info id="Structure" order="1" sideWeight="0.5010799" side_tool="true" weight="0.18996799" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -873,9 +909,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="添加增强插件" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/source/resource/img/jmsf.jpg" />
-    <entry file="file://$PROJECT_DIR$/script/GET_CNBLOGS_POST.sh" />
-    <entry file="file://$PROJECT_DIR$/script/README.md" />
     <entry file="file://$PROJECT_DIR$/source/_posts/MySQL底层实现机制.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
@@ -924,13 +957,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="674">
           <caret line="100" selection-start-line="100" selection-end-line="100" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/themes/fluid/languages/zh-CN.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="41" column="14" selection-start-line="41" selection-start-column="14" selection-end-line="41" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -1071,16 +1097,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/_posts/讯龙创威面经.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="60">
-            <caret line="4" column="14" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/_config.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -1134,6 +1150,60 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/themes/fluid/source/img/jay.jpg">
       <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themes/fluid/Changelog.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themes/fluid/languages/zh-CN.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="385">
+          <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/讯龙创威面经.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="195">
+            <caret line="25" column="10" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/基础算法.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="60">
+            <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
+            <folding>
+              <element signature="e#0#506#0" expanded="true" />
+              <element signature="e#0#431#0" expanded="true" />
+              <element signature="e#0#557#0" expanded="true" />
+              <element signature="e#0#1202#0" expanded="true" />
+              <element signature="e#0#695#0" expanded="true" />
+              <element signature="e#0#1817#0" expanded="true" />
+              <element signature="e#0#859#0" expanded="true" />
+            </folding>
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/MySQL-经典一百道面试题.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="-1440">
+            <caret line="69" column="2" selection-start-line="69" selection-start-column="2" selection-end-line="69" selection-end-column="2" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>
