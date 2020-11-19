@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9cda0264-b489-417c-8765-215716b12740" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/source/_posts/MySQL-经典一百道面试题.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/resource/img/jcsf.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/resource/img/mysql-interview.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/LeetCode刷题记录.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/resource/img/sfbj.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/Java基础算法.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/基础算法.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/讯龙创威面经.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/讯龙创威面经.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/fluid/languages/zh-CN.yml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/fluid/languages/zh-CN.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/MySQL-经典一百道面试题.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/MySQL-经典一百道面试题.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/resource/pdf/2021-杨彪-个人简历-Java后端-应届生.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/source/resource/pdf/2021-杨彪-个人简历-Java后端-应届生.pdf" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -29,13 +27,13 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/_posts/基础算法.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="60">
-                <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
+              <first_editor relative-caret-position="45">
+                <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
                 <folding>
                   <element signature="e#0#506#0" expanded="true" />
                   <element signature="e#0#431#0" expanded="true" />
@@ -52,11 +50,23 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/source/_posts/LeetCode刷题记录.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="165">
+                <caret line="11" selection-start-line="11" selection-end-line="11" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/_posts/MySQL-经典一百道面试题.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="-1440">
-                <caret line="69" column="2" selection-start-line="69" selection-start-column="2" selection-end-line="69" selection-end-column="2" />
+              <first_editor relative-caret-position="1065">
+                <caret line="95" column="3" selection-start-line="95" selection-start-column="3" selection-end-line="95" selection-end-column="3" />
               </first_editor>
               <second_editor />
             </state>
@@ -79,6 +89,7 @@
       <find>links</find>
       <find>友链</find>
       <find>更多</find>
+      <find>3.</find>
     </findStrings>
     <replaceStrings>
       <replace>\[</replace>
@@ -92,7 +103,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/source/_posts/阅读书单.md" />
         <option value="$PROJECT_DIR$/source/_posts/JVM-知识汇总.md" />
         <option value="$PROJECT_DIR$/source/_posts/Java-集合.md" />
         <option value="$PROJECT_DIR$/source/_posts/Java面试问题汇总.md" />
@@ -143,6 +153,7 @@
         <option value="$PROJECT_DIR$/themes/fluid/languages/zh-CN.yml" />
         <option value="$PROJECT_DIR$/source/_posts/基础算法.md" />
         <option value="$PROJECT_DIR$/source/_posts/MySQL-经典一百道面试题.md" />
+        <option value="$PROJECT_DIR$/source/_posts/LeetCode刷题记录.md" />
       </list>
     </option>
   </component>
@@ -160,18 +171,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
-            <path>
-              <item name="mikeyblogs.github.io" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="mikeygithub" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -188,14 +187,13 @@
               <item name="mikeyblogs.github.io" type="b2602c69:ProjectViewProjectNode" />
               <item name="mikeygithub.github.io" type="462c0819:PsiDirectoryNode" />
               <item name="source" type="462c0819:PsiDirectoryNode" />
-              <item name="resource" type="462c0819:PsiDirectoryNode" />
+              <item name="_posts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="mikeyblogs.github.io" type="b2602c69:ProjectViewProjectNode" />
               <item name="mikeygithub.github.io" type="462c0819:PsiDirectoryNode" />
               <item name="source" type="462c0819:PsiDirectoryNode" />
               <item name="resource" type="462c0819:PsiDirectoryNode" />
-              <item name="img" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="mikeyblogs.github.io" type="b2602c69:ProjectViewProjectNode" />
@@ -206,6 +204,18 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="mikeyblogs.github.io" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="mikeygithub" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -223,17 +233,17 @@
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/themes/fluid/source/img" />
-      <recent name="$PROJECT_DIR$/themes/fluid/source/img/background" />
-      <recent name="$PROJECT_DIR$/source/_resource" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/source/resource/img" />
       <recent name="$PROJECT_DIR$/themes/fluid/source/img" />
       <recent name="$PROJECT_DIR$/source/resource/pdf" />
       <recent name="$PROJECT_DIR$/themes/fluid/source/img/background" />
       <recent name="$PROJECT_DIR$/source/_resource/html" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/themes/fluid/source/img" />
+      <recent name="$PROJECT_DIR$/themes/fluid/source/img/background" />
+      <recent name="$PROJECT_DIR$/source/_resource" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -395,6 +405,7 @@
       <workItem from="1605604451304" duration="1268000" />
       <workItem from="1605675361797" duration="1191000" />
       <workItem from="1605689124521" duration="1716000" />
+      <workItem from="1605747977496" duration="2903000" />
     </task>
     <task id="LOCAL-00004" summary="change branch">
       <created>1584340095878</created>
@@ -743,13 +754,12 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="452187000" />
+    <option name="totallyTimeSpent" value="455090000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="25" width="1920" height="1055" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49892008" visible="true" weight="0.20170757" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49892008" visible="true" weight="0.20384204" />
       <window_info id="Structure" order="1" sideWeight="0.5010799" side_tool="true" weight="0.18996799" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -766,7 +776,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" weight="0.32937366" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32937366" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.84017277" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5010941" side_tool="true" weight="0.7861771" />
       <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.4989059" visible="true" weight="0.37688985" />
       <window_info anchor="bottom" id="Database Changes" order="11" />
@@ -786,7 +796,7 @@
       <window_info anchor="right" id="Theme Preview" order="11" />
     </layout>
     <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49892008" visible="true" weight="0.17502668" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49892008" visible="true" weight="0.20384204" />
       <window_info id="Structure" order="1" sideWeight="0.5010799" side_tool="true" weight="0.18996799" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -796,7 +806,7 @@
       <window_info id="Image Layers" order="7" />
       <window_info id="Capture Tool" order="8" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32937366" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32829374" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -909,16 +919,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="添加增强插件" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/source/_posts/MySQL底层实现机制.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="405">
-            <caret line="27" column="34" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="34" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -1176,11 +1176,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/MySQL-经典一百道面试题.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="1065">
+            <caret line="95" column="3" selection-start-line="95" selection-start-column="3" selection-end-line="95" selection-end-column="3" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/source/_posts/基础算法.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="60">
-            <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
+          <first_editor relative-caret-position="45">
+            <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
             <folding>
               <element signature="e#0#506#0" expanded="true" />
               <element signature="e#0#431#0" expanded="true" />
@@ -1195,11 +1205,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/_posts/MySQL-经典一百道面试题.md">
+    <entry file="file://$PROJECT_DIR$/source/_posts/LeetCode刷题记录.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="-1440">
-            <caret line="69" column="2" selection-start-line="69" selection-start-column="2" selection-end-line="69" selection-end-column="2" />
+          <first_editor relative-caret-position="165">
+            <caret line="11" selection-start-line="11" selection-end-line="11" />
           </first_editor>
           <second_editor />
         </state>
