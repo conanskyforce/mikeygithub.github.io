@@ -514,7 +514,7 @@ links:
   enable: true
   banner_img: /img/default.png
   banner_img_height: 80  # available: 0 - 100
-  subtitle: 更多 # 打字机内容
+  subtitle: 其他 # 打字机内容
   items:  # 键是友链标题、值的列表内容分别是 [链接, 简介, 头像]，头像可以省略
     博客园: [https://www.cnblogs.com/biaogejiushibiao/, 麦奇的博客园, /img/cnblog.jpeg]
     Github: [https://github.com/mikeygithub, 麦奇的代码库, /img/github.jpeg]
