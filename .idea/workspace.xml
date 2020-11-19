@@ -3,12 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="9cda0264-b489-417c-8765-215716b12740" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/.idea/dictionaries/mikey.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/面试自我介绍.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/resource/img/mszysx.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_data/fluid_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/source/_data/fluid_config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/MySQL-经典一百道面试题.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/MySQL-经典一百道面试题.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/讯龙创威面经.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/讯龙创威面经.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/LeetCode刷题记录.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/LeetCode刷题记录.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/面试自我介绍.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/面试自我介绍.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -51,12 +48,12 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/_posts/面试自我介绍.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="15">
-                <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+              <first_editor relative-caret-position="510">
+                <caret line="49" selection-start-line="49" selection-end-line="49" />
               </first_editor>
               <second_editor />
             </state>
@@ -75,12 +72,15 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/source/_posts/LeetCode刷题记录.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="45">
-                <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
+            <state split_layout="FIRST">
+              <first_editor relative-caret-position="755">
+                <caret line="64" selection-start-line="64" selection-end-line="64" />
+                <folding>
+                  <element signature="e#0#389#0" expanded="true" />
+                </folding>
               </first_editor>
               <second_editor />
             </state>
@@ -91,43 +91,10 @@
         <entry file="file://$PROJECT_DIR$/source/_posts/MySQL-经典一百道面试题.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="660">
-                <caret line="194" selection-start-line="194" selection-end-line="194" />
+              <first_editor relative-caret-position="1230">
+                <caret line="169" column="11" lean-forward="true" selection-start-line="169" selection-start-column="11" selection-end-line="169" selection-end-column="11" />
               </first_editor>
               <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/about/index.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="210">
-                <caret line="14" selection-start-line="14" selection-end-line="14" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/themes/fluid/languages/zh-CN.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="430">
-              <caret line="40" column="11" selection-start-line="40" selection-start-column="11" selection-end-line="40" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/_data/fluid_config.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="371">
-              <caret line="516" column="14" selection-start-line="516" selection-start-column="14" selection-end-line="516" selection-end-column="14" />
-              <folding>
-                <element signature="e#2786#18222#0" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -163,7 +130,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/source/_posts/Java-集合.md" />
         <option value="$PROJECT_DIR$/source/_posts/Java面试问题汇总.md" />
         <option value="$PROJECT_DIR$/source/_posts/JAVA-多线程并发.md" />
         <option value="$PROJECT_DIR$/source/_posts/k8s-install-tutorials.md" />
@@ -208,12 +174,13 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/_config.yml" />
         <option value="$PROJECT_DIR$/source/_posts/基础算法.md" />
-        <option value="$PROJECT_DIR$/source/_posts/LeetCode刷题记录.md" />
         <option value="$PROJECT_DIR$/source/_posts/MySQL-经典一百道面试题.md" />
         <option value="$PROJECT_DIR$/themes/fluid/languages/zh-CN.yml" />
         <option value="$PROJECT_DIR$/source/_data/fluid_config.yml" />
         <option value="$PROJECT_DIR$/source/_posts/讯龙创威面经.md" />
         <option value="$PROJECT_DIR$/source/_posts/面试注意事项.md" />
+        <option value="$PROJECT_DIR$/source/_posts/面试自我介绍.md" />
+        <option value="$PROJECT_DIR$/source/_posts/LeetCode刷题记录.md" />
       </list>
     </option>
   </component>
@@ -242,12 +209,6 @@
               <item name="mikeyblogs.github.io" type="b2602c69:ProjectViewProjectNode" />
               <item name="mikeygithub.github.io" type="462c0819:PsiDirectoryNode" />
               <item name="source" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mikeyblogs.github.io" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mikeygithub.github.io" type="462c0819:PsiDirectoryNode" />
-              <item name="source" type="462c0819:PsiDirectoryNode" />
-              <item name="_posts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="mikeyblogs.github.io" type="b2602c69:ProjectViewProjectNode" />
@@ -471,14 +432,7 @@
       <workItem from="1605604451304" duration="1268000" />
       <workItem from="1605675361797" duration="1191000" />
       <workItem from="1605689124521" duration="1716000" />
-      <workItem from="1605747977496" duration="11140000" />
-    </task>
-    <task id="LOCAL-00005" summary="change branch">
-      <created>1584343290899</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1584343290899</updated>
+      <workItem from="1605747977496" duration="13459000" />
     </task>
     <task id="LOCAL-00006" summary="change branch">
       <created>1584377187065</created>
@@ -816,14 +770,22 @@
       <option name="project" value="LOCAL" />
       <updated>1605753982077</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="更新自我介绍">
+      <created>1605777361604</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1605777361604</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="463327000" />
+    <option name="totallyTimeSpent" value="465646000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="25" width="1920" height="1055" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49892008" visible="true" weight="0.20384204" />
       <window_info id="Structure" order="1" sideWeight="0.5010799" side_tool="true" weight="0.18996799" />
@@ -844,7 +806,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" weight="0.32937366" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.84017277" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5010941" side_tool="true" weight="0.7861771" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.4989059" visible="true" weight="0.37688985" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.4989059" weight="0.37688985" />
       <window_info anchor="bottom" id="Database Changes" order="11" />
       <window_info anchor="bottom" id="Run with VisualVM" order="12" />
       <window_info anchor="bottom" id="Debug with VisualVM" order="13" />
@@ -958,7 +920,6 @@
       <path value="$PROJECT_DIR$/.deploy_git" />
       <path value="$PROJECT_DIR$/mikeygithub.github.io" />
     </ignored-roots>
-    <MESSAGE value="fix page" />
     <MESSAGE value="remove theme" />
     <MESSAGE value="change branch" />
     <MESSAGE value="基础知识汇总" />
@@ -983,7 +944,8 @@
     <MESSAGE value="算法框架" />
     <MESSAGE value="添加增强插件" />
     <MESSAGE value="更新简历" />
-    <option name="LAST_COMMIT_MESSAGE" value="更新简历" />
+    <MESSAGE value="更新自我介绍" />
+    <option name="LAST_COMMIT_MESSAGE" value="更新自我介绍" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/source/_posts/Java面试问题汇总.md">
@@ -1216,36 +1178,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/about/index.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="210">
-            <caret line="14" selection-start-line="14" selection-end-line="14" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/_posts/MySQL-经典一百道面试题.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="660">
-            <caret line="194" selection-start-line="194" selection-end-line="194" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/_posts/LeetCode刷题记录.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="45">
-            <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/source/_posts/基础算法.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -1275,11 +1207,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/source/about/index.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="210">
+            <caret line="14" selection-start-line="14" selection-end-line="14" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/MySQL-经典一百道面试题.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="1230">
+            <caret line="169" column="11" lean-forward="true" selection-start-line="169" selection-start-column="11" selection-end-line="169" selection-end-column="11" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/source/_posts/面试自我介绍.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="15">
-            <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+          <first_editor relative-caret-position="510">
+            <caret line="49" selection-start-line="49" selection-end-line="49" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/LeetCode刷题记录.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="755">
+            <caret line="64" selection-start-line="64" selection-end-line="64" />
+            <folding>
+              <element signature="e#0#389#0" expanded="true" />
+            </folding>
           </first_editor>
           <second_editor />
         </state>
