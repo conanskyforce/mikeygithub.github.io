@@ -141,7 +141,7 @@
                   
                   <span class="post-meta">
                     <i class="far fa-chart-bar"></i>
-                    92 字
+                    241 字
                   </span>
                 
 
@@ -191,7 +191,31 @@
 <p>事务的特性:ACID</p>
 <p>面向对象编程思想:封装,继承,多态</p>
 <p>设计模式:种类,作用</p>
-<h1 id="二面"><a href="#二面" class="headerlink" title="二面()"></a>二面()</h1>
+<h1 id="二面-半个小时"><a href="#二面-半个小时" class="headerlink" title="二面(半个小时)"></a>二面(半个小时)</h1><p>MySQL索引</p>
+<p>如何协调团队开发</p>
+<p>能不能开发php</p>
+<p>手撕代码:求一个递增数组中两个数和为target数的方法，返回对应的下标</p>
+<pre><code class="java">public class Solution{
+    public static int[] method(int[] nums,int target){
+       Map&lt;Integer, Integer&gt; map = new HashMap&lt;&gt;();
+         for (int i = 0; i &lt; nums.length; i++) {
+           int complement = target - nums[i];
+             if (map.containsKey(complement)) {
+                  return new int[] { map.get(complement), i };
+              }
+              map.put(nums[i], i);
+           }
+           throw new IllegalArgumentException(&quot;No two sum solution&quot;);
+    }
+}</code></pre>
+<h1 id="三面-半个小时"><a href="#三面-半个小时" class="headerlink" title="三面(半个小时)"></a>三面(半个小时)</h1><p>问项目</p>
+<p>家庭情况</p>
+<p>项目中遇到的困难</p>
+<p>自己的缺点</p>
+<p>朋友的评价</p>
+<p>打游戏不</p>
+<p>所获奖项</p>
+
             </div>
             <hr>
             <div>
