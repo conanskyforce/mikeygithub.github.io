@@ -157,6 +157,51 @@
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/2020/11/19/LeetCode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" target="_self">
+          <img src="/resource/img/sfbj.jpg" srcset="/img/loading.gif" alt="LeetCode刷题记录"
+               class="index-img img-fluid rounded index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a href="/2020/11/19/LeetCode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/">
+        <p class="h4 index-header">LeetCode刷题记录</p>
+      </a>
+
+      <a href="/2020/11/19/LeetCode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/">
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">链表树</div>
+        </div>
+      </a>
+
+      <div class="index-btm">
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-11-19&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E5%88%B7%E9%A2%98/">刷题</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E5%88%B7%E9%A2%98/">刷题</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2020/11/18/MySQL-%E7%BB%8F%E5%85%B8%E4%B8%80%E7%99%BE%E9%81%93%E9%9D%A2%E8%AF%95%E9%A2%98/" target="_self">
           <img src="/resource/img/mysql-interview.png" srcset="/img/loading.gif" alt="MySQL 经典一百道面试题"
                class="index-img img-fluid rounded index-thumbnails">
@@ -174,10 +219,26 @@
           
         
         <div class="index-excerpt" >
-          <div class="index-text mb-1">1. 什么是索引?索引是一种数据结构,可以帮助我们快速的进行数据的查找.
-2. 索引是个什么样的数据结构呢?索引的数据结构和具体存储引擎的实现有关, 在MySQL中使用较多的索引有Hash索引,B+树索引等,而我们经常使用的InnoDB存储引擎的默认索引实现为:B+树索引.
-3. Hash索引和B+树所有有什么区别或者说优劣呢?首先要知道Hash索引和B+树索引的底层实现原理:
-hash索引底层就是hash表,进行查找时,调用一次hash函数就可以获取到相应的键值,之后进行回表查询获得实际数据.B+树底层实现是多路平衡查找树.对于每一次的查询都是从根节点出发,查找到叶子节点方可以获得所查键值,</div>
+          <div class="index-text mb-1">原文链接
+1. MySQL索引使用有哪些注意事项呢？
+可以从三个维度回答这个问题：索引哪些情况会失效，索引不适合哪些场景，索引规则
+
+索引哪些情况会失效
+查询条件包含or，可能导致索引失效
+
+如何字段类型是字符串，where时一定用引号括起来，否则索引失效
+
+like通配符可能导致索引失效。
+
+联合索引，查询时的条件列不是联合索引中的第一个列，索引失效。
+
+在索引列上使用mysql的内置函数，索引失效。
+
+对索引列运算（如，+、-、*、/），索引失效。
+
+索引字段上使用（！= 或者 &lt; &gt;，not in）时，可能会导致索引失效。
+
+索引字段上使用is null， is not nu</div>
         </div>
       </a>
 
@@ -591,77 +652,6 @@ Proposer :只要 Proposer 发的提案被</div>
           <i class="iconfont icon-tag"></i>
           
             <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">负载均衡</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2020/08/26/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" target="_self">
-          <img src="/resource/img/shejimoshi.jpg" srcset="/img/loading.gif" alt="设计模式"
-               class="index-img img-fluid rounded index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a href="/2020/08/26/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
-        <p class="h4 index-header">设计模式</p>
-      </a>
-
-      <a href="/2020/08/26/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">
-设计原则
-工厂方法模式
-抽象工厂模式
-单例模式
-建造者模式
-原型模式
-适配器模式
-装饰器模式
-代理模式
-外观模式
-桥接模式
-组合模式
-享元模式
-策略模式
-模板方法模式
-观察者模式
-迭代子模式
-责任链模式
-命令模式
-备忘录模式
-状态模式
-访问者模式
-中介者模式
-解释器模式
-
-</div>
-        </div>
-      </a>
-
-      <div class="index-btm">
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-08-26&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/">编程思想</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>&nbsp;
           
         
       </div>
