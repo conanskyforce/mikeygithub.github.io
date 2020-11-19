@@ -25,10 +25,10 @@ tags: 刷题
 示例 1:
      
 输入:
-[
-   [1,3,1],
-   [1,5,1],
-   [4,2,1]
+\[
+   \[1,3,1],
+   \[1,5,1],
+   \[4,2,1]
 ]
 输出: 12
 解释: 路径 1→3→5→2→1 可以拿到最多价值的礼物
@@ -42,23 +42,14 @@ tags: 刷题
 动态规划+dp数组，置底向上，状态转移方程 F(i,j)=max(F(x-1,y),F(x,y-1));
 
 ```java
-class Solution{
-     /**
-     * @param grid
-     * @return
-     */
-    public int maxValue(int[][] grid){
-        
-        int m = grid.length;
-        
-        int n = grid[0].length;
-        
-        int[] dp = new int[n+1];
-
-        for (int i = 1; i < m; i++) {
-            for (int j = 1; j < m; j++) {
-                dp[j]=Math.max(dp[j],dp[j-1]);
-            }
+class Solution {
+    public int maxValue(int[][] grid) {
+        int m = grid.length, n = grid[0].length;
+        int[] dp = new int[n + 1];
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                dp[j] = Math.max(dp[j], dp[j - 1]) + grid[i - 1][j - 1];
+            } 
         }
         return dp[n];
     }
