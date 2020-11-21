@@ -141,7 +141,7 @@
                   
                   <span class="post-meta">
                     <i class="far fa-chart-bar"></i>
-                    13.5k 字
+                    13.6k 字
                   </span>
                 
 
@@ -355,21 +355,19 @@
 <h1 id="14-SQL优化的一般步骤是什么，怎么看执行计划（explain），如何理解其中各个字段的含义。"><a href="#14-SQL优化的一般步骤是什么，怎么看执行计划（explain），如何理解其中各个字段的含义。" class="headerlink" title="14. SQL优化的一般步骤是什么，怎么看执行计划（explain），如何理解其中各个字段的含义。"></a>14. SQL优化的一般步骤是什么，怎么看执行计划（explain），如何理解其中各个字段的含义。</h1><p>show status 命令了解各种 sql 的执行频率</p>
 <p>通过慢查询日志定位那些执行效率较低的 sql 语句</p>
 <p>explain 分析低效 sql 的执行计划（这点非常重要，日常开发中用它分析Sql，会大大降低Sql导致的线上事故）</p>
-<h1 id="15-select-for-update有什么含义，会锁表还是锁行还是其他。"><a href="#15-select-for-update有什么含义，会锁表还是锁行还是其他。" class="headerlink" title="15. select for update有什么含义，会锁表还是锁行还是其他。"></a>15. select for update有什么含义，会锁表还是锁行还是其他。</h1><p>select for update 含义<br>select查询语句是不会加锁的，但是select for update除了有查询的作用外，还会加锁呢，而且它是悲观锁哦。至于加了是行锁还是表锁，这就要看是不是用了索引/主键啦。</p>
+<h1 id="15-select-for-update有什么含义，会锁表还是锁行还是其他。"><a href="#15-select-for-update有什么含义，会锁表还是锁行还是其他。" class="headerlink" title="15. select for update有什么含义，会锁表还是锁行还是其他。"></a>15. select for update有什么含义，会锁表还是锁行还是其他。</h1><p>select for update 含义</p>
+<p>select查询语句是不会加锁的，但是select for update除了有查询的作用外，还会加锁呢，而且它是悲观锁哦。至于加了是行锁还是表锁，这就要看是不是用了索引/主键啦。</p>
 <p>没用索引/主键的话就是表锁，否则就是是行锁。</p>
-<p>select for update 加锁验证<br>表结构：</p>
+<p>select for update 加锁验证</p>
+<p>表结构：</p>
 <p>//id 为主键，name为唯一索引</p>
-<p>CREATE TABLE<br><code>account</code></p>
-<p>(</p>
-<p><code>id</code></p>
-<p>int<br>(<br>11<br>)<br> NOT NULL AUTO_INCREMENT<br>,</p>
-<p><code>name</code><br> varchar<br>(<br>255<br>)<br> DEFAULT NULL<br>,</p>
-<p><code>balance</code></p>
-<p>int<br>(<br>11<br>)<br> DEFAULT NULL<br>,</p>
-<p>  PRIMARY KEY<br>(<br><code>id</code><br>),</p>
-<p>  KEY<br><code>idx_name</code></p>
-<p>(<br><code>name</code><br>)<br> USING BTREE</p>
-<p>)<br> ENGINE<br>=<br>InnoDB<br> AUTO_INCREMENT<br>=<br>1570068<br> DEFAULT CHARSET<br>=<br>utf8</p>
+<pre><code class="sql">CREATE TABLE  `account`(
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `balance` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_name`(`name`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT=1570068 DEFAULT CHARSET=utf8</code></pre>
 <p>id为主键，select for update 1270070这条记录时，再开一个事务对该记录更新，发现更新阻塞啦，其实是加锁了。如下图：</p>
 <p>我们再开一个事务对另外一条记录1270071更新，发现更新成功，因此，如果查询条件用了索引/主键，会加行锁~</p>
 <p>我们继续一路向北吧，换普通字段balance吧，发现又阻塞了。因此，没用索引/主键的话，select for update加的就是表锁</p>
@@ -382,89 +380,105 @@
 <p>持久性：使用 redo log来实现，只要redo log日志持久化了，当系统崩溃，即可通过redo log把数据恢复。</p>
 <p>隔离性：通过锁以及MVCC,使事务相互隔离开。</p>
 <p>一致性：通过回滚、恢复，以及并发情况下的隔离性，从而实现一致性。</p>
-<h1 id="17-如果某个表有近千万数据，CRUD比较慢，如何优化。"><a href="#17-如果某个表有近千万数据，CRUD比较慢，如何优化。" class="headerlink" title="17. 如果某个表有近千万数据，CRUD比较慢，如何优化。"></a>17. 如果某个表有近千万数据，CRUD比较慢，如何优化。</h1><p>分库分表<br>某个表有近千万数据，可以考虑优化表结构，分表（水平分表，垂直分表），当然，你这样回答，需要准备好面试官问你的分库分表相关问题呀，如</p>
+<h1 id="17-如果某个表有近千万数据，CRUD比较慢，如何优化。"><a href="#17-如果某个表有近千万数据，CRUD比较慢，如何优化。" class="headerlink" title="17. 如果某个表有近千万数据，CRUD比较慢，如何优化。"></a>17. 如果某个表有近千万数据，CRUD比较慢，如何优化。</h1><h2 id="分库分表"><a href="#分库分表" class="headerlink" title="分库分表"></a>分库分表</h2><p>某个表有近千万数据，可以考虑优化表结构，分表（水平分表，垂直分表），当然，你这样回答，需要准备好面试官问你的分库分表相关问题呀，如</p>
 <p>分表方案（水平分表，垂直分表，切分规则hash等）</p>
 <p>分库分表中间件（Mycat，sharding-jdbc等）</p>
 <p>分库分表一些问题（事务问题？跨节点Join的问题）</p>
 <p>解决方案（分布式事务等）</p>
-<p>索引优化<br>除了分库分表，优化表结构，当然还有所以索引优化等方案~</p>
+<h2 id="索引优化"><a href="#索引优化" class="headerlink" title="索引优化"></a>索引优化</h2><p>除了分库分表，优化表结构，当然还有所以索引优化等方案~</p>
 <h1 id="18-如何写sql能够有效的使用到复合索引。"><a href="#18-如何写sql能够有效的使用到复合索引。" class="headerlink" title="18. 如何写sql能够有效的使用到复合索引。"></a>18. 如何写sql能够有效的使用到复合索引。</h1><p>复合索引，也叫组合索引，用户可以在多个列上建立索引,这种索引叫做复合索引。</p>
 <p>当我们创建一个组合索引的时候，如(k1,k2,k3)，相当于创建了（k1）、(k1,k2)和(k1,k2,k3)三个索引，这就是最左匹配原则。</p>
-<p>select</p>
-<p>*</p>
-<p>from<br> table<br>where<br> k1<br>=<br>A AND k2<br>=<br>B AND k3<br>=<br>D</p>
+<pre><code class="sql">select * from table where k1 = A AND k2 = B AND k3 = D</code></pre>
 <p>有关于复合索引，我们需要关注查询Sql条件的顺序，确保最左匹配原则有效，同时可以删除不必要的冗余索引。</p>
 <h1 id="19-mysql中in-和exists的区别。"><a href="#19-mysql中in-和exists的区别。" class="headerlink" title="19. mysql中in 和exists的区别。"></a>19. mysql中in 和exists的区别。</h1><p>这个，跟一下demo来看更刺激吧，啊哈哈</p>
 <p>假设表A表示某企业的员工表，表B表示部门表，查询所有部门的所有员工，很容易有以下SQL:</p>
-<p>select</p>
-<p>*</p>
-<p>from<br> A<br>where<br> deptId<br>in</p>
-<p>(<br>select<br> deptId<br>from<br> B<br>);</p>
+<pre><code class="sql">select * from A where deptId in(
+  select deptId from B
+  );</code></pre>
 <p>这样写等价于：</p>
 <p>先查询部门表B</p>
 <p>select deptId from B</p>
 <p>再由部门deptId，查询A的员工</p>
-<p>select * from A where A.deptId = B.deptId</p>
+<pre><code class="sql">select * from A where A.deptId = B.deptId</code></pre>
 <p>可以抽象成这样的一个循环：</p>
-<p>List<br>&lt;&gt;<br> resultSet<br>;</p>
-<p>for<br>(<br>int<br> i<br>=<br>0<br>;<br>i<br>&lt;<br>B<br>.<br>length<br>;<br>i<br>++)</p>
-<p>{</p>
-<p>for<br>(<br>int<br> j<br>=<br>0<br>;<br>j<br>&lt;<br>A<br>.<br>length<br>;<br>j<br>++)</p>
-<p>{</p>
-<p>if<br>(<br>A<br>[<br>i<br>].<br>id<br>==<br>B<br>[<br>j<br>].<br>id<br>)</p>
-<p>{</p>
-<pre><code>         resultSet</code></pre><p>.<br>add<br>(<br>A<br>[<br>i<br>]);</p>
-<p>break<br>;</p>
-<p>}</p>
-<p>}</p>
-<p>}</p>
+<pre><code class="java">List&lt;&gt; resultSet;
+
+for( int i = 0;i&lt;B.length;i++){
+  for(int j=0;j&lt;A.length;j++){
+    if(A[i].id==B[j].id){
+      resultSet.add(A[i]);
+      break;
+    }
+  }
+}</code></pre>
 <p>显然，除了使用in，我们也可以用exists实现一样的查询功能，如下：</p>
-<p>select</p>
-<p>*</p>
-<p>from<br> A<br>where<br> exists<br>(<br>select</p>
-<p>1</p>
-<p>from<br> B<br>where<br> A<br>.<br>deptId<br>=<br> B<br>.<br>deptId<br>);</p>
+<pre><code class="sql">select * from A where exists (
+    select 1 from B where A.deptId = B.deptId
+);</code></pre>
 <p>因为exists查询的理解就是，先执行主查询，获得数据后，再放到子查询中做条件验证，根据验证结果（true或者false），来决定主查询的数据结果是否得意保留。</p>
 <p>那么，这样写就等价于：</p>
 <p>select * from A,先从A表做循环</p>
 <p>select * from B where A.deptId = B.deptId,再从B表做循环.</p>
 <p>同理，可以抽象成这样一个循环：</p>
-<p>List<br>&lt;&gt;<br> resultSet<br>;</p>
-<p>for<br>(<br>int<br> i<br>=<br>0<br>;<br>i<br>&lt;<br>A<br>.<br>length<br>;<br>i<br>++)</p>
-<p>{</p>
-<p>for<br>(<br>int<br> j<br>=<br>0<br>;<br>j<br>&lt;<br>B<br>.<br>length<br>;<br>j<br>++)</p>
-<p>{</p>
-<p>if<br>(<br>A<br>[<br>i<br>].<br>deptId<br>==<br>B<br>[<br>j<br>].<br>deptId<br>)</p>
-<p>{</p>
-<pre><code>         resultSet</code></pre><p>.<br>add<br>(<br>A<br>[<br>i<br>]);</p>
-<p>break<br>;</p>
-<p>}</p>
-<p>}</p>
-<p>}</p>
+<pre><code class="java">List&lt;&gt; resultSet;
+
+for(int i=0;i&lt;A.length;i++){
+  for(int j=0;j&lt;B.length;j++){
+    if(A[i].deptId==B[j].deptId){
+        resultSet.add(A[i]);
+        break;
+    }
+  }
+}</code></pre>
 <p>数据库最费劲的就是跟程序链接释放。假设链接了两次，每次做上百万次的数据集查询，查完就走，这样就只做了两次；相反建立了上百万次链接，申请链接释放反复重复，这样系统就受不了了。即mysql优化原则，就是小表驱动大表，小的数据集驱动大的数据集，从而让性能更优。</p>
 <p>因此，我们要选择最外层循环小的，也就是，如果B的数据量小于A，适合使用in，如果B的数据量大于A，即适合选择exists，这就是in和exists的区别。</p>
 <h1 id="20-数据库自增主键可能遇到什么问题。"><a href="#20-数据库自增主键可能遇到什么问题。" class="headerlink" title="20. 数据库自增主键可能遇到什么问题。"></a>20. 数据库自增主键可能遇到什么问题。</h1><p>使用自增主键对数据库做分库分表，可能出现诸如主键重复等的问题。解决方案的话，简单点的话可以考虑使用UUID哈</p>
 <p>自增主键会产生表锁，从而引发问题</p>
 <p>自增主键可能用完问题。</p>
-<h1 id="21-MVCC熟悉吗，它的底层原理？"><a href="#21-MVCC熟悉吗，它的底层原理？" class="headerlink" title="21. MVCC熟悉吗，它的底层原理？"></a>21. MVCC熟悉吗，它的底层原理？</h1><p>MVCC,多版本并发控制,它是通过读取历史版本的数据，来降低并发事务冲突，从而提高并发性能的一种机制。</p>
-<p>MVCC需要关注这几个知识点：</p>
-<p>事务版本号</p>
-<p>表的隐藏列</p>
-<p>undo log</p>
-<p>read view</p>
-<h1 id="22-数据库中间件了解过吗，sharding-jdbc，mycat？"><a href="#22-数据库中间件了解过吗，sharding-jdbc，mycat？" class="headerlink" title="22. 数据库中间件了解过吗，sharding jdbc，mycat？"></a>22. 数据库中间件了解过吗，sharding jdbc，mycat？</h1><p>sharding-jdbc目前是基于jdbc驱动，无需额外的proxy，因此也无需关注proxy本身的高可用。</p>
-<p>Mycat 是基于 Proxy，它复写了 MySQL 协议，将 Mycat Server 伪装成一个 MySQL 数据库，而 Sharding-JDBC 是基于 JDBC 接口的扩展，是以 jar 包的形式提供轻量级服务的。</p>
+<h1 id="21-MVCC熟悉吗，它的底层原理？"><a href="#21-MVCC熟悉吗，它的底层原理？" class="headerlink" title="21. MVCC熟悉吗，它的底层原理？"></a>21. MVCC熟悉吗，它的底层原理？</h1><ul>
+<li><p>MVCC,多版本并发控制,它是通过读取历史版本的数据，来降低并发事务冲突，从而提高并发性能的一种机制。</p>
+</li>
+<li><p>MVCC需要关注这几个知识点：</p>
+</li>
+<li><p>事务版本号</p>
+</li>
+<li><p>表的隐藏列</p>
+</li>
+<li><p>undo log</p>
+</li>
+<li><p>read view</p>
+</li>
+</ul>
+<h1 id="22-数据库中间件了解过吗，sharding-jdbc，mycat？"><a href="#22-数据库中间件了解过吗，sharding-jdbc，mycat？" class="headerlink" title="22. 数据库中间件了解过吗，sharding jdbc，mycat？"></a>22. 数据库中间件了解过吗，sharding jdbc，mycat？</h1><ul>
+<li><p>sharding-jdbc目前是基于jdbc驱动，无需额外的proxy，因此也无需关注proxy本身的高可用。</p>
+</li>
+<li><p>Mycat 是基于 Proxy，它复写了 MySQL 协议，将 Mycat Server 伪装成一个 MySQL 数据库，而 Sharding-JDBC 是基于 JDBC 接口的扩展，是以 jar 包的形式提供轻量级服务的。</p>
+</li>
+</ul>
 <h1 id="23-MYSQL的主从延迟，你怎么解决？"><a href="#23-MYSQL的主从延迟，你怎么解决？" class="headerlink" title="23. MYSQL的主从延迟，你怎么解决？"></a>23. MYSQL的主从延迟，你怎么解决？</h1><p>嘻嘻，先复习一下主从复制原理吧，如图：主从复制分了五个步骤进行：</p>
-<p>步骤一：主库的更新事件(update、insert、delete)被写到binlog</p>
-<p>步骤二：从库发起连接，连接到主库。</p>
-<p>步骤三：此时主库创建一个binlog dump thread，把binlog的内容发送到从库。</p>
-<p>步骤四：从库启动之后，创建一个I/O线程，读取主库传过来的binlog内容并写入到relay log</p>
-<p>步骤五：还会创建一个SQL线程，从relay log里面读取内容，从ExecMasterLog_Pos位置开始执行读取到的更新事件，将更新内容写入到slave的db</p>
-<p>主从同步延迟的原因<br>一个服务器开放Ｎ个链接给客户端来连接的，这样有会有大并发的更新操作, 但是从服务器的里面读取binlog的线程仅有一个，当某个SQL在从服务器上执行的时间稍长 或者由于某个SQL要进行锁表就会导致，主服务器的SQL大量积压，未被同步到从服务器里。这就导致了主从不一致， 也就是主从延迟。</p>
-<p>主从同步延迟的解决办法<br>主服务器要负责更新操作，对安全性的要求比从服务器要高，所以有些设置参数可以修改，比如syncbinlog=1，innodbflushlogattrxcommit = 1 之类的设置等。</p>
-<p>选择更好的硬件设备作为slave。</p>
-<p>把一台从服务器当度作为备份使用， 而不提供查询， 那边他的负载下来了， 执行relay log 里面的SQL效率自然就高了。</p>
-<p>增加从服务器喽，这个目的还是分散读的压力，从而降低服务器负载。</p>
+<ul>
+<li><p>步骤一：主库的更新事件(update、insert、delete)被写到binlog</p>
+</li>
+<li><p>步骤二：从库发起连接，连接到主库。</p>
+</li>
+<li><p>步骤三：此时主库创建一个binlog dump thread，把binlog的内容发送到从库。</p>
+</li>
+<li><p>步骤四：从库启动之后，创建一个I/O线程，读取主库传过来的binlog内容并写入到relay log</p>
+</li>
+<li><p>步骤五：还会创建一个SQL线程，从relay log里面读取内容，从ExecMasterLog_Pos位置开始执行读取到的更新事件，将更新内容写入到slave的db</p>
+</li>
+</ul>
+<h3 id="主从同步延迟的原因"><a href="#主从同步延迟的原因" class="headerlink" title="主从同步延迟的原因"></a>主从同步延迟的原因</h3><p>一个服务器开放Ｎ个链接给客户端来连接的，这样有会有大并发的更新操作, 但是从服务器的里面读取binlog的线程仅有一个，当某个SQL在从服务器上执行的时间稍长 或者由于某个SQL要进行锁表就会导致，主服务器的SQL大量积压，未被同步到从服务器里。这就导致了主从不一致， 也就是主从延迟。</p>
+<h3 id="主从同步延迟的解决办法"><a href="#主从同步延迟的解决办法" class="headerlink" title="主从同步延迟的解决办法"></a>主从同步延迟的解决办法</h3><ul>
+<li><p>主服务器要负责更新操作，对安全性的要求比从服务器要高，所以有些设置参数可以修改，比如syncbinlog=1，innodbflushlogattrxcommit = 1 之类的设置等。</p>
+</li>
+<li><p>选择更好的硬件设备作为slave。</p>
+</li>
+<li><p>把一台从服务器当度作为备份使用， 而不提供查询， 那边他的负载下来了， 执行relay log 里面的SQL效率自然就高了。</p>
+</li>
+<li><p>增加从服务器喽，这个目的还是分散读的压力，从而降低服务器负载。</p>
+</li>
+</ul>
 <h1 id="24-说一下大表查询的优化方案"><a href="#24-说一下大表查询的优化方案" class="headerlink" title="24. 说一下大表查询的优化方案"></a>24. 说一下大表查询的优化方案</h1><p>优化shema、sql语句+索引；</p>
 <p>可以考虑加缓存，memcached, redis，或者JVM本地缓存；</p>
 <p>主从复制，读写分离；</p>
@@ -480,9 +494,7 @@
 <p>更快的系统响应速度</p>
 <p>新的资源分配手段</p>
 <p>统一的连接管理，避免数据库连接泄漏</p>
-<ol start="26">
-<li>一条SQL语句在MySQL中如何执行的？<br>先看一下Mysql的逻辑架构图吧~</li>
-</ol>
+<h1 id="26-一条SQL语句在MySQL中如何执行的？"><a href="#26-一条SQL语句在MySQL中如何执行的？" class="headerlink" title="26. 一条SQL语句在MySQL中如何执行的？"></a>26. 一条SQL语句在MySQL中如何执行的？</h1><p>先看一下Mysql的逻辑架构图吧~</p>
 <p>查询语句：</p>
 <p>先检查该语句是否有权限</p>
 <p>如果没有权限，直接返回错误信息</p>
@@ -490,27 +502,19 @@
 <p>如果没有缓存，分析器进行词法分析，提取 sql 语句select等的关键元素。然后判断sql 语句是否有语法错误，比如关键词是否正确等等。</p>
 <p>优化器进行确定执行方案</p>
 <p>进行权限校验，如果没有权限就直接返回错误信息，如果有权限就会调用数据库引擎接口，返回执行结果。</p>
-<ol start="27">
-<li>InnoDB引擎中的索引策略，了解过吗？<br>覆盖索引</li>
-</ol>
+<h1 id="27-InnoDB引擎中的索引策略，了解过吗？"><a href="#27-InnoDB引擎中的索引策略，了解过吗？" class="headerlink" title="27. InnoDB引擎中的索引策略，了解过吗？"></a>27. InnoDB引擎中的索引策略，了解过吗？</h1><p>覆盖索引</p>
 <p>最左前缀原则</p>
 <p>索引下推</p>
 <p>索引下推优化是 MySQL 5.6 引入的， 可以在索引遍历过程中，对索引中包含的字段先做判断，直接过滤掉不满足条件的记录，减少回表次数。</p>
-<ol start="28">
-<li>数据库存储日期格式时，如何考虑时区转换问题？<br>datetime类型适合用来记录数据的原始的创建时间，修改记录中其他字段的值，datetime字段的值不会改变，除非手动修改它。</li>
-</ol>
+<h1 id="28-数据库存储日期格式时，如何考虑时区转换问题？"><a href="#28-数据库存储日期格式时，如何考虑时区转换问题？" class="headerlink" title="28. 数据库存储日期格式时，如何考虑时区转换问题？"></a>28. 数据库存储日期格式时，如何考虑时区转换问题？</h1><p>datetime类型适合用来记录数据的原始的创建时间，修改记录中其他字段的值，datetime字段的值不会改变，除非手动修改它。</p>
 <p>timestamp类型适合用来记录数据的最后修改时间，只要修改了记录中其他字段的值，timestamp字段的值都会被自动更新。</p>
-<ol start="29">
-<li>一条sql执行过长的时间，你如何优化，从哪些方面入手？<br>查看是否涉及多表和子查询，优化Sql结构，如去除冗余字段，是否可拆表等</li>
-</ol>
+<h1 id="29-一条sql执行过长的时间，你如何优化，从哪些方面入手？"><a href="#29-一条sql执行过长的时间，你如何优化，从哪些方面入手？" class="headerlink" title="29. 一条sql执行过长的时间，你如何优化，从哪些方面入手？"></a>29. 一条sql执行过长的时间，你如何优化，从哪些方面入手？</h1><p>查看是否涉及多表和子查询，优化Sql结构，如去除冗余字段，是否可拆表等</p>
 <p>优化索引结构，看是否可以适当添加索引</p>
 <p>数量大的表，可以考虑进行分离/分表（如交易流水表）</p>
 <p>数据库主从分离，读写分离</p>
 <p>explain分析sql语句，查看执行计划，优化sql</p>
 <p>查看mysql执行日志，分析是否有其他方面的问题</p>
-<ol start="30">
-<li>MYSQL数据库服务器性能分析的方法命令有哪些?<br>Show status, 一些值得监控的变量值：</li>
-</ol>
+<h1 id="30-MYSQL数据库服务器性能分析的方法命令有哪些"><a href="#30-MYSQL数据库服务器性能分析的方法命令有哪些" class="headerlink" title="30. MYSQL数据库服务器性能分析的方法命令有哪些?"></a>30. MYSQL数据库服务器性能分析的方法命令有哪些?</h1><p>Show status, 一些值得监控的变量值：</p>
 <p>Bytesreceived和Bytessent 和服务器之间来往的流量。</p>
 <p>Com_*服务器正在执行的命令。</p>
 <p>Created_*在查询执行期限间创建的临时表和文件。</p>
@@ -518,91 +522,82 @@
 <p>Select_*不同类型的联接执行计划。</p>
 <p>Sort_*几种排序信息。</p>
 <p> Show profiles 是MySql用来分析当前会话SQL语句执行的资源消耗情况</p>
-<ol start="31">
-<li>Blob和text有什么区别？<br>Blob用于存储二进制数据，而Text用于存储大字符串。</li>
-</ol>
+<h1 id="31-Blob和text有什么区别？"><a href="#31-Blob和text有什么区别？" class="headerlink" title="31. Blob和text有什么区别？"></a>31. Blob和text有什么区别？</h1><p>Blob用于存储二进制数据，而Text用于存储大字符串。</p>
 <p>Blob值被视为二进制字符串（字节字符串）,它们没有字符集，并且排序和比较基于列值中的字节的数值。</p>
 <p>text值被视为非二进制字符串（字符字符串）。它们有一个字符集，并根据字符集的排序规则对值进行排序和比较。</p>
-<ol start="32">
-<li>mysql里记录货币用什么字段类型比较好？<br>货币在数据库中MySQL常用Decimal和Numric类型表示，这两种类型被MySQL实现为同样的类型。他们被用于保存与金钱有关的数据。</li>
-</ol>
+<h1 id="32-mysql里记录货币用什么字段类型比较好？"><a href="#32-mysql里记录货币用什么字段类型比较好？" class="headerlink" title="32. mysql里记录货币用什么字段类型比较好？"></a>32. mysql里记录货币用什么字段类型比较好？</h1><p>货币在数据库中MySQL常用Decimal和Numric类型表示，这两种类型被MySQL实现为同样的类型。他们被用于保存与金钱有关的数据。</p>
 <p>salary DECIMAL(9,2)，9(precision)代表将被用于存储值的总的小数位数，而2(scale)代表将被用于存储小数点后的位数。存储在salary列中的值的范围是从-9999999.99到9999999.99。</p>
 <p>DECIMAL和NUMERIC值作为字符串存储，而不是作为二进制浮点数，以便保存那些值的小数精度。</p>
-<ol start="33">
-<li>Mysql中有哪几种锁，列举一下？</li>
-</ol>
-<p>如果按锁粒度划分，有以下3种：</p>
+<h1 id="33-Mysql中有哪几种锁，列举一下？"><a href="#33-Mysql中有哪几种锁，列举一下？" class="headerlink" title="33. Mysql中有哪几种锁，列举一下？"></a>33. Mysql中有哪几种锁，列举一下？</h1><p>如果按锁粒度划分，有以下3种：</p>
 <p>表锁：开销小，加锁快；锁定力度大，发生锁冲突概率高，并发度最低;不会出现死锁。</p>
 <p>行锁：开销大，加锁慢；会出现死锁；锁定粒度小，发生锁冲突的概率低，并发度高。</p>
 <p>页锁：开销和加锁速度介于表锁和行锁之间；会出现死锁；锁定粒度介于表锁和行锁之间，并发度一般</p>
-<ol start="34">
-<li>Hash索引和B+树区别是什么？你在设计索引是怎么抉择的？<br>B+树可以进行范围查询，Hash索引不能。</li>
-</ol>
+<h1 id="34-Hash索引和B-树区别是什么？你在设计索引是怎么抉择的？"><a href="#34-Hash索引和B-树区别是什么？你在设计索引是怎么抉择的？" class="headerlink" title="34. Hash索引和B+树区别是什么？你在设计索引是怎么抉择的？"></a>34. Hash索引和B+树区别是什么？你在设计索引是怎么抉择的？</h1><p>B+树可以进行范围查询，Hash索引不能。</p>
 <p>B+树支持联合索引的最左侧原则，Hash索引不支持。</p>
 <p>B+树支持order by排序，Hash索引不支持。</p>
 <p>Hash索引在等值查询上比B+树效率更高。</p>
 <p>B+树使用like 进行模糊查询的时候，like后面（比如%开头）的话可以起到优化的作用，Hash索引根本无法进行模糊查询。</p>
-<ol start="35">
-<li>mysql 的内连接、左连接、右连接有什么区别？<br>Inner join 内连接，在两张表进行连接查询时，只保留两张表中完全匹配的结果集</li>
-</ol>
+<h1 id="35-mysql-的内连接、左连接、右连接有什么区别？"><a href="#35-mysql-的内连接、左连接、右连接有什么区别？" class="headerlink" title="35. mysql 的内连接、左连接、右连接有什么区别？"></a>35. mysql 的内连接、左连接、右连接有什么区别？</h1><p>Inner join 内连接，在两张表进行连接查询时，只保留两张表中完全匹配的结果集</p>
 <p>left join 在两张表进行连接查询时，会返回左表所有的行，即使在右表中没有匹配的记录。</p>
 <p>right join 在两张表进行连接查询时，会返回右表所有的行，即使在左表中没有匹配的记录。</p>
-<ol start="36">
-<li>说说MySQL 的基础架构图<br>Mysql逻辑架构图主要分三层：</li>
-</ol>
-<p>第一层负责连接处理，授权认证，安全等等</p>
-<p>第二层负责编译并优化SQL</p>
-<p>第三层是存储引擎。</p>
-<ol start="37">
-<li>什么是内连接、外连接、交叉连接、笛卡尔积呢？<br>内连接（inner join）：取得两张表中满足存在连接匹配关系的记录。</li>
-</ol>
-<p>外连接（outer join）：取得两张表中满足存在连接匹配关系的记录，以及某张表（或两张表）中不满足匹配关系的记录。</p>
-<p>交叉连接（cross join）：显示两张表所有记录一一对应，没有匹配关系进行筛选，也被称为：笛卡尔积。</p>
-<ol start="38">
-<li>说一下数据库的三大范式<br>第一范式：数据表中的每一列（每个字段）都不可以再拆分。</li>
-</ol>
-<p>第二范式：在第一范式的基础上，分主键列完全依赖于主键，而不能是依赖于主键的一部分。</p>
-<p>第三范式：在满足第二范式的基础上，表中的非主键只依赖于主键，而不依赖于其他非主键。</p>
-<ol start="39">
-<li>mysql有关权限的表有哪几个呢？<br>MySQL服务器通过权限表来控制用户对数据库的访问，权限表存放在mysql数据库里，由mysqlinstalldb脚本初始化。这些权限表分别user，db，tablepriv，columnspriv和host。</li>
-</ol>
+<h1 id="36-说说MySQL-的基础架构图"><a href="#36-说说MySQL-的基础架构图" class="headerlink" title="36. 说说MySQL 的基础架构图"></a>36. 说说MySQL 的基础架构图</h1><p>Mysql逻辑架构图主要分三层：</p>
+<ul>
+<li><p>第一层负责连接处理，授权认证，安全等等</p>
+</li>
+<li><p>第二层负责编译并优化SQL</p>
+</li>
+<li><p>第三层是存储引擎。</p>
+</li>
+</ul>
+<h1 id="37-什么是内连接、外连接、交叉连接、笛卡尔积呢？"><a href="#37-什么是内连接、外连接、交叉连接、笛卡尔积呢？" class="headerlink" title="37. 什么是内连接、外连接、交叉连接、笛卡尔积呢？"></a>37. 什么是内连接、外连接、交叉连接、笛卡尔积呢？</h1><ul>
+<li><p>内连接（inner join）：取得两张表中满足存在连接匹配关系的记录。</p>
+</li>
+<li><p>外连接（outer join）：取得两张表中满足存在连接匹配关系的记录，以及某张表（或两张表）中不满足匹配关系的记录。</p>
+</li>
+<li><p>交叉连接（cross join）：显示两张表所有记录一一对应，没有匹配关系进行筛选，也被称为：笛卡尔积。</p>
+</li>
+</ul>
+<h1 id="38-说一下数据库的三大范式"><a href="#38-说一下数据库的三大范式" class="headerlink" title="38. 说一下数据库的三大范式"></a>38. 说一下数据库的三大范式</h1><ul>
+<li><p>第一范式：数据表中的每一列（每个字段）都不可以再拆分。</p>
+</li>
+<li><p>第二范式：在第一范式的基础上，分主键列完全依赖于主键，而不能是依赖于主键的一部分。</p>
+</li>
+<li><p>第三范式：在满足第二范式的基础上，表中的非主键只依赖于主键，而不依赖于其他非主键。</p>
+</li>
+</ul>
+<h1 id="39-mysql有关权限的表有哪几个呢？"><a href="#39-mysql有关权限的表有哪几个呢？" class="headerlink" title="39. mysql有关权限的表有哪几个呢？"></a>39. mysql有关权限的表有哪几个呢？</h1><p>MySQL服务器通过权限表来控制用户对数据库的访问，权限表存放在mysql数据库里，由mysqlinstalldb脚本初始化。这些权限表分别user，db，tablepriv，columnspriv和host。</p>
 <p>user权限表：记录允许连接到服务器的用户帐号信息，里面的权限是全局级的。</p>
 <p>db权限表：记录各个帐号在各个数据库上的操作权限。</p>
 <p>table_priv权限表：记录数据表级的操作权限。</p>
 <p>columns_priv权限表：记录数据列级的操作权限。</p>
 <p>host权限表：配合db权限表对给定主机上数据库级操作权限作更细致的控制。这个权限表不受GRANT和REVOKE语句的影响。</p>
-<ol start="40">
-<li>Mysql的binlog有几种录入格式？分别有什么区别？<br>有三种格式哈，statement，row和mixed。</li>
-</ol>
-<p>statement，每一条会修改数据的sql都会记录在binlog中。不需要记录每一行的变化，减少了binlog日志量，节约了IO，提高性能。由于sql的执行是有上下文的，因此在保存的时候需要保存相关的信息，同时还有一些使用了函数之类的语句无法被记录复制。</p>
-<p>row，不记录sql语句上下文相关信息，仅保存哪条记录被修改。记录单元为每一行的改动，基本是可以全部记下来但是由于很多操作，会导致大量行的改动(比如alter table)，因此这种模式的文件保存的信息太多，日志量太大。</p>
-<p>mixed，一种折中的方案，普通操作使用statement记录，当无法使用statement的时候使用row。</p>
-<ol start="41">
-<li>InnoDB引擎的4大特性，了解过吗<br>插入缓冲（insert buffer)</li>
-</ol>
+<h1 id="40-Mysql的binlog有几种录入格式？分别有什么区别？"><a href="#40-Mysql的binlog有几种录入格式？分别有什么区别？" class="headerlink" title="40. Mysql的binlog有几种录入格式？分别有什么区别？"></a>40. Mysql的binlog有几种录入格式？分别有什么区别？</h1><p>有三种格式哈，statement，row和mixed。</p>
+<ul>
+<li><p>statement，每一条会修改数据的sql都会记录在binlog中。不需要记录每一行的变化，减少了binlog日志量，节约了IO，提高性能。由于sql的执行是有上下文的，因此在保存的时候需要保存相关的信息，同时还有一些使用了函数之类的语句无法被记录复制。</p>
+</li>
+<li><p>row，不记录sql语句上下文相关信息，仅保存哪条记录被修改。记录单元为每一行的改动，基本是可以全部记下来但是由于很多操作，会导致大量行的改动(比如alter table)，因此这种模式的文件保存的信息太多，日志量太大。</p>
+</li>
+<li><p>mixed，一种折中的方案，普通操作使用statement记录，当无法使用statement的时候使用row。</p>
+</li>
+</ul>
+<h1 id="41-InnoDB引擎的4大特性，了解过吗"><a href="#41-InnoDB引擎的4大特性，了解过吗" class="headerlink" title="41. InnoDB引擎的4大特性，了解过吗"></a>41. InnoDB引擎的4大特性，了解过吗</h1><p>插入缓冲（insert buffer)</p>
 <p>二次写(double write)</p>
 <p>自适应哈希索引(ahi)</p>
 <p>预读(read ahead)</p>
-<ol start="42">
-<li>索引有哪些优缺点？<br>优点：</li>
-</ol>
+<h1 id="42-索引有哪些优缺点？"><a href="#42-索引有哪些优缺点？" class="headerlink" title="42. 索引有哪些优缺点？"></a>42. 索引有哪些优缺点？</h1><p>优点：</p>
 <p>唯一索引可以保证数据库表中每一行的数据的唯一性</p>
 <p>索引可以加快数据查询速度，减少查询时间</p>
 <p>缺点：</p>
 <p>创建索引和维护索引要耗费时间</p>
 <p>索引需要占物理空间，除了数据表占用数据空间之外，每一个索引还要占用一定的物理空间</p>
 <p>以表中的数据进行增、删、改的时候，索引也要动态的维护。</p>
-<ol start="43">
-<li>索引有哪几种类型？<br>主键索引: 数据列不允许重复，不允许为NULL，一个表只能有一个主键。</li>
-</ol>
+<h1 id="43-索引有哪几种类型？"><a href="#43-索引有哪几种类型？" class="headerlink" title="43. 索引有哪几种类型？"></a>43. 索引有哪几种类型？</h1><p>主键索引: 数据列不允许重复，不允许为NULL，一个表只能有一个主键。</p>
 <p>唯一索引: 数据列不允许重复，允许为NULL值，一个表允许多个列创建唯一索引。</p>
 <p>普通索引: 基本的索引类型，没有唯一性的限制，允许为NULL值。</p>
 <p>全文索引：是目前搜索引擎使用的一种关键技术，对文本的内容进行分词、搜索。</p>
 <p>覆盖索引：查询列要被所建的索引覆盖，不必读取数据行</p>
 <p>组合索引：多列值组成一个索引，用于组合搜索，效率大于索引合并</p>
-<ol start="44">
-<li>创建索引有什么原则呢？<br>最左前缀匹配原则</li>
-</ol>
+<h1 id="44-创建索引有什么原则呢？"><a href="#44-创建索引有什么原则呢？" class="headerlink" title="44. 创建索引有什么原则呢？"></a>44. 创建索引有什么原则呢？</h1><p>最左前缀匹配原则</p>
 <p>频繁作为查询条件的字段才去创建索引</p>
 <p>频繁更新的字段不适合创建索引</p>
 <p>索引列不能参与计算，不能有函数操作</p>
@@ -612,25 +607,18 @@
 <p>定义有外键的数据列一定要建立索引。</p>
 <p>对于定义为text、image数据类型的列不要建立索引。</p>
 <p>删除不再使用或者很少使用的索引</p>
-<ol start="45">
-<li>创建索引的三种方式<br>在执行CREATE TABLE时创建索引</li>
-</ol>
-<p>CREATE TABLE<br><code>employee</code></p>
-<p>(</p>
-<p><code>id</code></p>
-<p>int<br>(<br>11<br>)<br> NOT NULL<br>,</p>
-<p><code>name</code><br> varchar<br>(<br>255<br>)<br> DEFAULT NULL<br>,</p>
-<p><code>age</code></p>
-<p>int<br>(<br>11<br>)<br> DEFAULT NULL<br>,</p>
-<p><code>date</code><br> datetime DEFAULT NULL<br>,</p>
-<p><code>sex</code></p>
-<p>int<br>(<br>1<br>)<br> DEFAULT NULL<br>,</p>
-<p>  PRIMARY KEY<br>(<br><code>id</code><br>),</p>
-<p>  KEY<br><code>idx_name</code></p>
-<p>(<br><code>name</code><br>)<br> USING BTREE</p>
-<p>)<br> ENGINE<br>=<br>InnoDB<br> DEFAULT CHARSET<br>=<br>utf8<br>;</p>
+<h1 id="45-创建索引的三种方式"><a href="#45-创建索引的三种方式" class="headerlink" title="45. 创建索引的三种方式"></a>45. 创建索引的三种方式</h1><p>在执行CREATE TABLE时创建索引</p>
+<pre><code class="sql">CREATE TABLE `employee`(
+    `id`int(11) NOT NULL,
+    `name` varchar(255) DEFAULT NULL,
+    `age` int(11) DEFAULT NULL,
+    `date` datetime DEFAULT NULL,
+    `sex` int(1) DEFAULT NULL, 
+    PRIMARY KEY (`id`),
+    KEY `idx_name`(`name`) USING BTREE
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;</code></pre>
 <p>使用ALTER TABLE命令添加索引</p>
-<p>ALTER TABLE table_name ADD INDEX index_name<br>(<br>column<br>);</p>
+<p>ALTER TABLE table_name ADD INDEX index_name (column);</p>
 <p>使用CREATE INDEX命令创建</p>
 <p>CREATE INDEX index_name ON table_name<br>(<br>column<br>);</p>
 <ol start="46">
