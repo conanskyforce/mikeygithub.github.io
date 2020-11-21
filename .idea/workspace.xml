@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/source/_posts/MySQL-经典一百道面试题.md" line="684" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="9cda0264-b489-417c-8765-215716b12740" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/LeetCode刷题记录.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/LeetCode刷题记录.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/source/_posts/MySQL-经典一百道面试题.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/MySQL-经典一百道面试题.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
@@ -42,8 +44,8 @@
         <entry file="file://$PROJECT_DIR$/source/_posts/面试自我介绍.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="735">
-                <caret line="49" selection-start-line="49" selection-end-line="49" />
+              <first_editor relative-caret-position="555">
+                <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
               </first_editor>
               <second_editor />
             </state>
@@ -62,12 +64,24 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/_posts/LeetCode刷题记录.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="394">
-                <caret line="94" lean-forward="true" selection-start-line="94" selection-end-line="94" />
+              <first_editor relative-caret-position="754">
+                <caret line="142" column="1" selection-start-line="142" selection-start-column="1" selection-end-line="142" selection-end-column="1" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/source/_posts/MySQL-经典一百道面试题.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="289">
+                <caret line="764" lean-forward="true" selection-start-line="764" selection-end-line="764" />
               </first_editor>
               <second_editor />
             </state>
@@ -140,7 +154,6 @@
         <option value="$PROJECT_DIR$/source/_posts/分布式缓存.md" />
         <option value="$PROJECT_DIR$/source/about/index.md" />
         <option value="$PROJECT_DIR$/themes/fluid/_config.yml" />
-        <option value="$PROJECT_DIR$/source/_posts/排序算法.md" />
         <option value="$PROJECT_DIR$/source/_posts/数据结构.md" />
         <option value="$PROJECT_DIR$/.travis.yml" />
         <option value="$PROJECT_DIR$/source/_posts/加密算法.md" />
@@ -154,8 +167,9 @@
         <option value="$PROJECT_DIR$/source/_posts/讯龙创威面经.md" />
         <option value="$PROJECT_DIR$/source/_posts/面试注意事项.md" />
         <option value="$PROJECT_DIR$/source/_posts/面试自我介绍.md" />
-        <option value="$PROJECT_DIR$/source/_posts/MySQL-经典一百道面试题.md" />
         <option value="$PROJECT_DIR$/source/_posts/LeetCode刷题记录.md" />
+        <option value="$PROJECT_DIR$/source/_posts/排序算法.md" />
+        <option value="$PROJECT_DIR$/source/_posts/MySQL-经典一百道面试题.md" />
       </list>
     </option>
   </component>
@@ -201,6 +215,12 @@
               <item name="mikeyblogs.github.io" type="b2602c69:ProjectViewProjectNode" />
               <item name="mikeygithub.github.io" type="462c0819:PsiDirectoryNode" />
               <item name="source" type="462c0819:PsiDirectoryNode" />
+              <item name="_posts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mikeyblogs.github.io" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mikeygithub.github.io" type="462c0819:PsiDirectoryNode" />
+              <item name="source" type="462c0819:PsiDirectoryNode" />
               <item name="about" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -228,24 +248,24 @@
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="js.buildTools.gulp.gulp_package_dir" value="/opt/node-v10.16.0-linux-x64/lib/node_modules/gulp" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/source/resource/img" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/source/resource/pdf" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/source/resource/img" />
-      <recent name="$PROJECT_DIR$/themes/fluid/source/img" />
-      <recent name="$PROJECT_DIR$/source/resource/pdf" />
-      <recent name="$PROJECT_DIR$/themes/fluid/source/img/background" />
-      <recent name="$PROJECT_DIR$/source/_resource/html" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/themes/fluid/source/img" />
       <recent name="$PROJECT_DIR$/themes/fluid/source/img/background" />
       <recent name="$PROJECT_DIR$/source/_resource" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/source/resource/pdf" />
+      <recent name="$PROJECT_DIR$/source/resource/img" />
+      <recent name="$PROJECT_DIR$/themes/fluid/source/img" />
+      <recent name="$PROJECT_DIR$/themes/fluid/source/img/background" />
+      <recent name="$PROJECT_DIR$/source/_resource/html" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -408,21 +428,7 @@
       <workItem from="1605675361797" duration="1191000" />
       <workItem from="1605689124521" duration="1716000" />
       <workItem from="1605747977496" duration="14755000" />
-      <workItem from="1605831520111" duration="6859000" />
-    </task>
-    <task id="LOCAL-00008" summary="change branch">
-      <created>1584726740064</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1584726740065</updated>
-    </task>
-    <task id="LOCAL-00009" summary="change branch">
-      <created>1584726866348</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1584726866348</updated>
+      <workItem from="1605831520111" duration="14627000" />
     </task>
     <task id="LOCAL-00010" summary="change branch">
       <created>1585759475004</created>
@@ -753,17 +759,31 @@
       <option name="project" value="LOCAL" />
       <updated>1605800753707</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="丑数">
+      <created>1605846538516</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1605846538517</updated>
+    </task>
+    <task id="LOCAL-00058" summary="MySQL">
+      <created>1605920591538</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1605920591538</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="473801000" />
+    <option name="totallyTimeSpent" value="481569000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="25" width="1920" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49892008" weight="0.20597652" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49892008" visible="true" weight="0.20597652" />
       <window_info id="Structure" order="1" sideWeight="0.5010799" side_tool="true" weight="0.18996799" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -800,7 +820,7 @@
       <window_info anchor="right" id="Theme Preview" order="11" />
     </layout>
     <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49892008" visible="true" weight="0.20597652" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49892008" visible="true" weight="0.20597652" />
       <window_info id="Structure" order="1" sideWeight="0.5010799" side_tool="true" weight="0.18996799" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -896,8 +916,6 @@
       <path value="$PROJECT_DIR$/.deploy_git" />
       <path value="$PROJECT_DIR$/mikeygithub.github.io" />
     </ignored-roots>
-    <MESSAGE value="change branch" />
-    <MESSAGE value="基础知识汇总" />
     <MESSAGE value="jvm知识" />
     <MESSAGE value="java io/nio" />
     <MESSAGE value="多线程" />
@@ -921,7 +939,9 @@
     <MESSAGE value="更新简历" />
     <MESSAGE value="更新自我介绍" />
     <MESSAGE value="刷题" />
-    <option name="LAST_COMMIT_MESSAGE" value="刷题" />
+    <MESSAGE value="丑数" />
+    <MESSAGE value="MySQL" />
+    <option name="LAST_COMMIT_MESSAGE" value="MySQL" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/source/_posts/Java面试问题汇总.md">
@@ -1030,16 +1050,6 @@
         <state split_layout="FIRST">
           <first_editor relative-caret-position="3360">
             <caret line="224" column="26" selection-start-line="224" selection-start-column="26" selection-end-line="224" selection-end-column="26" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/_posts/排序算法.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="45">
-            <caret line="3" column="32" selection-start-line="3" selection-start-column="32" selection-end-line="3" selection-end-column="32" />
           </first_editor>
           <second_editor />
         </state>
@@ -1174,16 +1184,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/_posts/面试自我介绍.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="735">
-            <caret line="49" selection-start-line="49" selection-end-line="49" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/source/_posts/讯龙创威面经.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -1194,21 +1194,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/_posts/MySQL-经典一百道面试题.md">
+    <entry file="file://$PROJECT_DIR$/source/_posts/LeetCode刷题记录.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="394">
-            <caret line="187" selection-start-line="187" selection-end-line="187" />
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="754">
+            <caret line="142" column="1" selection-start-line="142" selection-start-column="1" selection-end-line="142" selection-end-column="1" />
           </first_editor>
           <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/_posts/LeetCode刷题记录.md">
+    <entry file="file://$PROJECT_DIR$/source/_posts/面试自我介绍.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="394">
-            <caret line="94" lean-forward="true" selection-start-line="94" selection-end-line="94" />
+          <first_editor relative-caret-position="555">
+            <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/排序算法.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="255">
+            <caret line="185" column="18" selection-start-line="185" selection-start-column="18" selection-end-line="185" selection-end-column="18" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/MySQL-经典一百道面试题.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="289">
+            <caret line="764" lean-forward="true" selection-start-line="764" selection-end-line="764" />
           </first_editor>
           <second_editor />
         </state>

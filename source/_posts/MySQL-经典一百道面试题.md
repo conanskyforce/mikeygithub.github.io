@@ -264,14 +264,8 @@ select * from User where name='jay' for update
 悲观锁：
 悲观锁她专一且缺乏安全感了，她的心只属于当前事务，每时每刻都担心着它心爱的数据可能被别的事务修改，所以一个事务拥有（获得）悲观锁后，其他任何事务都不能对数据进行修改啦，只能等待锁被释放才可以执行。
 
-
-
 乐观锁：
 乐观锁的“乐观情绪”体现在，它认为数据的变动不会太频繁。因此，它允许多个事务同时对数据进行变动。实现方式：乐观锁一般会使用版本号机制或CAS算法实现。
-
-
-
-
 
 # 14. SQL优化的一般步骤是什么，怎么看执行计划（explain），如何理解其中各个字段的含义。
 show status 命令了解各种 sql 的执行频率
@@ -281,81 +275,34 @@ show status 命令了解各种 sql 的执行频率
 explain 分析低效 sql 的执行计划（这点非常重要，日常开发中用它分析Sql，会大大降低Sql导致的线上事故）
 
 # 15. select for update有什么含义，会锁表还是锁行还是其他。
+
 select for update 含义
+
 select查询语句是不会加锁的，但是select for update除了有查询的作用外，还会加锁呢，而且它是悲观锁哦。至于加了是行锁还是表锁，这就要看是不是用了索引/主键啦。
 
 没用索引/主键的话就是表锁，否则就是是行锁。
 
 select for update 加锁验证
+
 表结构：
 
 //id 为主键，name为唯一索引
 
-CREATE TABLE 
-`account`
- 
-(
-
-  
-`id`
- 
-int
-(
-11
-)
- NOT NULL AUTO_INCREMENT
-,
-
-  
-`name`
- varchar
-(
-255
-)
- DEFAULT NULL
-,
-
-  
-`balance`
- 
-int
-(
-11
-)
- DEFAULT NULL
-,
-
-  PRIMARY KEY 
-(
-`id`
-),
-
-  KEY 
-`idx_name`
- 
-(
-`name`
-)
- USING BTREE
-
-)
- ENGINE
-=
-InnoDB
- AUTO_INCREMENT
-=
-1570068
- DEFAULT CHARSET
-=
-utf8
+```sql
+CREATE TABLE  `account`(
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `balance` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_name`(`name`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT=1570068 DEFAULT CHARSET=utf8
+```
 
 id为主键，select for update 1270070这条记录时，再开一个事务对该记录更新，发现更新阻塞啦，其实是加锁了。如下图：
 
 我们再开一个事务对另外一条记录1270071更新，发现更新成功，因此，如果查询条件用了索引/主键，会加行锁~
 
 我们继续一路向北吧，换普通字段balance吧，发现又阻塞了。因此，没用索引/主键的话，select for update加的就是表锁
-
-
 
 # 16. MySQL事务得四大特性以及实现原理
 
@@ -379,7 +326,9 @@ id为主键，select for update 1270070这条记录时，再开一个事务对�
 一致性：通过回滚、恢复，以及并发情况下的隔离性，从而实现一致性。
 
 # 17. 如果某个表有近千万数据，CRUD比较慢，如何优化。
-分库分表
+
+## 分库分表
+
 某个表有近千万数据，可以考虑优化表结构，分表（水平分表，垂直分表），当然，你这样回答，需要准备好面试官问你的分库分表相关问题呀，如
 
 分表方案（水平分表，垂直分表，切分规则hash等）
@@ -390,54 +339,35 @@ id为主键，select for update 1270070这条记录时，再开一个事务对�
 
 解决方案（分布式事务等）
 
-索引优化
+## 索引优化
+
 除了分库分表，优化表结构，当然还有所以索引优化等方案~
 
 
 
 # 18. 如何写sql能够有效的使用到复合索引。
+
 复合索引，也叫组合索引，用户可以在多个列上建立索引,这种索引叫做复合索引。
 
 当我们创建一个组合索引的时候，如(k1,k2,k3)，相当于创建了（k1）、(k1,k2)和(k1,k2,k3)三个索引，这就是最左匹配原则。
 
-select
- 
-*
- 
-from
- table 
-where
- k1
-=
-A AND k2
-=
-B AND k3
-=
-D
+```sql
+select * from table where k1 = A AND k2 = B AND k3 = D
+```
 
 有关于复合索引，我们需要关注查询Sql条件的顺序，确保最左匹配原则有效，同时可以删除不必要的冗余索引。
 
 # 19. mysql中in 和exists的区别。
+
 这个，跟一下demo来看更刺激吧，啊哈哈
 
 假设表A表示某企业的员工表，表B表示部门表，查询所有部门的所有员工，很容易有以下SQL:
 
-select
- 
-*
- 
-from
- A 
-where
- deptId 
-in
- 
-(
-select
- deptId 
-from
- B
-);
+```sql
+select * from A where deptId in(
+  select deptId from B
+  );
+```
 
 这样写等价于：
 
@@ -447,121 +377,33 @@ select deptId from B
 
 再由部门deptId，查询A的员工
 
+````sql
 select * from A where A.deptId = B.deptId
+`````
 
 可以抽象成这样的一个循环：
 
    
-List
-<>
- resultSet 
-;
+```java
+List<> resultSet;
 
-    
-for
-(
-int
- i
-=
-0
-;
-i
-<
-B
-.
-length
-;
-i
-++)
- 
-{
-
-          
-for
-(
-int
- j
-=
-0
-;
-j
-<
-A
-.
-length
-;
-j
-++)
- 
-{
-
-          
-if
-(
-A
-[
-i
-].
-id
-==
-B
-[
-j
-].
-id
-)
- 
-{
-
-             resultSet
-.
-add
-(
-A
-[
-i
-]);
-
-             
-break
-;
-
-          
+for( int i = 0;i<B.length;i++){
+  for(int j=0;j<A.length;j++){
+    if(A[i].id==B[j].id){
+      resultSet.add(A[i]);
+      break;
+    }
+  }
 }
-
-       
-}
-
-    
-}
+```
 
 显然，除了使用in，我们也可以用exists实现一样的查询功能，如下：
 
-select
- 
-*
- 
-from
- A 
-where
- exists 
-(
-select
- 
-1
- 
-from
- B 
-where
- A
-.
-deptId 
-=
- B
-.
-deptId
+```sql
+select * from A where exists (
+    select 1 from B where A.deptId = B.deptId
 );
- 
+```
 
 因为exists查询的理解就是，先执行主查询，获得数据后，再放到子查询中做条件验证，根据验证结果（true或者false），来决定主查询的数据结果是否得意保留。
 
@@ -573,95 +415,25 @@ select * from B where A.deptId = B.deptId,再从B表做循环.
 
 同理，可以抽象成这样一个循环：
 
-   
-List
-<>
- resultSet 
-;
+```java
+List<> resultSet;
 
-    
-for
-(
-int
- i
-=
-0
-;
-i
-<
-A
-.
-length
-;
-i
-++)
- 
-{
-
-          
-for
-(
-int
- j
-=
-0
-;
-j
-<
-B
-.
-length
-;
-j
-++)
- 
-{
-
-          
-if
-(
-A
-[
-i
-].
-deptId
-==
-B
-[
-j
-].
-deptId
-)
- 
-{
-
-             resultSet
-.
-add
-(
-A
-[
-i
-]);
-
-             
-break
-;
-
-          
+for(int i=0;i<A.length;i++){
+  for(int j=0;j<B.length;j++){
+    if(A[i].deptId==B[j].deptId){
+        resultSet.add(A[i]);
+        break;
+    }
+  }
 }
-
-       
-}
-
-    
-}
+```
 
 数据库最费劲的就是跟程序链接释放。假设链接了两次，每次做上百万次的数据集查询，查完就走，这样就只做了两次；相反建立了上百万次链接，申请链接释放反复重复，这样系统就受不了了。即mysql优化原则，就是小表驱动大表，小的数据集驱动大的数据集，从而让性能更优。
 
 因此，我们要选择最外层循环小的，也就是，如果B的数据量小于A，适合使用in，如果B的数据量大于A，即适合选择exists，这就是in和exists的区别。
 
 # 20. 数据库自增主键可能遇到什么问题。
+
 使用自增主键对数据库做分库分表，可能出现诸如主键重复等的问题。解决方案的话，简单点的话可以考虑使用UUID哈
 
 自增主键会产生表锁，从而引发问题
@@ -669,49 +441,55 @@ break
 自增主键可能用完问题。
 
 # 21. MVCC熟悉吗，它的底层原理？
-MVCC,多版本并发控制,它是通过读取历史版本的数据，来降低并发事务冲突，从而提高并发性能的一种机制。
 
-MVCC需要关注这几个知识点：
+- MVCC,多版本并发控制,它是通过读取历史版本的数据，来降低并发事务冲突，从而提高并发性能的一种机制。
 
-事务版本号
+- MVCC需要关注这几个知识点：
 
-表的隐藏列
+- 事务版本号
 
-undo log
+- 表的隐藏列
 
-read view
+- undo log
+
+- read view
 
 # 22. 数据库中间件了解过吗，sharding jdbc，mycat？
-sharding-jdbc目前是基于jdbc驱动，无需额外的proxy，因此也无需关注proxy本身的高可用。
 
-Mycat 是基于 Proxy，它复写了 MySQL 协议，将 Mycat Server 伪装成一个 MySQL 数据库，而 Sharding-JDBC 是基于 JDBC 接口的扩展，是以 jar 包的形式提供轻量级服务的。
+- sharding-jdbc目前是基于jdbc驱动，无需额外的proxy，因此也无需关注proxy本身的高可用。
+
+- Mycat 是基于 Proxy，它复写了 MySQL 协议，将 Mycat Server 伪装成一个 MySQL 数据库，而 Sharding-JDBC 是基于 JDBC 接口的扩展，是以 jar 包的形式提供轻量级服务的。
 
 # 23. MYSQL的主从延迟，你怎么解决？
+
 嘻嘻，先复习一下主从复制原理吧，如图：主从复制分了五个步骤进行：
 
-步骤一：主库的更新事件(update、insert、delete)被写到binlog
+- 步骤一：主库的更新事件(update、insert、delete)被写到binlog
 
-步骤二：从库发起连接，连接到主库。
+- 步骤二：从库发起连接，连接到主库。
 
-步骤三：此时主库创建一个binlog dump thread，把binlog的内容发送到从库。
+- 步骤三：此时主库创建一个binlog dump thread，把binlog的内容发送到从库。
 
-步骤四：从库启动之后，创建一个I/O线程，读取主库传过来的binlog内容并写入到relay log
+- 步骤四：从库启动之后，创建一个I/O线程，读取主库传过来的binlog内容并写入到relay log
 
-步骤五：还会创建一个SQL线程，从relay log里面读取内容，从ExecMasterLog_Pos位置开始执行读取到的更新事件，将更新内容写入到slave的db
+- 步骤五：还会创建一个SQL线程，从relay log里面读取内容，从ExecMasterLog_Pos位置开始执行读取到的更新事件，将更新内容写入到slave的db
 
-主从同步延迟的原因
+### 主从同步延迟的原因
+
 一个服务器开放Ｎ个链接给客户端来连接的，这样有会有大并发的更新操作, 但是从服务器的里面读取binlog的线程仅有一个，当某个SQL在从服务器上执行的时间稍长 或者由于某个SQL要进行锁表就会导致，主服务器的SQL大量积压，未被同步到从服务器里。这就导致了主从不一致， 也就是主从延迟。
 
-主从同步延迟的解决办法
-主服务器要负责更新操作，对安全性的要求比从服务器要高，所以有些设置参数可以修改，比如syncbinlog=1，innodbflushlogattrxcommit = 1 之类的设置等。
+### 主从同步延迟的解决办法
 
-选择更好的硬件设备作为slave。
+- 主服务器要负责更新操作，对安全性的要求比从服务器要高，所以有些设置参数可以修改，比如syncbinlog=1，innodbflushlogattrxcommit = 1 之类的设置等。
 
-把一台从服务器当度作为备份使用， 而不提供查询， 那边他的负载下来了， 执行relay log 里面的SQL效率自然就高了。
+- 选择更好的硬件设备作为slave。
 
-增加从服务器喽，这个目的还是分散读的压力，从而降低服务器负载。
+- 把一台从服务器当度作为备份使用， 而不提供查询， 那边他的负载下来了， 执行relay log 里面的SQL效率自然就高了。
+
+- 增加从服务器喽，这个目的还是分散读的压力，从而降低服务器负载。
 
 # 24. 说一下大表查询的优化方案
+
 优化shema、sql语句+索引；
 
 可以考虑加缓存，memcached, redis，或者JVM本地缓存；
@@ -721,6 +499,7 @@ Mycat 是基于 Proxy，它复写了 MySQL 协议，将 Mycat Server 伪装成�
 分库分表；
 
 # 25. 什么是数据库连接池?为什么需要数据库连接池呢?
+
 连接池基本原理：数据库连接池原理：在内部对象池中，维护一定数量的数据库连接，并对外暴露数据库连接的获取和返回方法。
 
 应用程序和数据库建立连接的过程：
@@ -743,7 +522,8 @@ Mycat 是基于 Proxy，它复写了 MySQL 协议，将 Mycat Server 伪装成�
 
 统一的连接管理，避免数据库连接泄漏
 
-26. 一条SQL语句在MySQL中如何执行的？
+# 26. 一条SQL语句在MySQL中如何执行的？
+
 先看一下Mysql的逻辑架构图吧~
 
 查询语句：
@@ -760,9 +540,8 @@ Mycat 是基于 Proxy，它复写了 MySQL 协议，将 Mycat Server 伪装成�
 
 进行权限校验，如果没有权限就直接返回错误信息，如果有权限就会调用数据库引擎接口，返回执行结果。
 
+# 27. InnoDB引擎中的索引策略，了解过吗？
 
-
-27. InnoDB引擎中的索引策略，了解过吗？
 覆盖索引
 
 最左前缀原则
@@ -771,12 +550,14 @@ Mycat 是基于 Proxy，它复写了 MySQL 协议，将 Mycat Server 伪装成�
 
 索引下推优化是 MySQL 5.6 引入的， 可以在索引遍历过程中，对索引中包含的字段先做判断，直接过滤掉不满足条件的记录，减少回表次数。
 
-28. 数据库存储日期格式时，如何考虑时区转换问题？
+# 28. 数据库存储日期格式时，如何考虑时区转换问题？
+
 datetime类型适合用来记录数据的原始的创建时间，修改记录中其他字段的值，datetime字段的值不会改变，除非手动修改它。
 
 timestamp类型适合用来记录数据的最后修改时间，只要修改了记录中其他字段的值，timestamp字段的值都会被自动更新。
 
-29. 一条sql执行过长的时间，你如何优化，从哪些方面入手？
+# 29. 一条sql执行过长的时间，你如何优化，从哪些方面入手？
+
 查看是否涉及多表和子查询，优化Sql结构，如去除冗余字段，是否可拆表等
 
 优化索引结构，看是否可以适当添加索引
@@ -789,7 +570,8 @@ explain分析sql语句，查看执行计划，优化sql
 
 查看mysql执行日志，分析是否有其他方面的问题
 
-30. MYSQL数据库服务器性能分析的方法命令有哪些?
+# 30. MYSQL数据库服务器性能分析的方法命令有哪些?
+
 Show status, 一些值得监控的变量值：
 
 Bytesreceived和Bytessent 和服务器之间来往的流量。
@@ -806,22 +588,23 @@ Sort_*几种排序信息。
 
  Show profiles 是MySql用来分析当前会话SQL语句执行的资源消耗情况
 
-31. Blob和text有什么区别？
+# 31. Blob和text有什么区别？
+
 Blob用于存储二进制数据，而Text用于存储大字符串。
 
 Blob值被视为二进制字符串（字节字符串）,它们没有字符集，并且排序和比较基于列值中的字节的数值。
 
 text值被视为非二进制字符串（字符字符串）。它们有一个字符集，并根据字符集的排序规则对值进行排序和比较。
 
-32. mysql里记录货币用什么字段类型比较好？
+# 32. mysql里记录货币用什么字段类型比较好？
+
 货币在数据库中MySQL常用Decimal和Numric类型表示，这两种类型被MySQL实现为同样的类型。他们被用于保存与金钱有关的数据。
 
 salary DECIMAL(9,2)，9(precision)代表将被用于存储值的总的小数位数，而2(scale)代表将被用于存储小数点后的位数。存储在salary列中的值的范围是从-9999999.99到9999999.99。
 
 DECIMAL和NUMERIC值作为字符串存储，而不是作为二进制浮点数，以便保存那些值的小数精度。
 
-33. Mysql中有哪几种锁，列举一下？
-
+# 33. Mysql中有哪几种锁，列举一下？
 
 如果按锁粒度划分，有以下3种：
 
@@ -831,7 +614,8 @@ DECIMAL和NUMERIC值作为字符串存储，而不是作为二进制浮点数，
 
 页锁：开销和加锁速度介于表锁和行锁之间；会出现死锁；锁定粒度介于表锁和行锁之间，并发度一般
 
-34. Hash索引和B+树区别是什么？你在设计索引是怎么抉择的？
+# 34. Hash索引和B+树区别是什么？你在设计索引是怎么抉择的？
+
 B+树可以进行范围查询，Hash索引不能。
 
 B+树支持联合索引的最左侧原则，Hash索引不支持。
@@ -842,37 +626,42 @@ Hash索引在等值查询上比B+树效率更高。
 
 B+树使用like 进行模糊查询的时候，like后面（比如%开头）的话可以起到优化的作用，Hash索引根本无法进行模糊查询。
 
-35. mysql 的内连接、左连接、右连接有什么区别？
+# 35. mysql 的内连接、左连接、右连接有什么区别？
+
 Inner join 内连接，在两张表进行连接查询时，只保留两张表中完全匹配的结果集
 
 left join 在两张表进行连接查询时，会返回左表所有的行，即使在右表中没有匹配的记录。
 
 right join 在两张表进行连接查询时，会返回右表所有的行，即使在左表中没有匹配的记录。
 
-36. 说说MySQL 的基础架构图
+# 36. 说说MySQL 的基础架构图
+
 Mysql逻辑架构图主要分三层：
 
-第一层负责连接处理，授权认证，安全等等
+- 第一层负责连接处理，授权认证，安全等等
 
-第二层负责编译并优化SQL
+- 第二层负责编译并优化SQL
 
-第三层是存储引擎。
+- 第三层是存储引擎。
 
-37. 什么是内连接、外连接、交叉连接、笛卡尔积呢？
-内连接（inner join）：取得两张表中满足存在连接匹配关系的记录。
+# 37. 什么是内连接、外连接、交叉连接、笛卡尔积呢？
 
-外连接（outer join）：取得两张表中满足存在连接匹配关系的记录，以及某张表（或两张表）中不满足匹配关系的记录。
+- 内连接（inner join）：取得两张表中满足存在连接匹配关系的记录。
 
-交叉连接（cross join）：显示两张表所有记录一一对应，没有匹配关系进行筛选，也被称为：笛卡尔积。
+- 外连接（outer join）：取得两张表中满足存在连接匹配关系的记录，以及某张表（或两张表）中不满足匹配关系的记录。
 
-38. 说一下数据库的三大范式
-第一范式：数据表中的每一列（每个字段）都不可以再拆分。
+- 交叉连接（cross join）：显示两张表所有记录一一对应，没有匹配关系进行筛选，也被称为：笛卡尔积。
 
-第二范式：在第一范式的基础上，分主键列完全依赖于主键，而不能是依赖于主键的一部分。
+# 38. 说一下数据库的三大范式
 
-第三范式：在满足第二范式的基础上，表中的非主键只依赖于主键，而不依赖于其他非主键。
+- 第一范式：数据表中的每一列（每个字段）都不可以再拆分。
 
-39. mysql有关权限的表有哪几个呢？
+- 第二范式：在第一范式的基础上，分主键列完全依赖于主键，而不能是依赖于主键的一部分。
+
+- 第三范式：在满足第二范式的基础上，表中的非主键只依赖于主键，而不依赖于其他非主键。
+
+# 39. mysql有关权限的表有哪几个呢？
+
 MySQL服务器通过权限表来控制用户对数据库的访问，权限表存放在mysql数据库里，由mysqlinstalldb脚本初始化。这些权限表分别user，db，tablepriv，columnspriv和host。
 
 user权限表：记录允许连接到服务器的用户帐号信息，里面的权限是全局级的。
@@ -885,16 +674,18 @@ columns_priv权限表：记录数据列级的操作权限。
 
 host权限表：配合db权限表对给定主机上数据库级操作权限作更细致的控制。这个权限表不受GRANT和REVOKE语句的影响。
 
-40. Mysql的binlog有几种录入格式？分别有什么区别？
+# 40. Mysql的binlog有几种录入格式？分别有什么区别？
+
 有三种格式哈，statement，row和mixed。
 
-statement，每一条会修改数据的sql都会记录在binlog中。不需要记录每一行的变化，减少了binlog日志量，节约了IO，提高性能。由于sql的执行是有上下文的，因此在保存的时候需要保存相关的信息，同时还有一些使用了函数之类的语句无法被记录复制。
+- statement，每一条会修改数据的sql都会记录在binlog中。不需要记录每一行的变化，减少了binlog日志量，节约了IO，提高性能。由于sql的执行是有上下文的，因此在保存的时候需要保存相关的信息，同时还有一些使用了函数之类的语句无法被记录复制。
 
-row，不记录sql语句上下文相关信息，仅保存哪条记录被修改。记录单元为每一行的改动，基本是可以全部记下来但是由于很多操作，会导致大量行的改动(比如alter table)，因此这种模式的文件保存的信息太多，日志量太大。
+- row，不记录sql语句上下文相关信息，仅保存哪条记录被修改。记录单元为每一行的改动，基本是可以全部记下来但是由于很多操作，会导致大量行的改动(比如alter table)，因此这种模式的文件保存的信息太多，日志量太大。
 
-mixed，一种折中的方案，普通操作使用statement记录，当无法使用statement的时候使用row。
+- mixed，一种折中的方案，普通操作使用statement记录，当无法使用statement的时候使用row。
 
-41. InnoDB引擎的4大特性，了解过吗
+# 41. InnoDB引擎的4大特性，了解过吗
+
 插入缓冲（insert buffer)
 
 二次写(double write)
@@ -903,7 +694,8 @@ mixed，一种折中的方案，普通操作使用statement记录，当无法使
 
 预读(read ahead)
 
-42. 索引有哪些优缺点？
+# 42. 索引有哪些优缺点？
+
 优点：
 
 唯一索引可以保证数据库表中每一行的数据的唯一性
@@ -918,7 +710,8 @@ mixed，一种折中的方案，普通操作使用statement记录，当无法使
 
 以表中的数据进行增、删、改的时候，索引也要动态的维护。
 
-43. 索引有哪几种类型？
+# 43. 索引有哪几种类型？
+
 主键索引: 数据列不允许重复，不允许为NULL，一个表只能有一个主键。
 
 唯一索引: 数据列不允许重复，允许为NULL值，一个表允许多个列创建唯一索引。
@@ -931,7 +724,8 @@ mixed，一种折中的方案，普通操作使用statement记录，当无法使
 
 组合索引：多列值组成一个索引，用于组合搜索，效率大于索引合并
 
-44. 创建索引有什么原则呢？
+# 44. 创建索引有什么原则呢？
+
 最左前缀匹配原则
 
 频繁作为查询条件的字段才去创建索引
@@ -952,86 +746,24 @@ mixed，一种折中的方案，普通操作使用statement记录，当无法使
 
 删除不再使用或者很少使用的索引
 
-45. 创建索引的三种方式
+# 45. 创建索引的三种方式
+
 在执行CREATE TABLE时创建索引
-
-CREATE TABLE 
-`employee`
- 
-(
-
-  
-`id`
- 
-int
-(
-11
-)
- NOT NULL
-,
-
-  
-`name`
- varchar
-(
-255
-)
- DEFAULT NULL
-,
-
-  
-`age`
- 
-int
-(
-11
-)
- DEFAULT NULL
-,
-
-  
-`date`
- datetime DEFAULT NULL
-,
-
-  
-`sex`
- 
-int
-(
-1
-)
- DEFAULT NULL
-,
-
-  PRIMARY KEY 
-(
-`id`
-),
-
-  KEY 
-`idx_name`
- 
-(
-`name`
-)
- USING BTREE
-
-)
- ENGINE
-=
-InnoDB
- DEFAULT CHARSET
-=
-utf8
-;
+```sql
+CREATE TABLE `employee`(
+    `id`int(11) NOT NULL,
+    `name` varchar(255) DEFAULT NULL,
+    `age` int(11) DEFAULT NULL,
+    `date` datetime DEFAULT NULL,
+    `sex` int(1) DEFAULT NULL, 
+    PRIMARY KEY (`id`),
+    KEY `idx_name`(`name`) USING BTREE
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
 
 使用ALTER TABLE命令添加索引
 
-ALTER TABLE table_name ADD INDEX index_name 
-(
-column
-);
+ALTER TABLE table_name ADD INDEX index_name (column);
 
 使用CREATE INDEX命令创建
 
