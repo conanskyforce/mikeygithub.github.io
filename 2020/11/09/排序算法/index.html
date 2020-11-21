@@ -141,7 +141,7 @@
                   
                   <span class="post-meta">
                     <i class="far fa-chart-bar"></i>
-                    1.8k 字
+                    1.7k 字
                   </span>
                 
 
@@ -183,7 +183,9 @@
 <blockquote>
 <p>常数阶O(1) &lt; 对数阶O(logN) &lt; 线性阶O(n) &lt; 线性对数阶O(nlogN) &lt; 平方阶O(n²) &lt; 立方阶O(n³) &lt; K次方阶O(n^k) &lt; 指数阶(2^n)</p>
 </blockquote>
-<h1 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h1><p> 1．先从数列中取出一个数作为基准数。<br> 2．分区过程，将比这个数大的数全放到它的右边，小于或等于它的数全放到它的左边。<br> 3．再对左右区间重复第二步，直到各区间只有一个数。  </p>
+<h1 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h1><blockquote>
+<p>1.选择基准(一般取第一个)<br>2.从右往左查找比基准小的数，进行位置交换<br>3.从左往右查找比基准大的数，进行位置交换<br>4.重复执行2、3直到比较完成<br>5.分别对两边重复执行1-4</p>
+</blockquote>
 <pre><code class="java">public class Sort {
 
     public static void quicksort(int[] arr,int left,int right){
@@ -208,7 +210,7 @@
     }
 }</code></pre>
 <h1 id="直接插入排序"><a href="#直接插入排序" class="headerlink" title="直接插入排序"></a>直接插入排序</h1><blockquote>
-<p>将待排序的数组划分为局部有序子数组subSorted和无序子数组subUnSorted，每次排序时从subUnSorted中挑出第一个元素，从后向前将其与subSorted各元素比较大小，<br>按照大小插入合适的位置，插入完成后将此元素从subUnSorted中移除，重复这个过程直至subUnSorted中没有元素，总之就时从后向前，一边比较一边移动。</p>
+<p>1.分为有序和无序两段数组<br>2.从无序中取第一个数插入有序半段中的适合位置<br>3.重复执行2步骤直到无序数组为长度为零</p>
 </blockquote>
 <p><code>T(n)=O(n^2)</code></p>
 <pre><code class="java">class Sort{
@@ -226,9 +228,15 @@
         }
     }
 }</code></pre>
-<h1 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h1><p>在长度为N的无序数组中，第一次遍历n-1个数，找到最小的数值与第一个元素交换；</p>
-<p>第二次遍历n-2个数，找到最小的数值与第二个元素交换；</p>
-<p>第n-1次遍历，找到最小的数值与第n-1个元素交换，排序完成。</p>
+<h1 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h1><blockquote>
+<p>1.在长度为N的无序数组中，第一次遍历n-1个数，找到最小的数值与第一个元素交换；</p>
+</blockquote>
+<blockquote>
+<p>2.第二次遍历n-2个数，找到最小的数值与第二个元素交换；</p>
+</blockquote>
+<blockquote>
+<p>3.第n-1次遍历，找到最小的数值与第n-1个元素交换，排序完成。</p>
+</blockquote>
 <pre><code class="java">public class Sort{
         public static void selectSort(int[] arr){
             int min;
@@ -276,19 +284,23 @@
 </blockquote>
 <p>时间复杂度: <code>T(n)=O(n^2)</code></p>
 <pre><code class="java">class Sort{
-    public static void bubbleSort(int[] arr){
-        for (int i = 0; i &lt; arr.length ; i++) {
-            for (int j = 0; j &lt;  arr.length ; j++) {
-                if (arr[i]&lt;arr[j]){
-                    int tmp  = arr[i];
-                    arr[i] = arr[j];
-                    arr[j] = tmp;
-                }
-            }
-        }
-    }
+public static void BubbleSort(int [] arr){
+
+     int temp;//临时变量
+     for(int i=0; i&lt;arr.length-1; i++){   //表示趟数，一共arr.length-1次。
+         for(int j=arr.length-1; j&gt;i; j--){
+
+             if(arr[j] &lt; arr[j-1]){
+                 temp = arr[j];
+                 arr[j] = arr[j-1];
+                 arr[j-1] = temp;
+             }
+         }
+     }
+ }
 }</code></pre>
-<h1 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h1><p>基本思路:</p>
+<h1 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h1><p>平均时间复杂度：<code>O(NlogN)</code></p>
+<p>基本思路:</p>
 <blockquote>
 <p>归并排序是建立在归并操作上的一种有效的排序算法。该算法是采用分治法（Divide and Conquer）的一个非常典型的应用。</p>
 </blockquote>
