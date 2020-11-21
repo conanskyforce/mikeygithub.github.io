@@ -302,16 +302,16 @@
 <p>那为什么不是B树而是B+树呢？</p>
 <p>1）B+树非叶子节点上是不存储数据的，仅存储键值，而B树节点中不仅存储键值，也会存储数据。innodb中页的默认大小是16KB，如果不存储数据，那么就会存储更多的键值，相应的树的阶数（节点的子节点树）就会更大，树就会更矮更胖，如此一来我们查找数据进行磁盘的IO次数有会再次减少，数据查询的效率也会更快。</p>
 <p>2）B+树索引的所有数据均存储在叶子节点，而且数据是按照顺序排列的，链表连着的。那么B+树使得范围查找，排序查找，分组查找以及去重查找变得异常简单。</p>
-<p>可以看这篇文章哈：再有人问你为什么MySQL用B+树做索引，就把这篇文章发给她</p>
 <h1 id="7-聚集索引与非聚集索引的区别"><a href="#7-聚集索引与非聚集索引的区别" class="headerlink" title="7. 聚集索引与非聚集索引的区别"></a>7. 聚集索引与非聚集索引的区别</h1><p>一个表中只能拥有一个聚集索引，而非聚集索引一个表可以存在多个。</p>
 <p>聚集索引，索引中键值的逻辑顺序决定了表中相应行的物理顺序；非聚集索引，索引中索引的逻辑顺序与磁盘上行的物理存储顺序不同。</p>
 <p>索引是通过二叉树的数据结构来描述的，我们可以这么理解聚簇索引：索引的叶节点就是数据节点。而非聚簇索引的叶节点仍然是索引节点，只不过有一个指针指向对应的数据块。</p>
 <p>聚集索引：物理存储按照索引排序；非聚集索引：物理存储不按照索引排序；</p>
 <p>何时使用聚集索引或非聚集索引？</p>
+<p><img src="/resource/img/jzsyhfzjsy.png" srcset="/img/loading.gif" alt="avatar"></p>
 <h1 id="8-limit-1000000加载很慢的话，你是怎么解决的呢？"><a href="#8-limit-1000000加载很慢的话，你是怎么解决的呢？" class="headerlink" title="8. limit 1000000加载很慢的话，你是怎么解决的呢？"></a>8. limit 1000000加载很慢的话，你是怎么解决的呢？</h1><p>方案一：如果id是连续的，可以这样，返回上次查询的最大记录(偏移量)，再往下limit</p>
 <pre><code class="sql">select id,name from employee where id &gt; 1000000 limit 10</code></pre>
 <p>方案二：在业务允许的情况下限制页数：</p>
-<p>建议跟业务讨论，有没有必要查这么后的分页啦。因为绝大多数用户都不会往后翻太多页。</p>
+<pre><code class="text">建议跟业务讨论，有没有必要查这么后的分页啦。因为绝大多数用户都不会往后翻太多页。</code></pre>
 <p>方案三：order by + 索引（id为索引）</p>
 <pre><code class="sql">select id,name from employee order by id  limit 1000000,10</code></pre>
 <p>方案四：利用延迟关联或者子查询优化超多分页场景。（先快速定位需要获取的id段，然后再关联）</p>
@@ -351,7 +351,9 @@
 <p>以上这条sql语句会锁定了User表中所有符合检索条件（name=‘jay’）的记录。本次事务提交之前，别的线程都无法修改这些记录。</p>
 <h3 id="使用乐观锁"><a href="#使用乐观锁" class="headerlink" title="使用乐观锁"></a>使用乐观锁</h3><p>乐观锁思想就是，有线程过来，先放过去修改，如果看到别的线程没修改过，就可以修改成功，如果别的线程修改过，就修改失败或者重试。实现方式：乐观锁一般会使用版本号机制或CAS算法实现。</p>
 <h1 id="13-数据库的乐观锁和悲观锁。"><a href="#13-数据库的乐观锁和悲观锁。" class="headerlink" title="13. 数据库的乐观锁和悲观锁。"></a>13. 数据库的乐观锁和悲观锁。</h1><p>悲观锁：<br>悲观锁她专一且缺乏安全感了，她的心只属于当前事务，每时每刻都担心着它心爱的数据可能被别的事务修改，所以一个事务拥有（获得）悲观锁后，其他任何事务都不能对数据进行修改啦，只能等待锁被释放才可以执行。</p>
+<p><img src="/resource/img/bgs.png" srcset="/img/loading.gif" alt="avatar"></p>
 <p>乐观锁：<br>乐观锁的“乐观情绪”体现在，它认为数据的变动不会太频繁。因此，它允许多个事务同时对数据进行变动。实现方式：乐观锁一般会使用版本号机制或CAS算法实现。</p>
+<p><img src="/resource/img/lgs.png" srcset="/img/loading.gif" alt="avatar"></p>
 <h1 id="14-SQL优化的一般步骤是什么，怎么看执行计划（explain），如何理解其中各个字段的含义。"><a href="#14-SQL优化的一般步骤是什么，怎么看执行计划（explain），如何理解其中各个字段的含义。" class="headerlink" title="14. SQL优化的一般步骤是什么，怎么看执行计划（explain），如何理解其中各个字段的含义。"></a>14. SQL优化的一般步骤是什么，怎么看执行计划（explain），如何理解其中各个字段的含义。</h1><p>show status 命令了解各种 sql 的执行频率</p>
 <p>通过慢查询日志定位那些执行效率较低的 sql 语句</p>
 <p>explain 分析低效 sql 的执行计划（这点非常重要，日常开发中用它分析Sql，会大大降低Sql导致的线上事故）</p>
@@ -369,17 +371,31 @@
   KEY `idx_name`(`name`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT=1570068 DEFAULT CHARSET=utf8</code></pre>
 <p>id为主键，select for update 1270070这条记录时，再开一个事务对该记录更新，发现更新阻塞啦，其实是加锁了。如下图：</p>
+<p><img src="/resource/img/mysqljiasuo.png" srcset="/img/loading.gif" alt="avatar"></p>
 <p>我们再开一个事务对另外一条记录1270071更新，发现更新成功，因此，如果查询条件用了索引/主键，会加行锁~</p>
+<p><img src="/resource/img/mysql-row-lock.png" srcset="/img/loading.gif" alt="avatar"></p>
 <p>我们继续一路向北吧，换普通字段balance吧，发现又阻塞了。因此，没用索引/主键的话，select for update加的就是表锁</p>
-<h1 id="16-MySQL事务得四大特性以及实现原理"><a href="#16-MySQL事务得四大特性以及实现原理" class="headerlink" title="16. MySQL事务得四大特性以及实现原理"></a>16. MySQL事务得四大特性以及实现原理</h1><p>原子性：事务作为一个整体被执行，包含在其中的对数据库的操作要么全部被执行，要么都不执行。</p>
-<p>一致性：指在事务开始之前和事务结束以后，数据不会被破坏，假如A账户给B账户转10块钱，不管成功与否，A和B的总金额是不变的。</p>
-<p>隔离性：多个事务并发访问时，事务之间是相互隔离的，即一个事务不影响其它事务运行效果。简言之，就是事务之间是进水不犯河水的。</p>
-<p>持久性：表示事务完成以后，该事务对数据库所作的操作更改，将持久地保存在数据库之中。</p>
-<p>事务ACID特性的实现思想</p>
-<p>原子性：是使用 undo log来实现的，如果事务执行过程中出错或者用户执行了rollback，系统通过undo log日志返回事务开始的状态。</p>
-<p>持久性：使用 redo log来实现，只要redo log日志持久化了，当系统崩溃，即可通过redo log把数据恢复。</p>
-<p>隔离性：通过锁以及MVCC,使事务相互隔离开。</p>
-<p>一致性：通过回滚、恢复，以及并发情况下的隔离性，从而实现一致性。</p>
+<p><img src="/resource/img/mysql-table-lock.png" srcset="/img/loading.gif" alt="avatar"></p>
+<h1 id="16-MySQL事务得四大特性以及实现原理"><a href="#16-MySQL事务得四大特性以及实现原理" class="headerlink" title="16. MySQL事务得四大特性以及实现原理"></a>16. MySQL事务得四大特性以及实现原理</h1><h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><ul>
+<li><p>原子性：事务作为一个整体被执行，包含在其中的对数据库的操作要么全部被执行，要么都不执行。</p>
+</li>
+<li><p>一致性：指在事务开始之前和事务结束以后，数据不会被破坏，假如A账户给B账户转10块钱，不管成功与否，A和B的总金额是不变的。</p>
+</li>
+<li><p>隔离性：多个事务并发访问时，事务之间是相互隔离的，即一个事务不影响其它事务运行效果。简言之，就是事务之间是进水不犯河水的。</p>
+</li>
+<li><p>持久性：表示事务完成以后，该事务对数据库所作的操作更改，将持久地保存在数据库之中。</p>
+</li>
+</ul>
+<h2 id="事务ACID特性的实现思想"><a href="#事务ACID特性的实现思想" class="headerlink" title="事务ACID特性的实现思想"></a>事务ACID特性的实现思想</h2><ul>
+<li><p>原子性：是使用 undo log来实现的，如果事务执行过程中出错或者用户执行了rollback，系统通过undo log日志返回事务开始的状态。</p>
+</li>
+<li><p>持久性：使用 redo log来实现，只要redo log日志持久化了，当系统崩溃，即可通过redo log把数据恢复。</p>
+</li>
+<li><p>隔离性：通过锁以及MVCC,使事务相互隔离开。</p>
+</li>
+<li><p>一致性：通过回滚、恢复，以及并发情况下的隔离性，从而实现一致性。</p>
+</li>
+</ul>
 <h1 id="17-如果某个表有近千万数据，CRUD比较慢，如何优化。"><a href="#17-如果某个表有近千万数据，CRUD比较慢，如何优化。" class="headerlink" title="17. 如果某个表有近千万数据，CRUD比较慢，如何优化。"></a>17. 如果某个表有近千万数据，CRUD比较慢，如何优化。</h1><h2 id="分库分表"><a href="#分库分表" class="headerlink" title="分库分表"></a>分库分表</h2><p>某个表有近千万数据，可以考虑优化表结构，分表（水平分表，垂直分表），当然，你这样回答，需要准备好面试官问你的分库分表相关问题呀，如</p>
 <p>分表方案（水平分表，垂直分表，切分规则hash等）</p>
 <p>分库分表中间件（Mycat，sharding-jdbc等）</p>
@@ -397,7 +413,7 @@
   );</code></pre>
 <p>这样写等价于：</p>
 <p>先查询部门表B</p>
-<p>select deptId from B</p>
+<pre><code class="sql">select deptId from B</code></pre>
 <p>再由部门deptId，查询A的员工</p>
 <pre><code class="sql">select * from A where A.deptId = B.deptId</code></pre>
 <p>可以抽象成这样的一个循环：</p>
@@ -455,7 +471,8 @@ for(int i=0;i&lt;A.length;i++){
 <li><p>Mycat 是基于 Proxy，它复写了 MySQL 协议，将 Mycat Server 伪装成一个 MySQL 数据库，而 Sharding-JDBC 是基于 JDBC 接口的扩展，是以 jar 包的形式提供轻量级服务的。</p>
 </li>
 </ul>
-<h1 id="23-MYSQL的主从延迟，你怎么解决？"><a href="#23-MYSQL的主从延迟，你怎么解决？" class="headerlink" title="23. MYSQL的主从延迟，你怎么解决？"></a>23. MYSQL的主从延迟，你怎么解决？</h1><p>嘻嘻，先复习一下主从复制原理吧，如图：主从复制分了五个步骤进行：</p>
+<h1 id="23-MYSQL的主从延迟，你怎么解决？"><a href="#23-MYSQL的主从延迟，你怎么解决？" class="headerlink" title="23. MYSQL的主从延迟，你怎么解决？"></a>23. MYSQL的主从延迟，你怎么解决？</h1><p><img src="/resource/img/mysql-master-salve.png" srcset="/img/loading.gif" alt="avatar"></p>
+<p>主从复制分了五个步骤进行：</p>
 <ul>
 <li><p>步骤一：主库的更新事件(update、insert、delete)被写到binlog</p>
 </li>
@@ -495,6 +512,7 @@ for(int i=0;i&lt;A.length;i++){
 <p>新的资源分配手段</p>
 <p>统一的连接管理，避免数据库连接泄漏</p>
 <h1 id="26-一条SQL语句在MySQL中如何执行的？"><a href="#26-一条SQL语句在MySQL中如何执行的？" class="headerlink" title="26. 一条SQL语句在MySQL中如何执行的？"></a>26. 一条SQL语句在MySQL中如何执行的？</h1><p>先看一下Mysql的逻辑架构图吧~</p>
+<p><img src="/resource/img/mysql-jiagou.png" srcset="/img/loading.gif" alt="avatar"></p>
 <p>查询语句：</p>
 <p>先检查该语句是否有权限</p>
 <p>如果没有权限，直接返回错误信息</p>
@@ -528,10 +546,16 @@ for(int i=0;i&lt;A.length;i++){
 <h1 id="32-mysql里记录货币用什么字段类型比较好？"><a href="#32-mysql里记录货币用什么字段类型比较好？" class="headerlink" title="32. mysql里记录货币用什么字段类型比较好？"></a>32. mysql里记录货币用什么字段类型比较好？</h1><p>货币在数据库中MySQL常用Decimal和Numric类型表示，这两种类型被MySQL实现为同样的类型。他们被用于保存与金钱有关的数据。</p>
 <p>salary DECIMAL(9,2)，9(precision)代表将被用于存储值的总的小数位数，而2(scale)代表将被用于存储小数点后的位数。存储在salary列中的值的范围是从-9999999.99到9999999.99。</p>
 <p>DECIMAL和NUMERIC值作为字符串存储，而不是作为二进制浮点数，以便保存那些值的小数精度。</p>
-<h1 id="33-Mysql中有哪几种锁，列举一下？"><a href="#33-Mysql中有哪几种锁，列举一下？" class="headerlink" title="33. Mysql中有哪几种锁，列举一下？"></a>33. Mysql中有哪几种锁，列举一下？</h1><p>如果按锁粒度划分，有以下3种：</p>
-<p>表锁：开销小，加锁快；锁定力度大，发生锁冲突概率高，并发度最低;不会出现死锁。</p>
-<p>行锁：开销大，加锁慢；会出现死锁；锁定粒度小，发生锁冲突的概率低，并发度高。</p>
-<p>页锁：开销和加锁速度介于表锁和行锁之间；会出现死锁；锁定粒度介于表锁和行锁之间，并发度一般</p>
+<h1 id="33-Mysql中有哪几种锁，列举一下？"><a href="#33-Mysql中有哪几种锁，列举一下？" class="headerlink" title="33. Mysql中有哪几种锁，列举一下？"></a>33. Mysql中有哪几种锁，列举一下？</h1><p><img src="/resource/img/mysql-lock.png" srcset="/img/loading.gif" alt="avatar"></p>
+<p>如果按锁粒度划分，有以下3种：</p>
+<ul>
+<li><p>表锁：开销小，加锁快；锁定力度大，发生锁冲突概率高，并发度最低;不会出现死锁。</p>
+</li>
+<li><p>行锁：开销大，加锁慢；会出现死锁；锁定粒度小，发生锁冲突的概率低，并发度高。</p>
+</li>
+<li><p>页锁：开销和加锁速度介于表锁和行锁之间；会出现死锁；锁定粒度介于表锁和行锁之间，并发度一般</p>
+</li>
+</ul>
 <h1 id="34-Hash索引和B-树区别是什么？你在设计索引是怎么抉择的？"><a href="#34-Hash索引和B-树区别是什么？你在设计索引是怎么抉择的？" class="headerlink" title="34. Hash索引和B+树区别是什么？你在设计索引是怎么抉择的？"></a>34. Hash索引和B+树区别是什么？你在设计索引是怎么抉择的？</h1><p>B+树可以进行范围查询，Hash索引不能。</p>
 <p>B+树支持联合索引的最左侧原则，Hash索引不支持。</p>
 <p>B+树支持order by排序，Hash索引不支持。</p>
@@ -540,7 +564,8 @@ for(int i=0;i&lt;A.length;i++){
 <h1 id="35-mysql-的内连接、左连接、右连接有什么区别？"><a href="#35-mysql-的内连接、左连接、右连接有什么区别？" class="headerlink" title="35. mysql 的内连接、左连接、右连接有什么区别？"></a>35. mysql 的内连接、左连接、右连接有什么区别？</h1><p>Inner join 内连接，在两张表进行连接查询时，只保留两张表中完全匹配的结果集</p>
 <p>left join 在两张表进行连接查询时，会返回左表所有的行，即使在右表中没有匹配的记录。</p>
 <p>right join 在两张表进行连接查询时，会返回右表所有的行，即使在左表中没有匹配的记录。</p>
-<h1 id="36-说说MySQL-的基础架构图"><a href="#36-说说MySQL-的基础架构图" class="headerlink" title="36. 说说MySQL 的基础架构图"></a>36. 说说MySQL 的基础架构图</h1><p>Mysql逻辑架构图主要分三层：</p>
+<h1 id="36-说说MySQL-的基础架构图"><a href="#36-说说MySQL-的基础架构图" class="headerlink" title="36. 说说MySQL 的基础架构图"></a>36. 说说MySQL 的基础架构图</h1><p><img src="/resource/img/mysql-jiagou.png" srcset="/img/loading.gif" alt="avatar"></p>
+<p>Mysql逻辑架构图主要分三层：</p>
 <ul>
 <li><p>第一层负责连接处理，授权认证，安全等等</p>
 </li>
@@ -618,195 +643,194 @@ for(int i=0;i&lt;A.length;i++){
     KEY `idx_name`(`name`) USING BTREE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;</code></pre>
 <p>使用ALTER TABLE命令添加索引</p>
-<p>ALTER TABLE table_name ADD INDEX index_name (column);</p>
+<pre><code class="sql">ALTER TABLE table_name ADD INDEX index_name (column);</code></pre>
 <p>使用CREATE INDEX命令创建</p>
-<p>CREATE INDEX index_name ON table_name<br>(<br>column<br>);</p>
-<ol start="46">
-<li>百万级别或以上的数据，你是如何删除的？<br>我们想要删除百万数据的时候可以先删除索引</li>
-</ol>
+<pre><code class="sql">CREATE INDEX index_name ON table_name 
+(
+column
+);</code></pre>
+<h1 id="46-百万级别或以上的数据，你是如何删除的？"><a href="#46-百万级别或以上的数据，你是如何删除的？" class="headerlink" title="46. 百万级别或以上的数据，你是如何删除的？"></a>46. 百万级别或以上的数据，你是如何删除的？</h1><p>我们想要删除百万数据的时候可以先删除索引</p>
 <p>然后批量删除其中无用数据</p>
 <p>删除完成后重新创建索引。</p>
-<ol start="47">
-<li>什么是最左前缀原则？什么是最左匹配原则？<br>最左前缀原则，就是最左优先，在创建多列索引时，要根据业务需求，where子句中使用最频繁的一列放在最左边。</li>
-</ol>
+<h1 id="47-什么是最左前缀原则？什么是最左匹配原则？"><a href="#47-什么是最左前缀原则？什么是最左匹配原则？" class="headerlink" title="47. 什么是最左前缀原则？什么是最左匹配原则？"></a>47. 什么是最左前缀原则？什么是最左匹配原则？</h1><p>最左前缀原则，就是最左优先，在创建多列索引时，要根据业务需求，where子句中使用最频繁的一列放在最左边。</p>
 <p>当我们创建一个组合索引的时候，如(k1,k2,k3)，相当于创建了（k1）、(k1,k2)和(k1,k2,k3)三个索引，这就是最左匹配原则。。</p>
-<ol start="48">
-<li>B树和B+树的区别，数据库为什么使用B+树而不是B树？<br>在B树中，键和值即存放在内部节点又存放在叶子节点；在B+树中，内部节点只存键，叶子节点则同时存放键和值。</li>
-</ol>
-<p>B+树的叶子节点有一条链相连，而B树的叶子节点各自独立的。</p>
-<p>B+树索引的所有数据均存储在叶子节点，而且数据是按照顺序排列的，链表连着的。那么B+树使得范围查找，排序查找，分组查找以及去重查找变得异常简单。.</p>
-<p>B+树非叶子节点上是不存储数据的，仅存储键值，而B树节点中不仅存储键值，也会存储数据。innodb中页的默认大小是16KB，如果不存储数据，那么就会存储更多的键值，相应的树的阶数（节点的子节点树）就会更大，树就会更矮更胖，如此一来我们查找数据进行磁盘的IO次数有会再次减少，数据查询的效率也会更快.</p>
-<ol start="49">
-<li>覆盖索引、回表等这些，了解过吗？<br>覆盖索引：查询列要被所建的索引覆盖，不必从数据表中读取，换句话说查询列要被所使用的索引覆盖。</li>
-</ol>
-<p>回表：二级索引无法直接查询所有列的数据，所以通过二级索引查询到聚簇索引后，再查询到想要的数据，这种通过二级索引查询出来的过程，就叫做回表。</p>
-<ol start="50">
-<li>B+树在满足聚簇索引和覆盖索引的时候不需要回表查询数据？<br>在B+树的索引中，叶子节点可能存储了当前的key值，也可能存储了当前的key值以及整行的数据，这就是聚簇索引和非聚簇索引。在InnoDB中，只有主键索引是聚簇索引，如果没有主键，则挑选一个唯一键建立聚簇索引。如果没有唯一键，则隐式的生成一个键来建立聚簇索引。</li>
-</ol>
+<h1 id="48-B树和B-树的区别，数据库为什么使用B-树而不是B树？"><a href="#48-B树和B-树的区别，数据库为什么使用B-树而不是B树？" class="headerlink" title="48. B树和B+树的区别，数据库为什么使用B+树而不是B树？"></a>48. B树和B+树的区别，数据库为什么使用B+树而不是B树？</h1><p>在B树中，键和值即存放在内部节点又存放在叶子节点；在B+树中，内部节点只存键，叶子节点则同时存放键和值。</p>
+<ul>
+<li><p>B+树的叶子节点有一条链相连，而B树的叶子节点各自独立的。</p>
+</li>
+<li><p>B+树索引的所有数据均存储在叶子节点，而且数据是按照顺序排列的，链表连着的。那么B+树使得范围查找，排序查找，分组查找以及去重查找变得异常简单。.</p>
+</li>
+<li><p>B+树非叶子节点上是不存储数据的，仅存储键值，而B树节点中不仅存储键值，也会存储数据。innodb中页的默认大小是16KB，如果不存储数据，那么就会存储更多的键值，相应的树的阶数（节点的子节点树）就会更大，树就会更矮更胖，如此一来我们查找数据进行磁盘的IO次数有会再次减少，数据查询的效率也会更快.</p>
+</li>
+</ul>
+<h1 id="49-覆盖索引、回表等这些，了解过吗？"><a href="#49-覆盖索引、回表等这些，了解过吗？" class="headerlink" title="49. 覆盖索引、回表等这些，了解过吗？"></a>49. 覆盖索引、回表等这些，了解过吗？</h1><ul>
+<li><p>覆盖索引：查询列要被所建的索引覆盖，不必从数据表中读取，换句话说查询列要被所使用的索引覆盖。</p>
+</li>
+<li><p>回表：二级索引无法直接查询所有列的数据，所以通过二级索引查询到聚簇索引后，再查询到想要的数据，这种通过二级索引查询出来的过程，就叫做回表。</p>
+</li>
+</ul>
+<h1 id="50-B-树在满足聚簇索引和覆盖索引的时候不需要回表查询数据？"><a href="#50-B-树在满足聚簇索引和覆盖索引的时候不需要回表查询数据？" class="headerlink" title="50. B+树在满足聚簇索引和覆盖索引的时候不需要回表查询数据？"></a>50. B+树在满足聚簇索引和覆盖索引的时候不需要回表查询数据？</h1><p>在B+树的索引中，叶子节点可能存储了当前的key值，也可能存储了当前的key值以及整行的数据，这就是聚簇索引和非聚簇索引。在InnoDB中，只有主键索引是聚簇索引，如果没有主键，则挑选一个唯一键建立聚簇索引。如果没有唯一键，则隐式的生成一个键来建立聚簇索引。</p>
 <p>当查询使用聚簇索引时，在对应的叶子节点，可以获取到整行数据，因此不用再次进行回表查询。</p>
-<ol start="51">
-<li>何时使用聚簇索引与非聚簇索引</li>
-</ol>
-<ol start="52">
-<li>非聚簇索引一定会回表查询吗？<br>不一定，如果查询语句的字段全部命中了索引，那么就不必再进行回表查询（哈哈，覆盖索引就是这么回事）。</li>
-</ol>
+<h1 id="51-何时使用聚簇索引与非聚簇索引"><a href="#51-何时使用聚簇索引与非聚簇索引" class="headerlink" title="51. 何时使用聚簇索引与非聚簇索引"></a>51. 何时使用聚簇索引与非聚簇索引</h1><p><img src="/resource/img/jzsyhfzjsy.png" srcset="/img/loading.gif" alt="avatar"></p>
+<h1 id="52-非聚簇索引一定会回表查询吗？"><a href="#52-非聚簇索引一定会回表查询吗？" class="headerlink" title="52. 非聚簇索引一定会回表查询吗？"></a>52. 非聚簇索引一定会回表查询吗？</h1><p>不一定，如果查询语句的字段全部命中了索引，那么就不必再进行回表查询（哈哈，覆盖索引就是这么回事）。</p>
 <p>举个简单的例子，假设我们在学生表的上建立了索引，那么当进行select age from student where age &lt; 20的查询时，在索引的叶子节点上，已经包含了age信息，不会再次进行回表查询。</p>
-<ol start="53">
-<li>组合索引是什么？为什么需要注意组合索引中的顺序？<br>组合索引，用户可以在多个列上建立索引,这种索引叫做组合索引。</li>
-</ol>
+<h1 id="53-组合索引是什么？为什么需要注意组合索引中的顺序？"><a href="#53-组合索引是什么？为什么需要注意组合索引中的顺序？" class="headerlink" title="53. 组合索引是什么？为什么需要注意组合索引中的顺序？"></a>53. 组合索引是什么？为什么需要注意组合索引中的顺序？</h1><p>组合索引，用户可以在多个列上建立索引,这种索引叫做组合索引。</p>
 <p>因为InnoDB引擎中的索引策略的最左原则，所以需要注意组合索引中的顺序。</p>
-<ol start="54">
-<li><p>什么是数据库事务？<br>数据库事务（简称：事务），是数据库管理系统执行过程中的一个逻辑单位，由一个有限的数据库操作序列构成，这些操作要么全部执行,要么全部不执行，是一个不可分割的工作单位。</p>
-</li>
-<li><p>隔离级别与锁的关系<br>回答这个问题，可以先阐述四种隔离级别，再阐述它们的实现原理。隔离级别就是依赖锁和MVCC实现的。</p>
-</li>
-<li><p>按照锁的粒度分，数据库锁有哪些呢？锁机制与InnoDB锁算法</p>
-</li>
-</ol>
+<h1 id="54-什么是数据库事务？"><a href="#54-什么是数据库事务？" class="headerlink" title="54. 什么是数据库事务？"></a>54. 什么是数据库事务？</h1><p>数据库事务（简称：事务），是数据库管理系统执行过程中的一个逻辑单位，由一个有限的数据库操作序列构成，这些操作要么全部执行,要么全部不执行，是一个不可分割的工作单位。</p>
+<h1 id="55-隔离级别与锁的关系"><a href="#55-隔离级别与锁的关系" class="headerlink" title="55. 隔离级别与锁的关系"></a>55. 隔离级别与锁的关系</h1><p>回答这个问题，可以先阐述四种隔离级别，再阐述它们的实现原理。隔离级别就是依赖锁和MVCC实现的。</p>
+<h1 id="56-按照锁的粒度分，数据库锁有哪些呢？锁机制与InnoDB锁算法"><a href="#56-按照锁的粒度分，数据库锁有哪些呢？锁机制与InnoDB锁算法" class="headerlink" title="56. 按照锁的粒度分，数据库锁有哪些呢？锁机制与InnoDB锁算法"></a>56. 按照锁的粒度分，数据库锁有哪些呢？锁机制与InnoDB锁算法</h1><p><img src="/resource/img/mysql-lock.png" srcset="/img/loading.gif" alt="avatar"></p>
 <p>按锁粒度分有：表锁，页锁，行锁</p>
 <p>按锁机制分有：乐观锁，悲观锁</p>
-<ol start="57">
-<li>从锁的类别角度讲，MySQL都有哪些锁呢？<br>从锁的类别上来讲，有共享锁和排他锁。</li>
-</ol>
-<p>共享锁: 又叫做读锁。当用户要进行数据的读取时，对数据加上共享锁。共享锁可以同时加上多个。</p>
-<p>排他锁: 又叫做写锁。当用户要进行数据的写入时，对数据加上排他锁。排他锁只可以加一个，他和其他的排他锁，共享锁都相斥。</p>
+<h1 id="57-从锁的类别角度讲，MySQL都有哪些锁呢？"><a href="#57-从锁的类别角度讲，MySQL都有哪些锁呢？" class="headerlink" title="57. 从锁的类别角度讲，MySQL都有哪些锁呢？"></a>57. 从锁的类别角度讲，MySQL都有哪些锁呢？</h1><p>从锁的类别上来讲，有共享锁和排他锁。</p>
+<ul>
+<li><p>共享锁: 又叫做读锁。当用户要进行数据的读取时，对数据加上共享锁。共享锁可以同时加上多个。</p>
+</li>
+<li><p>排他锁: 又叫做写锁。当用户要进行数据的写入时，对数据加上排他锁。排他锁只可以加一个，他和其他的排他锁，共享锁都相斥。</p>
+</li>
+</ul>
 <p>锁兼容性如下：</p>
-<ol start="58">
-<li>MySQL中InnoDB引擎的行锁是怎么实现的？<br>基于索引来完成行锁的。</li>
-</ol>
-<p>select</p>
-<p>*</p>
-<p>from<br> t<br>where<br> id<br>=</p>
-<p>666</p>
-<p>for<br> update<br>;</p>
+<table>
+    <tr><td>兼容性</td><td>S</td><td>X</td></tr>
+    <tr><td>S</td><td>兼容</td><td>不兼容</td></tr>
+    <tr><td>X</td><td>不兼容</td><td>不兼容</td></tr>
+</table>
+
+<h1 id="58-MySQL中InnoDB引擎的行锁是怎么实现的？"><a href="#58-MySQL中InnoDB引擎的行锁是怎么实现的？" class="headerlink" title="58. MySQL中InnoDB引擎的行锁是怎么实现的？"></a>58. MySQL中InnoDB引擎的行锁是怎么实现的？</h1><p>基于索引来完成行锁的。</p>
+<pre><code class="sql">select * from t where id =666 for update;</code></pre>
 <p>for update 可以根据条件来完成行锁锁定，并且 id 是有索引键的列，如果 id 不是索引键那么InnoDB将实行表锁。</p>
-<ol start="59">
-<li>什么是死锁？怎么解决？<br>死锁是指两个或多个事务在同一资源上相互占用，并请求锁定对方的资源，从而导致恶性循环的现象。看图形象一点，如下：死锁有四个必要条件：互斥条件，请求和保持条件，环路等待条件，不剥夺条件。</li>
-</ol>
+<h1 id="59-什么是死锁？怎么解决？"><a href="#59-什么是死锁？怎么解决？" class="headerlink" title="59. 什么是死锁？怎么解决？"></a>59. 什么是死锁？怎么解决？</h1><p>死锁是指两个或多个事务在同一资源上相互占用，并请求锁定对方的资源，从而导致恶性循环的现象。看图形象一点，如下：</p>
+<p><img src="/resource/img/mysql-dead-lock.png" srcset="/img/loading.gif" alt="avatar"></p>
+<p>死锁有四个必要条件：互斥条件，请求和保持条件，环路等待条件，不剥夺条件。</p>
 <p>解决死锁思路，一般就是切断环路，尽量避免并发形成环路。</p>
 <p>如果不同程序会并发存取多个表，尽量约定以相同的顺序访问表，可以大大降低死锁机会。</p>
 <p>在同一个事务中，尽可能做到一次锁定所需要的所有资源，减少死锁产生概率；</p>
 <p>对于非常容易产生死锁的业务部分，可以尝试使用升级锁定颗粒度，通过表级锁定来减少死锁产生的概率；</p>
 <p>如果业务处理不好可以用分布式事务锁或者使用乐观锁</p>
 <p>死锁与索引密不可分，解决索引问题，需要合理优化你的索引，</p>
-<ol start="60">
-<li>为什么要使用视图？什么是视图？<br>为什么要使用视图？</li>
-</ol>
+<h1 id="60-为什么要使用视图？什么是视图？"><a href="#60-为什么要使用视图？什么是视图？" class="headerlink" title="60. 为什么要使用视图？什么是视图？"></a>60. 为什么要使用视图？什么是视图？</h1><p>为什么要使用视图？</p>
 <p>为了提高复杂SQL语句的复用性和表操作的安全性，MySQL数据库管理系统提供了视图特性。</p>
 <p>什么是视图？</p>
 <p>视图是一个虚拟的表，是一个表中的数据经过某种筛选后的显示方式，视图由一个预定义的查询select语句组成。</p>
-<ol start="61">
-<li>视图有哪些特点？哪些使用场景？<br>视图特点：</li>
-</ol>
-<p>视图的列可以来自不同的表，是表的抽象和在逻辑意义上建立的新关系。</p>
-<p>视图是由基本表(实表)产生的表(虚表)。</p>
-<p>视图的建立和删除不影响基本表。</p>
-<p>对视图内容的更新(添加，删除和修改)直接影响基本表。</p>
-<p>当视图来自多个基本表时，不允许添加和删除数据。</p>
-<p>视图用途： 简化sql查询，提高开发效率，兼容老的表结构。</p>
+<h1 id="61-视图有哪些特点？哪些使用场景？"><a href="#61-视图有哪些特点？哪些使用场景？" class="headerlink" title="61. 视图有哪些特点？哪些使用场景？"></a>61. 视图有哪些特点？哪些使用场景？</h1><p>视图特点：</p>
+<ul>
+<li><p>视图的列可以来自不同的表，是表的抽象和在逻辑意义上建立的新关系。</p>
+</li>
+<li><p>视图是由基本表(实表)产生的表(虚表)。</p>
+</li>
+<li><p>视图的建立和删除不影响基本表。</p>
+</li>
+<li><p>对视图内容的更新(添加，删除和修改)直接影响基本表。</p>
+</li>
+<li><p>当视图来自多个基本表时，不允许添加和删除数据。</p>
+</li>
+<li><p>视图用途： 简化sql查询，提高开发效率，兼容老的表结构。</p>
+</li>
+</ul>
 <p>视图的常见使用场景：</p>
-<p>重用SQL语句；</p>
-<p>简化复杂的SQL操作。</p>
-<p>使用表的组成部分而不是整个表；</p>
-<p>保护数据</p>
-<p>更改数据格式和表示。视图可返回与底层表的表示和格式不同的数据。</p>
-<ol start="62">
-<li>视图的优点，缺点，讲一下？<br>查询简单化。视图能简化用户的操作</li>
-</ol>
+<ul>
+<li><p>重用SQL语句；</p>
+</li>
+<li><p>简化复杂的SQL操作。</p>
+</li>
+<li><p>使用表的组成部分而不是整个表；</p>
+</li>
+<li><p>保护数据</p>
+</li>
+<li><p>更改数据格式和表示。视图可返回与底层表的表示和格式不同的数据。</p>
+</li>
+</ul>
+<h1 id="62-视图的优点，缺点，讲一下？"><a href="#62-视图的优点，缺点，讲一下？" class="headerlink" title="62. 视图的优点，缺点，讲一下？"></a>62. 视图的优点，缺点，讲一下？</h1><p>查询简单化。视图能简化用户的操作</p>
 <p>数据安全性。视图使用户能以多种角度看待同一数据，能够对机密数据提供安全保护</p>
 <p>逻辑数据独立性。视图对重构数据库提供了一定程度的逻辑独立性</p>
-<ol start="63">
-<li>count(1)、count(<em>) 与 count(列名) 的区别？<br>count(</em>)包括了所有的列，相当于行数，在统计结果的时候，不会忽略列值为NULL</li>
-</ol>
+<h1 id="63-count-1-、count-与-count-列名-的区别？"><a href="#63-count-1-、count-与-count-列名-的区别？" class="headerlink" title="63. count(1)、count(*) 与 count(列名) 的区别？"></a>63. count(1)、count(*) 与 count(列名) 的区别？</h1><p>count(*)包括了所有的列，相当于行数，在统计结果的时候，不会忽略列值为NULL</p>
 <p>count(1)包括了忽略所有列，用1代表代码行，在统计结果的时候，不会忽略列值为NULL</p>
 <p>count(列名)只包括列名那一列，在统计结果的时候，会忽略列值为空（这里的空不是只空字符串或者0，而是表示null）的计数，即某个字段值为NULL时，不统计。</p>
-<ol start="64">
-<li><p>什么是游标？<br>游标提供了一种对从表中检索出的数据进行操作的灵活手段，就本质而言，游标实际上是一种能从包括多条数据记录的结果集中每次提取一条记录的机制。</p>
-</li>
-<li><p>什么是存储过程？有哪些优缺点？<br>存储过程，就是一些编译好了的SQL语句，这些SQL语句代码像一个方法一样实现一些功能（对单表或多表的增删改查），然后给这些代码块取一个名字，在用到这个功能的时候调用即可。</p>
-</li>
-</ol>
+<h1 id="64-什么是游标？"><a href="#64-什么是游标？" class="headerlink" title="64. 什么是游标？"></a>64. 什么是游标？</h1><p>游标提供了一种对从表中检索出的数据进行操作的灵活手段，就本质而言，游标实际上是一种能从包括多条数据记录的结果集中每次提取一条记录的机制。</p>
+<h1 id="65-什么是存储过程？有哪些优缺点？"><a href="#65-什么是存储过程？有哪些优缺点？" class="headerlink" title="65. 什么是存储过程？有哪些优缺点？"></a>65. 什么是存储过程？有哪些优缺点？</h1><p>存储过程，就是一些编译好了的SQL语句，这些SQL语句代码像一个方法一样实现一些功能（对单表或多表的增删改查），然后给这些代码块取一个名字，在用到这个功能的时候调用即可。</p>
 <p>优点：</p>
-<p>存储过程是一个预编译的代码块，执行效率比较高</p>
-<p>存储过程在服务器端运行，减少客户端的压力</p>
-<p>允许模块化程序设计，只需要创建一次过程，以后在程序中就可以调用该过程任意次，类似方法的复用</p>
-<p>一个存储过程替代大量T_SQL语句 ，可以降低网络通信量，提高通信速率</p>
-<p>可以一定程度上确保数据安全</p>
+<ul>
+<li><p>存储过程是一个预编译的代码块，执行效率比较高</p>
+</li>
+<li><p>存储过程在服务器端运行，减少客户端的压力</p>
+</li>
+<li><p>允许模块化程序设计，只需要创建一次过程，以后在程序中就可以调用该过程任意次，类似方法的复用</p>
+</li>
+<li><p>一个存储过程替代大量T_SQL语句 ，可以降低网络通信量，提高通信速率</p>
+</li>
+<li><p>可以一定程度上确保数据安全</p>
+</li>
+</ul>
 <p>缺点：</p>
-<p>调试麻烦</p>
-<p>可移植性不灵活</p>
-<p>重新编译问题</p>
-<ol start="66">
-<li>什么是触发器？触发器的使用场景有哪些？<br>触发器，指一段代码，当触发某个事件时，自动执行这些代码。</li>
-</ol>
+<ul>
+<li><p>调试麻烦</p>
+</li>
+<li><p>可移植性不灵活</p>
+</li>
+<li><p>重新编译问题</p>
+</li>
+</ul>
+<h1 id="66-什么是触发器？触发器的使用场景有哪些？"><a href="#66-什么是触发器？触发器的使用场景有哪些？" class="headerlink" title="66. 什么是触发器？触发器的使用场景有哪些？"></a>66. 什么是触发器？触发器的使用场景有哪些？</h1><p>触发器，指一段代码，当触发某个事件时，自动执行这些代码。</p>
 <p>使用场景：</p>
 <p>可以通过数据库中的相关表实现级联更改。</p>
 <p>实时监控某张表中的某个字段的更改而需要做出相应的处理。</p>
 <p>例如可以生成某些业务的编号。</p>
 <p>注意不要滥用，否则会造成数据库及应用程序的维护困难。</p>
-<ol start="67">
-<li>MySQL中都有哪些触发器？<br>MySQL 数据库中有六种触发器：</li>
-</ol>
-<p>Before Insert</p>
-<p>After Insert</p>
-<p>Before Update</p>
-<p>After Update</p>
-<p>Before Delete</p>
-<p>After Delete</p>
-<ol start="68">
-<li>超键、候选键、主键、外键分别是什么？<br>超键：在关系模式中，能唯一知标识元组的属性集称为超键。</li>
-</ol>
+<h1 id="67-MySQL中都有哪些触发器？"><a href="#67-MySQL中都有哪些触发器？" class="headerlink" title="67. MySQL中都有哪些触发器？"></a>67. MySQL中都有哪些触发器？</h1><p>MySQL 数据库中有六种触发器：</p>
+<ul>
+<li><p>Before Insert</p>
+</li>
+<li><p>After Insert</p>
+</li>
+<li><p>Before Update</p>
+</li>
+<li><p>After Update</p>
+</li>
+<li><p>Before Delete</p>
+</li>
+<li><p>After Delete</p>
+</li>
+</ul>
+<h1 id="68-超键、候选键、主键、外键分别是什么？"><a href="#68-超键、候选键、主键、外键分别是什么？" class="headerlink" title="68. 超键、候选键、主键、外键分别是什么？"></a>68. 超键、候选键、主键、外键分别是什么？</h1><p>超键：在关系模式中，能唯一知标识元组的属性集称为超键。</p>
 <p>候选键：是最小超键，即没有冗余元素的超键。</p>
 <p>主键：数据库表中对储存数据对象予以唯一和完整标识的数据列或属性的组合。一个数据列只能有一个主键，且主键的取值不能缺失，即不能为空值（Null）。</p>
 <p>外键：在一个表中存在的另一个表的主键称此表的外键。。</p>
-<ol start="69">
-<li>SQL 约束有哪几种呢？<br>NOT NULL: 约束字段的内容一定不能为NULL。</li>
-</ol>
+<h1 id="69-SQL-约束有哪几种呢？"><a href="#69-SQL-约束有哪几种呢？" class="headerlink" title="69. SQL 约束有哪几种呢？"></a>69. SQL 约束有哪几种呢？</h1><p>NOT NULL: 约束字段的内容一定不能为NULL。</p>
 <p>UNIQUE: 约束字段唯一性，一个表允许有多个 Unique 约束。</p>
 <p>PRIMARY KEY: 约束字段唯一，不可重复，一个表只允许存在一个。</p>
 <p>FOREIGN KEY: 用于预防破坏表之间连接的动作，也能防止非法数据插入外键。</p>
 <p>CHECK: 用于控制字段的值范围。</p>
-<ol start="70">
-<li>谈谈六种关联查询，使用场景。<br>交叉连接</li>
-</ol>
+<h1 id="70-谈谈六种关联查询，使用场景。"><a href="#70-谈谈六种关联查询，使用场景。" class="headerlink" title="70. 谈谈六种关联查询，使用场景。"></a>70. 谈谈六种关联查询，使用场景。</h1><p>交叉连接</p>
 <p>内连接</p>
 <p>外连接</p>
 <p>联合查询</p>
 <p>全连接</p>
 <p>交叉连接</p>
-<ol start="71">
-<li>varchar(50)中50的涵义<br>字段最多存放 50 个字符</li>
-</ol>
+<h1 id="71-varchar-50-中50的涵义"><a href="#71-varchar-50-中50的涵义" class="headerlink" title="71. varchar(50)中50的涵义"></a>71. varchar(50)中50的涵义</h1><p>字段最多存放 50 个字符</p>
 <p>如 varchar(50) 和 varchar(200) 存储 “jay” 字符串所占空间是一样的，后者在排序时会消耗更多内存</p>
-<ol start="72">
-<li>mysql中int(20)和char(20)以及varchar(20)的区别<br>int(20) 表示字段是int类型，显示长度是 20</li>
-</ol>
+<h1 id="72-mysql中int-20-和char-20-以及varchar-20-的区别"><a href="#72-mysql中int-20-和char-20-以及varchar-20-的区别" class="headerlink" title="72. mysql中int(20)和char(20)以及varchar(20)的区别"></a>72. mysql中int(20)和char(20)以及varchar(20)的区别</h1><p>int(20) 表示字段是int类型，显示长度是 20</p>
 <p>char(20)表示字段是固定长度字符串，长度为 20</p>
 <p>varchar(20) 表示字段是可变长度字符串，长度为 20</p>
-<ol start="73">
-<li>drop、delete与truncate的区别</li>
-</ol>
-<p>delete    truncate    drop<br>类型    DML    DDL    DDL<br>回滚    可回滚    不可回滚    不可回滚<br>删除内容    表结构还在，删除表的全部或者一部分数据行    表结构还在，删除表中的所有数据    从数据库中删除表，所有的数据行，索引和权限也会被删除<br>删除速度    删除速度慢，逐行删除    删除速度快    删除速度最快<br>74. UNION与UNION ALL的区别？<br>Union：对两个结果集进行并集操作，不包括重复行，同时进行默认规则的排序；</p>
+<h1 id="73-drop、delete与truncate的区别"><a href="#73-drop、delete与truncate的区别" class="headerlink" title="73. drop、delete与truncate的区别"></a>73. drop、delete与truncate的区别</h1><table>
+<tr><td>\</td><td>delete</td><td>truncate</td><td>drop</td></tr>
+<tr><td>类型</td><td>DML</td><td>DDL</td><td>DDL</td></tr>
+<tr><td>回滚</td><td>可回滚</td><td>不可回滚</td><td>不可回滚</td></tr>
+<tr><td>删除内容</td><td>表结构还在，删除表的全部或者一部分数据行</td><td>表结构还在，删除表中的所有数据</td><td>从数据库中删除表，所有的数据行，索引和权限也会被删除</td></tr>
+<tr><td>删除速度</td><td>删除速度慢，逐行删除</td><td>删除速度快</td><td>删除速度最快</td>
+</tr>
+
+<h1 id="74-UNION与UNION-ALL的区别？"><a href="#74-UNION与UNION-ALL的区别？" class="headerlink" title="74. UNION与UNION ALL的区别？"></a>74. UNION与UNION ALL的区别？</h1><p>Union：对两个结果集进行并集操作，不包括重复行，同时进行默认规则的排序；</p>
 <p>Union All：对两个结果集进行并集操作，包括重复行，不进行排序；</p>
 <p>UNION的效率高于 UNION ALL</p>
-<ol start="75">
-<li>SQL的生命周期？<br>服务器与数据库建立连接</li>
-</ol>
+<h1 id="75-SQL的生命周期？"><a href="#75-SQL的生命周期？" class="headerlink" title="75. SQL的生命周期？"></a>75. SQL的生命周期？</h1><p>服务器与数据库建立连接</p>
 <p>数据库进程拿到请求sql</p>
 <p>解析并生成执行计划，执行</p>
 <p>读取数据到内存，并进行逻辑处理</p>
 <p>通过步骤一的连接，发送结果到客户端</p>
 <p>关掉连接，释放资源</p>
-<ol start="76">
-<li>一条Sql的执行顺序？</li>
-</ol>
-<ol start="77">
-<li>列值为NULL时，查询是否会用到索引？<br>列值为NULL也是可以走索引的</li>
-</ol>
+<h1 id="76-一条Sql的执行顺序？"><a href="#76-一条Sql的执行顺序？" class="headerlink" title="76. 一条Sql的执行顺序？"></a>76. 一条Sql的执行顺序？</h1><p><img src="/resource/img/sql-zxsx.png" srcset="/img/loading.gif" alt="avatar"></p>
+<h1 id="77-列值为NULL时，查询是否会用到索引？"><a href="#77-列值为NULL时，查询是否会用到索引？" class="headerlink" title="77. 列值为NULL时，查询是否会用到索引？"></a>77. 列值为NULL时，查询是否会用到索引？</h1><p>列值为NULL也是可以走索引的</p>
 <p>计划对列进行索引，应尽量避免把它设置为可空，因为这会让 MySQL 难以优化引用了可空列的查询，同时增加了引擎的复杂度</p>
-<ol start="78">
-<li>关心过业务系统里面的sql耗时吗？统计过慢查询吗？对慢查询都怎么优化过？<br>我们平时写Sql时，都要养成用explain分析的习惯。</li>
-</ol>
+<h1 id="78-关心过业务系统里面的sql耗时吗？统计过慢查询吗？对慢查询都怎么优化过？"><a href="#78-关心过业务系统里面的sql耗时吗？统计过慢查询吗？对慢查询都怎么优化过？" class="headerlink" title="78. 关心过业务系统里面的sql耗时吗？统计过慢查询吗？对慢查询都怎么优化过？"></a>78. 关心过业务系统里面的sql耗时吗？统计过慢查询吗？对慢查询都怎么优化过？</h1><p>我们平时写Sql时，都要养成用explain分析的习惯。</p>
 <p>慢查询的统计，运维会定期统计给我们</p>
 <p>优化慢查询：</p>
 <p>分析语句，是否加载了不必要的字段/数据。</p>
@@ -814,38 +838,24 @@ for(int i=0;i&lt;A.length;i++){
 <p>如果SQL很复杂，优化SQL结构</p>
 <p>如果表数据量太大，考虑分表</p>
 <p>可以看我这篇文章哈：后端程序员必备：书写高质量SQL的30条建议</p>
-<ol start="79">
-<li>主键使用自增ID还是UUID，为什么？<br>如果是单机的话，选择自增ID；如果是分布式系统，优先考虑UUID吧，但还是最好自己公司有一套分布式唯一ID生产方案吧。</li>
-</ol>
+<h1 id="79-主键使用自增ID还是UUID，为什么？"><a href="#79-主键使用自增ID还是UUID，为什么？" class="headerlink" title="79. 主键使用自增ID还是UUID，为什么？"></a>79. 主键使用自增ID还是UUID，为什么？</h1><p>如果是单机的话，选择自增ID；如果是分布式系统，优先考虑UUID吧，但还是最好自己公司有一套分布式唯一ID生产方案吧。</p>
 <p>自增ID：数据存储空间小，查询效率高。但是如果数据量过大,会超出自增长的值范围，多库合并，也有可能有问题。</p>
 <p>uuid：适合大量数据的插入和更新操作，但是它无序的，插入数据效率慢，占用空间大。</p>
-<ol start="80">
-<li><p>mysql自增主键用完了怎么办？<br>自增主键一般用int类型，一般达不到最大值，可以考虑提前分库分表的。</p>
-</li>
-<li><p>字段为什么要求定义为not null？<br>null值会占用更多的字节，并且null有很多坑的。</p>
-</li>
-<li><p>如果要存储用户的密码散列，应该使用什么字段进行存储？<br>密码散列，盐，用户身份证号等固定长度的字符串，应该使用char而不是varchar来存储，这样可以节省空间且提高检索效率。</p>
-</li>
-<li><p>Mysql驱动程序是什么？<br>这个jar包：mysql-connector-java-5.1.18.jar</p>
-</li>
-</ol>
+<h1 id="80-mysql自增主键用完了怎么办？"><a href="#80-mysql自增主键用完了怎么办？" class="headerlink" title="80. mysql自增主键用完了怎么办？"></a>80. mysql自增主键用完了怎么办？</h1><p>自增主键一般用int类型，一般达不到最大值，可以考虑提前分库分表的。</p>
+<h1 id="81-字段为什么要求定义为not-null？"><a href="#81-字段为什么要求定义为not-null？" class="headerlink" title="81. 字段为什么要求定义为not null？"></a>81. 字段为什么要求定义为not null？</h1><p>null值会占用更多的字节，并且null有很多坑的。</p>
+<h1 id="82-如果要存储用户的密码散列，应该使用什么字段进行存储？"><a href="#82-如果要存储用户的密码散列，应该使用什么字段进行存储？" class="headerlink" title="82. 如果要存储用户的密码散列，应该使用什么字段进行存储？"></a>82. 如果要存储用户的密码散列，应该使用什么字段进行存储？</h1><p>密码散列，盐，用户身份证号等固定长度的字符串，应该使用char而不是varchar来存储，这样可以节省空间且提高检索效率。</p>
+<h1 id="83-Mysql驱动程序是什么？"><a href="#83-Mysql驱动程序是什么？" class="headerlink" title="83. Mysql驱动程序是什么？"></a>83. Mysql驱动程序是什么？</h1><p>这个jar包：mysql-connector-java-5.1.18.jar</p>
 <p>Mysql驱动程序主要帮助编程语言与 MySQL服务端进行通信，如连接、传输数据、关闭等。</p>
-<ol start="84">
-<li>如何优化长难的查询语句？有实战过吗？<br>将一个大的查询分为多个小的相同的查询</li>
-</ol>
+<h1 id="84-如何优化长难的查询语句？有实战过吗？"><a href="#84-如何优化长难的查询语句？有实战过吗？" class="headerlink" title="84. 如何优化长难的查询语句？有实战过吗？"></a>84. 如何优化长难的查询语句？有实战过吗？</h1><p>将一个大的查询分为多个小的相同的查询</p>
 <p>减少冗余记录的查询。</p>
 <p>一个复杂查询可以考虑拆成多个简单查询</p>
 <p>分解关联查询，让缓存的效率更高。</p>
-<ol start="85">
-<li>优化特定类型的查询语句<br>平时积累吧：</li>
-</ol>
+<h1 id="85-优化特定类型的查询语句"><a href="#85-优化特定类型的查询语句" class="headerlink" title="85. 优化特定类型的查询语句"></a>85. 优化特定类型的查询语句</h1><p>平时积累吧：</p>
 <p>比如使用select 具体字段代替 select *</p>
 <p>使用count(*) 而不是count(列名)</p>
 <p>在不影响业务的情况，使用缓存</p>
 <p>explain 分析你的SQL</p>
-<ol start="86">
-<li>MySQL数据库cpu飙升的话，要怎么处理呢？<br>排查过程：</li>
-</ol>
+<h1 id="86-MySQL数据库cpu飙升的话，要怎么处理呢？"><a href="#86-MySQL数据库cpu飙升的话，要怎么处理呢？" class="headerlink" title="86. MySQL数据库cpu飙升的话，要怎么处理呢？"></a>86. MySQL数据库cpu飙升的话，要怎么处理呢？</h1><p>排查过程：</p>
 <p>使用top 命令观察，确定是mysqld导致还是其他原因。</p>
 <p>如果是mysqld导致的，show processlist，查看session情况，确定是不是有消耗资源的sql在运行。</p>
 <p>找出消耗高的 sql，看看执行计划是否准确， 索引是否缺失，数据量是否太大。</p>
@@ -855,115 +865,91 @@ for(int i=0;i&lt;A.length;i++){
 <p>重新跑这些 SQL。</p>
 <p>其他情况：</p>
 <p>也有可能是每个 sql 消耗资源并不多，但是突然之间，有大量的 session 连进来导致 cpu 飙升，这种情况就需要跟应用一起来分析为何连接数会激增，再做出相应的调整，比如说限制连接数等</p>
-<ol start="87">
-<li>读写分离常见方案？<br>应用程序根据业务逻辑来判断，增删改等写操作命令发给主库，查询命令发给备库。</li>
-</ol>
+<h1 id="87-读写分离常见方案？"><a href="#87-读写分离常见方案？" class="headerlink" title="87. 读写分离常见方案？"></a>87. 读写分离常见方案？</h1><p>应用程序根据业务逻辑来判断，增删改等写操作命令发给主库，查询命令发给备库。</p>
 <p>利用中间件来做代理，负责对数据库的请求识别出读还是写，并分发到不同的数据库中。（如：amoeba，mysql-proxy）</p>
-<ol start="88">
-<li>MySQL的复制原理以及流程<br>主从复制原理，简言之，就三步曲，如下：</li>
-</ol>
+<h1 id="88-MySQL的复制原理以及流程"><a href="#88-MySQL的复制原理以及流程" class="headerlink" title="88. MySQL的复制原理以及流程"></a>88. MySQL的复制原理以及流程</h1><p>主从复制原理，简言之，就三步曲，如下：</p>
 <p>主数据库有个bin-log二进制文件，纪录了所有增删改Sql语句。（binlog线程）</p>
 <p>从数据库把主数据库的bin-log文件的sql语句复制过来。（io线程）</p>
 <p>从数据库的relay-log重做日志文件中再执行一次这些sql语句。（Sql执行线程）</p>
 <p>如下图所示：</p>
+<p><img src="/resource/img/mysql-copy.png" srcset="/img/loading.gif" alt="avatar"></p>
 <p>上图主从复制分了五个步骤进行：</p>
 <p>步骤一：主库的更新事件(update、insert、delete)被写到binlog</p>
 <p>步骤二：从库发起连接，连接到主库。</p>
 <p>步骤三：此时主库创建一个binlog dump thread，把binlog的内容发送到从库。</p>
 <p>步骤四：从库启动之后，创建一个I/O线程，读取主库传过来的binlog内容并写入到relay log</p>
 <p>步骤五：还会创建一个SQL线程，从relay log里面读取内容，从ExecMasterLog_Pos位置开始执行读取到的更新事件，将更新内容写入到slave的db</p>
-<ol start="89">
-<li>MySQL中DATETIME和TIMESTAMP的区别<br>存储精度都为秒</li>
-</ol>
-<p>区别：</p>
-<p>DATETIME 的日期范围是 1001——9999 年；TIMESTAMP 的时间范围是 1970——2038 年</p>
-<p>DATETIME 存储时间与时区无关；TIMESTAMP 存储时间与时区有关，显示的值也依赖于时区</p>
-<p>DATETIME 的存储空间为 8 字节；TIMESTAMP 的存储空间为 4 字节</p>
-<p>DATETIME 的默认值为 null；TIMESTAMP 的字段默认不为空(not null)，默认值为当前时间(CURRENT_TIMESTAMP)</p>
-<ol start="90">
-<li>Innodb的事务实现原理？<br>原子性：是使用 undo log来实现的，如果事务执行过程中出错或者用户执行了rollback，系统通过undo log日志返回事务开始的状态。</li>
-</ol>
-<p>持久性：使用 redo log来实现，只要redo log日志持久化了，当系统崩溃，即可通过redo log把数据恢复。</p>
-<p>隔离性：通过锁以及MVCC,使事务相互隔离开。</p>
-<p>一致性：通过回滚、恢复，以及并发情况下的隔离性，从而实现一致性。</p>
-<ol start="91">
-<li>谈谈MySQL的Explain<br>Explain 执行计划包含字段信息如下：分别是 id、selecttype、table、partitions、type、possiblekeys、key、key_len、ref、rows、filtered、Extra 等12个字段。</li>
-</ol>
+<h1 id="89-MySQL中DATETIME和TIMESTAMP的区别"><a href="#89-MySQL中DATETIME和TIMESTAMP的区别" class="headerlink" title="89. MySQL中DATETIME和TIMESTAMP的区别"></a>89. MySQL中DATETIME和TIMESTAMP的区别</h1><blockquote>
+<p>存储精度都为秒</p>
+</blockquote>
+<h1 id="区别："><a href="#区别：" class="headerlink" title="区别："></a>区别：</h1><ul>
+<li><p>DATETIME 的日期范围是 1001——9999 年；TIMESTAMP 的时间范围是 1970——2038 年</p>
+</li>
+<li><p>DATETIME 存储时间与时区无关；TIMESTAMP 存储时间与时区有关，显示的值也依赖于时区</p>
+</li>
+<li><p>DATETIME 的存储空间为 8 字节；TIMESTAMP 的存储空间为 4 字节</p>
+</li>
+<li><p>DATETIME 的默认值为 null；TIMESTAMP 的字段默认不为空(not null)，默认值为当前时间(CURRENT_TIMESTAMP)</p>
+</li>
+</ul>
+<h1 id="90-Innodb的事务实现原理？"><a href="#90-Innodb的事务实现原理？" class="headerlink" title="90. Innodb的事务实现原理？"></a>90. Innodb的事务实现原理？</h1><p>原子性(Atomicity)：是使用 undo log来实现的，如果事务执行过程中出错或者用户执行了rollback，系统通过undo log日志返回事务开始的状态。</p>
+<p>一致性(Consistency)：通过回滚、恢复，以及并发情况下的隔离性，从而实现一致性。</p>
+<p>持久性(Durability)：使用 redo log来实现，只要redo log日志持久化了，当系统崩溃，即可通过redo log把数据恢复。</p>
+<p>隔离性(Isolation)：通过锁以及MVCC,使事务相互隔离开。</p>
+<h1 id="91-谈谈MySQL的Explain"><a href="#91-谈谈MySQL的Explain" class="headerlink" title="91. 谈谈MySQL的Explain"></a>91. 谈谈MySQL的Explain</h1><p>Explain 执行计划包含字段信息如下：分别是 <code>id</code>、<code>selecttype</code>、<code>table</code>、<code>partitions</code>、<code>type</code>、<code>possiblekeys</code>、<code>key</code>、<code>key_len</code>、<code>ref</code>、<code>rows</code>、<code>filtered</code>、<code>Extra</code> 等12个字段。</p>
 <p>我们重点关注的是type，它的属性排序如下：</p>
-<p>system  </p>
-<blockquote>
-</blockquote>
-<p>const</p>
-<blockquote>
-</blockquote>
-<p> eq_ref </p>
-<blockquote>
-</blockquote>
-<p>ref</p>
-<blockquote>
-</blockquote>
-<p> ref_or_null </p>
-<blockquote>
-</blockquote>
-<p>index_merge </p>
-<blockquote>
-</blockquote>
-<p> unique_subquery </p>
-<blockquote>
-</blockquote>
-<p> index_subquery </p>
-<blockquote>
-</blockquote>
-<p>range </p>
-<blockquote>
-</blockquote>
-<p> index </p>
-<blockquote>
-</blockquote>
-<p> ALL</p>
-<ol start="92">
-<li>Innodb的事务与日志的实现方式<br>有多少种日志<br>innodb两种日志redo和undo。</li>
-</ol>
-<p>日志的存放形式<br>redo：在页修改的时候，先写到 redo log buffer 里面， 然后写到 redo log 的文件系统缓存里面(fwrite)，然后再同步到磁盘文件（ fsync）。</p>
-<p>Undo：在 MySQL5.5 之前， undo 只能存放在 ibdata文件里面， 5.6 之后，可以通过设置 innodbundotablespaces 参数把 undo log 存放在 ibdata之外。</p>
-<p>事务是如何通过日志来实现的<br>因为事务在修改页时，要先记 undo，在记 undo 之前要记 undo 的 redo， 然后修改数据页，再记数据页修改的 redo。Redo（里面包括 undo 的修改） 一定要比数据页先持久化到磁盘。</p>
+<p><code>system</code>  &gt; <code>const</code> &gt; <code>eq_ref</code> &gt; <code>ref</code> &gt; <code>ref_or_null</code> &gt; <code>index_merge</code> &gt; <code>unique_subquery</code> &gt; <code>index_subquery</code> &gt; <code>range</code> &gt; <code>index</code> &gt; <code>ALL</code></p>
+<h1 id="92-Innodb的事务与日志的实现方式"><a href="#92-Innodb的事务与日志的实现方式" class="headerlink" title="92. Innodb的事务与日志的实现方式"></a>92. Innodb的事务与日志的实现方式</h1><h2 id="有多少种日志"><a href="#有多少种日志" class="headerlink" title="有多少种日志"></a>有多少种日志</h2><p>innodb两种日志redo和undo。</p>
+<h2 id="日志的存放形式"><a href="#日志的存放形式" class="headerlink" title="日志的存放形式"></a>日志的存放形式</h2><ul>
+<li><p>redo：在页修改的时候，先写到 redo log buffer 里面， 然后写到 redo log 的文件系统缓存里面(fwrite)，然后再同步到磁盘文件（ fsync）。</p>
+</li>
+<li><p>Undo：在 MySQL5.5 之前， undo 只能存放在 ibdata文件里面， 5.6 之后，可以通过设置 innodbundotablespaces 参数把 undo log 存放在 ibdata之外。</p>
+</li>
+</ul>
+<h2 id="事务是如何通过日志来实现的"><a href="#事务是如何通过日志来实现的" class="headerlink" title="事务是如何通过日志来实现的"></a>事务是如何通过日志来实现的</h2><p>因为事务在修改页时，要先记 undo，在记 undo 之前要记 undo 的 redo， 然后修改数据页，再记数据页修改的 redo。Redo（里面包括 undo 的修改） 一定要比数据页先持久化到磁盘。</p>
 <p>当事务需要回滚时，因为有 undo，可以把数据页回滚到前镜像的 状态，崩溃恢复时，如果 redo log 中事务没有对应的 commit 记录，那么需要用 undo把该事务的修改回滚到事务开始之前。</p>
 <p>如果有 commit 记录，就用 redo 前滚到该事务完成时并提交掉。</p>
-<ol start="93">
-<li>MySQL中TEXT数据类型的最大长度<br>TINYTEXT：256 bytes</li>
-</ol>
-<p>TEXT：65,535 bytes(64kb)</p>
-<p>MEDIUMTEXT：16,777,215 bytes(16MB)</p>
-<p>LONGTEXT：4,294,967,295 bytes(4GB)</p>
-<ol start="94">
-<li>500台db，在最快时间之内重启。<br>可以使用批量 ssh 工具 pssh 来对需要重启的机器执行重启命令。</li>
-</ol>
+<h1 id="93-MySQL中TEXT数据类型的最大长度"><a href="#93-MySQL中TEXT数据类型的最大长度" class="headerlink" title="93. MySQL中TEXT数据类型的最大长度"></a>93. MySQL中TEXT数据类型的最大长度</h1><ul>
+<li><p>TINYTEXT：256 bytes</p>
+</li>
+<li><p>TEXT：65,535 bytes(64kb)</p>
+</li>
+<li><p>MEDIUMTEXT：16,777,215 bytes(16MB)</p>
+</li>
+<li><p>LONGTEXT：4,294,967,295 bytes(4GB)</p>
+</li>
+</ul>
+<h1 id="94-500台db，在最快时间之内重启。"><a href="#94-500台db，在最快时间之内重启。" class="headerlink" title="94. 500台db，在最快时间之内重启。"></a>94. 500台db，在最快时间之内重启。</h1><p>可以使用批量 ssh 工具 pssh 来对需要重启的机器执行重启命令。</p>
 <p>也可以使用 salt（前提是客户端有安装 salt）或者 ansible（ ansible 只需要 ssh 免登通了就行）等多线程工具同时操作多台服务</p>
-<ol start="95">
-<li><p>你是如何监控你们的数据库的？你们的慢日志都是怎么查询的？<br>监控的工具有很多，例如zabbix，lepus，我这里用的是lepus</p>
+<h1 id="95-你是如何监控你们的数据库的？你们的慢日志都是怎么查询的？"><a href="#95-你是如何监控你们的数据库的？你们的慢日志都是怎么查询的？" class="headerlink" title="95. 你是如何监控你们的数据库的？你们的慢日志都是怎么查询的？"></a>95. 你是如何监控你们的数据库的？你们的慢日志都是怎么查询的？</h1><p>监控的工具有很多，例如zabbix，lepus，我这里用的是lepus</p>
+<h1 id="96-你是否做过主从一致性校验，如果有，怎么做的，如果没有，你打算怎么做？"><a href="#96-你是否做过主从一致性校验，如果有，怎么做的，如果没有，你打算怎么做？" class="headerlink" title="96. 你是否做过主从一致性校验，如果有，怎么做的，如果没有，你打算怎么做？"></a>96. 你是否做过主从一致性校验，如果有，怎么做的，如果没有，你打算怎么做？</h1><p>主从一致性校验有多种工具 例如checksum、mysqldiff、pt-table-checksum等</p>
+<h1 id="97-你们数据库是否支持emoji表情存储，如果不支持，如何操作？"><a href="#97-你们数据库是否支持emoji表情存储，如果不支持，如何操作？" class="headerlink" title="97. 你们数据库是否支持emoji表情存储，如果不支持，如何操作？"></a>97. 你们数据库是否支持emoji表情存储，如果不支持，如何操作？</h1><p>更换字符集utf8–&gt;utf8mb4</p>
+<h1 id="98-MySQL如何获取当前日期？"><a href="#98-MySQL如何获取当前日期？" class="headerlink" title="98. MySQL如何获取当前日期？"></a>98. MySQL如何获取当前日期？</h1><pre><code class="sql">SELECT CURRENT_DATE();</code></pre>
+<h1 id="99-一个6亿的表a，一个3亿的表b，通过外间tid关联，你如何最快的查询出满足条件的第50000到第50200中的这200条数据记录。"><a href="#99-一个6亿的表a，一个3亿的表b，通过外间tid关联，你如何最快的查询出满足条件的第50000到第50200中的这200条数据记录。" class="headerlink" title="99. 一个6亿的表a，一个3亿的表b，通过外间tid关联，你如何最快的查询出满足条件的第50000到第50200中的这200条数据记录。"></a>99. 一个6亿的表a，一个3亿的表b，通过外间tid关联，你如何最快的查询出满足条件的第50000到第50200中的这200条数据记录。</h1><p>1、如果A表TID是自增长,并且是连续的,B表的ID为索引</p>
+<pre><code class="sql">select * from a,b where a.tid = b.id and a.tid&gt;500000 limit 200;</code></pre>
+<p>2、如果A表的TID不是连续的,那么就需要使用覆盖索引.TID要么是主键,要么是辅助索引,B表ID也需要有索引。</p>
+<pre><code class="sql">select * from b , (select tid from a limit 50000,200) a where b.id = a .tid;</code></pre>
+<h1 id="100-Mysql一条SQL加锁分析"><a href="#100-Mysql一条SQL加锁分析" class="headerlink" title="100. Mysql一条SQL加锁分析"></a>100. Mysql一条SQL加锁分析</h1><p>一条SQL加锁，可以分9种情况进行哈：</p>
+<ul>
+<li><p>组合一：id列是主键，RC隔离级别</p>
 </li>
-<li><p>你是否做过主从一致性校验，如果有，怎么做的，如果没有，你打算怎么做？<br>主从一致性校验有多种工具 例如checksum、mysqldiff、pt-table-checksum等</p>
+<li><p>组合二：id列是二级唯一索引，RC隔离级别</p>
 </li>
-<li><p>你们数据库是否支持emoji表情存储，如果不支持，如何操作？<br>更换字符集utf8–&gt;utf8mb4</p>
+<li><p>组合三：id列是二级非唯一索引，RC隔离级别</p>
 </li>
-<li><p>MySQL如何获取当前日期？<br>SELECT CURRENT_DATE();</p>
+<li><p>组合四：id列上没有索引，RC隔离级别</p>
 </li>
-<li><p>一个6亿的表a，一个3亿的表b，通过外间tid关联，你如何最快的查询出满足条件的第50000到第50200中的这200条数据记录。<br>1、如果A表TID是自增长,并且是连续的,B表的ID为索引<br>select * from a,b where a.tid = b.id and a.tid&gt;500000 limit 200;</p>
+<li><p>组合五：id列是主键，RR隔离级别</p>
 </li>
-</ol>
-<p>2、如果A表的TID不是连续的,那么就需要使用覆盖索引.TID要么是主键,要么是辅助索引,B表ID也需要有索引。select * from b , (select tid from a limit 50000,200) a where b.id = a .tid;</p>
-<ol start="100">
-<li>Mysql一条SQL加锁分析<br>一条SQL加锁，可以分9种情况进行哈：</li>
-</ol>
-<p>组合一：id列是主键，RC隔离级别</p>
-<p>组合二：id列是二级唯一索引，RC隔离级别</p>
-<p>组合三：id列是二级非唯一索引，RC隔离级别</p>
-<p>组合四：id列上没有索引，RC隔离级别</p>
-<p>组合五：id列是主键，RR隔离级别</p>
-<p>组合六：id列是二级唯一索引，RR隔离级别</p>
-<p>组合七：id列是二级非唯一索引，RR隔离级别</p>
-<p>组合八：id列上没有索引，RR隔离级别</p>
-<p>组合九：Serializable隔离级别</p>
+<li><p>组合六：id列是二级唯一索引，RR隔离级别</p>
+</li>
+<li><p>组合七：id列是二级非唯一索引，RR隔离级别</p>
+</li>
+<li><p>组合八：id列上没有索引，RR隔离级别</p>
+</li>
+<li><p>组合九：Serializable隔离级别</p>
+</li>
+</ul>
 
             </div>
             <hr>
